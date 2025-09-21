@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function login()
     {
         return view('auth.login', [
-            'title' => __('auth.login-label')
+            'title' => __('auth.login_page')
         ]);
     }
 
