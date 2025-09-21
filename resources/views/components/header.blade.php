@@ -16,5 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
     <script src="{{ asset('assets/vendor/js/helpers.js')}}"></script>
     <script src="{{ asset('assets/js/config.js')}}"></script>
+    @yield('charts-css')
   </head>
   <body>
