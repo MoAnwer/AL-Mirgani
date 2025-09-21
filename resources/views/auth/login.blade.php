@@ -114,15 +114,16 @@
                   <span class="app-brand-text demo text-heading fw-bold">مؤسسة الميرغني</span>
                 </a>
               </div>
-              <!-- /Logo -->
-            <div class="alert alert-danger">
-                <ul>
+              @if($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
-                </ul>
-              </div>
-              
+                  </ul>
+                </div>
+              @endif
+
               <h4 class="mb-1">اهلا بك 👋</h4>
               <p class="mb-6">الرجاء ادخال بياناتك لتسحيل الدخول</p>
               
