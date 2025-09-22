@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', HomeController::class);
 
-Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
+Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
 
 Route::name('auth.')->group(function() {
 
