@@ -106,7 +106,7 @@
                 <div class="mb-8">
                   <div class="d-flex justify-content-between">
                     <div class="form-check mb-0">
-                      <input class="form-check-input" type="checkbox" id="remember-me" />
+                      <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me" />
                       <label class="form-check-label" for="remember_me"> تذكرني المرة القادمة </label>
                     </div>
                     <a href="auth-forgot-password-basic.html">

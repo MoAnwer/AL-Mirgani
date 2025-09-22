@@ -12,10 +12,13 @@ class LoginService
     {
         $credentials = $request->validated();
 
-        if (Auth::attempt(
-            ['username' => $credentials['username'], 'password' => $credentials['password']], 
+        if (Auth::attempt([
+            'username' => $credentials['username'], 
+            'password' => $credentials['password']
+        ], 
             isset($credentials['remember_me'])
         )) 
+
         {
             $request->session()->regenerate();
 
