@@ -17,5 +17,5 @@ Route::name('auth.')->group(function() {
         Route::post('loginAction', [LoginController::class, 'loginAction'])->name('action');
     });
     
-    Route::post('logout', LogoutController::class);
+    Route::post('logout', LogoutController::class)->name('logout');
 });

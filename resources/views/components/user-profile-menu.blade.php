@@ -48,10 +48,13 @@
     <li>
         <div class="dropdown-divider my-1"></div>
     </li>
+    <form action="{{ route('auth.logout') }}" method="POST">
+    @csrf
     <li>
-        <a class="dropdown-item" href="javascript:void(0);">
+        <button class="dropdown-item" type="submit">
         <i class="icon-base bx bx-power-off icon-md me-3"></i><span>{{ __('auth.logout') }}</span>
-        </a>
+        </button>
     </li>
+    </form>
     </ul>
 </li>
