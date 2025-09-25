@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('fathers', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->string('phone_one');
-            $table->string('phone_two')->nullable();
+            $table->string('phone_one')->unique();
+            $table->string('phone_two')->unique()->nullable();
             $table->timestamps();
         });
     }
