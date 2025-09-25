@@ -1,9 +1,8 @@
-<li class="menu-item {{ request()->is($route) ? 'active' : '' }}" >
+<li class="menu-item {{ request()->routeIs($route) ? 'active' : '' }}" >
     <a 
         @isset($route) 
-            href="{{ route($route)}} 
-        @endisset" 
-        class="menu-link {{ $classes }}"
+            href="{{ route($route) }}"
+        @endisset class="menu-link {{ $classes }}"
     >
     @isset($icon)
         <i class="menu-icon {{ $icon }}"></i> 
