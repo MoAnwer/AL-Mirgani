@@ -11,7 +11,7 @@ class RegisterStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user() != null;
     }
 
     /**
@@ -22,7 +22,20 @@ class RegisterStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'full_name'   => ['required', 'string'],
+            'address'     => ['nullable', 'string'],
+            'stage'       => ['required'],
+            'school'      => ['required'],
+            'class'       => ['required'],
+            'total_fee'   => ['required', 'integer'],
+            'parent_name' => ['required', 'string'],
+            'phone_one'   => ['required', 'string'],
+            'phone_two'   => ['nullable', 'string'],
+            'amount'      => ['nullable', 'integer'],
+            'paid_amount' => ['nullable', 'integer'],
+            'payment_method'   => ['required', 'string'],
+            'transaction_id'   => ['nullable', 'string'],
+            'payment_date' => ['nullable']
         ];
     }
 }
