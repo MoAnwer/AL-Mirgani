@@ -22,20 +22,33 @@ class RegisterStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'   => ['required', 'string'],
-            'address'     => ['nullable', 'string'],
-            'stage'       => ['required'],
-            'school'      => ['required'],
-            'class'       => ['required'],
-            'total_fee'   => ['required', 'integer'],
-            'parent_name' => ['required', 'string'],
-            'phone_one'   => ['required', 'string'],
-            'phone_two'   => ['nullable', 'string'],
-            'amount'      => ['required', 'integer'],
-            'paid_amount' => ['nullable', 'integer'],
-            'payment_method'   => ['required', 'string'],
-            'transaction_id'   => ['nullable', 'string'],
-            'payment_date' => ['nullable']
+            'full_name'         => ['required', 'string'],
+            'address'           => ['nullable', 'string'],
+            'stage'             => ['required'],
+            'school'            => ['required'],
+            'class'             => ['required'],
+            'total_fee'         => ['required', 'integer'],
+            'parent_name'       => ['required', 'string'],
+            'phone_one'         => ['required', 'string'],
+            'phone_two'         => ['nullable', 'string'],
+            'amount'            => ['required', 'integer'],
+            'paid_amount'       => ['nullable', 'integer'],
+            'payment_method'    => ['nullable', 'string'],
+            'transaction_id'    => ['nullable', 'string'],
+            'payment_date'      => ['nullable']
+        ];
+    }
+    
+    public function attributes(): array
+    {
+        return [
+            'full_name'     => 'اسم الطالب',
+            'stage'         => 'المرحلة الدراسية',
+            'class'         => 'الصف',
+            'total_fee'     => 'الرسوم الدراسية',
+            'amount'        => 'رسوم التسجيل',
+            'parent_name'   => 'اسم ولي الامر',
+            'phone_one'     => 'رقم هاتف ولي الامر 1'
         ];
     }
 }

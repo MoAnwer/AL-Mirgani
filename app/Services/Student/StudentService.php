@@ -28,7 +28,7 @@ class StudentService
         return Father::firstOrCreate([
                 'phone_one' => $parentData['phone_one'],
             ], [
-                'full_name'  =>  $parentData['parent_name'],
+                'full_name'  => $parentData['parent_name'],
                 'phone_one'  => $parentData['phone_one'],
                 'phone_two'  => $parentData['phone_two'] ?? null,
             ]);
@@ -40,17 +40,17 @@ class StudentService
             'full_name'         => $studentData['full_name'],
             'student_number'    => uniqid(),
             'address'           => $studentData['address'] ?? null,
-            'total_fee'         => $studentData['total_fee'] ?? null,
+            'total_fee'         => $studentData['total_fee'],
             'stage'             => $studentData['stage'],
-            'school_id'         => $studentData['school'] ?? null,
-            'class_id'          => $studentData['class'] ?? null,
+            'school_id'         => $studentData['school'],
+            'class_id'          => $studentData['class'],
         ]);
     }
 
     private function createRegistrationFeeFor(Student $student, array $registrationFeeData) : void 
     {
         $student->registrationFees()->create([
-            'amount'            => $registrationFeeData['amount']  ?? null,
+            'amount'            => $registrationFeeData['amount'],
             'payment_method'    => $registrationFeeData['payment_method']  ?? null,
             'payment_date'      => $registrationFeeData['payment_date']  ?? null,
             'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,

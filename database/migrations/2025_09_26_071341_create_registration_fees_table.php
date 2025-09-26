@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained('students')->onDelete('SET NULL');
             $table->decimal('amount', 15)->default(0);
             $table->decimal('paid_amount', 15)->default(0)->nullable();
-            $table->string('payment_method')->default('كاش')->nullable();
+            $table->string('payment_method')->nullable();
             $table->date('payment_date')->default(null)->nullable();
             $table->integer('transaction_id')->default(null)->unique()->nullable();
             $table->timestamps();
