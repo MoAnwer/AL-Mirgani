@@ -31,7 +31,7 @@ class RegisterStudentRequest extends FormRequest
             'parent_name' => ['required', 'string'],
             'phone_one'   => ['required', 'string'],
             'phone_two'   => ['nullable', 'string'],
-            'amount'      => ['nullable', 'integer'],
+            'amount'      => ['required', 'integer'],
             'paid_amount' => ['nullable', 'integer'],
             'payment_method'   => ['required', 'string'],
             'transaction_id'   => ['nullable', 'string'],
