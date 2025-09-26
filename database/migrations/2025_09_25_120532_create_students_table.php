@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('student_number')->unique();
-            $table->string('address');
-            $table->foreignId('class_id')->constrained('classes')->onDelete('SET NULL');
-            $table->foreignId('father_id')->constrained('fathers')->onDelete('SET NULL');
-            $table->foreignId('school_id')->constrained('schools')->onDelete('SET NULL');
-            $table->decimal('total_fee', 10)->default(0);
+            $table->string('address')->nullable();
+            $table->foreignId('class_id')->constrained('classes')->onDelete('SET NULL')->nullable();
+            $table->foreignId('father_id')->constrained('fathers')->onDelete('SET NULL')->nullable();
+            $table->foreignId('school_id')->constrained('schools')->onDelete('SET NULL')->nullable();
+            $table->string('stage');
+            $table->decimal('total_fee', 10)->default(0)->nullable();
             $table->timestamps();
         });
     }

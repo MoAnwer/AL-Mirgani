@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StageEnum;
+use App\Http\Requests\Student\RegisterStudentRequest;
+use App\Models\ClassRoom;
 use App\Models\School;
+use App\Services\Student\StudentService;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct(private StudentService $service) {}
+
     /**
      * Display a listing of the resource.
      */
@@ -24,16 +29,17 @@ class StudentController extends Controller
         return view('students.register-new-student', [
             'title'   => 'تسجيل طلاب جديد',
             'stages'  => StageEnum::cases(),
-            'schools' => School::pluck('name')
+            'classes' => ClassRoom::pluck('id', 'name'),
+            'schools' => School::pluck('id', 'name'),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RegisterStudentRequest $request)
     {
-        //
+        return $this->service->registerStudent($request);
     }
 
     /**
