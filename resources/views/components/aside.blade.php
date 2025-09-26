@@ -52,7 +52,7 @@
             </svg>
         </span>
         </span>
-        <span class="app-brand-text demo menu-text fw-bold ms-2">{{ __('app.app-name') }}</span>
+        <span class="demo fw-bold ms-2">{{ __('app.app-name') }}</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -68,9 +68,9 @@
     
         <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="tf-icons bx bx-collection" />
         
-        <x-Menu.MenuItem label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle'>
+        <x-Menu.MenuItem route="students.create" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="Without menu" />
+                <x-Menu.MenuItem label="تسجيل تلميذ جديد" route="students.create"/>
                 <x-Menu.MenuItem label="Without menu" />
                 <x-Menu.MenuItem label="Without menu" />
                 <x-Menu.MenuItem label="Without menu" />

@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\{LoginController, LogoutController};
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\StudentController;
 
 Route::get('/', HomeController::class);
 
@@ -19,3 +19,6 @@ Route::name('auth.')->group(function() {
     
     Route::post('logout', LogoutController::class)->name('logout');
 });
+
+
+Route::resource('students', StudentController::class);
