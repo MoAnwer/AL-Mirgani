@@ -8,11 +8,25 @@
             <x-ContentWrapper>
                 <x-Container>
                     <div class="row row g-6 mb-6">
-
                         <div class="col-md-12">
 
+                            @session('message')
+                                    <div class="alert alert-success text-black">{{ session('message') }}</div>
+                            @endsession
+                            
                             <div class="card container">
+
                                 <h4 class="card-header">{{ $title }}</h4>
+
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 <div class="card-body demo-vertical-spacing demo-only-element">
 

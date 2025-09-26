@@ -2,7 +2,7 @@
 
 namespace App\Services\Student;
 
-use App\Models\Father;
+use App\Models\{Father, Student};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,33 +14,47 @@ class StudentService
 
         DB::transaction(function() use ($registrationData) {
 
-            $parent = Father::firstOrCreate([
-                'phone_one' => $registrationData['phone_one'],
-            ], [
-                'full_name'  =>  $registrationData['parent_name'],
-                'phone_one'  => $registrationData['phone_one'],
-                'phone_two'  => $registrationData['phone_two'] ?? null,
-            ]);
-
-            $student = $parent->students()->create([
-                'full_name'     => $registrationData['full_name'],
-                'student_number' => uniqid(),
-                'address'       => $registrationData['address'] ?? null,
-                'total_fee'     => $registrationData['total_fee'] ?? null,
-                'stage'         => $registrationData['stage'],
-                'school_id'        => $registrationData['school'] ?? null,
-                'class_id'        => $registrationData['class'] ?? null,
-            ]);
-
-            $student->registrationFees()->create([
-                'amount' => $registrationData['amount']  ?? null,
-                'payment_method' => $registrationData['payment_method']  ?? null,
-                'payment_date' => $registrationData['payment_date']  ?? null,
-                'paid_amount' => $registrationData['paid_amount']  ?? null,
-                'transaction_id' => $registrationData['transaction_id'] ?? null
-            ]);
+            $this->createRegistrationFeeFor(
+                $this->createStudent($this->createParent($registrationData), $registrationData) 
+                , $registrationData
+            );
         });
 
-        return redirect('/dashboard');
+        return back()->with('message', 'تم تسجيل الطالب بنجاح ✅');
+    }
+
+    private function createParent(array $parentData) : Father
+    {
+        return Father::firstOrCreate([
+                'phone_one' => $parentData['phone_one'],
+            ], [
+                'full_name'  =>  $parentData['parent_name'],
+                'phone_one'  => $parentData['phone_one'],
+                'phone_two'  => $parentData['phone_two'] ?? null,
+            ]);
+    }
+
+    private function createStudent(Father $parent, array $studentData) : Student 
+    {
+        return $parent->students()->create([
+            'full_name'         => $studentData['full_name'],
+            'student_number'    => uniqid(),
+            'address'           => $studentData['address'] ?? null,
+            'total_fee'         => $studentData['total_fee'] ?? null,
+            'stage'             => $studentData['stage'],
+            'school_id'         => $studentData['school'] ?? null,
+            'class_id'          => $studentData['class'] ?? null,
+        ]);
+    }
+
+    private function createRegistrationFeeFor(Student $student, array $registrationFeeData) : void 
+    {
+        $student->registrationFees()->create([
+            'amount'            => $registrationFeeData['amount']  ?? null,
+            'payment_method'    => $registrationFeeData['payment_method']  ?? null,
+            'payment_date'      => $registrationFeeData['payment_date']  ?? null,
+            'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,
+            'transaction_id'    => $registrationFeeData['transaction_id'] ?? null
+        ]);
     }
 }
