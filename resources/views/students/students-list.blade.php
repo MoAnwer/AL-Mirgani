@@ -44,7 +44,7 @@
                                         </tr>
                                     @endforeach
                                     @section('pagination')
-                                        <div class="mt-5">{{ $students->links('vendor.pagination.bootstrap-5') }} </div>
+                                        <div class="mt-5 px-5">{{ $students->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
                                 </x-Table.Tbody>
                             </x-Table.BasicTable>
