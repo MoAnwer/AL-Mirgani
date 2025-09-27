@@ -2,7 +2,11 @@
 
 namespace App\Services\Student;
 
-use App\Models\{Father, Student};
+use App\Models\{Father, Student, ClassRoom, School};
+use App\Enums\StageEnum;
+use App\Http\Requests\Student\UpdateStudentRequest;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,4 +78,38 @@ class StudentService
             'title' => __('app.students_list')
         ]);
     }
+
+
+    public function editStudentForm(Student $student) 
+    {
+        try {   
+            return view('students.edit-student', [
+                'student' => $student,
+                'stages'  => StageEnum::cases(),
+                'classes' => ClassRoom::pluck('id', 'name'),
+                'schools' => School::pluck('id', 'name')
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return to_route('students.index')->with('error', __('app.student_not_found'));
+        }
+    }
+
+
+    public function updateStudent(UpdateStudentRequest $request, Student $student) 
+    {
+        try {
+
+            $student->update($request->validated());
+
+            return back()->with('message', __('app.update_successful', [
+                'attribute' => __('app.student')
+            ]));
+
+        } catch (Exception $e) {
+            return back()->withErrors([
+                'full_name' => $e->getMessage()
+            ]);
+        }
+    }
+
 }
