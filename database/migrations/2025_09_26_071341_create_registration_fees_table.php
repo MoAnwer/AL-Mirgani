@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registration_fees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students')->onDelete('SET NULL');
+            $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('set null');
             $table->decimal('amount', 15)->default(0);
             $table->decimal('paid_amount', 15)->default(0)->nullable();
             $table->string('payment_method')->nullable();
