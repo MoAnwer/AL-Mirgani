@@ -52,7 +52,7 @@
             </svg>
         </span>
         </span>
-        <span class="demo fw-bold ms-2">{{ __('app.app-name') }}</span>
+        <span class="demo fw-bold ms-2">{{ __('app.app_name') }}</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class StudentService 
 {
+    function __construct(
+        private Student $student
+    ) {}
+
     public function registerStudent(Request $request) 
     {
         $registrationData = $request->validated();
@@ -55,6 +59,19 @@ class StudentService
             'payment_date'      => $registrationFeeData['payment_date']  ?? null,
             'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,
             'transaction_id'    => $registrationFeeData['transaction_id'] ?? null
+        ]);
+    }
+
+    public function studentsList() 
+    {
+        $students = $this->student
+                         ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
+                         ->with('class:id,name', 'school:id,name')
+                         ->paginate(8);
+
+        return view('students.students-list', [
+            'students' => $students, 
+            'title' => __('app.students_list')
         ]);
     }
 }
