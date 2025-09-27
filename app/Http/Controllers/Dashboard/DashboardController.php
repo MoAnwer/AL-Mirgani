@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function home() 
     {
         return view('dashboard.dashboard', [
-            'title' => __('app.dashboard-title')
+            'title' => __('app.dashboard_title')
         ]);
     }
 }
