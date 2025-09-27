@@ -45,6 +45,7 @@ class RegisterStudentRequest extends FormRequest
             'full_name'     => __('app.student_full_name'),
             'stage'         => __('app.stage'),
             'class'         => __('app.class'),
+            'school'        => __('app.school'),
             'total_fee'     => __('app.total_fee'),
             'amount'        => __('app.registration_fee'),
             'parent_name'   => __('app.parent_full_name'),
