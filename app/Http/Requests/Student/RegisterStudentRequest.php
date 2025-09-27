@@ -42,13 +42,13 @@ class RegisterStudentRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'full_name'     => 'اسم الطالب',
-            'stage'         => 'المرحلة الدراسية',
-            'class'         => 'الصف',
-            'total_fee'     => 'الرسوم الدراسية',
-            'amount'        => 'رسوم التسجيل',
-            'parent_name'   => 'اسم ولي الامر',
-            'phone_one'     => 'رقم هاتف ولي الامر 1'
+            'full_name'     => __('app.student_full_name'),
+            'stage'         => __('app.stage'),
+            'class'         => __('app.class'),
+            'total_fee'     => __('app.total_fee'),
+            'amount'        => __('app.registration_fee'),
+            'parent_name'   => __('app.parent_full_name'),
+            'phone_one'     => __('app.phone_one')
         ];
     }
 }
