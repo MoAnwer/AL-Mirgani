@@ -46,7 +46,7 @@
                                         </div>
                                          <div class="col-md-4">
                                             <select class="form-select" name="class">
-                                                <option selected>-- الصف --</option>
+                                                <option value="{{ null }}" selected>-- الصف --</option>
                                                 @foreach($classes as $key => $value)
                                                     <option value="{{ $value }}" @selected(old('class') == $value)>{{ $key }}</option>
                                                 @endforeach
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <select class="form-select" name="stage">
-                                                <option selected>-- المرحلة --</option>
+                                                <option value="{{ null }}" selected>-- المرحلة --</option>
                                                 @foreach($stages as $value)
                                                     <option value="{{ $value->value }}" @selected(old('stage') == $value->value)>{{ $value->value }}</option>
                                                 @endforeach
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <select class="form-select" name="school">
-                                                <option selected>-- المدرسة --</option>
+                                                <option value="{{ null }}" selected>-- المدرسة --</option>
                                                 @foreach($schools as $key => $value)
                                                     <option value="{{ $value }}" @selected(old('school') == $value)>{{ $key }}</option>
                                                 @endforeach
