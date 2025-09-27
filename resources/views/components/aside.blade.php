@@ -68,15 +68,10 @@
     
         <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="tf-icons bx bx-collection" />
         
-        <x-Menu.MenuItem route="students.create" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
+        <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
+                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
                 <x-Menu.MenuItem label="تسجيل تلميذ جديد" route="students.create"/>
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
         
