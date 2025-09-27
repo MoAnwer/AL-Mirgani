@@ -6,25 +6,23 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
-                            @session('error')
-                                <div class="alert alert-danger text-black mt-5">{{ session('error') }}</div>
-                            @endsession
-                        <div class="card">
-                             
+                        <x-alert type="error" />
+                        <x-alert type="message" />
+                        <div class="card"> 
                             <h5 class="card-header">@lang('app.students_list')</h5>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <td>#</td>
-                                    <td>اسم الطالب</td>
-                                    <td>الرقم المدرسي</td>
-                                    <td>العنوان</td>
-                                    <td>الصف</td>
-                                    <td>المرحلة</td>
-                                    <td>المدرسة</td>
-                                    <td>العمليات</td>
+                                    <td>@lang('app.student_name')</td>
+                                    <td>@lang('app.student_number')</td>
+                                    <td>@lang('app.address')</td>
+                                    <td>@lang('app.class')</td>
+                                    <td>@lang('app.stage')</td>
+                                    <td>@lang('app.school')</td>
+                                    <td>@lang('app.actions')</td>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
-                                    @foreach($students as $student)
+                                    @forelse($students as $student)
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
                                             <td>{{ $student->full_name }}</td>
@@ -41,12 +39,14 @@
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="{{ route('students.show', $student) }}"><i class="icon-base bx bx-user me-1"></i> ملف التلميذ</a>
                                                         <a class="dropdown-item" href="{{ route('students.edit', $student) }}"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-                                                        <a class="dropdown-item" href="{{ route('students.destroy', $student) }}"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
+                                                        <a class="dropdown-item" href="{{ route('students.delete', $student) }}"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.students')]) }} </td>
+                                    @endforelse
                                     @section('pagination')
                                         <div class="mt-5 px-5">{{ $students->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
