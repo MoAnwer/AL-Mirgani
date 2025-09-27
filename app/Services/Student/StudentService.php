@@ -112,4 +112,14 @@ class StudentService
         }
     }
 
+    public function destroyStudent(Student $student) 
+    {
+        try {
+            $student->delete();
+            return to_route('students.index')->with('message', __('app.delete_successful', ['attribute' => __('app.student')]));
+        } catch (ModelNotFoundException $e) {
+            return to_route('students.index')->with('error', __('app.student_not_found'));
+        }
+    }
+
 }

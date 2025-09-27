@@ -20,5 +20,7 @@ Route::name('auth.')->group(function() {
     Route::post('logout', LogoutController::class)->name('logout');
 });
 
-
-Route::resource('students', StudentController::class);
+Route::middleware('auth')->group(function() {
+    Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
+    Route::resource('students', StudentController::class);
+});

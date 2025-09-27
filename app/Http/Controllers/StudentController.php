@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StageEnum;
-use App\Http\Requests\Student\RegisterStudentRequest;
-use App\Http\Requests\Student\UpdateStudentRequest;
-use App\Models\ClassRoom;
-use App\Models\School;
-use App\Models\Student;
+use App\Http\Requests\Student\{UpdateStudentRequest, RegisterStudentRequest};
+use App\Models\{ClassRoom, School, Student};
 use App\Services\Student\StudentService;
 use Illuminate\Http\Request;
 
@@ -68,11 +65,16 @@ class StudentController extends Controller
         return $this->service->updateStudent($request, $student);
     }
 
+    public function delete(Student $student)
+    {
+        return view('students.delete-student', compact('student'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        return $this->service->destroyStudent($student);
     }
 }
