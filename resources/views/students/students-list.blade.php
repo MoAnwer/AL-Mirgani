@@ -6,7 +6,11 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
+                            @session('error')
+                                <div class="alert alert-danger text-black mt-5">{{ session('error') }}</div>
+                            @endsession
                         <div class="card">
+                             
                             <h5 class="card-header">@lang('app.students_list')</h5>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>

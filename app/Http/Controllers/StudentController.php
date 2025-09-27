@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Enums\StageEnum;
 use App\Http\Requests\Student\RegisterStudentRequest;
+use App\Http\Requests\Student\UpdateStudentRequest;
 use App\Models\ClassRoom;
 use App\Models\School;
+use App\Models\Student;
 use App\Services\Student\StudentService;
 use Illuminate\Http\Request;
 
@@ -53,17 +55,17 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        //
+        return $this->service->editStudentForm($student);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        return $this->service->updateStudent($request, $student);
     }
 
     /**
