@@ -1,4 +1,4 @@
-<x-header title="{{ $title }}"/>
+<x-header title="{{ __('app.list', ['attribute' => __('app.the_students')]) }}"/>
     <x-LayoutWrapper>
         <x-LayoutContainer>
             <x-aside />
@@ -9,7 +9,7 @@
                         <x-alert type="error" />
                         <x-alert type="message" />
                         <div class="card"> 
-                            <h5 class="card-header">@lang('app.students_list')</h5>
+                            <h5 class="card-header">@lang('app.list', ['attribute' => __('app.the_students')])</h5>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <td>#</td>
