@@ -28,4 +28,10 @@ class Expense extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+
+    public function getFormattedAmountAttribute()
+    {
+        return number_format($this->amount) . ' جنية ';
+    }
 }

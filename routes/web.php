@@ -29,5 +29,10 @@ Route::middleware('auth')->group(function() {
         Route::get('', [ExpenseController::class, 'index'])->name('index');
         Route::get('create', [ExpenseController::class, 'create'])->name('create');
         Route::post('store', [ExpenseController::class, 'store'])->name('store');
+        Route::get('show/{expense}', [ExpenseController::class, 'show'])->name('show');
+        Route::get('edit/{expense}', [ExpenseController::class, 'edit'])->name('edit');
+        Route::put('update/{expense}', [ExpenseController::class, 'update'])->name('update');
+        Route::get('delete/{expense}', [ExpenseController::class, 'delete'])->name('delete');
+        Route::delete('destroy/{expense}', [ExpenseController::class, 'destroy'])->name('destroy');
     });
 });
