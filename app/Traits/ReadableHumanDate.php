@@ -4,8 +4,13 @@ namespace App\Traits;
 
 trait ReadableHumanDate
 {
-    public function getFormattedDateAttribute()
+    public function getFormattedCreatedAtAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getFormattedDateAttribute() 
+    {
+        return $this->date->diffForHumans();
     }
 }
