@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
 use App\Enums\StageEnum;
 use App\Http\Requests\Student\{UpdateStudentRequest, RegisterStudentRequest};
 use App\Models\{ClassRoom, School, Student};
 use App\Services\Student\StudentService;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
