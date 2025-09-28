@@ -63,7 +63,7 @@
                                         <div class="col-md-12 mt-5">
                                             <label class="form-label">@lang('app.statement')</label>
                                             <div class="input-group">
-                                              <textarea rows="10" class="form-control" name="statement"></textarea>
+                                              <textarea rows="10" class="form-control" name="statement">{{ old('statement') }}</textarea>
                                             </div>
                                         </div>
                                         <input type="hidden" value="{{ auth()->id() }}" name="user_id"/>
