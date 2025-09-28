@@ -14,6 +14,14 @@ class ExpenseService
     ) {}
 
 
+    public function expensesList() 
+    {
+        return view('expenses.expenses-list', [
+            'expenses'      => $this->expense->with('school:id,name', 'category:id,name')->paginate(15)
+        ]);
+    }
+
+
     public function create(Request $request)
     {
 

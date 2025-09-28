@@ -12,13 +12,12 @@ class ExpenseController extends Controller
 
     public function __construct(
         private ExpenseService $service
-    )
-    {
-        
-    }
+    ) {}
+
+
     public function index()
     {
-        return view('expenses.expenses-list');
+        return $this->service->expensesList();
     }
 
     public function create()

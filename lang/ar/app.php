@@ -24,7 +24,7 @@ return [
     'school'                => 'المدرسة',
     'date'                  => 'التاريخ',
     'statement'             => 'البيان',
-
+    'created_at'            => 'تم الانشاء في',
     
     'expense'               => 'منصرف',
     'the_expenses'          => 'المنصرفات',
