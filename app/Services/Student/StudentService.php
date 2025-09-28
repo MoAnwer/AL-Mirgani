@@ -73,10 +73,7 @@ class StudentService
                          ->with('class:id,name', 'school:id,name')
                          ->paginate(8);
 
-        return view('students.students-list', [
-            'students' => $students, 
-            'title' => __('app.students_list')
-        ]);
+        return view('students.students-list', compact('students'));
     }
 
 
@@ -90,6 +87,7 @@ class StudentService
                 'schools' => School::pluck('id', 'name')
             ]);
         } catch (ModelNotFoundException $e) {
+            report($e);
             return to_route('students.index')->with('error', __('app.student_not_found'));
         }
     }
@@ -118,6 +116,7 @@ class StudentService
             $student->delete();
             return to_route('students.index')->with('message', __('app.delete_successful', ['attribute' => __('app.student')]));
         } catch (ModelNotFoundException $e) {
+            report($e);
             return to_route('students.index')->with('error', __('app.student_not_found'));
         }
     }

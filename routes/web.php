@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
-use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\{Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\StudentController;
 
 Route::get('/', HomeController::class);
 
@@ -23,4 +23,11 @@ Route::name('auth.')->group(function() {
 Route::middleware('auth')->group(function() {
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
     Route::resource('students', StudentController::class);
+
+
+    Route::name('expenses.')->prefix('expenses')->group(function() {
+        Route::get('', [ExpenseController::class, 'index'])->name('index');
+        Route::get('create', [ExpenseController::class, 'create'])->name('create');
+        Route::post('store', [ExpenseController::class, 'store'])->name('store');
+    });
 });
