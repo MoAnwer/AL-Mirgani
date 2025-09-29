@@ -5,6 +5,7 @@ use App\Http\Controllers\{Dashboard\DashboardController, Student\StudentControll
 use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Student\StudentHealthyHistoryController;
 
 Route::get('/', HomeController::class);
 
@@ -34,5 +35,10 @@ Route::middleware('auth')->group(function() {
         Route::put('update/{expense}', [ExpenseController::class, 'update'])->name('update');
         Route::get('delete/{expense}', [ExpenseController::class, 'delete'])->name('delete');
         Route::delete('destroy/{expense}', [ExpenseController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name('student-healthy-history.')->prefix('student-healthy-history')->group(function() {
+        Route::get('show/{student}', [StudentHealthyHistoryController::class, 'show'])->name('show');
+        Route::put('update/{student}', [StudentHealthyHistoryController::class, 'update'])->name('update');
     });
 });
