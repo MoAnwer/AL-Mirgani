@@ -8,7 +8,9 @@ return [
     'the_students'          => ' التلاميذ',
     'dashboard_title'       =>  'لوحة التحكم',
     'settings'              => 'الاعدادات',
+    'profile'               => 'ملف :attribute',
     'amount'                => 'الملبغ',
+    'healthy_history'       => 'سجل التلميذ الصحي',
     'student_not_found'     => 'لم يتم ايجاد التلميذ',
     'total_fee'             => 'الرسوم الدراسية',
     'student_name'          => 'اسم التلميذ',
@@ -24,8 +26,13 @@ return [
     'school'                => 'المدرسة',
     'date'                  => 'التاريخ',
     'statement'             => 'البيان',
+    'installments'          => 'الاقساط',
     'created_at'            => 'تم الانشاء في',
-    
+    'diagnosis'             => 'التشخيص الطبي للحالة المرضية',
+    'medication'            => 'الادوية التي يتناولها الطالب',
+    'notes'                 => 'ملاحظات',
+
+
     'expense'               => 'منصرف',
     'the_expenses'          => 'المنصرفات',
     'the_category'          => 'النوع',
@@ -34,6 +41,7 @@ return [
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
+    'save'                  => 'حفظ',
     'delete'                => 'حذف',
     'actions'               => 'العمليات',
 

@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    public function healthyHistory(): HasOne
+    {
+        return $this->hasOne(StudentHealthyHistory::class);
+    }
 }

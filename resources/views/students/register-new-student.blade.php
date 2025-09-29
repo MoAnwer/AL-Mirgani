@@ -11,9 +11,7 @@
                         <div class="col-md-12">
                             <div class="card container">
 
-                                @session('message')
-                                    <div class="alert alert-success text-black mt-5">{{ session('message') }}</div>
-                                @endsession
+                                <x-alert type="message" />
                             
                                 <h4 class="card-header">{{ $title }}</h4>
 
