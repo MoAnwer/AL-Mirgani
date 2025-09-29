@@ -4,6 +4,7 @@ namespace App\Services\Student;
 
 use App\Models\{Father, Student, ClassRoom, School};
 use App\Enums\StageEnum;
+use App\Events\Student\RegisterStudent;
 use App\Http\Requests\Student\UpdateStudentRequest;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -46,7 +47,7 @@ class StudentService
     {
         return $parent->students()->create([
             'full_name'         => $studentData['full_name'],
-            'student_number'    => uniqid(),
+            'student_number'    => Student::generateStudentNumber(),
             'address'           => $studentData['address'] ?? null,
             'total_fee'         => $studentData['total_fee'],
             'stage'             => $studentData['stage'],
@@ -64,6 +65,8 @@ class StudentService
             'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,
             'transaction_id'    => $registrationFeeData['transaction_id'] ?? null
         ]);
+
+        event(new RegisterStudent($student));
     }
 
     public function studentsList() 
@@ -71,6 +74,7 @@ class StudentService
         $students = $this->student
                          ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
                          ->with('class:id,name', 'school:id,name')
+                         ->latest()
                          ->paginate(8);
 
         return view('students.students-list', compact('students'));

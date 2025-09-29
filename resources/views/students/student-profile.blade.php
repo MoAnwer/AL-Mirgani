@@ -34,7 +34,8 @@
                             <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
                                 <i class="icon-base bx bx-user icon-sm me-1_5 d-block w-px-100 h-px-100 rounded"></i>
                                 <div class="button-wrapper">
-                                    <h5>{{ $student->full_name }}</h5>
+                                    <h4>{{ $student->full_name }}</h4>
+                                    <span class="badge rounded bg-label-secondary">@lang('app.student_number') : {{ $student->student_number }}</span>
                                 </div>
                             </div>
                             </div>
