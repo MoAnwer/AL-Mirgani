@@ -31,6 +31,22 @@ class Student extends Model
 
     public function healthyHistory(): HasOne
     {
-        return $this->hasOne(StudentHealthyHistory::class);
+        return $this->hasOne(StudentHealthyHistory::class)->withDefault([
+            'diagnosis'     => '', 
+            'medication'    => '', 
+            'student_id'    => '', 
+            'notes'         => ''
+        ]);
+    }
+
+
+    public static function generateStudentNumber(): int
+    {
+        $year   = now()->year;
+        $number = (int) Student::whereYear('created_at', $year)->max('student_number');
+        if($number) {
+            return ++$number;
+        }
+        return (int)($year . str_pad(++$number, 5, '0', STR_PAD_LEFT));
     }
 }

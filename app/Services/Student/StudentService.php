@@ -47,7 +47,7 @@ class StudentService
     {
         return $parent->students()->create([
             'full_name'         => $studentData['full_name'],
-            'student_number'    => Student::getNextStudentNumber(),
+            'student_number'    => Student::generateStudentNumber(),
             'address'           => $studentData['address'] ?? null,
             'total_fee'         => $studentData['total_fee'],
             'stage'             => $studentData['stage'],
