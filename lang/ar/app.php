@@ -37,6 +37,8 @@ return [
     'the_expenses'          => 'المنصرفات',
     'the_category'          => 'النوع',
     'category'              => 'نوع',
+    'earning'               => 'ايراد',
+    'the_earnings'          => 'الايردات',
 
     // Actions
     'create'                => 'اضافة :attribute جديد',

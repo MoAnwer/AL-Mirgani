@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
 use App\Http\Controllers\{Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\Earning\EarningController;
 use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -40,5 +41,11 @@ Route::middleware('auth')->group(function() {
     Route::name('student-healthy-history.')->prefix('student-healthy-history')->group(function() {
         Route::get('show/{student}', [StudentHealthyHistoryController::class, 'show'])->name('show');
         Route::put('update/{student}', [StudentHealthyHistoryController::class, 'update'])->name('update');
+    });
+
+    Route::name('earnings.')->prefix('earnings')->controller(EarningController::class)->group(function() {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
     });
 });
