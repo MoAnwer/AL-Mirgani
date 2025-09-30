@@ -96,6 +96,13 @@
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
+
+        <x-Menu.MenuItem label="{{ __('app.the_earnings') }}" icon="tf-icons bx bxl-microsoft-teams" icon="bx bx-money" classes='menu-toggle'>
+            <x-Menu.MenuSub>
+                <x-Menu.MenuItem label="{{ __('app.list',   ['attribute' => __('app.the_earnings')]) }}" route="earnings.index"/>
+                <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.earning')]) }}" route="earnings.create"/>
+            </x-Menu.MenuSub>
+        </x-Menu.MenuItem>
         
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
     </ul>
