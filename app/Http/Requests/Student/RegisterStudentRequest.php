@@ -28,28 +28,29 @@ class RegisterStudentRequest extends FormRequest
             'school'            => ['required'],
             'class'             => ['required'],
             'total_fee'         => ['required', 'integer'],
+            'discount'          => ['nullable'],
             'parent_name'       => ['required', 'string'],
             'phone_one'         => ['required', 'string'],
             'phone_two'         => ['nullable', 'string'],
-            'amount'            => ['required', 'integer'],
+            'registration_fee'  => ['required', 'integer'],
             'paid_amount'       => ['nullable', 'integer'],
             'payment_method'    => ['nullable', 'string'],
             'transaction_id'    => ['nullable', 'string'],
-            'payment_date'      => ['nullable']
+            'payment_date'      => ['nullable'],
         ];
     }
     
     public function attributes(): array
     {
         return [
-            'full_name'     => __('app.student_full_name'),
-            'stage'         => __('app.stage'),
-            'class'         => __('app.class'),
-            'school'        => __('app.school'),
-            'total_fee'     => __('app.total_fee'),
-            'amount'        => __('app.registration_fee'),
-            'parent_name'   => __('app.parent_full_name'),
-            'phone_one'     => __('app.phone_one')
+            'full_name'         => __('app.student_full_name'),
+            'stage'             => __('app.stage'),
+            'class'             => __('app.class'),
+            'school'            => __('app.school'),
+            'total_fee'         => __('app.total_fee'),
+            'registration_fee'  => __('app.registration_fee'),
+            'parent_name'       => __('app.parent_full_name'),
+            'phone_one'         => __('app.phone_one')
         ];
     }
 }

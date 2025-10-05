@@ -33,62 +33,76 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
+                                            <label class="form-label mb-2">@lang('app.student_full_name')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="اسم الطالب الرباعي"  name="full_name" value="{{ old('full_name') }}" />
+                                                <input type="text" class="form-control" name="full_name" value="{{ old('full_name') }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-4">
+                                            <label class="form-label mb-2">@lang('app.address')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="العنوان"  name="address" value="{{ old('address') }}"/>
+                                                <input type="text" class="form-control"  name="address" value="{{ old('address') }}"/>
                                             </div>
                                         </div>
                                          <div class="col-md-4">
+                                            <label class="form-label">@lang('app.class')</label>
                                             <select class="form-select" name="class">
-                                                <option value="{{ null }}" selected>-- الصف --</option>
+                                                <option value="{{ null }}" selected>----</option>
                                                 @foreach($classes as $key => $value)
                                                     <option value="{{ $value }}" @selected(old('class') == $value)>{{ $key }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4 mt-3">
+                                        <div class="col-md-3 mt-3">
+                                            <label class="form-label">@lang('app.stage')</label>
                                             <select class="form-select" name="stage">
-                                                <option value="{{ null }}" selected>-- المرحلة --</option>
+                                                <option value="{{ null }}" selected>----</option>
                                                 @foreach($stages as $value)
                                                     <option value="{{ $value->value }}" @selected(old('stage') == $value->value)>{{ $value->value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4 mt-3">
+                                        <div class="col-md-3 mt-3">
+                                            <label class="form-label">@lang('app.school')</label>
                                             <select class="form-select" name="school">
-                                                <option value="{{ null }}" selected>-- المدرسة --</option>
+                                                <option value="{{ null }}" selected>----</option>
                                                 @foreach($schools as $key => $value)
                                                     <option value="{{ $value }}" @selected(old('school') == $value)>{{ $key }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4 mt-3">
+                                        <div class="col-md-3 mt-3">
+                                            <label class="form-label mb-2">@lang('app.total_fee')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control" placeholder="الرسوم الدراسية"  name="total_fee" value="{{ old('total_fee') }}"/>
+                                                <input type="number" class="form-control"  name="total_fee" value="{{ old('total_fee') }}"/>
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-md-3 mt-3">
+                                            <label class="form-label mb-2">@lang('app.discount')</label>
+                                            <div class="input-group">
+                                                <input type="number" max="100" class="form-control" name="discount" value="{{ old('discount') }}"/>
+                                            </div>
+                                        </div>
                                         <div class="my-5">
                                         <hr />
                                             <h5>بيانات ولي الامر</h5>
                                             <div class="row">
                                                 <div class="col-md-4">
+                                                    <label class="form-label mb-2">@lang('app.parent_full_name')</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="الاسم ولي الامر"  name="parent_name" value="{{ old('parent_name') }}"/>
+                                                        <input type="text" class="form-control"  name="parent_name" value="{{ old('parent_name') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
+                                                    <label class="form-label mb-2">@lang('app.phone_one')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" placeholder="رقم الهاتف 1"  name="phone_one" value="{{ old('phone_one') }}"/>
+                                                        <input type="number" class="form-control"  name="phone_one" value="{{ old('phone_one') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
+                                                    <label class="form-label mb-2">@lang('app.phone_two')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" placeholder="رقم الهاتف 2"  name="phone_two" value="{{ old('phone_two') }}"/>
+                                                        <input type="number" class="form-control"  name="phone_two" value="{{ old('phone_two') }}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,19 +114,19 @@
                                             <h5 class="mb-5">بيانات رسوم التسجيل</h5>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">رسوم التسجيل</label>
+                                                    <label class="form-label mb-2">رسوم التسجيل</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="amount" value="{{ old('amount') }}"/>
+                                                        <input type="text" class="form-control" name="registration_fee" value="{{ old('registration_fee') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label class="form-label">المبلغ المدفوع</label>
+                                                    <label class="form-label mb-2">المبلغ المدفوع</label>
                                                     <div class="input-group">
                                                         <input type="number" class="form-control"  name="paid_amount" value="{{ old('paid_amount') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label class="form-label"> طريقة الدفع</label>
+                                                    <label class="form-label mb-2"> طريقة الدفع</label>
                                                     <select class="form-select" name="payment_method">
                                                     <option selected>--</option>
                                                         @foreach(["كاش", "بنكك"] as $value)
@@ -122,13 +136,13 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <label class="form-label">رقم العملية</label>
+                                                    <label class="form-label mb-2">رقم العملية</label>
                                                     <div class="input-group">
                                                         <input type="number" class="form-control" placeholder="رقم العملية" name="transaction_id" value="{{ old('transaction_id') }}"/>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-2">
-                                                 <label class="form-label">تاريخ الدفع</label>
+                                                 <label class="form-label mb-2">تاريخ الدفع</label>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" name="payment_date" value="{{ old('payment_date') }}"/>
                                                     </div>

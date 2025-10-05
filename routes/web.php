@@ -6,6 +6,7 @@ use App\Http\Controllers\Earning\EarningController;
 use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 
 Route::get('/', HomeController::class);
@@ -23,8 +24,15 @@ Route::name('auth.')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
+    Route::get('students/{student}/installments', [StudentController::class, 'installments'])->name('students.installments');
     Route::resource('students', StudentController::class);
+
+    Route::name('installments.')->controller(InstallmentController::class)->prefix('installments')->group(function() {
+        Route::get('{id}/create', 'create')->name('create');
+        Route::post('{student}/store', 'store')->name('store');
+    });
 
 
     Route::name('expenses.')->prefix('expenses')->group(function() {

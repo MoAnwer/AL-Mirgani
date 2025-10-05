@@ -13,6 +13,7 @@ return [
     'healthy_history'       => 'سجل التلميذ الصحي',
     'student_not_found'     => 'لم يتم ايجاد التلميذ',
     'total_fee'             => 'الرسوم الدراسية',
+    'discount'              => 'نسبة الخصم',
     'student_name'          => 'اسم التلميذ',
     'student_number'        => 'الرقم المدرسي',
     'student_full_name'     => 'اسم التلميذ رباعي',
@@ -25,25 +26,33 @@ return [
     'address'               => 'العنوان', 
     'school'                => 'المدرسة',
     'date'                  => 'التاريخ',
+    'due_date'              => 'تاريخ الاستحقاق',
     'statement'             => 'البيان',
-    'installments'          => 'الاقساط',
+    'installments'          => 'اقساط',
+    'student_installments'  => ' اقساط :student',
+    'installment'           => 'قسط',
+    'the_installments'      => 'الاقساط',
+    'the_installment'       => 'القسط',
     'created_at'            => 'تم الانشاء في',
     'diagnosis'             => 'التشخيص الطبي للحالة المرضية',
     'medication'            => 'الادوية التي يتناولها الطالب',
     'notes'                 => 'ملاحظات',
-
+    'number'                => 'رقم :attribute',
 
     'expense'               => 'منصرف',
+    'expenses'              => 'منصرفات',
     'the_expenses'          => 'المنصرفات',
     'the_category'          => 'النوع',
     'category'              => 'نوع',
     'earning'               => 'ايراد',
     'the_earnings'          => 'الايردات',
 
+
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
     'save'                  => 'حفظ',
+    'back'                  => 'رجوع',
     'delete'                => 'حذف',
     'actions'               => 'العمليات',
 
@@ -58,4 +67,5 @@ return [
     // Errors
 
     'error'                 => 'حدث خطا',
+    'not_found'             => 'الصفحة غير موجودة'
 ];
