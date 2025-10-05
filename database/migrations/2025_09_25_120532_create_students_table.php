@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('father_id')->nullable()->constrained('fathers')->onDelete('set null');
             $table->foreignId('school_id')->nullable()->constrained('schools')->onDelete('set null');
             $table->string('stage');
+            $table->integer('discount')->nullable()->default(0);
             $table->decimal('total_fee', 10)->default(0)->nullable();
             $table->timestamps();
         });

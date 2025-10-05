@@ -13,4 +13,9 @@ trait ReadableHumanDate
     {
         return $this->date->diffForHumans();
     }
+
+    public  function getFormattedDueDateAttribute()
+    {
+        return $this->due_date->diffForHumans();
+    }
 }

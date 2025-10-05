@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Traits\ReadableHumanDate;
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Number;
 
 class Earning extends Model
 {
@@ -18,9 +20,8 @@ class Earning extends Model
         return $this->belongsTo(School::class);
     }
 
-
-    public function getFormattedAmountAttribute()
+    protected function getFormattedAmountAttribute()
     {
-        return number_format($this->amount) . ' جنية ';
+        return Number::currency($this->amount, 'SDG');
     }
 }

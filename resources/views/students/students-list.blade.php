@@ -37,9 +37,9 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('students.show', $student) }}"><i class="icon-base bx bx-user me-1"></i> ملف التلميذ</a>
-                                                        <a class="dropdown-item" href="{{ route('students.edit', $student) }}"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-                                                        <a class="dropdown-item" href="{{ route('students.delete', $student) }}"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
+                                                        <a class="dropdown-item" href="{{ route('students.show', $student) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.student')])</a>
+                                                        <a class="dropdown-item" href="{{ route('students.edit', $student) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
+                                                        <a class="dropdown-item" href="{{ route('students.delete', $student) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>
                                                 </div>
                                             </td>

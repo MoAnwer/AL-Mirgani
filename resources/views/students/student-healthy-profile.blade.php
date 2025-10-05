@@ -36,7 +36,7 @@
                                     >
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages-account-settings-connections.html"
+                                    <a class="nav-link" href="{{ route('students.installments', $student) }}"
                                     ><i class="icon-base bx bx-money icon-sm me-1_5"></i>@lang('app.installments')</a
                                     >
                                 </li>

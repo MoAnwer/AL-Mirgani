@@ -77,4 +77,9 @@ class StudentController extends Controller
     {
         return $this->service->destroyStudent($student);
     }
+
+    public function installments(Student $student)
+    {
+        return $this->service->installmentsList($student);
+    }
 }

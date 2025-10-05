@@ -2,7 +2,7 @@
 
 namespace App\Services\Student;
 
-use App\Models\{Father, Student, ClassRoom, School};
+use App\Models\{Father, Student, ClassRoom, Installment, School};
 use App\Enums\StageEnum;
 use App\Events\Student\RegisterStudent;
 use App\Http\Requests\Student\UpdateStudentRequest;
@@ -22,7 +22,6 @@ class StudentService
         $registrationData = $request->validated();
 
         DB::transaction(function() use ($registrationData) {
-
             $this->createRegistrationFeeFor(
                 $this->createStudent($this->createParent($registrationData), $registrationData) 
                 , $registrationData
@@ -49,6 +48,7 @@ class StudentService
             'full_name'         => $studentData['full_name'],
             'student_number'    => Student::generateStudentNumber(),
             'address'           => $studentData['address'] ?? null,
+            'discount'          => $studentData['discount'] ?? null,
             'total_fee'         => $studentData['total_fee'],
             'stage'             => $studentData['stage'],
             'school_id'         => $studentData['school'],
@@ -59,7 +59,7 @@ class StudentService
     private function createRegistrationFeeFor(Student $student, array $registrationFeeData) : void 
     {
         $student->registrationFees()->create([
-            'amount'            => $registrationFeeData['amount'],
+            'registration_fee'  => $registrationFeeData['registration_fee'],
             'payment_method'    => $registrationFeeData['payment_method']  ?? null,
             'payment_date'      => $registrationFeeData['payment_date']  ?? null,
             'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,
@@ -123,6 +123,11 @@ class StudentService
             report($e);
             return to_route('students.index')->with('error', __('app.student_not_found'));
         }
+    }
+
+    public function installmentsList(Student $student)
+    {
+        return view('students.student-installments-list', compact('student'));
     }
 
 }

@@ -23,7 +23,7 @@
                                     @forelse($earnings as $earning)
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
-                                            <td>{{ $earning->formatted_amount }}</td>
+                                            <td>{{ $earning->formattedAmount }}</td>
                                             <td>{{ $earning->school->name }}</td>
                                             <td>{{ $earning->date }}</td>
                                             <td>{{ $earning->statement }}</td>
