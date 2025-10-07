@@ -127,7 +127,10 @@ class StudentService
 
     public function installmentsList(Student $student)
     {
-        return view('students.student-installments-list', compact('student'));
+        return view('students.student-installments-list', [
+            'student' => $student,
+            'installments' => $student->installments()->latest()->get(),
+        ]);
     }
 
 }

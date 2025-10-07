@@ -32,6 +32,7 @@ return [
     'student_installments'  => ' اقساط :student',
     'installment'           => 'قسط',
     'the_installments'      => 'الاقساط',
+    'installment_payment'   => 'مدفوعات القسط',
     'the_installment'       => 'القسط',
     'created_at'            => 'تم الانشاء في',
     'diagnosis'             => 'التشخيص الطبي للحالة المرضية',

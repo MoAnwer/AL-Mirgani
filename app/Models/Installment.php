@@ -15,7 +15,7 @@ class Installment extends Model
     protected function casts(): array 
     {
         return [
-            'due_date'  => 'datetime:Y-m-d',
+            'due_date'  => 'date:Y-m-d',
         ];
     }
 
