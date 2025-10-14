@@ -7,7 +7,9 @@ use App\Http\Controllers\Expense\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
+use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
+use App\Http\Middleware\EnsureInstallmentIsPaid;
 
 Route::get('/', HomeController::class);
 
@@ -36,6 +38,16 @@ Route::middleware('auth')->group(function() {
         Route::put('{installment}/update', 'update')->name('update');
         Route::get('{installment}/delete', 'delete')->name('delete');
         Route::delete('{installment}/destroy', 'destroy')->name('destroy');
+    });
+
+    Route::name('installments.payments.')->prefix('payments/installments')->controller(InstallmentPaymentsController::class)->group(function() {
+        Route::get('/{installment}', 'paymentsList')->name('list');
+        Route::get('{installment}/create', 'create')->name('create')->middleware(EnsureInstallmentIsPaid::class);
+        Route::post('{installment}/store', 'store')->name('store');
+        Route::get('{payment}/edit', 'edit')->name('edit');
+        Route::put('{payment}/update', 'update')->name('update');
+        Route::get('{payment}/delete', 'delete')->name('delete');
+        Route::delete('{payment}/destroy', 'destroy')->name('destroy');
     });
 
 
