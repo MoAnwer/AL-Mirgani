@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InstallmentPayment extends Model
 {
     use ReadableHumanDate;
-
     
     protected $guarded = [];
 

@@ -66,7 +66,7 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        {{-- <a class="dropdown-item" href="{{ route(', $installment) }}"><i class="icon-base bx bx-money me-1"></i>@lang('app.installment_payment')</a> --}}
+                                                        <a class="dropdown-item" href="{{ route('installments.payments.list', $installment) }}"><i class="icon-base bx bx-money me-1"></i>@lang('app.installment_payments')</a>
                                                         <a class="dropdown-item" href="{{ route('installments.edit', $installment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                         <a class="dropdown-item" href="{{ route('installments.delete', $installment) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>

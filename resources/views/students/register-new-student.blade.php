@@ -128,7 +128,7 @@
                                                 <div class="col-md-3">
                                                     <label class="form-label mb-2"> طريقة الدفع</label>
                                                     <select class="form-select" name="payment_method">
-                                                    <option selected>--</option>
+                                                    <option value="{{ null }}" selected>--</option>
                                                         @foreach(["كاش", "بنكك"] as $value)
                                                             <option value="{{ $value }}" @selected(old('payment_method') == $value)>{{ $value }}</option>
                                                         @endforeach

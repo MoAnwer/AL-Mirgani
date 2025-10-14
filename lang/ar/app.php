@@ -32,8 +32,14 @@ return [
     'student_installments'  => ' اقساط :student',
     'installment'           => 'قسط',
     'the_installments'      => 'الاقساط',
-    'installment_payment'   => 'مدفوعات القسط',
+    'paid_amount'           => 'المبلغ المدفوع',
+    'total_payment'        => 'اجمالي المدفوع',
+    'payment_method'        => 'طريقة الدفع',
+    'payment_date'          => 'تاريخ الدفع',
+    'installment_payments'  => 'مدفوعات القسط',
+    'payment'               => 'مدفوع',
     'the_installment'       => 'القسط',
+    'remaining'             => 'المتبقي',
     'created_at'            => 'تم الانشاء في',
     'diagnosis'             => 'التشخيص الطبي للحالة المرضية',
     'medication'            => 'الادوية التي يتناولها الطالب',
@@ -59,12 +65,13 @@ return [
 
 
     // Messages
-    'create_successful'         => 'تم اضافة بيانات :attribute بنجاح',
-    'update_successful'         => 'تم تعديل بيانات :attribute بنجاح',
-    'delete_confirm_message'    => 'هل تريد حذف :attribute حقاً ؟',
-    'delete_successful'         => 'تم حذف بيانات :attribute بنجاح',
-    'empty_message'             => 'لا يوجد :attributes',
-
+    'create_successful'             => 'تم اضافة بيانات :attribute بنجاح',
+    'update_successful'             => 'تم تعديل بيانات :attribute بنجاح',
+    'delete_confirm_message'        => 'هل تريد حذف :attribute حقاً ؟',
+    'delete_successful'             => 'تم حذف بيانات :attribute بنجاح',
+    'empty_message'                 => 'لا يوجد :attributes',
+    'installment_full_paid_message' =>  'تم سداد  هذا القسط',
+    'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     // Errors
 
     'error'                 => 'حدث خطا',
