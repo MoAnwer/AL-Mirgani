@@ -74,7 +74,7 @@
               @endif
 
               <h4 class="mb-1">اهلا بك 👋</h4>
-              <p class="mb-6">الرجاء ادخال بياناتك لتسحيل الدخول</p>
+              <p class="mb-6">الرجاء ادخال بياناتك لتسجيل الدخول</p>
               
 
               <form id="formAuthentication" class="mb-6" action="{{ route('auth.login.action') }}" method="POST">
