@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
+use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
 
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function() {
         Route::put('{payment}/update', 'update')->name('update');
         Route::get('{payment}/delete', 'delete')->name('delete');
         Route::delete('{payment}/destroy', 'destroy')->name('destroy');
+    });
+
+    Route::name('receipts.')->prefix('receipts')->controller(ReceiptController::class)->group(function() {
+        Route::get('payments/{payment}', 'receipt');
+        Route::get('{payment}/receipt/create');
     });
 
 

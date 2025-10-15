@@ -60,7 +60,7 @@
                                                 @forelse($installment->payments as $payment)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ Number::currency($payment->paid_amount, 'SDG', precision: 0) }}</td>
+                                                        <td>{{ Illuminate\Support\Number::currency($payment->paid_amount, 'SDG', precision: 0) }}</td>
                                                         <td>{{ $payment->payment_method }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
                                                         <td>{{ $payment->notes }}</td>
@@ -81,11 +81,11 @@
                                                 @endforelse
                                                 <tr>
                                                     <td colspan="5">@lang('app.total_payment')</td>
-                                                    <td>{{ Number::currency($installment->total_payments, 'SDG', precision: 0) }}</td>
+                                                    <td>{{ Illuminate\Support\Number::currency($installment->total_payments, 'SDG', precision: 0) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="5">@lang('app.remaining')</td>
-                                                    <td>{{ Number::currency($installment->remaining, 'SDG', precision: 0) }}</td>
+                                                    <td>{{ Illuminate\Support\Number::currency($installment->remaining, 'SDG', precision: 0) }}</td>
                                                 </tr>
                                             </x-Table.Tbody>
                                         </x-Table.BasicTable>    
