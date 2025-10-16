@@ -10,6 +10,7 @@ use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
+use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
 
 Route::get('/', HomeController::class);
@@ -54,6 +55,11 @@ Route::middleware('auth')->group(function() {
     Route::name('receipts.')->prefix('receipts')->controller(ReceiptController::class)->group(function() {
         Route::get('payments/{payment}', 'receipt');
         Route::get('{payment}/receipt/create');
+    });
+
+    Route::name('teachers.')->controller(TeacherController::class)->prefix('teachers')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
     });
 
 
