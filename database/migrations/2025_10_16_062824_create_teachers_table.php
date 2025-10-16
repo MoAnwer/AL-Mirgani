@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->decimal('salary', 15)->nullable()->default(0);
             $table->string('phone')->nullable()->default('');
-            $table->foreignId('school_id')->constrained('schools')->onDelete('set null');
-            $table->json('rule')->nullable();
+            $table->string('rule')->nullable();
             $table->timestamps();
         });
     }

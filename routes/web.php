@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function() {
     Route::name('teachers.')->controller(TeacherController::class)->prefix('teachers')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
     });
 
 

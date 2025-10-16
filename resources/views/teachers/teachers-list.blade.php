@@ -8,14 +8,23 @@
                     <x-container>
                         <x-alert type="error" />
                         <x-alert type="message" />
-                        <div class="card"> 
-                            <h5 class="card-header">@lang('app.list', ['attribute' => __('app.the_teachers')])</h5>
+                        <div class="card">
+                            <div class="d-flex justify-content-between align-items-sm-center gap-6 pb-4 border-bottom">
+                                <div class="d-flex align-items-start align-items-sm-center px-3">
+                                    <div class="button-wrapper">
+                                        <h4 class="card-header">@lang('app.list', ['attribute' => __('app.the_teachers')])</h4>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary text-white m-5 mt-10" href="{{ route('teachers.create') }}">
+                                    <i class="icon-base bx bx-plus-circle icon-sm me-1_5 d-block rounded"></i>
+                                    @lang('app.create', ['attribute' => __('app.teacher')])
+                                </a>
+                            </div>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <td>#</td>
                                     <td>@lang('app.teacher_name')</td>
                                     <td>@lang('app.phone_one')</td>
-                                    <td>@lang('app.school')</td>
                                     <td>@lang('app.salary')</td>
                                     <td>@lang('app.rule')</td>
                                     <td>@lang('app.actions')</td>
@@ -26,11 +35,22 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $teacher->name }}</td>
                                             <td>{{ $teacher->phone }}</td>
-                                            <td>{{ $student->school->name }}</td>
                                             <td>{{ \Illuminate\Support\Number::currency($teacher->salary, 'SDG',  precision: 0) }}</td>
-                                            <td>{{ $teacher->rule }}</td>
                                             <td>
-                                                <div class="dropdown">
+                                                @if($teacher->rule == \App\Enums\TeacherRule::contribute->value)
+                                                    <span class="badge rounded bg-label-warning">
+                                                        <i class="icon-base bx bx-user icon-sm me-1_0"></i>
+                                                        {{ $teacher->rule }}
+                                                    </span>
+                                                @else                                                
+                                                    <span class="badge rounded bg-label-success">
+                                                        <i class="icon-base bx bx-pin icon-sm me-1_0"></i>
+                                                        {{ $teacher->rule }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="dropdown mx-5">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
