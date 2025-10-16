@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Enums\TeacherRule;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Teacher\TeacherRequest;
+use App\Models\School;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,7 @@ class TeacherController extends Controller
     public function index(Teacher $teacher)
     {
         return view('teachers.teachers-list', [
-            'teachers' => $teacher->paginate(15)
+            'teachers' => $teacher->latest()->paginate(15)
         ]);
     }
 
@@ -23,15 +26,25 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teachers.create-teacher-form');
+        return view('teachers.create-teacher-form', [
+            'title'     => __('app.create', ['attribute' => __('app.teacher')]),
+            'schools'   => School::pluck('id', 'name'),
+            'rules'     => TeacherRule::cases(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TeacherRequest $request)
     {
-        //
+        try {
+            Teacher::create($request->validated());
+            return back()->with('message', __('app.create_successful', ['attribute' => __('app.teacher')]));
+        } catch (\Throwable $th) {
+            report($th);
+            return back()->with('error', __('app.error') .' :'. $th->getMessage());
+        }
     }
 
     /**

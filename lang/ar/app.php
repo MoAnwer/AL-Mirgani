@@ -7,6 +7,7 @@ return [
     'list'                  => 'قائمة :attribute',
     'the_students'          => ' التلاميذ',
     'teachers'              => 'معلمين',
+    'teacher'               => 'معلم',
     'the_teachers'          => ' المعلمين',
     'dashboard_title'       =>  'لوحة التحكم',
     'rule'                  => 'النوع',
