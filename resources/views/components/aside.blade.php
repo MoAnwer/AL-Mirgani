@@ -75,9 +75,9 @@
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
         
-        <x-Menu.MenuItem label="المعلمين" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
+        <x-Menu.MenuItem label="{{ __('app.the_teachers') }}" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="Without menu" />
+                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_teachers')]) }}" route="teachers.index"/>
                 <x-Menu.MenuItem label="Without menu" />
                 <x-Menu.MenuItem label="Without menu" />
                 <x-Menu.MenuItem label="Without menu" />
@@ -103,6 +103,7 @@
                 <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.earning')]) }}" route="earnings.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
+        
         
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
     </ul>
