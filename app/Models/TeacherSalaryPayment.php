@@ -26,4 +26,9 @@ class TeacherSalaryPayment extends Model
             'signature_state' => ''
         ]);
     }
+
+    public function getFormattedAmountAttribute() 
+    {
+        return \Illuminate\Support\Number::currency($this->amount, 'SDG', precision: 0);
+    }
 }
