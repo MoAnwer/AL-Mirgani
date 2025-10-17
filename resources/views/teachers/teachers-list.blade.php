@@ -35,7 +35,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $teacher->name }}</td>
                                             <td>{{ $teacher->phone }}</td>
-                                            <td>{{ \Illuminate\Support\Number::currency($teacher->salary, 'SDG',  precision: 0) }}</td>
+                                            <td>{{ $teacher->formatted_salary }}</td>
                                             <td>
                                                 @if($teacher->rule == \App\Enums\TeacherRule::contribute->value)
                                                     <span class="badge rounded bg-label-warning">
@@ -55,7 +55,7 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href=""><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.student')])</a>
+                                                        <a class="dropdown-item" href="{{ route('teachers.show', $teacher) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.teacher')])</a>
                                                         <a class="dropdown-item" href=""><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                         <a class="dropdown-item" href=""><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>

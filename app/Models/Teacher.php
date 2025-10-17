@@ -15,9 +15,13 @@ class Teacher extends Model
         'rule',
     ];
 
-    public function salaryPayment() : HasMany 
+    public function salaryPayments() : HasMany 
     {
         return $this->hasMany(TeacherSalaryPayment::class);    
     }
 
+    public function getFormattedSalaryAttribute() 
+    {
+        return \Illuminate\Support\Number::currency($this->salary, 'SDG', precision: 0);
+    }
 }
