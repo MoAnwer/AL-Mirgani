@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Events\Expense\SalaryPaid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Teacher\StoreSalaryPaidRequest;
 use App\Models\Teacher;
@@ -37,11 +38,16 @@ class TeacherSalaryPaymentController extends Controller
     {
         try {
             
-            $this->teacherSalaryPayment->create($request->validated());
+            $teacherSalaryPayment = $this->teacherSalaryPayment->create($request->validated());
+
+            event(new SalaryPaid($teacherSalaryPayment));
+
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.salary_payment')]));
+
         } catch (\Throwable $th) {
-            report($th);
-            return back()->with('error', __('app.error', ['attribute' =>  $th->getMessage()]));
+
+            // report($th);
+            return back()->with('error', __('app.error') . ' :' . $th->getMessage());
         }
     }
 

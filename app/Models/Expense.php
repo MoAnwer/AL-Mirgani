@@ -21,12 +21,12 @@ class Expense extends Model
 
     public function category(): BelongsTo 
     {
-        return $this->belongsTo(ExpenseCategory::class);
+        return $this->belongsTo(ExpenseCategory::class)->withDefault(['name'  => '']);
     }
 
     public function school(): BelongsTo
     {
-        return $this->belongsTo(School::class);
+        return $this->belongsTo(School::class)->withDefault(['name'  => '']);
     }
 
 
