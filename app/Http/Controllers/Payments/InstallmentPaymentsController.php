@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payments;
 
+use App\Events\Earning\InstallmentPaymentIsPaid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentRequest;
 use App\Models\Installment;
@@ -31,7 +32,10 @@ class InstallmentPaymentsController extends Controller
                         ->with('error', __('app.amount_less_then_message', ['amount' => $installment->remaining]));
             }
 
-            $installment->payments()->create($data);
+            $payment = $installment->payments()->create($data);
+
+            // To register payment in earing table
+            event(new InstallmentPaymentIsPaid($payment));
 
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
 

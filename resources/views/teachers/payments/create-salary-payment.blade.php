@@ -47,14 +47,14 @@
                                             <select class="form-select" name="signature_state">
                                                 <option value="{{ null }}" selected>----</option>
                                                 @foreach(\App\Enums\SignatureState::cases() as $value)
-                                                    <option value="{{ $value->value }}" @selected(old('class') == $value->value)>{{ $value->value }}</option>
+                                                    <option value="{{ $value->value }}" @selected(old('signature_state') == $value->value)>{{ $value->value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col mt-3">
                                             <label class="form-label mb-2">@lang('app.statement')</label>
                                                 <div class="input-group">
-                                                    <textarea  class="form-control"  rows="10" name="statement"></textarea>
+                                                    <textarea  class="form-control"  rows="10" name="statement">{{ old('statement') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -5,19 +5,16 @@ namespace App\Services\Expense;
 use App\Models\Expense;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ExpenseService 
 {
-    public function __construct(
-        private Expense $expense
-    ) {}
+    public function __construct(private Expense $expense) {}
 
 
     public function expensesList() 
     {
         return view('expenses.expenses-list', [
-            'expenses'      => $this->expense->with('school:id,name', 'category:id,name')->paginate(15)
+            'expenses'      => $this->expense->with('school:id,name', 'category:id,name')->latest()->paginate(15)
         ]);
     }
 

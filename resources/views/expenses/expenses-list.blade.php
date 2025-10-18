@@ -24,7 +24,7 @@
                                 <x-Table.Tbody>
                                     @forelse($expenses as $expense)
                                         <tr>
-                                            <td>{{ ++$loop->index }}</td>
+                                            <td>{{ $expense->id }}</td>
                                             <td>{{ $expense->formatted_amount }}</td>
                                             <td>{{ $expense->category->name }}</td>
                                             <td>{{ $expense->school->name }}</td>
