@@ -23,8 +23,7 @@ class StudentService
 
         DB::transaction(function() use ($registrationData) {
             $this->createRegistrationFeeFor(
-                $this->createStudent($this->createParent($registrationData), $registrationData) 
-                , $registrationData
+                $this->createStudent($this->createParent($registrationData), $registrationData), $registrationData
             );
         });
 
@@ -49,7 +48,7 @@ class StudentService
             'student_number'    => Student::generateStudentNumber(),
             'address'           => $studentData['address'] ?? null,
             'discount'          => $studentData['discount'] ?? null,
-            'total_fee'         => $studentData['total_fee'],
+            'total_fee'         => $this->calcDiscount($studentData['discount'] ?? 0, $studentData['total_fee']),
             'stage'             => $studentData['stage'],
             'school_id'         => $studentData['school'],
             'class_id'          => $studentData['class'],
@@ -133,4 +132,9 @@ class StudentService
         ]);
     }
 
+
+    private function calcDiscount($discount, $totalFee) : int
+    {
+        return $totalFee * (1 - ($discount / 100));
+    }
 }
