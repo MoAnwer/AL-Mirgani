@@ -70,11 +70,20 @@ class StudentService
 
     public function studentsList() 
     {
+        $search = request()->query('search');
+        
         $students = $this->student
-                         ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
-                         ->with('class:id,name', 'school:id,name')
-                         ->latest()
-                         ->paginate(8);
+                            ->query()
+                            ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
+                            ->with('class:id,name', 'school:id,name')
+                            ->when(!empty($search), 
+                                function($q) use ($search) {
+                                    $q->where('full_name', 'like', '%'.$search.'%')
+                                        ->orWhere('student_number', '=', $search)
+                                        ->orWhere('stage', 'like', '%'.$search.'%');
+                            })
+                            ->latest()
+                            ->paginate(10);
 
         return view('students.students-list', compact('students'));
     }

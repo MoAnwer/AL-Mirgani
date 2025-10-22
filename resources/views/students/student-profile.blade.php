@@ -36,6 +36,7 @@
                                 <div class="button-wrapper">
                                     <h4>{{ $student->full_name }}</h4>
                                     <span class="badge rounded bg-label-secondary">@lang('app.student_number') : {{ $student->student_number }}</span>
+                                    <span class="badge rounded bg-success">@lang('app.discount') : {{ $student->discount }}%</span>
                                 </div>
                             </div>
                             </div>

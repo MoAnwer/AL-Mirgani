@@ -2,8 +2,8 @@
 
 namespace App\Services\Expense;
 
-use App\Models\Expense;
 use Exception;
+use App\Models\{Expense, ExpenseCategory, School};
 use Illuminate\Http\Request;
 
 class ExpenseService 
@@ -13,8 +13,37 @@ class ExpenseService
 
     public function expensesList() 
     {
+        $filters = [
+            'category_id' => request()->query('category_id'),
+            'school_id'   => request()->query('school_id'),
+            'date'        => request()->query('date'),
+        ];
+       
+        $data = $this->expense
+                        ->query()
+                        ->with('school:id,name', 'category:id,name')
+                        ->when(!empty($filters['category_id']), 
+                            function($q) use ($filters) {
+                                $q->where('category_id', $filters['category_id']);
+                            }
+                        )
+                        ->when(!empty($filters['school_id']), 
+                            function($q) use ($filters) {
+                                $q->where('school_id', $filters['school_id']);
+                            }
+                        )
+                        ->when(!empty($filters['date']), 
+                            function($q) use ($filters) {
+                                $q->where('date', $filters['date']);
+                            }
+                        )
+                        ->latest()
+                        ->paginate(15);
+
         return view('expenses.expenses-list', [
-            'expenses'      => $this->expense->with('school:id,name', 'category:id,name')->latest()->paginate(15)
+            'expenses'   => $data,
+            'categories' => ExpenseCategory::pluck('id', 'name'),
+            'schools'    => School::pluck('id', 'name'),
         ]);
     }
 

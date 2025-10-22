@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentRequest;
 use App\Models\Installment;
 use App\Models\InstallmentPayment;
+use Illuminate\Support\Facades\DB;
 
 class InstallmentPaymentsController extends Controller
 {
@@ -32,10 +33,12 @@ class InstallmentPaymentsController extends Controller
                         ->with('error', __('app.amount_less_then_message', ['amount' => $installment->remaining]));
             }
 
-            $payment = $installment->payments()->create($data);
+            DB::transaction(function() use ($installment, $data) {
+                $payment = $installment->payments()->create($data);
 
-            // To register payment in earing table
-            event(new InstallmentPaymentIsPaid($payment));
+                // To register payment in earing table
+                event(new InstallmentPaymentIsPaid($payment));
+            });
 
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
 

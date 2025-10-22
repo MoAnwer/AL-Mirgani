@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Teacher extends Model
 {
@@ -19,6 +19,13 @@ class Teacher extends Model
     {
         return $this->hasMany(TeacherSalaryPayment::class);    
     }
+
+
+    public function advances(): MorphMany
+    {
+        return $this->morphMany(Advance::class, 'advancer');
+    }
+    
 
     public function getFormattedSalaryAttribute() 
     {

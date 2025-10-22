@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         @include('teachers.payments.salary-payments')
-                    </div>                    
+                    </div>
                 </div>
             </x-container>
         </x-ContentWrapper>

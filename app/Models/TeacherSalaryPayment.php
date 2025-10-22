@@ -31,4 +31,15 @@ class TeacherSalaryPayment extends Model
     {
         return \Illuminate\Support\Number::currency($this->amount, 'SDG', precision: 0);
     }
+
+    public function getRemainingAttribute()
+    {
+        return $this->teacher->salary - $this->amount;
+    }
+
+
+    public function getFormattedRemainingAttribute()
+    {
+        return \Illuminate\Support\Number::currency($this->teacher->salary - $this->amount, 'SDG', precision: 0);
+    }
 }
