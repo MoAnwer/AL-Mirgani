@@ -20,10 +20,9 @@
                 <th>#</th>
                 <th>@lang('app.amount')</th>
                 <th>@lang('app.the_month')</th>
+                <th>@lang('app.remaining')</th>
                 <th>@lang('app.payment_date')</th>
-                <th>@lang('app.statement')</th>
                 <th>@lang('app.signature_state')</th>
-                <th>@lang('app.actions')</th>
             </x-Table.Thead>
             <x-Table.Tbody>
                 @forelse($teacher->salaryPayments()->latest()->paginate(5) as $salary)
@@ -31,8 +30,8 @@
                         <td>{{ $salary->id }}</td>
                         <td>{{ $salary->formatted_amount }}</td>
                         <td>{{ $salary->month }}</td>
+                        <td>{{ $salary->formatted_remaining }}</td>
                         <td>{{ $salary->payment_date }}</td>
-                        <td>{{ $salary->statement }}</td>
                         <td>
                             @if($salary->signature_state == \App\Enums\SignatureState::DONE->value)
                                 <span class="badge rounded bg-label-success">
@@ -45,18 +44,6 @@
                                     {{ $salary->signature_state }}
                                 </span>
                             @endif
-                        </td>
-                        <td>
-                            <div class="dropdown mx-5">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href=""><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.teacher')])</a>
-                                    <a class="dropdown-item" href=""><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
-                                    <a class="dropdown-item" href=""><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                 @empty
