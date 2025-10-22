@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
 use App\Http\Controllers\{Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Earning\EarningController;
 use App\Http\Controllers\Expense\ExpenseController;
+use App\Http\Controllers\Expense\Reports\ExpenseReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
@@ -94,5 +96,6 @@ Route::middleware('auth')->group(function() {
         Route::post('store', 'store')->name('store');
     });
 
+    Route::get('accounts', [AccountController::class, 'showDailyAccount'])->name('accounts');
     Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('student.accounts');
 });
