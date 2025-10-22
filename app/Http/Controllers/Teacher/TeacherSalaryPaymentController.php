@@ -8,6 +8,7 @@ use App\Http\Requests\Teacher\StoreSalaryPaidRequest;
 use App\Models\Teacher;
 use App\Models\TeacherSalaryPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherSalaryPaymentController extends Controller
 {
@@ -38,15 +39,18 @@ class TeacherSalaryPaymentController extends Controller
     {
         try {
             
-            $teacherSalaryPayment = $this->teacherSalaryPayment->create($request->validated());
+            DB::transaction(function() use ($request) {
 
-            event(new SalaryPaid($teacherSalaryPayment));
+                $teacherSalaryPayment = $this->teacherSalaryPayment->create($request->validated());
+
+                event(new SalaryPaid($teacherSalaryPayment));
+            });
 
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.salary_payment')]));
 
         } catch (\Throwable $th) {
-
-            // report($th);
+            
+            report($th);
             return back()->with('error', __('app.error') . ' :' . $th->getMessage());
         }
     }
