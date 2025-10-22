@@ -6,10 +6,47 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
+
+                        <h5>@lang('app.list', ['attribute' => __('app.the_expenses')])</h5>
+
                         <x-alert type="error" />
                         <x-alert type="message" />
-                        <div class="card"> 
-                            <h5 class="card-header">@lang('app.list', ['attribute' => __('app.the_expenses')])</h5>
+
+                        <div class="row mx-1 mb-3">
+                            <div class="card text-center"> 
+                                <form action="{{ URL::current() }}">
+                                    <div class="row p-3">
+                                        <div class="col-3">
+                                            <select class="form-select" name="category_id">
+                                            <option value="{{ null }}" selected>@lang('app.the_category')</option>
+                                                @foreach($categories as $key => $value)
+                                                    <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ $key }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <select class="form-select" name="school_id">
+                                                <option value="{{ null }}" selected>@lang('app.school')</option>
+                                                    @foreach($schools as $key => $value)
+                                                        <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
+                                                    @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                            </div>
+                                        </div>                                   
+
+                                        <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                         <div class="card"> 
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <td>#</td>
