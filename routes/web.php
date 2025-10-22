@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
+use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Teacher\TeacherSalaryPaymentController;
@@ -73,7 +74,7 @@ Route::middleware('auth')->group(function() {
 
     Route::name('expenses.')->prefix('expenses')->group(function() {
         Route::get('', [ExpenseController::class, 'index'])->name('index');
-        Route::get('create', [ExpenseController::class, 'create'])->name('create');
+        Route::get('/new', [ExpenseController::class, 'create'])->name('new');
         Route::post('store', [ExpenseController::class, 'store'])->name('store');
         Route::get('show/{expense}', [ExpenseController::class, 'show'])->name('show');
         Route::get('edit/{expense}', [ExpenseController::class, 'edit'])->name('edit');
@@ -92,4 +93,6 @@ Route::middleware('auth')->group(function() {
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
     });
+
+    Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('student.accounts');
 });
