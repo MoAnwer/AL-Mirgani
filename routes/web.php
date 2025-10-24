@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
-use App\Http\Controllers\{Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, Student\StudentController};
 use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Earning\EarningController;
 use App\Http\Controllers\Expense\ExpenseController;
@@ -11,11 +11,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
+use App\Http\Controllers\Reports\EarningStatementReportController;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Teacher\TeacherSalaryPaymentController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
+use App\Http\Controllers\Reports\RevenueAnalysisController;
 
 Route::get('/', HomeController::class);
 
@@ -36,6 +38,7 @@ Route::middleware('auth')->group(function() {
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
     Route::get('students/{student}/installments', [StudentController::class, 'installments'])->name('students.installments');
     Route::resource('students', StudentController::class);
+    Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('students.accounts');
 
     Route::name('installments.')->controller(InstallmentController::class)->prefix('installments')->group(function() {
         Route::get('{id}/create', 'create')->name('create');
@@ -97,5 +100,9 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('accounts', [AccountController::class, 'showDailyAccount'])->name('accounts');
-    Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('student.accounts');
+    Route::get('revenueBySchool/{school}', [RevenueAnalysisController::class, 'revenueBySchool'])->name('revenues.schools');
+    Route::get('/reports/arrears', [ArrearsReportController::class, 'generateArrearsReport'])->name('arrears.all');
+
+    Route::view('/reports', 'reports.reports')->name('reports');
+    Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
 });
