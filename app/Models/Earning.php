@@ -3,11 +3,8 @@
 namespace App\Models;
 
 use App\Traits\ReadableHumanDate;
-use Illuminate\Contracts\Database\Query\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Number;
 
 class Earning extends Model
 {
@@ -22,6 +19,10 @@ class Earning extends Model
 
     protected function getFormattedAmountAttribute()
     {
-        return Number::currency($this->amount, 'SDG');
+        return number_format($this->amount, 2);
+    }
+
+    public function filterBySchool(int $school_id) {
+        return $this->query()->where('school_id', $school_id);
     }
 }

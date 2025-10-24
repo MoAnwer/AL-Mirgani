@@ -4,28 +4,21 @@ namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentAccountController extends Controller
 {
-    /**
-     * يعرض كشف حساب تحصيل الرسوم لطالب محدد.
-     */
+    
     public function showAccountStatement(int $student)
     {
-        // 1. جلب بيانات الطالب الأساسية
         $student = Student::findOrFail($student);
         $studentInstallments = $student->installments();
         $studentPayments = $studentInstallments->with('payments')->get();
 
         
-        // **هنا يجب تعديل الحقول لتناسب نموذج الطالب الخاص بك**
-        $grossFees = $student->total_fee ?? 15000.00; // افتراض مبلغ
-        $discountAmount = $student->discount; // افتراض خصم
+        $grossFees = $student->total_fee ?? 15000.00; 
+        $discountAmount = $student->discount; 
         
 
-        // 3. تجهيز سجل الدفعات التفصيلي
-        // نحتاج إلى ترتيب سجلات الإيرادات حسب تاريخ الدفع
         $paymentLog = [];
         $data = [];
 
@@ -50,7 +43,6 @@ class StudentAccountController extends Controller
 
         array_multisort($paymentLog);
 
-        // 2. حساب الملخص المالي
         $totalPaidInit = 0;
         
         $totalPaid = array_sum(array_map(function($data) use ($totalPaidInit) {
@@ -63,8 +55,6 @@ class StudentAccountController extends Controller
         $balanceDue = $netFees - $totalPaid;
 
 
-        // 4. تجهيز جدول الأقساط (نحتاج لجدول installments حقيقي لتحديد التواريخ)
-        // لتبسيط المثال، سنقوم بإنشاء بيانات وهمية
         $installmentsSchedule = $student->installments->sortBy('date')->map(function($installment)  {
             return  [
                 'number'    => $installment->number ?? 0,
