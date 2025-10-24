@@ -22,16 +22,22 @@ class ArrearsReportController extends Controller
 
         $reportData = [];
 
-        $arrearsBuckets = $this->arrearsBuckets();
+        $arrearsBuckets = [
+            'total' => 0,
+            '1-30' => 0,
+            '31-60' => 0,
+            '61-90' => 0,
+            '90+' => 0,
+        ];
 
         // Get Overdue installments and arrears logic with categories
-        $this->getOverdueInstallments($today, $overdueInstallments, $reportData);
+        $this->getOverdueInstallments($today, $arrearsBuckets, $overdueInstallments, $reportData);
 
         return view('reports.arrears_report', compact('reportData', 'arrearsBuckets'));
     }
 
     
-    private function getOverdueInstallments($day, $overdueInstallments, &$reportData)
+    private function getOverdueInstallments($day, &$arrearsBuckets, $overdueInstallments, &$reportData)
     {
         foreach ($overdueInstallments as $installment) {
             // Paid amount of the installment
@@ -61,24 +67,12 @@ class ArrearsReportController extends Controller
                     'days_overdue'          => $daysOverdue ?? '',
                     'arrears_bucket'        => $bucket ?? 0,
                 ];
-
-                $this->arrearsBuckets()['total'] += $balanceDue;
-                $this->arrearsBuckets()[$bucket] += $balanceDue;
+                
+                $arrearsBuckets['total'] += $balanceDue;
+                $arrearsBuckets[$bucket] += $balanceDue;
 
             }
         }
-    }
-
-
-    private function arrearsBuckets(): array
-    {
-        return [
-            'total' => 0,
-            '1-30' => 0,
-            '31-60' => 0,
-            '61-90' => 0,
-            '90+' => 0,
-        ];
     }
 
     private function bucket($daysOverdue) : string {
