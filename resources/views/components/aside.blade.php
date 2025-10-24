@@ -88,7 +88,8 @@
         </x-Menu.MenuItem>
 
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
-        
+        <x-Menu.MenuItem label="{{ __('app.the_reports') }}" icon="bx bx-news" route="reports"/>
+
         <x-Menu.MenuItem label="{{ __('app.the_expenses') }}" icon="tf-icons bx bxl-microsoft-teams" icon="bx bx-money" classes='menu-toggle'>
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.list',   ['attribute' => __('app.the_expenses')]) }}" route="expenses.index"/>
@@ -103,10 +104,7 @@
                 <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.earning')]) }}" route="earnings.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
-        
-        <x-Menu.MenuItem label="{{ __('app.account_scan') }}" route="accounts" icon="bx bx-news"/>
-        
-        
+            
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
     </ul>
 </aside>
