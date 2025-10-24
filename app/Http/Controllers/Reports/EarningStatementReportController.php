@@ -23,9 +23,9 @@ class EarningStatementReportController extends Controller
 
         $endDate = request()->query('end_date') ??  date('Y-m-d', strtotime(now()->endOfYear()->toString()));
 
-        $incomes = $this->earning->when(!empty($school_id), 
-                                function($q) use ($school_id) {
-                                    $q->where('school_id', $school_id);
+        $incomes = $this->earning
+                            ->when($school_id != 0, function($q) use ($school_id) {
+                                $q->where('school_id', $school_id);
                             })
                             ->whereBetween('date', [$startDate, $endDate])
                             ->get();
@@ -89,7 +89,9 @@ class EarningStatementReportController extends Controller
             ->selectRaw('expenses.school_id as school_id, category_id, expense_categories.name as name, SUM(amount) as amount')
             ->join('expense_categories', 'expense_categories.id', 'expenses.category_id')
             ->groupBy('category_id')
-            ->where('school_id', $school_id)
+            ->when($school_id != 0, function($q) use ($school_id) {
+                $q->where('school_id', $school_id);
+            })
             ->whereBetween('date', [$startDate, $endDate])
             ->get()
             ->map(function($n) use (&$data) {
