@@ -32,7 +32,7 @@
                                     @forelse($students as $student)
                                         <tr>
                                         
-                                            <td>{{ ++$loop->index . '  ' . $student->count}}</td>
+                                            <td>{{ $student->id }}</td>
                                             <td>{{ $student->full_name }}</td>
                                             <td>{{ $student->student_number }}</td>
                                             <td>{{ $student->address }}</td>
@@ -45,9 +45,11 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('students.show', $student) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.student')])</a>
-                                                        <a class="dropdown-item" href="{{ route('students.edit', $student) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
-                                                        <a class="dropdown-item" href="{{ route('students.delete', $student) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
+                                                        <a class="dropdown-item" href="{{ route('students.accounts', $student->id) }}"><i class="icon-base bx bx-news text-warning me-1"></i>@lang('app.account_scan')</a>
+                                                        <a class="dropdown-item" href="{{ route('students.show', $student) }}"><i class="icon-base text-primary bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.student')])</a>
+                                                        <a class="dropdown-item" href="{{ route('students.edit', $student) }}"><i class="icon-base text-success bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
+                                                        <a class="dropdown-item" href="{{ route('students.delete', $student) }}"><i class="icon-base text-danger bx bx-trash me-1"></i>@lang('app.delete')</a>
+
                                                     </div>
                                                 </div>
                                             </td>
