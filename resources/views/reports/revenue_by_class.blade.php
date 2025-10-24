@@ -6,13 +6,40 @@
         <x-nav />
         <x-layout-container>
             <x-container>
+                <div class="card px-2 mb-3">
+                    <form action="{{ URL::current() }}">
+                    <div class="row p-3">
+                        <div class="col-4">
+                            <select class="form-select" name="school_id">
+                                <option value="{{ null }}" selected>@lang('app.school')</option>
+                                    @foreach($schools as $key => $value)
+                                        <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="date" class="form-control" name="start_date" value="{{ request()->query('start_date') }}" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="input-group">
+                                <input type="date" class="form-control" name="end_date" value="{{ request()->query('end_date') }}" />
+                            </div>
+                        </div>                                  
+
+                        <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
+                    </div>
+                </form>
+                </div>
+                
                 <div class="card">
-                <h4 class="text-center py-4 mb-6 text-primary">تحليل الإيرادات حسب الصف للمرحلة {{ $schoolName }}</h4>
-    
+                <h4 class="text-center pt-4 text-primary">تحليل الإيرادات حسب الصف للمرحلة {{ $schoolName }}</h4>
+                <p class="text-center lead mb-10">للفترة: <b>{{ $startDate }}</b> الى <b>{{ $endDate }}</b></p>
                 <x-table.basic-table>
                     <x-table.thead>
                         <tr>
-                            <th class="text-center">الصف/المرحلة</th>
+                            <th class="text-center">الصف</th>
                             <th class="text-center">عدد الطلاب</th>
                             <th class="text-center">صافي الرسوم المستحقة (جنية)</th>
                             <th class="text-center">إجمالي المبلغ المُحصَّل (جنية)</th>

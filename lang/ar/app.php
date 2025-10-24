@@ -41,6 +41,7 @@ return [
     'due_amount'            => 'المبلغ المستحق',
     'salary_payments'       => 'مدفوعات المرتب',
     'salary_payment'        => ' مدفوع مرتب',
+    'all_schools'           => 'كل المدارس',
     'statement'             => 'البيان',
     'installments'          => 'اقساط',
     'student_installments'  => ' اقساط :student',

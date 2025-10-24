@@ -3,17 +3,28 @@
 namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
-use App\Models\ClassRoom; // نموذج الصفوف/المراحل
-use App\Models\School;
-use App\Models\Student;
+use App\Models\{ClassRoom, School, Student};
 
 class RevenueAnalysisController extends Controller
 {
-    public function revenueBySchool(int $school_id)
+    function __construct(private Student $student, private ClassRoom $class, private School $school) {}
+
+    public function revenueBySchool()
     {
-        // 1. جلب جميع الصفوف المدرسية
-        $classes = ClassRoom::all();
-        $schoolName = School::findOrFail($school_id)->name;
+        $school_id = request()->query('school_id') ?? 0;
+        
+        $startDate = request()->query('start_date') ?? date('Y-m-d', strtotime(now()->startOfYear()->toString()));
+
+        $endDate = request()->query('end_date') ??  date('Y-m-d', strtotime(now()->endOfYear()->toString()));
+
+        $classes = $this->class->all();
+        
+        // Check $school_id is not null to get school name or set the all_schools instead
+        $schoolName = match ($school_id == 0) {
+            true    => trans('app.all_schools'),
+            false   => $this->school->findOrFail($school_id)->name
+        };
+
         $reportData = [];
         
         $classTotalFees = 0;
@@ -22,32 +33,36 @@ class RevenueAnalysisController extends Controller
 
         foreach ($classes as $class) {
 
-            // جلب طلاب الصف مع سجلات الإيرادات
-            $students = Student::where('class_id', $class->id)->where('school_id', $school_id)->get();
+            // Get students with classes and school
+            $students = $this->student
+                            ->whereBetween('created_at', [$startDate, $endDate])
+                            ->where('class_id', $class->id)
+                            ->when($school_id != 0, function ($q) use ($school_id) {
+                                $q->where('school_id', $school_id);
+                            })
+                            ->get();
             
-            // 2. حساب الإجماليات للصف الواحد
+            // Student count by class
             $studentCount = $students->count();
             
-            // إذا كان لديك حقول total_fees و discount_amount في جدول الطالب:
             $grossFees = $students->sum('total_fee');
             $discountAmount = $students->sum('discount');
 
             $netFees = $grossFees;
             
-            // جلب الإيرادات المحصلة من كل طالب في هذا الصف
-            $totalPaid = $students->sum(function ($student) {
-                return $student->totalPaid();
+            // Revenue of each student
+            $totalPaid = $students->sum(function ($student) use ($startDate, $endDate) {
+                return $student->totalPaidBetween($startDate, $endDate);
             });
 
-            // 3. حساب الأرصدة والنسب
+            // Calculate Balances And Collections Rate
             $balanceDue = $netFees - $totalPaid;
             $collectionRate = ($netFees > 0) ? ($totalPaid / $netFees) * 100 : 0;
             
-            // 4. تجميع الإجماليات الكلية
+            // Collect Totals
             $classTotalFees += $netFees;
             $classTotalPaid += $totalPaid;
 
-            // 5. بناء مصفوفة التقرير
             $reportData[] = [
                 'class_name' => $class->name,
                 'student_count' => $studentCount,
@@ -57,11 +72,13 @@ class RevenueAnalysisController extends Controller
                 'collection_rate' => number_format($collectionRate, 2) . '%',
             ];
         }
+
+        $schools = $this->school->pluck('id', 'name')->toArray();
         
-        // حساب إجمالي نسبة التحصيل للمدرسة
         $classBalanceDue = $classTotalFees - $classTotalPaid;
+        
         $classCollectionRate = ($classTotalFees > 0) ? ($classTotalPaid / $classTotalFees) * 100 : 0;
 
-        return view('reports.revenue_by_class', compact('schoolName', 'reportData', 'classTotalFees', 'classTotalPaid', 'classBalanceDue', 'classCollectionRate'));
+        return view('reports.revenue_by_class', compact('startDate', 'endDate', 'schools', 'schoolName', 'reportData', 'classTotalFees', 'classTotalPaid', 'classBalanceDue', 'classCollectionRate'));
     }
 }

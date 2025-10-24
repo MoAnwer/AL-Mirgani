@@ -75,4 +75,10 @@ class Student extends Model
             return $payment?->paid_amount ?? 0;
         });
     }
+
+    public function totalPaidBetween($startDate, $endDate) {
+        return $this->payments->whereBetween('payment_date', [$startDate, $endDate])?->sum(function($payment) {
+            return $payment?->paid_amount ?? 0;
+        });
+    }
 }
