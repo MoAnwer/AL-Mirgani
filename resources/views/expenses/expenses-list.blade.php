@@ -6,9 +6,7 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
-
                         <h5>@lang('app.list', ['attribute' => __('app.the_expenses')])</h5>
-
                         <x-alert type="error" />
                         <x-alert type="message" />
 
