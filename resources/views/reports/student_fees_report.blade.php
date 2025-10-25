@@ -126,6 +126,29 @@
                         </table>
                     </div>
 
+
+                    <h3>@lang('app.registration_fee')</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="align-center">@lang('app.registration_fee')</th>
+                                <th class="align-center">@lang('app.paid_amount')</th>
+                                <th class="align-center">@lang('app.payment_date')</th>
+                                <th class="align-center">@lang('app.payment_method')</th>
+                                <th class="align-center">رقم العملية</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-center">{{ $register_fees['amount'] }}</td>
+                                <td class="align-center">{{ $register_fees['paid_amount'] }}</td>
+                                <td class="align-center">{{ $register_fees['payment_date'] }}</td>
+                                <td class="align-center">{{ $register_fees['payment_method'] }}</td>
+                                <td class="align-center">{{ $register_fees['transaction_id'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                     <h3 stype="">سجل الدفعات (التحصيل)</h3>
                     <table>
                         <thead>

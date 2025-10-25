@@ -16,7 +16,7 @@ class StudentAccountController extends Controller
 
         
         $grossFees = $student->total_fee ?? 15000.00; 
-        $discountAmount = $student->discount; 
+        $discountAmount = $student->discount ?? 0; 
         
 
         $paymentLog = [];
@@ -54,6 +54,13 @@ class StudentAccountController extends Controller
         $netFees = $grossFees;
         $balanceDue = $netFees - $totalPaid;
 
+        $register_fees = [
+            'amount'         => number_format($student->registrationFees->amount),
+            'paid_amount'    => number_format($student->registrationFees->paid_amount),
+            'payment_date'   => $student->registrationFees->payment_date,
+            'transaction_id' => $student->registrationFees->transaction_id ?? '-',
+            'payment_method' => $student->registrationFees->payment_method
+        ];
 
         $installmentsSchedule = $student->installments->sortBy('date')->map(function($installment)  {
             return  [
@@ -73,6 +80,7 @@ class StudentAccountController extends Controller
             'balanceDue' => $balanceDue,
             'paymentLog' => $paymentLog,
             'installmentsSchedule' => $installmentsSchedule,
+            'register_fees' => $register_fees
         ];
 
         return view('reports.student_fees_report', $reportData);
