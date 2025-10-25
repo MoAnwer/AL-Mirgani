@@ -37,7 +37,7 @@ class StudentService
             );
         });
 
-        return back()->with('message', 'تم تسجيل الطالب بنجاح ✅');
+        return back()->with('message', __('app.student_register_successfully'));
     }
 
     private function createParent(array $parentData) : Father
