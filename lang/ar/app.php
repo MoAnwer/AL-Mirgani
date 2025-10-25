@@ -102,6 +102,7 @@ return [
     'empty_message'                 => 'لا يوجد :attributes',
     'installment_full_paid_message' =>  'تم سداد  هذا القسط',
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
+    'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
     // Errors
 
     'error'                 => 'حدث خطا',

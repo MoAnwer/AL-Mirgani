@@ -2,7 +2,7 @@
 
 namespace App\Services\Student;
 
-use App\Models\{Father, Student, ClassRoom, Installment, School};
+use App\Models\{Father, Student, ClassRoom, School};
 use App\Enums\StageEnum;
 use App\Events\Student\RegisterStudent;
 use App\Http\Requests\Student\UpdateStudentRequest;
@@ -17,6 +17,16 @@ class StudentService
         private Student $student
     ) {}
 
+    public function createStudentPage()
+    {
+        return view('students.register-new-student', [
+            'title'   => 'تسجيل طلاب جديد',
+            'stages'  => StageEnum::cases(),
+            'classes' => ClassRoom::pluck('id', 'name'),
+            'schools' => School::pluck('id', 'name'),
+        ]);
+    }
+ 
     public function registerStudent(Request $request) 
     {
         $registrationData = $request->validated();

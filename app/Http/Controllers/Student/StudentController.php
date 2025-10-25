@@ -23,14 +23,8 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('students.register-new-student', [
-            'title'   => 'تسجيل طلاب جديد',
-            'stages'  => StageEnum::cases(),
-            'classes' => ClassRoom::pluck('id', 'name'),
-            'schools' => School::pluck('id', 'name'),
-        ]);
+    public function create() {
+        return $this->service->createStudentPage();
     }
 
     /**
