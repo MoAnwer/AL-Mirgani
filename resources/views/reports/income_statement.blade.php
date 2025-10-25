@@ -54,11 +54,6 @@
                                     <td>رسوم الأقساط والتعليم</td>
                                     <td class="text-end">{{ number_format($revenue['fees'], 2) }}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>إيرادات المواصلات والخدمات</td>
-                                    <td class="text-end">{{ number_format($revenue['fees'], 2) }}</td>
-                                </tr>
                                 <tr class="bg-success text-white fw-bold">
                                     <td colspan="2">إجمالي الإيرادات (أ)</td>
                                     <td class="text-end">{{ number_format($revenue['total'], 2) }}</td>
