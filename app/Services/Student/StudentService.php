@@ -75,12 +75,17 @@ class StudentService
         $students = $this->student
                             ->query()
                             ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
-                            ->with('class:id,name', 'school:id,name')
+                            ->with('class', 'school')
                             ->when(!empty($search), 
                                 function($q) use ($search) {
-                                    $q->where('full_name', 'like', '%'.$search.'%')
-                                        ->orWhere('student_number', '=', $search)
-                                        ->orWhere('stage', 'like', '%'.$search.'%');
+                                    $q->whereAny([
+                                        'full_name',
+                                        'student_number',
+                                        'stage',
+                                    ], 
+                                        'LIKE', 
+                                        "%$search%"
+                                    );
                             })
                             ->latest()
                             ->paginate(10);
