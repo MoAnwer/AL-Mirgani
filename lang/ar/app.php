@@ -32,6 +32,7 @@ return [
     'stage'                 => 'المرحلة',
     'class'                 => 'الصف',
     'registration_fee'      => 'رسوم التسجيل',
+    'student_registration_fee'      => 'رسوم تسجيل طالب',
     'phone_one'             => 'رقم الهاتف 1',
     'phone_two'             => 'رقم الهاتف 2',
     'address'               => 'العنوان', 
@@ -75,7 +76,7 @@ return [
     'medication'            => 'الادوية التي يتناولها الطالب',
     'notes'                 => 'ملاحظات',
     'number'                => 'رقم :attribute',
-
+    'earnings'              => 'ايرادات',
     'expense'               => 'منصرف',
     'expenses'              => 'منصرفات',
     'the_expenses'          => 'المنصرفات',
