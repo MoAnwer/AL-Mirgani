@@ -19,6 +19,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        \App\Models\User::create(['username' => 'admin', 'password' => bcrypt(123456), 'name' => 'مدير النظام']);
     }
 
     /**
