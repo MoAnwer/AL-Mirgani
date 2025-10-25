@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        foreach (App\Enums\ExpenseCategory::cases() as $category) {
+        foreach (App\Enums\ExpenseCategoryEnum::cases() as $category) {
             DB::table('expense_categories')->insert([
                 'name'          => $category->value,
                 'created_at'    => now(),
