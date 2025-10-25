@@ -78,14 +78,7 @@ class StudentService
                             ->with('class', 'school')
                             ->when(!empty($search), 
                                 function($q) use ($search) {
-                                    $q->whereAny([
-                                        'full_name',
-                                        'student_number',
-                                        'stage',
-                                    ], 
-                                        'LIKE', 
-                                        "%$search%"
-                                    );
+                                    $q->whereAny(['full_name', 'student_number', 'stage'],  'LIKE', "%$search%");
                             })
                             ->latest()
                             ->paginate(10);
