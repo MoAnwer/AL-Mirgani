@@ -68,7 +68,7 @@ class StudentService
     private function createRegistrationFeeFor(Student $student, array $registrationFeeData) : void 
     {
         $student->registrationFees()->create([
-            'registration_fee'  => $registrationFeeData['registration_fee'],
+            'amount'  => $registrationFeeData['registration_fee'],
             'payment_method'    => $registrationFeeData['payment_method']  ?? null,
             'payment_date'      => $registrationFeeData['payment_date']  ?? null,
             'paid_amount'       => $registrationFeeData['paid_amount']  ?? null,
