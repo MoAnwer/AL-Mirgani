@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
-use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, EmployeePayrollController, Student\StudentController};
 use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Earning\EarningController;
+use App\Http\Controllers\Employees\EmployeeController;
 use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Expense\Reports\ExpenseReportController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Reports\EarningStatementReportController;
+use App\Http\Controllers\Reports\PayrollReportController;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Controllers\Teacher\TeacherController;
@@ -35,10 +37,11 @@ Route::name('auth.')->group(function() {
 
 Route::middleware('auth')->group(function() {
 
+    Route::get('students/count-report', [StudentController::class, 'studentsCount'])->name('students.count-report');
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
     Route::get('students/{student}/installments', [StudentController::class, 'installments'])->name('students.installments');
-    Route::resource('students', StudentController::class);
     Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('students.accounts');
+    Route::resource('students', StudentController::class);
 
     Route::name('installments.')->controller(InstallmentController::class)->prefix('installments')->group(function() {
         Route::get('{id}/create', 'create')->name('create');
@@ -64,18 +67,12 @@ Route::middleware('auth')->group(function() {
         Route::get('{payment}/receipt/create');
     });
 
-    Route::name('teachers.')->controller(TeacherController::class)->prefix('teachers')->group(function () {
+    Route::name('employees.')->controller(EmployeeController::class)->prefix('employees')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
-        Route::get('{teacher}/show', 'show')->name('show');
+        Route::get('{employee}/show', 'show')->name('show');
         Route::post('store', 'store')->name('store');
     });
-
-    Route::name('teacher.salary-payment.')->controller(TeacherSalaryPaymentController::class)->group(function() {
-        Route::get('{teacher}/create', 'create')->name('create');
-        Route::post('{teacher}/store', 'store')->name('store');
-    });
-
 
     Route::name('expenses.')->prefix('expenses')->group(function() {
         Route::get('', [ExpenseController::class, 'index'])->name('index');
@@ -105,4 +102,10 @@ Route::middleware('auth')->group(function() {
 
     Route::view('/reports', 'reports.reports')->name('reports');
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
+    Route::get('payroll-report', [PayrollReportController::class, 'generateMonthlyPayroll']);
+
+
+    Route::get('/payroll/create', [EmployeePayrollController::class, 'create'])->name('payroll.create');
+    Route::post('/payroll', [EmployeePayrollController::class, 'store'])->name('payroll.store');
+// Route::get('/payroll', [EmployeePayrollController::class, 'index'])->name('payroll.index'); // لصفحة العودة
 });

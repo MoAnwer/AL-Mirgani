@@ -70,20 +70,15 @@
         
         <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
                 <x-Menu.MenuItem label="تسجيل تلميذ جديد" route="students.create"/>
+                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
+                <x-Menu.MenuItem label="عدد التلاميذ" route="students.count-report"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
         
-        <x-Menu.MenuItem label="{{ __('app.the_teachers') }}" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
+        <x-Menu.MenuItem label="{{ __('app.the_employees') }}" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_teachers')]) }}" route="teachers.index"/>
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
+                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_employees')]) }}" route="employees.index"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 

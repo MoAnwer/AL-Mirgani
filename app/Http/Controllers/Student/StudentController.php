@@ -76,4 +76,8 @@ class StudentController extends Controller
     {
         return $this->service->installmentsList($student);
     }
+
+    public function studentsCount() {
+        return view('students.students_count_report', $this->service->studentsCount());
+    }
 }
