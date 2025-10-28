@@ -25,7 +25,7 @@ class PaymentRequest extends FormRequest
             'paid_amount'       => 'required',
             'payment_method'    => 'required',
             'payment_date'      => 'required|date',
-            'notes'             => 'sometimes',
+            'statement'         => 'required',
             'student_id'        => 'required'
         ];
     }
@@ -36,7 +36,7 @@ class PaymentRequest extends FormRequest
             'paid_amount'       => __('app.paid_amount'),
             'payment_method'    => __('app.payment_method'),
             'payment_date'      => __('app.payment_date'),
-            'notes'             => __('app.notes')
+            'statement'         => __('app.notes')
         ];
     }
 }
