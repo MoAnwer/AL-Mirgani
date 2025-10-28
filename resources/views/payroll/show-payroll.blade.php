@@ -25,9 +25,9 @@
                                                 <h4 class="mb-1 fw-bold">{{ $payroll->employee->full_name ?? 'موظف محذوف' }}</h4>
                                             </div>
                                             <div>
-                                                @if ($payroll->payment_status == \App\Enums\PaymentStateEnum::PAID->value)
+                                                @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
                                                     <span class="badge bg-success-subtle text-success border border-success rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-check-circle me-1'></i> مدفوع</span>
-                                                @elseif ($payroll->payment_status == \App\Enums\PaymentStateEnum::PENDING->value)
+                                                @elseif ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value)
                                                     <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill fs-6 p-2 px-3 "><i class="bx bxs-time me-1"></i> قيد الانتظار</span>
                                                 @else
                                                     <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-x-circle me-1'></i> فشل</span>
@@ -51,7 +51,7 @@
                                                         <tr>
                                                             <td class="text-muted ps-0">{{ $detail->item->name }}</td>
                                                             <td class="text-end text-success fw-medium">+ {{ number_format($detail->amount, 2) }}</td>
-                                                            @if($payroll->payment_status !== \App\Enums\PaymentStateEnum::PAID->value)
+                                                            @if($payroll->payment_status !== \App\Enums\PaymentStatusEnum::PAID->value)
                                                                 
                                                                 <td class="text-end ps-0" style="width: 5%;">
                                                                     <a href="{{ route('payroll.details.edit', ['payroll' => $payroll->id, 'detail' => $detail->id]) }}" 
@@ -122,7 +122,7 @@
                                         </a>
 
 
-                                        @if ($payroll->payment_status == App\Enums\PaymentStateEnum::PENDING->value || $payroll->payment_status == App\Enums\PaymentStateEnum::FAILED->value)
+                                        @if ($payroll->payment_status == App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == App\Enums\PaymentStatusEnum::FAILED->value)
                                         <a href="{{ route('payroll.details.create', $payroll->id) }}" class="btn btn-primary btn-lg  px-4">
                                             <i class='bx bx-plus-circle me-2'></i> إضافة بند تفصيلي
                                         </a>
@@ -131,7 +131,7 @@
                                         </a>
                                         @endif
 
-                                        @if($payroll->payment_status == \App\Enums\PaymentStateEnum::PAID->value)
+                                        @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
                                             <a class="btn btn-primary btn-lg  px-4" href="{{ route('payroll.invoice.print', $payroll) }}"><i class='bx bxs-printer me-1'></i> طباعة</a>
                                         @endif
 
