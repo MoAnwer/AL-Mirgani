@@ -1,21 +1,21 @@
 <?php
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
-use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, Student\StudentController};
+use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, PayrollDetailController, PayrollItemController, PayrollProcessorController, Student\StudentController};
 use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Earning\EarningController;
+use App\Http\Controllers\Employees\EmployeeController;
+use App\Http\Controllers\Employees\EmployeePayrollController;
 use App\Http\Controllers\Expense\ExpenseController;
-use App\Http\Controllers\Expense\Reports\ExpenseReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Reports\EarningStatementReportController;
+use App\Http\Controllers\Reports\PayrollReportController;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
-use App\Http\Controllers\Teacher\TeacherController;
-use App\Http\Controllers\Teacher\TeacherSalaryPaymentController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
 use App\Http\Controllers\Reports\RevenueAnalysisController;
 
@@ -35,10 +35,11 @@ Route::name('auth.')->group(function() {
 
 Route::middleware('auth')->group(function() {
 
+    Route::get('students/count-report', [StudentController::class, 'studentsCount'])->name('students.count-report');
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
     Route::get('students/{student}/installments', [StudentController::class, 'installments'])->name('students.installments');
-    Route::resource('students', StudentController::class);
     Route::get('accounts/{student}', [StudentAccountController::class, 'showAccountStatement'])->name('students.accounts');
+    Route::resource('students', StudentController::class);
 
     Route::name('installments.')->controller(InstallmentController::class)->prefix('installments')->group(function() {
         Route::get('{id}/create', 'create')->name('create');
@@ -60,22 +61,16 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::name('receipts.')->prefix('receipts')->controller(ReceiptController::class)->group(function() {
-        Route::get('payments/{payment}', 'receipt');
-        Route::get('{payment}/receipt/create');
+        Route::get('show/{receipt}', [ReceiptController::class, 'show'])->name('show');
+        Route::post('{payment}', [ReceiptController::class, 'store'])->name('store');
     });
 
-    Route::name('teachers.')->controller(TeacherController::class)->prefix('teachers')->group(function () {
+    Route::name('employees.')->controller(EmployeeController::class)->prefix('employees')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
-        Route::get('{teacher}/show', 'show')->name('show');
+        Route::get('{employee}/show', 'show')->name('show');
         Route::post('store', 'store')->name('store');
     });
-
-    Route::name('teacher.salary-payment.')->controller(TeacherSalaryPaymentController::class)->group(function() {
-        Route::get('{teacher}/create', 'create')->name('create');
-        Route::post('{teacher}/store', 'store')->name('store');
-    });
-
 
     Route::name('expenses.')->prefix('expenses')->group(function() {
         Route::get('', [ExpenseController::class, 'index'])->name('index');
@@ -105,4 +100,28 @@ Route::middleware('auth')->group(function() {
 
     Route::view('/reports', 'reports.reports')->name('reports');
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
+
+    Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
+        Route::get('/create', [PayrollDetailController::class, 'create'])->name('create');
+        Route::post('/', [PayrollDetailController::class, 'store'])->name('store');
+        
+        Route::get('/{detail}/edit', [PayrollDetailController::class, 'edit'])->name('edit');
+        Route::put('/{detail}', [PayrollDetailController::class, 'update'])->name('update');
+    });
+
+    Route::get('/payrolls', [EmployeePayrollController::class, 'index'])->name('payroll.index');
+    Route::get('/payrolls/create', [EmployeePayrollController::class, 'create'])->name('payroll.create');
+    Route::post('/payrolls/store', [PayrollProcessorController::class, 'processAndStore'])->name('payroll.store');
+    Route::get('/payrolls/{payroll}', [EmployeePayrollController::class, 'show'])->name('payroll.show');
+    Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
+    Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
+    Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
+
+
+
+    Route::get('/payroll-items/create', [PayrollItemController::class, 'create'])->name('payroll_items.create');
+    Route::post('/payroll-items', [PayrollItemController::class, 'store'])->name('payroll_items.store');
+    Route::get('/payroll-items', [PayrollItemController::class, 'index'])->name('payroll_items.index');
+    Route::get('/payroll-items/{payroll_item}/edit', [PayrollItemController::class, 'edit'])->name('payroll_items.edit');
+    Route::put('/payroll-items/{payroll_item}', [PayrollItemController::class, 'update'])->name('payroll_items.update');
 });

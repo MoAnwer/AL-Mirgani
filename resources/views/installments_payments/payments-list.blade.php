@@ -49,19 +49,23 @@
                                         </div>
                                         <x-Table.BasicTable>
                                             <x-Table.Thead>
-                                                <th>#</th>
-                                                <th>@lang('app.paid_amount')</th>
-                                                <th>@lang('app.payment_method')</th>
-                                                <th>@lang('app.payment_date')</th>
-                                                <th>@lang('app.notes')</th>
-                                                <th>@lang('app.actions')</th>
+                                                <tr class="text-center">
+                                                    <th>#</th>
+                                                    <th>@lang('app.paid_amount')</th>
+                                                    <th>@lang('app.payment_method')</th>
+                                                    <th>@lang('app.receipt_number')</th>
+                                                    <th>@lang('app.payment_date')</th>
+                                                    <th>@lang('app.notes')</th>
+                                                    <th>@lang('app.actions')</th>
+                                                </tr>
                                             </x-Table.Thead>
                                             <x-Table.Tbody>
                                                 @forelse($installment->payments as $payment)
-                                                    <tr>
+                                                    <tr class="text-center">
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ Illuminate\Support\Number::currency($payment->paid_amount, 'SDG', precision: 0) }}</td>
+                                                        <td>{{ number_format($payment->paid_amount, 0) }} جنية</td>
                                                         <td>{{ $payment->payment_method }}</td>
+                                                        <td>{{ $payment->receipt_number ?? 'لا يوجد بعد' }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
                                                         <td>{{ $payment->notes }}</td>
                                                         <td>
@@ -70,6 +74,13 @@
                                                                     <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
+                                                                    @if(!$payment->receipt_number)
+                                                                        <form method="post" action="{{ route('receipts.store', $payment) }}">
+                                                                            @csrf
+                                                                            @method('post')
+                                                                            <button class="dropdown-item"><i class="bx bx-news me-1"></i>استخراج ايصال</button>
+                                                                        </form>
+                                                                    @endif
                                                                     <a class="dropdown-item" href="{{ route('installments.payments.edit', $payment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                                     <a class="dropdown-item" href="{{ route('installments.payments.delete', $payment) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                                 </div>
@@ -77,16 +88,18 @@
                                                         </td>
                                                     </tr>
                                                 @empty
-                                                    <td colspan="6" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.installment_payments')]) }} </td>
+                                                    <td colspan="7" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.installment_payments')]) }} </td>
                                                 @endforelse
-                                                <tr>
-                                                    <td colspan="5">@lang('app.total_payment')</td>
-                                                    <td>{{ Illuminate\Support\Number::currency($installment->total_payments, 'SDG', precision: 0) }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="5">@lang('app.remaining')</td>
-                                                    <td>{{ Illuminate\Support\Number::currency($installment->remaining, 'SDG', precision: 0) }}</td>
-                                                </tr>
+                                                <tfoot class="bg-label-secondary">
+                                                    <tr class="fw-bold">
+                                                        <td colspan="6">@lang('app.total_payment')</td>
+                                                        <td>{{ number_format($installment->total_payments, 0) }} جنية</td>
+                                                    </tr>
+                                                    <tr class="fw-bold">
+                                                        <td colspan="6">@lang('app.remaining')</td>
+                                                        <td>{{ number_format($installment->remaining, 0) }} جنية</td>
+                                                    </tr>
+                                                </tfoot>
                                             </x-Table.Tbody>
                                         </x-Table.BasicTable>    
                                     </div>

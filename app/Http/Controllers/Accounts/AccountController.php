@@ -5,50 +5,92 @@ namespace App\Http\Controllers\Accounts;
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
 use App\Models\Expense;
+use App\Models\School;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
+    public function __construct(
+        private Expense $expense, 
+        private Earning $earning, 
+        private School $school
+    ) {}
+
     public function showDailyAccount(Request $request)
     {
-        // 1. تحديد اليوم المستهدف
-        $targetDate = now();
-        
-        // 2. حساب الرصيد المرحل السابق (Accumulated Balance before today)
-        $previousIncome = Earning::whereDate('date', '<', $targetDate)->sum('amount');
-        $previousExpense = Expense::whereDate('date', '<', $targetDate)->sum('amount');
+        $targetDate = $request->get('date') ?? today()->format('Y-m-d');
+        $school_id = $request->get('school_id') ?? 0;
+
+        $previousIncome = $this->earning->whereDate('date', '<', $targetDate)
+                                    ->when($school_id != 0, 
+                                        function($q) use ($school_id) {
+                                            $q->where('school_id', $school_id);
+                                        }
+                                    )
+                                    ->sum('amount');
+
+        $previousExpense = $this->expense->whereDate('date', '<', $targetDate)
+                                ->when($school_id != 0, 
+                                    function($q) use ($school_id) {
+                                        $q->where('school_id', $school_id);
+                                    }
+                                )
+                                ->sum('amount');
+
         $previousBalance = $previousIncome - $previousExpense;
 
-        // 3. جلب حركات اليوم المستهدف (الإيرادات والمصروفات)
-        $dailyIncomes = Earning::whereDate('date', $targetDate)->get()->map(function ($item) {
-            return [
-                'date' => $item->date,
-                'statement' => $item->statement,
-                'amount' => $item->amount,
-                'type'  => 'income',
-                'created_at' => $item->created_at, // استخدم created_at للترتيب الزمني
-            ];
-        });
+        $dailyIncomes = $this->earning->whereDate('date', $targetDate)
+                                ->when($school_id != 0, 
+                                    function($q) use ($school_id) {
+                                        $q->where('school_id', $school_id);
+                                    }
+                                )
+                                ->get()
+                                ->map(function ($item) {
+                                    return [
+                                        'date' => $item->date,
+                                        'statement' => $item->statement,
+                                        'amount' => $item->amount,
+                                        'type'  => 'income',
+                                        'created_at' => $item->created_at, 
+                                    ];
+                                });
 
-        $dailyExpenses = Expense::whereDate('date', $targetDate)->get()->map(function ($item) {
-            return [
-                'date' => $item->date,
-                'statement' => $item->statement,
-                'amount' => $item->amount,
-                'type'  => 'expense',
-                'created_at' => $item->created_at, // استخدم created_at للترتيب الزمني
-            ];
-        });
+        //DON'T TOUCH THIS: This line is required to avoid "Call to a member function getKey() on array" error, 
+        $dailyIncomes = collect($dailyIncomes);
+        
 
-        // 4. دمج وتصنيف الحركات (Merge and Sort)
+        $dailyExpenses = $this->expense->whereDate('date', $targetDate)
+                                    ->when($school_id != 0, 
+                                        function($q) use ($school_id) {
+                                            $q->where('school_id', $school_id);
+                                        }
+                                    )
+                                    ->get()
+                                    ->map(function ($item) {
+                                        return [
+                                            'date' => $item->date,
+                                            'statement' => $item->statement,
+                                            'amount' => $item->amount,
+                                            'type'  => 'expense',
+                                            'created_at' => $item->created_at, 
+                                        ];
+                                    });
+
+        //DON'T TOUCH THIS: This line is required to avoid "Call to a member function getKey() on array" error, 
+        $dailyExpenses = collect($dailyExpenses);
+
         $dailyTransactions = $dailyIncomes->merge($dailyExpenses)->sortBy('created_at');
 
-        // 5. إعداد البيانات للعرض وحساب الرصيد الجاري
         $balance = $previousBalance;
+
         $reportData = [];
+
         $dailyIncomeTotal = 0;
+        
         $dailyExpenseTotal = 0;
 
+        
         foreach ($dailyTransactions as $transaction) {
             if ($transaction['type'] === 'income') {
                 $balance += $transaction['amount'];
@@ -67,8 +109,10 @@ class AccountController extends Controller
             ];
         }
         
-        $finalDailyBalance = $balance; // الرصيد النهائي بعد حركات اليوم
+        $finalDailyBalance = $balance;
+
+        $schools = $this->school->pluck('id', 'name');
         
-        return view('accounts.daily_report', compact('targetDate', 'previousBalance', 'reportData', 'dailyIncomeTotal', 'dailyExpenseTotal', 'finalDailyBalance'));
+        return view('accounts.daily_report', compact('targetDate', 'previousBalance', 'reportData', 'dailyIncomeTotal', 'dailyExpenseTotal', 'finalDailyBalance', 'schools'));
     }
 }

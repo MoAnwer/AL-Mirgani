@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Payment;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,21 +22,22 @@ class PaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'paid_amount'       => 'required',
-            'payment_method'    => 'required',
-            'payment_date'      => 'required|date',
-            'statement'         => 'required',
-            'student_id'        => 'required'
+            'full_name'     => 'required',
+            'phone_number'  => 'required',
+            'hire_date'     => 'sometimes',
+            'salary'        => 'required',
+            'department'    => 'required'
         ];
     }
+
 
     public function attributes(): array
     {
         return [
-            'paid_amount'       => __('app.paid_amount'),
-            'payment_method'    => __('app.payment_method'),
-            'payment_date'      => __('app.payment_date'),
-            'statement'         => __('app.notes')
+            'full_name'     => __('app.employee_name'),
+            'salary'        => __('app.salary'),
+            'phone_number'  => __('app.phone_one'),
+            'department'    => __('app.department')
         ];
     }
 }

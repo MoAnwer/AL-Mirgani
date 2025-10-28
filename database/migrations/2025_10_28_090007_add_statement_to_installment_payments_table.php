@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('advances', function (Blueprint $table) {
-            $table->id();
-            $table->decimal('amount')->nullable()->default(0);
-            $table->date('date')->nullable();
+        Schema::table('installment_payments', function (Blueprint $table) {
             $table->text('statement')->nullable();
-            $table->morphs('advancer'); // الشخص الذي سحب (معلم , عامل, موظف اداري)
-            $table->timestamps();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('advances');
+        Schema::table('installment_payments', function (Blueprint $table) {
+            $table->dropColumn('statement');
+        });
     }
 };

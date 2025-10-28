@@ -70,24 +70,26 @@
         
         <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
                 <x-Menu.MenuItem label="تسجيل تلميذ جديد" route="students.create"/>
+                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
+                <x-Menu.MenuItem label="عدد التلاميذ" route="students.count-report"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
         
-        <x-Menu.MenuItem label="{{ __('app.the_teachers') }}" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
+        <x-Menu.MenuItem label="{{ __('app.the_employees') }}" icon="tf-icons bx bxl-microsoft-teams" classes='menu-toggle'>
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_teachers')]) }}" route="teachers.index"/>
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
-                <x-Menu.MenuItem label="Without menu" />
+                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_employees')]) }}" route="employees.index"/>
+                    <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.employee')]) }}" route="employees.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
+        <x-Menu.MenuHeader title="الرواتب"/>
+
+        <x-Menu.MenuItem label="كشوف الرواتب" route="payroll.index" icon="tf-icons bx bx-money" icon="bx bx-money" />
+        <x-Menu.MenuItem label="إنشاء ملخص كشف الراتب" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" />
+
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
+
         <x-Menu.MenuItem label="{{ __('app.the_reports') }}" icon="bx bx-news" route="reports"/>
 
         <x-Menu.MenuItem label="{{ __('app.the_expenses') }}" icon="tf-icons bx bxl-microsoft-teams" icon="bx bx-money" classes='menu-toggle'>

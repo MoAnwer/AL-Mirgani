@@ -12,40 +12,47 @@
                             <div class="d-flex justify-content-between align-items-sm-center gap-6 pb-4 border-bottom">
                                 <div class="d-flex align-items-start align-items-sm-center px-3">
                                     <div class="button-wrapper">
-                                        <h4 class="card-header">@lang('app.list', ['attribute' => __('app.the_teachers')])</h4>
+                                        <h4 class="card-header">@lang('app.list', ['attribute' => __('app.the_employees')])</h4>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary text-white m-5 mt-10" href="{{ route('teachers.create') }}">
+                                <a class="btn btn-primary text-white m-5 mt-10" href="{{ route('employees.create') }}">
                                     <i class="icon-base bx bx-plus-circle icon-sm me-1_5 d-block rounded"></i>
-                                    @lang('app.create', ['attribute' => __('app.teacher')])
+                                    @lang('app.create', ['attribute' => __('app.employee')])
                                 </a>
                             </div>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
-                                    <td>#</td>
-                                    <td>@lang('app.teacher_name')</td>
-                                    <td>@lang('app.phone_one')</td>
-                                    <td>@lang('app.salary')</td>
-                                    <td>@lang('app.rule')</td>
-                                    <td>@lang('app.actions')</td>
+                                    <tr class="text-center">
+                                        <td>#</td>
+                                        <td>@lang('app.the_employee')</td>
+                                        <td>@lang('app.phone_one')</td>
+                                        <td>@lang('app.salary') (جنية)</td>
+                                        <td>@lang('app.department')</td>
+                                        <td>@lang('app.actions')</td>
+                                    </tr>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
-                                    @forelse($teachers as $teacher)
+                                    @forelse($employees as $employee)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $teacher->name }}</td>
-                                            <td>{{ $teacher->phone }}</td>
-                                            <td>{{ $teacher->formatted_salary }}</td>
+                                            <td>{{ $employee->full_name }}</td>
+                                            <td>{{ $employee->phone_number }}</td>
+                                            <td>{{ $employee->formatted_salary }}</td>
                                             <td>
-                                                @if($teacher->rule == \App\Enums\TeacherRule::contribute->value)
-                                                    <span class="badge rounded bg-label-warning">
+                                                @if($employee->department == \App\Enums\EmployeeTypes::TEACHER->value)
+                                                    <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill  py-1 px-2">
                                                         <i class="icon-base bx bx-user icon-sm me-1_0"></i>
-                                                        {{ $teacher->rule }}
+                                                        {{ $employee->department }}
+                                                    </span>
+                                                @elseif($employee->department == \App\Enums\EmployeeTypes::MANAGER->value)
+                                                <span class="badge bg-success-subtle text-success border border-success rounded-pill  py-1 px-2">
+                                                        <i class="icon-base bx bx-check icon-sm me-1_0"></i>
+                                                        {{ $employee->department }}
                                                     </span>
                                                 @else                                                
-                                                    <span class="badge rounded bg-label-success">
+                                                    <span class="badge bg-info-subtle text-info border border-info rounded-pill py-1 px-2">
                                                         <i class="icon-base bx bx-pin icon-sm me-1_0"></i>
-                                                        {{ $teacher->rule }}
+                                                        {{ $employee->department }}
                                                     </span>
                                                 @endif
                                             </td>
@@ -55,7 +62,7 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('teachers.show', $teacher) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.teacher')])</a>
+                                                        <a class="dropdown-item" href="{{ route('employees.show', $employee) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.employee')])</a>
                                                         <a class="dropdown-item" href=""><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                         <a class="dropdown-item" href=""><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>
@@ -63,10 +70,10 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.teachers')]) }} </td>
+                                        <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.employees')]) }} </td>
                                     @endforelse
                                     @section('pagination')
-                                        <div class="mt-5 px-5">{{ $teachers->links('vendor.pagination.bootstrap-5') }} </div>
+                                        <div class="mt-5 px-5">{{ $employees->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
                                 </x-Table.Tbody>
                             </x-Table.BasicTable>

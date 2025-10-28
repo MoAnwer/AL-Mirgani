@@ -22,18 +22,18 @@
                                 <x-Table.Tbody>
                                     @forelse($earnings as $earning)
                                         <tr>
-                                            <td>{{ ++$loop->index }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $earning->formattedAmount }}</td>
-                                            <td>{{ $earning->school->name }}</td>
-                                            <td>{{ $earning->date }}</td>
+                                            <td>{{ $earning->school?->name ?? 'الادارة' }}</td>
+                                            <td>{{ $earning->date->format('Y-m-d') }}</td>
                                             <td>{{ $earning->statement }}</td>
                                             <td>{{ $earning->formatted_created_at }}</td>
                                         </tr>
                                     @empty
                                         <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.earnings')]) }} </td>
                                     @endforelse
+                                    <div class="mt-5 px-5">{{ $earnings->links('vendor.pagination.bootstrap-5') }} </div>
                                     @section('pagination')
-                                        <div class="mt-5 px-5">{{ $earnings->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
                                 </x-Table.Tbody>
                             </x-Table.BasicTable>

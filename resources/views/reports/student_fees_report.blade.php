@@ -94,6 +94,7 @@
     .align-center { text-align: left; }
     .align-center { text-align: center; }
 </style>
+
 <x-layout-wrapper>
     <x-aside />
     <x-layout-page>
@@ -217,10 +218,10 @@
                         <tbody>
                             @forelse ($installmentsSchedule as $installment)
                             <tr>
-                                <td>{{ $installment['number'] }}</td>
-                                <td>{{ $installment['due_date'] }}</td>
-                                <td class="align-center">{{ number_format($installment['amount'] ??  0, 2) }}</td>
-                                <td>{{ number_format($installment['status'] ) }}</td>
+                                <td class="text-center">{{ $installment['number'] }}</td>
+                                <td class="text-center">{{ $installment['due_date'] }}</td>
+                                <td class="text-center" class="align-center">{{ number_format($installment['amount'] ??  0, 2) }}</td>
+                                <td class="text-center">{{ number_format($installment['status'] ) }}</td>
                             </tr>
                             @empty
                                 <td colspan="4" style="text-align: center; color: #6c757d;">لم يتم تسجيل أي اقساط لهذا الطالب بعد.</td>

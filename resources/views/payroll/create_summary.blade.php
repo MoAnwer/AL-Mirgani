@@ -1,0 +1,131 @@
+<x-header  />
+
+
+<x-layout-wrapper>
+    <x-layout-container>
+        <x-aside />
+        <x-layout-page>
+            <x-nav />
+            <x-content-wrapper>
+                <x-container>
+                <x-alert type="message" />
+                <x-alert type="error" />
+
+                    <h4 class="mb-10">إنشاء سجل كشف راتب ملخص جديد</h3>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <div class="card shadow-lg">
+                                    <div class="card-body">
+                                        <form action="{{ route('payroll.store') }}" method="POST">
+                                            @csrf
+                                            {{-- 1. اختيار الموظف والفترة --}}
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="employee_id" class="form-label  mb-3 fw-bold">اختيار الموظف</label>
+                                                    <select name="employee_id" id="employee_id" class="form-select @error('employee_id') is-invalid @enderror" required>
+                                                        <option value="" disabled selected>-- اختر الموظف --</option>
+                                                        @foreach ($employees as $employee)
+                                                            <option value="{{ $employee->id }}" 
+                                                                data-salary="{{ $employee->salary }}"
+                                                                data-fixed-allowance="{{ $employee->fixed_allowances }}"
+                                                                {{ old('employee_id') == $employee->id ? 'selected' : '' }}>
+                                                                {{ $employee->full_name }} (أساسي: {{ number_format($employee->salary, 2) }})
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('employee_id')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="month" class="form-label mb-3 ">الشهر</label>
+                                                    <input type="number" name="month" id="month" class="form-control" value="{{ old('month', $defaultMonth) }}" min="1" max="12" required>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="year" class="form-label mb-3 ">السنة</label>
+                                                    <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $defaultYear) }}" min="2020" required>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            {{-- 2. إدخال القيم المُجمعة --}}
+                                            <div class="row">
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="total_fixed_allowances" class="form-label te mb-3 xt-success">إجمالي العلاوات الثابتة</label>
+                                                    <input type="number" name="total_fixed_allowances" id="total_fixed_allowances" class="form-control @error('total_fixed_allowances') is-invalid @enderror" 
+                                                        value="{{ old('total_fixed_allowances', 0) }}" step="0.01" required>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="total_variable_additions" class="form-label te mb-3 xt-success">إجمالي الإضافات المتغيرة</label>
+                                                    <input type="number" name="total_variable_additions" id="total_variable_additions" class="form-control @error('total_variable_additions') is-invalid @enderror" 
+                                                        value="{{ old('total_variable_additions', 0) }}" step="0.01" required>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="total_deductions" class="form-label te mb-3 xt-danger">إجمالي الاستقطاعات</label>
+                                                    <input type="number" name="total_deductions" id="total_deductions" class="form-control @error('total_deductions') is-invalid @enderror" 
+                                                        value="{{ old('total_deductions', 0) }}" step="0.01" required>
+                                                </div>
+                                            </div>
+
+                                            {{-- 3. حالة الدفع --}}
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="payment_status" class="form-label  mb-3 fw-bold">حالة الدفع</label>
+                                                    <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
+                                                        <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>قيد الانتظار</option>
+                                                        <option value="Paid" {{ old('payment_status') == 'Paid' ? 'selected' : '' }}>مدفوع</option>
+                                                        <option value="Failed" {{ old('payment_status') == 'Failed' ? 'selected' : '' }}>فشل الدفع</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="payment_date" class="form-label  mb-3 fw-bold">تاريخ الدفع الفعلي</label>
+                                                    <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
+                                                        value="{{ old('payment_date', now()->format('Y-m-d')) }}">
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary w-100 mt-3">حفظ سجل كشف الراتب</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </x-container>
+            </x-content-wrapper>
+        </x-layout-page>
+    </x-layout-container>
+</x-layout-wrapper>
+<x-footer/> 
+
+<script>
+    // **JavaScript للمساعدة في ملء البيانات الثابتة تلقائيًا**
+    document.addEventListener('DOMContentLoaded', function () {
+        const employeeSelect = document.getElementById('employee_id');
+        const fixedAllowanceInput = document.getElementById('total_fixed_allowances');
+
+        employeeSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            // جلب قيمة العلاوات الثابتة من بيانات الخيار
+            const fixedAllowance = selectedOption.getAttribute('data-fixed-allowance');
+            
+            if (fixedAllowance !== null) {
+                // ملء حقل العلاوات الثابتة بقيمة الموظف الثابتة
+                fixedAllowanceInput.value = fixedAllowance;
+            } else {
+                fixedAllowanceInput.value = 0;
+            }
+        });
+    });
+</script>

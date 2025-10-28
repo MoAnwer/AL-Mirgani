@@ -47,23 +47,25 @@
                          <div class="card"> 
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
-                                    <td>#</td>
-                                    <td>@lang('app.amount')</td>
-                                    <td>@lang('app.category')</td>
-                                    <td>@lang('app.school')</td>
-                                    <td>@lang('app.date')</td>
-                                    <td>@lang('app.statement')</td>
-                                    <td>@lang('app.created_at')</td>
-                                    <td>@lang('app.actions')</td>
+                                    <tr class="text-center">
+                                        <td>#</td>
+                                        <td>@lang('app.amount')</td>
+                                        <td>@lang('app.category')</td>
+                                        <td>@lang('app.school')</td>
+                                        <td>@lang('app.date')</td>
+                                        <td>@lang('app.statement')</td>
+                                        <td>@lang('app.created_at')</td>
+                                        <td>@lang('app.actions')</td>
+                                    <tr>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
                                     @forelse($expenses as $expense)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $expense->id }}</td>
                                             <td>{{ $expense->formatted_amount }}</td>
                                             <td>{{ $expense->category->name }}</td>
-                                            <td>{{ $expense->school->name }}</td>
-                                            <td>{{ $expense->date }}</td>
+                                            <td>{{ !empty($expense->school->name) ? $expense->school->name : 'الإدارة' }}</td>
+                                            <td>{{ $expense->date->format('Y-m-d') }}</td>
                                             <td>{{ $expense->statement }}</td>
                                             <td>{{ $expense->formatted_created_at }}</td>
                                             <td>

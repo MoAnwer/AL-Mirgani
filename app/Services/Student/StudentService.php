@@ -89,6 +89,7 @@ class StudentService
                             ->when(!empty($search), 
                                 function($q) use ($search) {
                                     $q->whereAny(['full_name', 'student_number', 'stage'],  'LIKE', "%$search%");
+                                    $q->count();
                             })
                             ->latest()
                             ->paginate(10);
@@ -153,5 +154,22 @@ class StudentService
     private function calcDiscount($discount, $totalFee) : int
     {
         return $totalFee * (1 - ($discount / 100));
+    }
+
+    public function studentsCount(): array
+    {
+        return [
+            'countBySchool' => $this->student
+                                    ->select('school_id', 'schools.name as name', DB::raw('COUNT(students.id) AS count'))
+                                    ->rightJoin('schools', 'schools.id', 'students.school_id')
+                                    ->groupBy('school_id', 'name')
+                                    ->get(),
+
+            'countByClass' => $this->student
+                                    ->select('class_id', 'classes.name as name', DB::raw('COUNT(students.id) AS count'))
+                                    ->join('classes', 'classes.id', 'students.class_id')
+                                    ->groupBy('class_id', 'name')
+                                    ->get(),
+        ];
     }
 }

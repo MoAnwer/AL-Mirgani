@@ -8,6 +8,33 @@
             <x-nav />
             <x-ContentWrapper>
                 <x-container>
+                     <div class="card text-center mb-2"> 
+                        <div class="card-header border-bottom py-4">
+                            <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                        </div>
+                        <form action="{{ URL::current() }}">
+                            <div class="row p-3 text-start align-items-end">
+                                <div class="col-6">
+                                    <label class="mb-1">@lang('app.school')</label>
+                                    <select class="form-select" name="school_id">
+                                        <option value="{{ null }}" selected>@lang('app.school')</option>
+                                            @foreach($schools as $key => $value)
+                                                <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="mb-1">@lang('app.date')</label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                    </div>
+                                </div>                                   
+
+                                <button type="submit" class=" h-0 col-2 btn btn-primary">{{ __('app.search') }}</button>                
+                            </div>
+                        </form>
+                    </div>
                     <div class="card">
                         <h3 style="text-align: center;" class="card-header mb-5 mt-4"> {{ __('app.account_scan_day', ['day' =>  $targetDate]) }}</h3>
                         <div class="card-body">
@@ -18,7 +45,7 @@
                                             <th>التاريخ</th>
                                             <th>الواردات (الإيرادات)</th>
                                             <th>المنصرفات (المصروفات)</th>
-                                            <th>البيان</th>
+                                            <th class="text-center">البيان</th>
                                             <th>الرصيد الجاري</th>
                                         </tr>
                                     </thead>
@@ -32,8 +59,8 @@
                                         @foreach ($reportData as $row)
                                         <tr>
                                             <td>{{ $row['date'] }}</td>
-                                            <td>{{ $row['type'] === 'income' ? number_format($row['amount'], 2) : '' }}</td>
-                                            <td>{{ $row['type'] === 'expense' ? number_format($row['amount'], 2) : '' }}</td>
+                                            <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount'], 2) : '' }}</td>
+                                            <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount'], 2) : '' }}</td>
                                             <td>{{ $row['statement'] }}</td>
                                             <td>{{ number_format($row['running_balance'], 2) }}</td>
                                         </tr>

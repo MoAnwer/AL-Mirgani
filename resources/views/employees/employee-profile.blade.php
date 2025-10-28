@@ -15,9 +15,9 @@
                             <div class="d-flex flex-column align-items-center justify-content-center align-items-sm-center gap-6 pb-4 border-bottom px-0">
                                 <i class="icon-base bx bx-user icon-sm me-1_5 d-block w-px-50 h-px-50 rounded"></i>
                                 <div class="button-wrapper mx-auto d-flex flex-column align-items-center justify-content-center ">
-                                    <h4>{{ $teacher->name }}</h4>
+                                    <h4>{{ $employee->full_name }}</h4>
                                     <span class="badge rounded mx-auto bg-label-secondary" title="{{ __('app.phone_one') }}">
-                                        {{ $teacher->phone }}
+                                        {{ $employee->phone_number }}
                                         <i class="icon-base bx bx-phone icon-sm me-1_0"></i>
                                     </span>
                                 </div>
@@ -27,35 +27,40 @@
                                 <div class="card-body demo-vertical-spacing demo-only-element">
                                     <div class="row">
                                         <div class="col-md-6">
-                                        <p class="mb-3">@lang('app.teacher_name') </p>
+                                        <p class="mb-3">@lang('app.employee_name') </p>
                                             <div>
-                                                <p>{{ $teacher->name }}</p>
+                                                <p>{{ $employee->full_name }}</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                         <p class="mb-3">@lang('app.salary') </p>
                                             <div>
-                                                {{ $teacher->formatted_salary }}
+                                                {{ $employee->formatted_salary }}
                                             </div>
                                         </div>
                                          <div class="col-md-6 mt-3">
                                             <p class="mb-3">@lang('app.phone_one')</p>
                                             <div>
-                                                {{ $teacher->phone }}
+                                                {{ $employee->phone_number }}
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-3">
-                                          <p class="mb-3">@lang('app.rule')</p>
+                                          <p class="mb-3">@lang('app.department')</p>
                                             <div>
-                                                @if($teacher->rule == \App\Enums\TeacherRule::contribute->value)
-                                                    <span class="badge rounded bg-label-warning">
+                                                @if($employee->department == \App\Enums\EmployeeTypes::TEACHER->value)
+                                                    <span class="badge rounded bg-warning">
                                                         <i class="icon-base bx bx-user icon-sm me-1_0"></i>
-                                                        {{ $teacher->rule }}
+                                                        {{ $employee->department }}
+                                                    </span>
+                                                @elseif($employee->department == \App\Enums\EmployeeTypes::MANAGER->value)
+                                                <span class="badge rounded bg-success">
+                                                        <i class="icon-base bx bx-check icon-sm me-1_0"></i>
+                                                        {{ $employee->department }}
                                                     </span>
                                                 @else                                                
-                                                    <span class="badge rounded bg-label-success">
+                                                    <span class="badge rounded bg-secondary">
                                                         <i class="icon-base bx bx-pin icon-sm me-1_0"></i>
-                                                        {{ $teacher->rule }}
+                                                        {{ $employee->department }}
                                                     </span>
                                                 @endif
                                             </div>
@@ -64,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        @include('teachers.payments.salary-payments')
+                        @include('employees.payments.salary-payments')
                     </div>
                 </div>
             </x-container>

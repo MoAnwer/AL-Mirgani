@@ -10,7 +10,14 @@
                         <x-alert type="message" />
                         <div class="card"> 
                             <div class="card-header d-flex align-items-center justify-content-between">
-                                <h4>@lang('app.list', ['attribute' => __('app.the_students')])</h4>
+                                <div>
+                                    <h4>@lang('app.list', ['attribute' => __('app.the_students')])</h4>
+                                     <span class="badge rounded text-black bg-success">
+                                        عدد التلاميذ:   
+                                        {{ $students->count() }}
+                                    </span>
+                                </div>
+                                
                                 <form action={{ URL::current() }}>
                                     <div class="input-group">
                                         <input type="search" placeholder="{{ __('app.search') }} ..." class="form-control" name="search" value="{{ request('search') }}" />
@@ -31,7 +38,7 @@
                                 <x-Table.Tbody>
                                     @forelse($students as $student)
                                         <tr>
-                                        
+                                            
                                             <td>{{ $student->id }}</td>
                                             <td>{{ $student->full_name }}</td>
                                             <td>{{ $student->student_number }}</td>
