@@ -19,6 +19,13 @@ class Expense extends Model
         'user_id'
     ];
 
+    protected function casts(): array 
+    {
+        return [
+            'date'  => 'date' 
+        ];
+    }
+
     public function category(): BelongsTo 
     {
         return $this->belongsTo(ExpenseCategory::class)->withDefault(['name'  => '']);
