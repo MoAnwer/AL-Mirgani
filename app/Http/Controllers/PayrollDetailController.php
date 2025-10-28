@@ -15,10 +15,9 @@ class PayrollDetailController extends Controller
     function __construct(
         private PayrollItem $payrollItem,
         private PayrollDetail $payrollDetail,
-    )
-    {
-        
-    }
+    ) {}
+
+
     /**
      * Show the form for creating a new payroll detail (line item).
      */
@@ -79,7 +78,7 @@ class PayrollDetailController extends Controller
             $this->recalculatePayrollSummary($payroll);
         });
 
-        return to_route('payroll.show', $payroll->id)->with('message', 'Payroll item added successfully and summary updated!');
+        return to_route('payroll.show', $payroll->id)->with('message', 'تم اضافة بند جديد الى كشف المرتب بنجاح');
     }
 
 
