@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\{LoginController, LogoutController};
-use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, EmployeePayrollController, Student\StudentController};
+use App\Http\Controllers\{Reports\ArrearsReportController, Dashboard\DashboardController, PayrollDetailController, PayrollItemController, PayrollProcessorController, Student\StudentController};
 use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Earning\EarningController;
 use App\Http\Controllers\Employees\EmployeeController;
+use App\Http\Controllers\Employees\EmployeePayrollController;
 use App\Http\Controllers\Expense\ExpenseController;
-use App\Http\Controllers\Expense\Reports\ExpenseReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Installment\InstallmentController;
@@ -16,8 +16,6 @@ use App\Http\Controllers\Reports\EarningStatementReportController;
 use App\Http\Controllers\Reports\PayrollReportController;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
-use App\Http\Controllers\Teacher\TeacherController;
-use App\Http\Controllers\Teacher\TeacherSalaryPaymentController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
 use App\Http\Controllers\Reports\RevenueAnalysisController;
 
@@ -63,8 +61,8 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::name('receipts.')->prefix('receipts')->controller(ReceiptController::class)->group(function() {
-        Route::get('payments/{payment}', 'receipt');
-        Route::get('{payment}/receipt/create');
+        Route::get('show/{receipt}', [ReceiptController::class, 'show'])->name('show');
+        Route::post('{payment}', [ReceiptController::class, 'store'])->name('store');
     });
 
     Route::name('employees.')->controller(EmployeeController::class)->prefix('employees')->group(function () {
@@ -102,10 +100,28 @@ Route::middleware('auth')->group(function() {
 
     Route::view('/reports', 'reports.reports')->name('reports');
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
-    Route::get('payroll-report', [PayrollReportController::class, 'generateMonthlyPayroll']);
+
+    Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
+        Route::get('/create', [PayrollDetailController::class, 'create'])->name('create');
+        Route::post('/', [PayrollDetailController::class, 'store'])->name('store');
+        
+        Route::get('/{detail}/edit', [PayrollDetailController::class, 'edit'])->name('edit');
+        Route::put('/{detail}', [PayrollDetailController::class, 'update'])->name('update');
+    });
+
+    Route::get('/payrolls', [EmployeePayrollController::class, 'index'])->name('payroll.index');
+    Route::get('/payrolls/create', [EmployeePayrollController::class, 'create'])->name('payroll.create');
+    Route::post('/payrolls/store', [PayrollProcessorController::class, 'processAndStore'])->name('payroll.store');
+    Route::get('/payrolls/{payroll}', [EmployeePayrollController::class, 'show'])->name('payroll.show');
+    Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
+    Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
+    Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
 
 
-    Route::get('/payroll/create', [EmployeePayrollController::class, 'create'])->name('payroll.create');
-    Route::post('/payroll', [EmployeePayrollController::class, 'store'])->name('payroll.store');
-// Route::get('/payroll', [EmployeePayrollController::class, 'index'])->name('payroll.index'); // لصفحة العودة
+
+    Route::get('/payroll-items/create', [PayrollItemController::class, 'create'])->name('payroll_items.create');
+    Route::post('/payroll-items', [PayrollItemController::class, 'store'])->name('payroll_items.store');
+    Route::get('/payroll-items', [PayrollItemController::class, 'index'])->name('payroll_items.index');
+    Route::get('/payroll-items/{payroll_item}/edit', [PayrollItemController::class, 'edit'])->name('payroll_items.edit');
+    Route::put('/payroll-items/{payroll_item}', [PayrollItemController::class, 'update'])->name('payroll_items.update');
 });
