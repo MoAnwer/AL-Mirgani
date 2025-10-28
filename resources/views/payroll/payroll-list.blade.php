@@ -112,7 +112,7 @@
                                                             @endif
 
 
-                                                            @if($payroll->payment_status == \App\Enums\PaymentStateEnum::PAID->value)
+                                                            @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
                                                                 <a class="dropdown-item" href="{{ route('payroll.invoice.print', $payroll) }}" class="btn btn-sm btn-warning me-1"><i class='bx bxs-printer me-1 text-primary'></i> طباعة</a>
                                                             @endif
                                                             
