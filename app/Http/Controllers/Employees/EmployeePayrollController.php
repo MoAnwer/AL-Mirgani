@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Employees;
 
-use App\Enums\PaymentStateEnum;
+use App\Enums\PaymentStatusEnum;
 use App\Events\Expense\PayrollPaid;
 use App\Http\Controllers\Controller;
 use App\Models\{Employee, EmployeePayroll};
@@ -45,7 +45,7 @@ class EmployeePayrollController extends Controller
 
         $employees = $this->employee->select('id', 'full_name')->get();
 
-        $paymentsTypes = PaymentStateEnum::cases();
+        $paymentsTypes = PaymentStatusEnum::cases();
 
         return view('payroll.payroll-list', compact('payrolls', 'employees', 'paymentsTypes'));
     }
@@ -169,7 +169,7 @@ class EmployeePayrollController extends Controller
 
     public function payrollInvoice(EmployeePayroll $payroll) {
 
-        if ($payroll->payment_status != PaymentStateEnum::PAID->value) {
+        if ($payroll->payment_status != PaymentStatusEnum::PAID->value) {
             return back();
         }
         
