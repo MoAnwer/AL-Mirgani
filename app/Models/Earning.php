@@ -12,6 +12,13 @@ class Earning extends Model
 
     protected $fillable = ['amount', 'date', 'statement', 'school_id'];
 
+    protected function casts(): array
+    {
+        return [
+            'date' => 'date'
+        ];
+    }
+
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
@@ -20,9 +27,5 @@ class Earning extends Model
     protected function getFormattedAmountAttribute()
     {
         return number_format($this->amount, 2);
-    }
-
-    public function filterBySchool(int $school_id) {
-        return $this->query()->where('school_id', $school_id);
     }
 }
