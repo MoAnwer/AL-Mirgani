@@ -69,6 +69,7 @@ return [
     'total_payment'         => 'اجمالي المدفوع',
     'payment_method'        => 'طريقة الدفع',
     'payment_date'          => 'تاريخ الدفع',
+    'receipt_number'        => 'رقم الايصال',
     'installment_payments'  => 'مدفوعات القسط',
     'payment'               => 'مدفوع',
     'the_installment'       => 'القسط',
@@ -101,7 +102,7 @@ return [
     'save'                  => 'حفظ',
     'back'                  => 'رجوع',
     'delete'                => 'حذف',
-    'actions'               => 'العمليات',
+    'actions'               => 'اجراءات',
 
 
     // Messages
