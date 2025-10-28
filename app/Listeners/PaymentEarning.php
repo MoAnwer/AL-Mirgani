@@ -23,6 +23,7 @@ class PaymentEarning
         $this->earning->create([
             'amount'    => $event->payment->paid_amount,
             'school_id' => $event->payment->student->school->id,
+            'statement' => $event->payment->statement,
             'date'      => now()
         ]);
     }
