@@ -1,4 +1,4 @@
-<x-header title="sd"/>
+<x-header title="{{ $employee->full_name }}"/>
 
 <x-LayoutWrapper>
     <x-LayoutContainer>
@@ -69,7 +69,6 @@
                                 </div>
                             </div>
                         </div>
-                        @include('employees.payments.salary-payments')
                     </div>
                 </div>
             </x-container>
