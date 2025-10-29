@@ -55,7 +55,7 @@
                                                     <th>@lang('app.payment_method')</th>
                                                     <th>@lang('app.receipt_number')</th>
                                                     <th>@lang('app.payment_date')</th>
-                                                    <th>@lang('app.notes')</th>
+                                                    <th>@lang('app.statement')</th>
                                                     <th>@lang('app.actions')</th>
                                                 </tr>
                                             </x-Table.Thead>
@@ -67,7 +67,7 @@
                                                         <td>{{ $payment->payment_method }}</td>
                                                         <td>{{ $payment->receipt_number ?? 'لا يوجد بعد' }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
-                                                        <td>{{ $payment->notes }}</td>
+                                                        <td>{{ $payment->statement }}</td>
                                                         <td>
                                                             <div class="dropdown">
                                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
