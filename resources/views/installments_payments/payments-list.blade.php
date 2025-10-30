@@ -74,14 +74,16 @@
                                                                     <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    @if(!$payment->receipt_number)
+                                                                    @if(!$payment->receipt)
                                                                         <form method="post" action="{{ route('receipts.store', $payment) }}">
                                                                             @csrf
                                                                             @method('post')
                                                                             <button class="dropdown-item"><i class="bx bx-news me-1"></i>استخراج ايصال</button>
+                                                                            <a class="dropdown-item" href="{{ route('installments.payments.edit', $payment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                                         </form>
+                                                                    @else 
+                                                                        <a class="dropdown-item" href="{{ route('receipts.show', $payment->receipt) }}"><i class="icon-base bx bx-news me-1"></i>عرض الايصال</a>
                                                                     @endif
-                                                                    <a class="dropdown-item" href="{{ route('installments.payments.edit', $payment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                                     <a class="dropdown-item" href="{{ route('installments.payments.delete', $payment) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                                 </div>
                                                             </div>

@@ -108,7 +108,7 @@
                                                         </button>
                                                         <div class="dropdown-menu">
                                                             @if ($payroll->payment_status == 'Pending' || $payroll->payment_status == 'Failed')
-                                                                <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1">تعديل</a>
+                                                                <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i> تعديل</a>
                                                             @endif
 
 

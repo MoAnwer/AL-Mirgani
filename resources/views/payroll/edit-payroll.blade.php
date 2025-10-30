@@ -1,4 +1,4 @@
-<x-header />
+<x-header title="تعديل ملخص كشف الراتب" />
 
 <div class="container my-5">
     <div class="row justify-content-center">
