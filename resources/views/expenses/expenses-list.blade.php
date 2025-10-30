@@ -67,7 +67,7 @@
                                             <td>{{ !empty($expense->school->name) ? $expense->school->name : 'الإدارة' }}</td>
                                             <td>{{ $expense->date->format('Y-m-d') }}</td>
                                             <td>{{ $expense->statement }}</td>
-                                            <td>{{ $expense->formatted_created_at }}</td>
+                                            <td>{{ $expense->created_at }}</td>
                                             <td>
                                                 <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

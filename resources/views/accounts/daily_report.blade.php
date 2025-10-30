@@ -59,8 +59,8 @@
                                         @foreach ($reportData as $row)
                                         <tr>
                                             <td>{{ $row['date'] }}</td>
-                                            <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount'], 2) : '' }}</td>
-                                            <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount'], 2) : '' }}</td>
+                                            <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount'], 2) : '0' }}</td>
+                                            <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount'], 2) : '0' }}</td>
                                             <td>{{ $row['statement'] }}</td>
                                             <td>{{ number_format($row['running_balance'], 2) }}</td>
                                         </tr>
