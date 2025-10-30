@@ -35,9 +35,6 @@ class InstallmentPaymentsController extends Controller
 
             DB::transaction(function() use ($installment, $data) {
                 $payment = $installment->payments()->create($data);
-
-                // To register payment in earing table
-                event(new InstallmentPaymentIsPaid($payment));
             });
 
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));

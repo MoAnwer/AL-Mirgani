@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Receipts;
 
+use App\Events\Earning\InstallmentPaymentIsPaid;
 use App\Http\Controllers\Controller;
 use App\Models\InstallmentPayment;
 use App\Models\Receipt;
@@ -20,21 +21,24 @@ class ReceiptController extends Controller
             // Start create receipt process
             return DB::transaction(function () use ($payment) {
             
-                $receiptNumber = 'RC-' . time(); 
+                    $receiptNumber = 'RC-' . time(); 
 
-                $remanentAmount = $payment->student->total_fee - $payment->student->totalPaid(); 
-                
-                $receiptObject = $this->receipt->create([
-                    'number'                    => $receiptNumber,
-                    'amount'                    => $payment->paid_amount,
-                    'student_id'                => $payment->student->id,
-                    'remanent'                  => $remanentAmount,
-                    'installment_payment_id'    => $payment->id,
-                ]);
-                
-                $payment->update(['receipt_number' => $receiptNumber]);
+                    $remanentAmount = $payment->student->total_fee - $payment->student->totalPaid(); 
+                    
+                    $receiptObject = $this->receipt->create([
+                        'number'                    => $receiptNumber,
+                        'amount'                    => $payment->paid_amount,
+                        'student_id'                => $payment->student->id,
+                        'remanent'                  => $remanentAmount,
+                        'installment_payment_id'    => $payment->id,
+                    ]);
+                    
+                    $payment->update(['receipt_number' => $receiptNumber]);
 
-                return to_route('receipts.show', $receiptObject)->with('message', 'تم تسجيل الإيصال بنجاح.');
+                      // To register payment in earing table
+                    event(new InstallmentPaymentIsPaid($payment));
+
+                    return to_route('receipts.show', $receiptObject)->with('message', 'تم تسجيل الإيصال بنجاح.');
             });
 
         } else {
