@@ -16,69 +16,18 @@ class AccountController extends Controller
         private School $school
     ) {}
 
+
     public function showDailyAccount(Request $request)
     {
-        $targetDate = $request->get('date') ?? today()->format('Y-m-d');
-        $school_id = $request->get('school_id') ?? 0;
+        $targetDate = $request->query('date') ?? today()->format('Y-m-d');
 
-        $previousIncome = $this->earning->whereDate('date', '<', $targetDate)
-                                    ->when($school_id != 0, 
-                                        function($q) use ($school_id) {
-                                            $q->where('school_id', $school_id);
-                                        }
-                                    )
-                                    ->sum('amount');
+        $school_id = $request->query('school_id') ?? null;
 
-        $previousExpense = $this->expense->whereDate('date', '<', $targetDate)
-                                ->when($school_id != 0, 
-                                    function($q) use ($school_id) {
-                                        $q->where('school_id', $school_id);
-                                    }
-                                )
-                                ->sum('amount');
+        $previousBalance = $this->getPerviousDateAmount($this->earning, $targetDate, $school_id) - $this->getPerviousDateAmount($this->expense, $targetDate, $school_id);
 
-        $previousBalance = $previousIncome - $previousExpense;
+        $dailyIncomes = $this->getEntity($this->earning, $targetDate, $school_id, 'income');
 
-        $dailyIncomes = $this->earning->whereDate('date', $targetDate)
-                                ->when($school_id != 0, 
-                                    function($q) use ($school_id) {
-                                        $q->where('school_id', $school_id);
-                                    }
-                                )
-                                ->get()
-                                ->map(function ($item) {
-                                    return [
-                                        'date' => $item->date,
-                                        'statement' => $item->statement,
-                                        'amount' => $item->amount,
-                                        'type'  => 'income',
-                                        'created_at' => $item->created_at, 
-                                    ];
-                                });
-
-        //DON'T TOUCH THIS: This line is required to avoid "Call to a member function getKey() on array" error, 
-        $dailyIncomes = collect($dailyIncomes);
-        
-
-        $dailyExpenses = $this->expense->whereDate('date', $targetDate)
-                                    ->when($school_id != 0, 
-                                        function($q) use ($school_id) {
-                                            $q->where('school_id', $school_id);
-                                        }
-                                    )
-                                    ->get()
-                                    ->map(function ($item) {
-                                        return [
-                                            'date' => $item->date,
-                                            'statement' => $item->statement,
-                                            'amount' => $item->amount,
-                                            'type'  => 'expense',
-                                            'created_at' => $item->created_at, 
-                                        ];
-                                    });
-
-        //DON'T TOUCH THIS: This line is required to avoid "Call to a member function getKey() on array" error, 
-        $dailyExpenses = collect($dailyExpenses);
+        $dailyExpenses = $this->getEntity($this->expense, $targetDate, $school_id, 'expense');
 
         $dailyTransactions = $dailyIncomes->merge($dailyExpenses)->sortBy('created_at');
 
@@ -114,5 +63,49 @@ class AccountController extends Controller
         $schools = $this->school->pluck('id', 'name');
         
         return view('accounts.daily_report', compact('targetDate', 'previousBalance', 'reportData', 'dailyIncomeTotal', 'dailyExpenseTotal', 'finalDailyBalance', 'schools'));
+    }
+
+
+    /**
+     * 
+     * 
+     */
+    private function getPerviousDateAmount($model, $targetDate, $school_id) 
+    {
+        return $model->whereDate('date', '<', $targetDate)
+                        ->when($school_id, 
+                                function($q) use ($school_id) {
+                                    $q->where(fn($q) => $q->where('school_id', $school_id)->orWhere('school_id', null));
+                                }
+                            )
+                            ->sum('amount');
+    }
+
+
+    /**
+     * 
+     * 
+     */
+    private function getEntity($model, $targetDate, $school_id, $type)
+    {
+        $result = $model->whereDate('date', $targetDate)
+                    ->when($school_id != 0, 
+                        function($q) use ($school_id) {
+                            $q->where(fn($q) => $q->where('school_id', $school_id)->orWhere('school_id', '=', null));
+                        }
+                    )
+                    ->get()
+                    ->map(function ($item) use ($type) {
+                        return [
+                            'date' => $item->date,
+                            'statement' => $item->statement,
+                            'amount' => $item->amount,
+                            'type'  => $type,
+                            'created_at' => $item->created_at, 
+                        ];
+                    });
+
+        //DON'T TOUCH THIS: This line is required to avoid "Call to a member function getKey() on array" error, 
+        return collect($result);
     }
 }
