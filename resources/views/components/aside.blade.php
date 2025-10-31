@@ -66,7 +66,7 @@
 
     <ul class="menu-inner py-1">
     
-        <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="tf-icons bx bx-collection" />
+        <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="menu-icon tf-icons icon-base bx bx-home-alt" />
         
         <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
@@ -83,10 +83,10 @@
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
-        <x-Menu.MenuHeader title="الرواتب"/>
+        <x-Menu.MenuHeader title="{{ __('app.payrolls') }}"/>
 
-        <x-Menu.MenuItem label="كشوف الرواتب" route="payroll.index" icon="tf-icons bx bx-money" icon="bx bx-money" />
-        <x-Menu.MenuItem label="إنشاء ملخص كشف الراتب" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" /> 
+        <x-Menu.MenuItem label="{{ __('app.payrolls_report') }}" route="payroll.index" icon="tf-icons bx bx-money" icon="bx bx-money" />
+        <x-Menu.MenuItem label="{{ __('app.create_payroll_scan') }}" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" /> 
 
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
 
