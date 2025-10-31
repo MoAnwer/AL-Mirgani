@@ -18,6 +18,7 @@ use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
 use App\Http\Controllers\Reports\RevenueAnalysisController;
+use App\Http\Controllers\Users\UserController;
 
 Route::get('/', HomeController::class);
 
@@ -34,6 +35,9 @@ Route::name('auth.')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+
+
+    Route::resource('users', UserController::class);
 
     Route::get('students/count-report', [StudentController::class, 'studentsCount'])->name('students.count-report');
     Route::get('students/delete/{student}', [StudentController::class, 'delete'])->name('students.delete');
