@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ExpenseService 
 {
-    public function __construct(private Expense $expense) {}
+    public function __construct(private Expense $expense, private ExpenseCategory $expense_category, private School $school) {}
 
 
     public function expensesList() 
@@ -42,8 +42,8 @@ class ExpenseService
 
         return view('expenses.expenses-list', [
             'expenses'   => $data,
-            'categories' => ExpenseCategory::pluck('id', 'name'),
-            'schools'    => School::pluck('id', 'name'),
+            'categories' => $this->expense_category->pluck('id', 'name'),
+            'schools'    => $this->school->pluck('id', 'name'),
         ]);
     }
 
