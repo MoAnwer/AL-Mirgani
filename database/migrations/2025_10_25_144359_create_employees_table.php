@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('hire_date')->nullable();
             $table->decimal('salary', 15, 2);
             $table->string('department')->nullable();
-            $table->foreignId('school_id')->constrained()->onDelete('set null');
+            $table->foreignId('school_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

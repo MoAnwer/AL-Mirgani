@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('payroll_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payroll_id')->constrained('employee_payrolls')->onDelete('set null'); 
-            $table->foreignId('item_id')->constrained('payroll_items')->onDelete('restrict');             
+            $table->foreignId('payroll_id')->nullable()->constrained('employee_payrolls')->onDelete('set null'); 
+            $table->foreignId('item_id')->nullable()->constrained('payroll_items')->onDelete('restrict');             
             $table->decimal('amount', 10, 2);            
             $table->text('notes')->nullable();
             $table->timestamps();

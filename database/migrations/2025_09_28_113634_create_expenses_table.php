@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', 15)->nullable()->default(0);
-            $table->foreignId('category_id')->constrained('expense_categories')->onDelete('set null');
+            $table->foreignId('category_id')->nullable()->constrained('expense_categories')->onDelete('set null');
             $table->foreignId('school_id')->nullable()->constrained('schools')->onDelete('set null');
             $table->date('date');
             $table->text('statement');
