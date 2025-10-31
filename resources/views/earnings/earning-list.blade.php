@@ -8,8 +8,53 @@
                     <x-Container>
                         <x-alert type="error" />
                         <x-alert type="message" />
+
+                        <h3 class="card-header mb-5">@lang('app.list', ['attribute' => __('app.the_earnings')])</h3>
+
+
+                        <div class="card shadow mb-4">
+                            <div class="card text-center"> 
+                                <div class="card-header border-bottom py-4 mb-3">
+                                    <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                                </div>
+
+                                <div class="card-body pb-2">
+                                    <form action="{{ URL::current() }}">
+                                        <div class="row p-3">
+                                            <div class="col-6">
+                                                <select class="form-select" name="school_id">
+                                                    <option value="{{ null }}" selected>@lang('app.school')</option>
+                                                        @foreach($schools as $key => $value)
+                                                            <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
+                                                        @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col-5">
+                                                <div class="input-group" title="{{ __('app.payment_date') }}">
+                                                    <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                                </div>
+                                            </div>                                   
+
+                                            <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card"> 
-                            <h5 class="card-header">@lang('app.list', ['attribute' => __('app.the_earnings')])</h5>
+                            <h4 class="card-header mb-0 pb-0">
+                                @empty(!request()->query('school_id'))
+                                    @lang('app.earning') @lang('app.school') {{ array_keys($schools->filter(
+                                        fn($id, $name) => $id == request()->query('school_id') ? $name : null
+                                        )->toArray())[0]
+                                    }}
+                                @endempty
+                                @empty(!request()->query('date'))
+                                    @lang('app.date') {{ request()->query('date') }}
+                                @endempty
+                            </h4>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <td>#</td>
