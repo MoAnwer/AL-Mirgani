@@ -70,9 +70,9 @@
         
         <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
             <x-Menu.MenuSub>
-                <x-Menu.MenuItem label="تسجيل تلميذ جديد" route="students.create"/>
-                <x-Menu.MenuItem label="قائمة التلاميذ" route="students.index"/>
-                <x-Menu.MenuItem label="عدد التلاميذ" route="students.count-report"/>
+                <x-Menu.MenuItem label="{{ __('app.register_new_student') }}" route="students.create"/>
+                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_students')]) }}" route="students.index"/>
+                <x-Menu.MenuItem label="{{ __('app.count_of', ['count' => __('app.the_students')]) }}" route="students.count-report"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
         
@@ -86,9 +86,11 @@
         <x-Menu.MenuHeader title="الرواتب"/>
 
         <x-Menu.MenuItem label="كشوف الرواتب" route="payroll.index" icon="tf-icons bx bx-money" icon="bx bx-money" />
-        <x-Menu.MenuItem label="إنشاء ملخص كشف الراتب" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" />
+        <x-Menu.MenuItem label="إنشاء ملخص كشف الراتب" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" /> 
 
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
+
+        <x-Menu.MenuItem label="{{ __('app.account_scan') }}" icon="bx bx-box" route="accounts"/>
 
         <x-Menu.MenuItem label="{{ __('app.the_reports') }}" icon="bx bx-news" route="reports"/>
 
@@ -99,14 +101,14 @@
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
-
-        <x-Menu.MenuItem label="{{ __('app.the_earnings') }}" icon="tf-icons bx bxl-microsoft-teams" icon="bx bx-money" classes='menu-toggle'>
+        <x-Menu.MenuItem label="{{ __('app.the_earnings') }}" icon="bx bxs-bar-chart-alt-2" classes='menu-toggle'>
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.list',   ['attribute' => __('app.the_earnings')]) }}" route="earnings.index"/>
                 <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.earning')]) }}" route="earnings.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
-            
+
+        <x-Menu.MenuHeader title="{{ __('app.settings') }}"/>
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
     </ul>
 </aside>

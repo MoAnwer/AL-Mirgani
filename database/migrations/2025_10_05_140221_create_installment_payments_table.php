@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('installment_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('installment_id')->constrained('installments')->onDelete('set null');
-            $table->foreignId('student_id')->constrained('students')->onDelete('set null');
+            $table->foreignId('installment_id')->nullable()->constrained('installments')->onDelete('set null');
+            $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('set null');
             $table->decimal('paid_amount', 15)->nullable();
             $table->string('payment_method')->nullable();
             $table->date('payment_date')->nullable();

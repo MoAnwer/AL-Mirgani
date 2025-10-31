@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('student_id')->constrained('students')->onDelete('set null');
+            $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('set null');
             $table->decimal('amount', 15)->default(0);
             $table->date('due_date');
             $table->timestamps();

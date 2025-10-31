@@ -33,7 +33,7 @@
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
                                     @forelse($employees as $employee)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $employee->full_name }}</td>
                                             <td>{{ $employee->phone_number }}</td>
