@@ -111,6 +111,7 @@
 
 
         <x-Menu.MenuHeader title="{{ __('app.settings') }}"/>
+        <x-Menu.MenuItem icon="bx bx-user" label="{{ __('app.users') }}" route="users.index" />
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
     </ul>
 </aside>
