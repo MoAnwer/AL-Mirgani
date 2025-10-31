@@ -6,6 +6,8 @@ return [
     'students'              => 'تلاميذ',
     'list'                  => 'قائمة :attribute',
     'the_students'          => ' التلاميذ',
+    'count_of'              => 'عدد :count',
+    'register_new_student'  => 'تسجيل تلميذ جديد',
     'teachers'              => 'معلمين',
     'teachers'              => 'معلمين',
     'managers'              => 'اداريين',
