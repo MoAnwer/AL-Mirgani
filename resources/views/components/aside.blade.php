@@ -85,16 +85,17 @@
 
         <x-Menu.MenuHeader title="{{ __('app.payrolls') }}"/>
 
-        <x-Menu.MenuItem label="{{ __('app.payrolls_report') }}" route="payroll.index" icon="tf-icons bx bx-money" icon="bx bx-money" />
-        <x-Menu.MenuItem label="{{ __('app.create_payroll_scan') }}" route="payroll.create" icon="tf-icons bx bx-money" icon="bx bx-money" /> 
+        <x-Menu.MenuItem label="{{ __('app.payrolls_report') }}" route="payroll.index" icon="bx bx-money" />
+        <x-Menu.MenuItem label="{{ __('app.create_payroll_scan') }}" route="payroll.create" icon="bx bx-book-bookmark" /> 
+        <x-Menu.MenuItem label="{{ __('app.payroll_items') }}" route="payroll_items.index" icon="bx bx-food-menu" />
 
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
 
-        <x-Menu.MenuItem label="{{ __('app.account_scan') }}" icon="bx bx-box" route="accounts"/>
+        <x-Menu.MenuItem label="{{ __('app.account_scan') }}" icon="bx bx-book-open" route="accounts"/>
 
         <x-Menu.MenuItem label="{{ __('app.the_reports') }}" icon="bx bx-news" route="reports"/>
 
-        <x-Menu.MenuItem label="{{ __('app.the_expenses') }}" icon="tf-icons bx bxl-microsoft-teams" icon="bx bx-money" classes='menu-toggle'>
+        <x-Menu.MenuItem label="{{ __('app.the_expenses') }}" icon="bx bx-money" classes='menu-toggle'>
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.list',   ['attribute' => __('app.the_expenses')]) }}" route="expenses.index"/>
                 <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.expense')]) }}" route="expenses.new"/>
@@ -107,6 +108,7 @@
                 <x-Menu.MenuItem label="{{ __('app.create', ['attribute' => __('app.earning')]) }}" route="earnings.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
+
 
         <x-Menu.MenuHeader title="{{ __('app.settings') }}"/>
         <x-Menu.MenuItem icon="bx bx-cog" label="{{ __('app.settings') }}" />
