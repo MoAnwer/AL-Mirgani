@@ -77,6 +77,11 @@ return [
     'the_installment'       => 'القسط',
     'remaining'             => 'المتبقي',
     'accounts'              => 'الحسابات',
+    'payrolls'               => 'الرواتب',
+    'payrolls_report'       => 'كشوف الرواتب',
+    'create_payroll_scan'   => 'إنشاء ملخص كشف الراتب',
+    'accounts'              => 'الحسابات',
+    'accounts'              => 'الحسابات',
     'account_scan'          => 'كشف حساب',
     'search'                => 'بحث',
     'report'                => 'تقرير :report',
@@ -113,11 +118,15 @@ return [
     'delete_confirm_message'        => 'هل تريد حذف :attribute حقاً ؟',
     'delete_successful'             => 'تم حذف بيانات :attribute بنجاح',
     'empty_message'                 => 'لا يوجد :attributes',
-    'installment_full_paid_message' =>  'تم سداد  هذا القسط',
+    'installment_full_paid_message' => 'تم سداد  هذا القسط',
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
+   
     // Errors
 
-    'error'                 => 'حدث خطا',
-    'not_found'             => 'الصفحة غير موجودة'
+    'error'                         => 'حدث خطا',
+    'not_found'                     => 'الصفحة غير موجودة',
+    'not_found_msg'                 => 'لم يتمكن النظام على العثور على الصفحة التي تريدها',
+    'internal_server_error'         => ' خطأ من جانب السيرفر',
+    'internal_server_error_msg'     => 'تعذر على النظام معالجة طلبك',
 ];
