@@ -14,7 +14,7 @@
                     <div class="row px-0">
                         <div>
                             <div class="d-flex justify-content-end mb-3 mx-5">
-                                <a href="{{ route('payroll_items.create') }}" class="btn btn-success">
+                                <a href="{{ route('payroll_items.create') }}" class="btn btn-primary">
                                     <i class="bx bx-plus-circle"></i>
                                     <span class="mx-2"> إضافة عنصر جديد</span>
                                 </a>
@@ -37,19 +37,19 @@
                                         <td>{{ $item->id }}</td>
                                         <td class="text-center fw-bold">{{ $item->name }}</td>
                                         <td class="text-center">
-                                            @if ($item->type == 'Addition' || $item->type == 'Benefit')
-                                                <span class="badge text-black bg-label-success">{{ $item->type == 'Addition' ? 'إضافة/علاوة' : 'منفعة' }}</span>
-                                            @elseif ($item->type == 'Deduction' || $item->type == 'Tax')
-                                                <span class="badge bg-label-danger">{{ $item->type == 'Deduction' ? 'استقطاع/خصم' : 'ضريبة' }}</span>
+                                            @if ($item->type == \App\Enums\PayrollItemsTypesEnum::ADDITION->value || $item->type == \App\Enums\PayrollItemsTypesEnum::BENEFIT->value)
+                                                <span class="badge bg-success-subtle text-success border border-success rounded-pill">{{ $item->type == 'Addition' ? 'إضافة/علاوة' : 'منفعة' }}</span>
+                                            @elseif ($item->type == \App\Enums\PayrollItemsTypesEnum::DEDUCTION->value)
+                                                <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill">استقطاع/خصم </span>
                                             @else
                                                 {{ $item->type }}
                                             @endif
                                         </td>
                                         <td class="text-center">
                                             @if ($item->is_fixed)
-                                                <span class="badge bg-label-info text-dark">نعم</span>
+                                                <span class="badge bg-info-subtle text-info border border-info rounded-pill">نعم</span>
                                             @else
-                                                <span class="badge bg-secondary">لا (متغير)</span>
+                                                <span class="badge bg-secondary-subtle text-secondary border border-secondary rounded-pill">لا (متغير)</span>
                                             @endif
                                         </td>
                                         <td class="text-center">
