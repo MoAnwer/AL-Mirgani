@@ -107,7 +107,7 @@
                                                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            @if ($payroll->payment_status == 'Pending' || $payroll->payment_status == 'Failed')
+                                                            @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == \App\Enums\PaymentStatusEnum::FAILED->value)
                                                                 <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i> تعديل</a>
                                                             @endif
 
