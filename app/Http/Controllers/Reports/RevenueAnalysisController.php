@@ -43,15 +43,27 @@ class RevenueAnalysisController extends Controller
                             ->get();
             
             // Student count by class
-            $studentCount = $students->count();
+            $studentCount = $students
+                                ->when($school_id != 0, function ($q) use ($school_id) {
+                                    $q->where('school_id', $school_id);
+                                })->count();
             
-            $grossFees = $students->sum('total_fee');
-            $discountAmount = $students->sum('discount');
+            $grossFees = $students
+                                ->when($school_id != 0, function ($q) use ($school_id) {
+                                    $q->where('school_id', $school_id);
+                                })->sum('total_fee');
+            $discountAmount = $students
+                                ->when($school_id != 0, function ($q) use ($school_id) {
+                                    $q->where('school_id', $school_id);
+                                })->sum('discount');
 
             $netFees = $grossFees;
             
             // Revenue of each student
-            $totalPaid = $students->sum(function ($student) use ($startDate, $endDate) {
+            $totalPaid = $students
+                                ->when($school_id != 0, function ($q) use ($school_id) {
+                                    $q->where('school_id', $school_id);
+                                })->sum(function ($student) use ($startDate, $endDate) {
                 return $student->totalPaidBetween($startDate, $endDate);
             });
 
