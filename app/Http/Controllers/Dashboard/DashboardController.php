@@ -3,14 +3,44 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Earning;
+use App\Models\Expense;
+use App\Models\ExpenseCategory;
+use App\Models\Student;
 
 class DashboardController extends Controller
 {
-    public function home() 
+
+    public function __construct(
+        private Student $student,
+        private Expense $expense,
+        private ExpenseCategory $expenseCategories,
+        private Earning $earning
+    ) {}
+
+    public function home()
     {
+
+        $totalRevenue = $this->earning->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
+
+        $totalExpenses = $this->expense->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
+
+        $expenseCategories = $this->expenseCategories->with('expenses')->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->take(5)->inRandomOrder()->get();
+
+        $latestStudents = $this->student->latest('created_at')->take(5)->get([
+            'id',
+            'full_name',
+            'stage',
+            'created_at'
+        ]);
+
         return view('dashboard.dashboard', [
-            'title' => __('app.dashboard_title')
+            'title'         => __('app.app_name'),
+            'totalRevenue'  => number_format($totalRevenue),
+            'totalExpenses' => number_format($totalExpenses),
+            'totalProfit'   => number_format($totalRevenue - $totalExpenses),
+            'latestStudents' => $latestStudents,
+            'expenseCategories'        => $expenseCategories
         ]);
     }
 }
