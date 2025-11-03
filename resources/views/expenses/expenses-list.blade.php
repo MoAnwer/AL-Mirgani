@@ -15,7 +15,7 @@
                                 <form action="{{ URL::current() }}">
                                     <div class="row p-3">
                                         <div class="col-3">
-                                            <select class="form-select" name="category_id">
+                                            <select class="form-select" name="category_id" onchange="this.form.submit()">
                                             <option value="{{ null }}" selected>@lang('app.the_category')</option>
                                                 @foreach($categories as $key => $value)
                                                     <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ $key }}</option>
@@ -24,7 +24,7 @@
                                         </div>
 
                                         <div class="col-4">
-                                            <select class="form-select" name="school_id">
+                                            <select class="form-select" name="school_id" onchange="this.form.submit()">
                                                 <option value="{{ null }}" selected>@lang('app.school')</option>
                                                     @foreach($schools as $key => $value)
                                                         <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
@@ -34,7 +34,7 @@
 
                                         <div class="col-4">
                                             <div class="input-group">
-                                                <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                                <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
                                             </div>
                                         </div>                                   
 
