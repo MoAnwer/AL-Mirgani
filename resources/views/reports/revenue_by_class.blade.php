@@ -10,7 +10,7 @@
                     <form action="{{ URL::current() }}">
                     <div class="row p-3">
                         <div class="col-4">
-                            <select class="form-select" name="school_id">
+                            <select class="form-select" name="school_id" onchange="this.form.submit()">
                                 <option value="{{ null }}" selected>@lang('app.school')</option>
                                     @foreach($schools as $key => $value)
                                         <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
@@ -19,12 +19,12 @@
                         </div>
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="date" class="form-control" name="start_date" value="{{ request()->query('start_date') }}" />
+                                <input type="date" onchange="this.form.submit()" class="form-control" name="start_date" value="{{ request()->query('start_date') }}" />
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="input-group">
-                                <input type="date" class="form-control" name="end_date" value="{{ request()->query('end_date') }}" />
+                                <input type="date" onchange="this.form.submit()" class="form-control" name="end_date" value="{{ request()->query('end_date') }}" />
                             </div>
                         </div>                                  
 
