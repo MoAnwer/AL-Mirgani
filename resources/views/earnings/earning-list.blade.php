@@ -22,7 +22,7 @@
                                     <form action="{{ URL::current() }}">
                                         <div class="row p-3">
                                             <div class="col-6">
-                                                <select class="form-select" name="school_id">
+                                                <select class="form-select" name="school_id" onchange="this.form.submit()">
                                                     <option value="{{ null }}" selected>@lang('app.school')</option>
                                                         @foreach($schools as $key => $value)
                                                             <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
@@ -32,7 +32,7 @@
 
                                             <div class="col-5">
                                                 <div class="input-group" title="{{ __('app.payment_date') }}">
-                                                    <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                                    <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" onchange="this.form.submit()"/>
                                                 </div>
                                             </div>                                   
 
