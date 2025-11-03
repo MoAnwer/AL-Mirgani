@@ -1,7 +1,4 @@
 <x-header title="{{ $title }}">
-    @section('charts-css')
-        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
-    @stop
 </x-header>
     <x-LayoutWrapper>
       <x-LayoutContainer>
@@ -43,11 +40,25 @@
                               <img src="../assets/img/icons/unicons/paypal.png" alt="paypal" class="rounded" />
                             </div>
                           </div>
-                          <p class="mb-1">المنصرفات</p>
+                          <p class="mb-1">المنصرفات خلال شهر    {{ now()->month }}</p>
                           <h4 class="card-title mb-3">{{ $totalExpenses }}</h4>
                           <small class="text-danger fw-medium"
                             ><i class="icon-base bx bx-{{ $totalExpenses > $totalProfit ?  'up' : 'down' }}-arrow-alt"></i>{{ $totalExpenses }}</small
                           >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 mb-6 transactions">
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                            </div>
+                          </div>
+                          <p class="mb-1">@lang('app.the_earnings') خلال شهر   {{ now()->month }}</p>
+                          <h4 class="card-title mb-3">{{ $totalRevenue }}</h4>
+                          <small class="text-success fw-medium"><i class="icon-base bx bx-up-arrow-alt"></i> {{ $totalRevenue }}</small>
                         </div>
                       </div>
                     </div>
@@ -62,24 +73,10 @@
                                 class="rounded" />
                             </div>
                           </div>
-                          <p class="mb-1">الارباح</p>
+                          <p class="mb-1">الارباح خلال شهر {{ now()->month }}</p>
                           <h4 class="card-title mb-3">{{ $totalProfit }}</h4>
                           <small class="text-{{ $totalProfit > $totalExpenses ? 'success' : 'danger'  }} fw-medium">
                             <i class="icon-base bx bx-{{ $totalProfit > $totalExpenses ? 'up' : 'down'  }}-arrow-alt"></i> {{ $totalProfit }}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 mb-6 transactions">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                            <div class="avatar flex-shrink-0">
-                              <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
-                            </div>
-                          </div>
-                          <p class="mb-1">@lang('app.the_earnings')</p>
-                          <h4 class="card-title mb-3">{{ $totalRevenue }}</h4>
-                          <small class="text-success fw-medium"><i class="icon-base bx bx-up-arrow-alt"></i> {{ $totalRevenue }}</small>
                         </div>
                       </div>
                     </div>
@@ -93,14 +90,12 @@
                     <div class="card-header d-flex justify-content-between">
                       <div class="card-title mb-0">
                         <h5 class="mb-1 me-2">منصرفات الاسبوع الحالي</h5>
-                      <p class="card-subtitle">{{ $totalExpenses }}</p>
                       </div>
                     </div>
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-6">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h3 class="mb-1">{{ $totalExpenses }}</h3>
-                          <small> اجمالي المنصرفات </small>
+                          <h3 class="text-danger mb-1 mt-3">{{ $totalExpenses }}</h3>
                         </div>
                       </div>
                       <ul class="p-0 m-0">
@@ -141,7 +136,8 @@
                     @foreach ($latestStudents as $student)
                         <li class="d-flex align-items-center mb-6">
                           <div class="avatar flex-shrink-0 me-3">
-                            <img src="../assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
+                            {{-- <img src="../assets/img/icons/unicons/paypal.png" alt="User" class="rounded" /> --}}
+                            <span class="avatar-initial rounded bg-label-primary"><i class="icon-base bx bx-user"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
@@ -153,6 +149,7 @@
                             </div>
                           </div>
                         </li>
+                          
                     @endforeach
                       </ul>
                     </div>
