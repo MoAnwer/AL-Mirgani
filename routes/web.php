@@ -13,7 +13,7 @@ use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Reports\EarningStatementReportController;
-use App\Http\Controllers\Reports\PayrollReportController;
+use App\Http\Controllers\Reports\PayrollSummaryReportController ;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 use App\Http\Middleware\EnsureInstallmentIsPaid;
@@ -120,6 +120,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
     Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
     Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
+    Route::get('/payroll-summary-report', [PayrollSummaryReportController::class, 'generateSummaryReport'])->name('payroll.summary.report');
 
 
 
