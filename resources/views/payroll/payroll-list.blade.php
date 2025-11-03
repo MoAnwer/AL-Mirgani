@@ -18,7 +18,7 @@
                                     <div class="row g-3">
                                         <div class="col-md-3">
                                             <label for="employee_id" class="form-label">الموظف</label>
-                                            <select name="employee_id" id="employee_id" class="form-select">
+                                            <select name="employee_id" onchange="this.form.submit()" id="employee_id" class="form-select">
                                                 <option value="">-- كل الموظفين --</option>
                                                 @foreach ($employees as $employee)
                                                     <option value="{{ $employee->id }}" {{ request('employee_id') == $employee->id ? 'selected' : '' }}>
@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="payment_status" class="form-label">حالة الدفع</label>
-                                            <select name="payment_status" id="payment_status" class="form-select">
+                                            <select name="payment_status" onchange="this.form.submit()" id="payment_status" class="form-select">
                                                 <option value="{{ null }}">-- كل الحالات --</option>
                                                 <option value="Paid" @selected(request('payment_status') == 'Paid')>مدفوع</option>
                                                 <option value="Pending" @selected(request('payment_status') == 'Pending')>في الانتظار</option>
@@ -38,11 +38,11 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="month" class="form-label">الشهر</label>
-                                            <input type="number" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
+                                            <input type="number" onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="year" class="form-label">السنة</label>
-                                            <input type="number" name="year" id="year" class="form-control" value="{{ request('year') }}">
+                                            <input type="number" onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
                                         </div>
                                         <div class="col-md-1 d-flex align-items-end">
                                             <button type="submit" class="btn btn-primary w-100">بحث</button>

@@ -1,4 +1,4 @@
-<x-header  />
+<x-header title="إنشاء سجل كشف راتب ملخص جديد" />
 
 
 <x-layout-wrapper>
