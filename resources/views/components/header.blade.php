@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />  
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-misc.css') }}" />
+    @if(request()->routeIs('auth.login.form'))
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-misc.css') }}" />
+    @endif
     <script src="{{ asset('assets/vendor/js/helpers.js')}}"></script>
     <script src="{{ asset('assets/js/config.js')}}"></script>
     @yield('charts-css')
