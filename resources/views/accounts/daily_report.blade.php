@@ -8,7 +8,7 @@
             <x-nav />
             <x-ContentWrapper>
                 <x-container>
-                     <div class="card text-center mb-2"> 
+                    <div class="card text-center mb-2"> 
                         <div class="card-header border-bottom py-4">
                             <h5 class="mb-0 text-start">فلاتر البحث</h5>
                         </div>
@@ -16,7 +16,7 @@
                             <div class="row p-3 text-start align-items-end">
                                 <div class="col-6">
                                     <label class="mb-1">@lang('app.school')</label>
-                                    <select class="form-select" name="school_id">
+                                    <select class="form-select" name="school_id" onchange="this.form.submit()">
                                         <option value="{{ null }}" selected>@lang('app.school')</option>
                                             @foreach($schools as $key => $value)
                                                 <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
@@ -27,7 +27,7 @@
                                 <div class="col-4">
                                     <label class="mb-1">@lang('app.date')</label>
                                     <div class="input-group">
-                                        <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                        <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
                                     </div>
                                 </div>                                   
 
