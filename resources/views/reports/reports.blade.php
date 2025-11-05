@@ -18,7 +18,9 @@
                         <x-cards.card link="{{ route('payroll.summary.report') }}" icon="bx bx-box" title="  تقرير كشوف الرواتب " description="الإجماليات المُعالجة حسب الشهر و العام"/>
                         <x-cards.card link="{{ route('arrears.all') }}" icon="bx bx-money" title=" الأقساط المتأخرة" description="نظرة عامة عن متاخرات الاقساط"/>
                         <x-cards.card link="{{ route('revenues') }}" icon='bx bxs-bar-chart-alt-2' title="ايرادات حسب الصف" description="تحليل الإيرادات حسب الصف للمرحلة كل المدارس"/>
+                        <x-cards.card link="{{ route('reports.general-expense-report') }}" icon='bx bx-wallet' title="إجمالي المصروفات العامة للمدرسة" description="الإجمالي الكلي للمصروفات التشغيلية والمدرسية ."/>
                         <x-cards.card link="{{ route('incomeReport') }}" icon='bx bxs-bar-chart-alt-2' title="قائمة الدخل" description=" الإيرادات و المصروفات التشغيلية و صافي الربح"/>
+                        <x-cards.card link="{{ route('reports.employee-count-report') }}" icon='bx bxs-briefcase' title="توزيع الموظفين حسب القسم" description="نظرة عامة دقيقة على القوى العاملة حسب المهنة."/>
                     </x-cards.cards-container>
                 </div>
             </x-container>

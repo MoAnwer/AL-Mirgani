@@ -184,4 +184,24 @@ class EmployeePayrollController extends Controller
 
         return view('test-invoice', compact('payroll', 'additions', 'deductions'));
     }
+
+
+    public function delete(EmployeePayroll $payroll) 
+    {
+        return view('payroll.delete-payroll', compact('payroll'));
+    }
+
+    public function destroy(EmployeePayroll $payroll)
+    {
+
+        $employeeName = $payroll->employee->full_name;
+
+        // delete details of payroll
+        $payroll->details()->forceDelete();
+
+        // delete payroll
+        $payroll->forceDelete();
+
+        return to_route('payroll.index')->with('message', __('app.delete_successful', ['attribute' => $employeeName . " كشف راتب "]));
+    }
 }

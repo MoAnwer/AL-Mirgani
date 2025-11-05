@@ -11,17 +11,17 @@ use Illuminate\Support\Collection;
 class ArrearsReportController extends Controller
 {
 
-    private $perPage = 15; 
+    private $perPage = 15;
 
     function __construct(
         private readonly Installment $installment,
-        private readonly School $school, 
+        private readonly School $school,
         private readonly ClassRoom $class
     ) {}
 
     public function generateArrearsReport()
     {
-         $filters = [
+        $filters = [
             'school_id'   => request()->query('school_id'),
             'class_id'    => request()->query('class_id'),
             'date'        => request()->query('date'),
@@ -30,25 +30,37 @@ class ArrearsReportController extends Controller
         $today = Carbon::today();
 
         $currentPage = request()->input('page', 1);
-        
+
         $overdueInstallments = $this->installment
                                 ->where('due_date', '<', $today)
-                                ->when(!empty($filters['school_id']), function($q) use ($filters) {
-                                    $q->whereHas('student', function($builder) use ($filters) {
+                                ->when(!empty($filters['school_id']), function ($q) use ($filters) {
+                                    $q->whereHas('student', function ($builder) use ($filters) {
                                         $builder->where('school_id', $filters['school_id']);
                                     });
                                 })
-                                ->when(!empty($filters['class_id']), function($q) use ($filters) {
-                                    $q->whereHas('student', function($builder) use ($filters) {
+                                ->when(!empty($filters['class_id']), function ($q) use ($filters) {
+                                    $q->whereHas('student', function ($builder) use ($filters) {
                                         $builder->where('class_id', $filters['class_id']);
                                     });
                                 })
-                                ->when(!empty($filters['date']), function($q) use ($filters) {
+                                ->when(!empty($filters['date']), function ($q) use ($filters) {
                                     $q->where('due_date', $filters['date']);
                                 })
-                                ->with(['student.class', 'payments']) 
+                                ->withSum('payments as paid_amount', 'paid_amount')
+                                ->whereRaw('
+                                    installments.amount > (
+                                        SELECT SUM(installment_payments.paid_amount) 
+                                        FROM installment_payments 
+                                        WHERE installment_payments.installment_id = installments.id
+                                    )
+                                    OR (
+                                        SELECT SUM(installment_payments.paid_amount) 
+                                        FROM installment_payments 
+                                        WHERE installment_payments.installment_id = installments.id
+                                    ) IS NULL
+                                ')
+                                ->with(['student.class', 'payments'])
                                 ->get();
-
 
         $reportData = [];
 
@@ -56,12 +68,10 @@ class ArrearsReportController extends Controller
 
         $collection = new Collection($reportData);
 
-        $offset = ($currentPage * $this->perPage) - $this->perPage;
-
         // For make pagination in report data
         $reportData = new LengthAwarePaginator(
-            $collection->forPage($currentPage, $this->perPage)->values(), 
-            $collection->count(), 
+            $collection->forPage($currentPage, $this->perPage)->values(),
+            $collection->count(),
             $this->perPage,
             $currentPage,
             ['path' => request()->url(), 'query' => request()->query()]
@@ -73,21 +83,19 @@ class ArrearsReportController extends Controller
         return view('reports.arrears_report', compact('reportData', 'schools', 'classes'));
     }
 
-    
+
     private function getOverdueInstallments($day, $overdueInstallments, &$reportData)
     {
         foreach ($overdueInstallments as $installment) {
             // Paid amount of the installment
-            $amountPaid = $installment->payments->sum('paid_amount'); 
-            
+            $amountPaid = $installment->payments->sum('paid_amount');
+
             // Remaining amount
             $balanceDue = $installment->amount - $amountPaid;
-            
+
             $daysOverdue = abs($day->diffInDays(Carbon::parse($installment->due_date)));
 
             // To ignore the completed installment payment that hav due date equal $day
-            // ما تقابض في السطر دا عشان دا هو البخلي الاقساط العندها ملبغ متاخر يساوي 0 يطنشها 
-            if ($balanceDue == 0) continue;
 
             $reportData[] = [
                 'student_name'          => $installment->student->full_name ?? '',
@@ -99,7 +107,6 @@ class ArrearsReportController extends Controller
                 'balance_due'           => $balanceDue ?? '',
                 'days_overdue'          => $daysOverdue ?? '',
             ];
-
         }
     }
 }

@@ -13,6 +13,8 @@ use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Reports\EarningStatementReportController;
+use App\Http\Controllers\Reports\EmployeeCountReportController;
+use App\Http\Controllers\Reports\GeneralExpenseReportController;
 use App\Http\Controllers\Reports\PayrollSummaryReportController ;
 use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
@@ -99,10 +101,13 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('accounts', [AccountController::class, 'showDailyAccount'])->name('accounts');
-    Route::get('/reports/arrears', [ArrearsReportController::class, 'generateArrearsReport'])->name('arrears.all');
+    Route::get('student-arrears-report', [ArrearsReportController::class, 'generateArrearsReport'])->name('arrears.all');
     Route::get('revenues', [RevenueAnalysisController::class, 'revenueBySchool'])->name('revenues');
 
     Route::view('/reports', 'reports.reports')->name('reports');
+    Route::get('general-expenses-report', [GeneralExpenseReportController::class, 'generateGeneralExpenseSummary'])->name('reports.general-expense-report');
+    Route::get('employee-count-report', [EmployeeCountReportController::class, 'generateEmployeeCountReport'])->name('reports.employee-count-report');
+
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
 
     Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
@@ -118,6 +123,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/payrolls/store', [PayrollProcessorController::class, 'processAndStore'])->name('payroll.store');
     Route::get('/payrolls/{payroll}', [EmployeePayrollController::class, 'show'])->name('payroll.show');
     Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
+    Route::get('/payrolls/{payroll}/delete', [EmployeePayrollController::class, 'delete'])->name('payroll.delete');
+    Route::delete('/payrolls/{payroll}/destroy', [EmployeePayrollController::class, 'destroy'])->name('payroll.destroy');
     Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
     Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
     Route::get('/payroll-summary-report', [PayrollSummaryReportController::class, 'generateSummaryReport'])->name('payroll.summary.report');

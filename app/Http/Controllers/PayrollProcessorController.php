@@ -37,7 +37,6 @@ class PayrollProcessorController extends Controller
             'net_salary_paid' => $netSalary ?? 0,
             'school_total_cost' => 0,
             'payment_status' => $request->payment_status,
-            'payment_date' => now()->toDateString(),
         ]);
         
         

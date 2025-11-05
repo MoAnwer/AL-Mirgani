@@ -107,19 +107,19 @@
                                                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
+                                                             <a class="dropdown-item" href="{{ route('payroll.show', $payroll->id) }}" class="btn btn-sm btn-info">
+                                                                <i class='bx bx-news me-1 text-info'></i>
+                                                                 عرض
+                                                            </a>
+
                                                             @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == \App\Enums\PaymentStatusEnum::FAILED->value)
                                                                 <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i> تعديل</a>
+                                                                <a class="dropdown-item" href="{{ route('payroll.delete', $payroll) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-trash me-1 text-danger'></i>@lang('app.delete')</a>
                                                             @endif
-
 
                                                             @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
                                                                 <a class="dropdown-item" href="{{ route('payroll.invoice.print', $payroll) }}" class="btn btn-sm btn-warning me-1"><i class='bx bxs-printer me-1 text-primary'></i> طباعة</a>
                                                             @endif
-                                                            
-                                                            <a class="dropdown-item" href="{{ route('payroll.show', $payroll->id) }}" class="btn btn-sm btn-info">
-                                                                <i class='bx bx-news me-1 text-info'></i>
-                                                                 عرض
-                                                            </a>
                                                         </div>
                                                     </div>
                                                     </td>

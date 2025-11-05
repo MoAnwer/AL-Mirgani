@@ -15,7 +15,6 @@
                 </div>
                 <div class="card-body p-4">
                     
-                    {{-- نموذج التعديل: نستخدم متود PUT/PATCH للتحديث --}}
                     <form action="{{ route('payroll.update', $payroll->id) }}" method="POST">
                         @csrf
                         @method('put')
@@ -79,7 +78,7 @@
                             <div class="col-md-6">
                                 <label for="payment_date" class="form-label fw-bold">تاريخ الدفع الفعلي</label>
                                 <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
-                                       value="{{ old('payment_date',  $payroll->payment_date->format('Y-m-d') )}}">
+                                       value="{{ old('payment_date',  $payroll->payment_date?->format('Y-m-d') )}}">
                                 @error('payment_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -100,10 +99,7 @@
     </div>
 </div>
 
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 <style>
-    /* إضافة الـ gradient الخاص بـ Warning ليتناسب مع التصميم العصري */
     .bg-gradient-warning {
         background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
     }

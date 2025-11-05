@@ -90,7 +90,7 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label for="payment_date" class="form-label  mb-3 fw-bold">تاريخ الدفع الفعلي</label>
                                                     <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
-                                                        value="{{ old('payment_date', now()->format('Y-m-d')) }}">
+                                                        >
                                                 </div>
                                             </div>
 
