@@ -101,7 +101,7 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('accounts', [AccountController::class, 'showDailyAccount'])->name('accounts');
-    Route::get('/reports/arrears', [ArrearsReportController::class, 'generateArrearsReport'])->name('arrears.all');
+    Route::get('student-arrears-report', [ArrearsReportController::class, 'generateArrearsReport'])->name('arrears.all');
     Route::get('revenues', [RevenueAnalysisController::class, 'revenueBySchool'])->name('revenues');
 
     Route::view('/reports', 'reports.reports')->name('reports');
