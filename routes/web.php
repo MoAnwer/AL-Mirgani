@@ -123,6 +123,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/payrolls/store', [PayrollProcessorController::class, 'processAndStore'])->name('payroll.store');
     Route::get('/payrolls/{payroll}', [EmployeePayrollController::class, 'show'])->name('payroll.show');
     Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
+    Route::get('/payrolls/{payroll}/delete', [EmployeePayrollController::class, 'delete'])->name('payroll.delete');
+    Route::delete('/payrolls/{payroll}/destroy', [EmployeePayrollController::class, 'destroy'])->name('payroll.destroy');
     Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
     Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
     Route::get('/payroll-summary-report', [PayrollSummaryReportController::class, 'generateSummaryReport'])->name('payroll.summary.report');
