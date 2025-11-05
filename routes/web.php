@@ -13,6 +13,7 @@ use App\Http\Controllers\Installment\InstallmentController;
 use App\Http\Controllers\Payments\InstallmentPaymentsController;
 use App\Http\Controllers\Receipts\ReceiptController;
 use App\Http\Controllers\Reports\EarningStatementReportController;
+use App\Http\Controllers\Reports\EmployeeCountReportController;
 use App\Http\Controllers\Reports\GeneralExpenseReportController;
 use App\Http\Controllers\Reports\PayrollSummaryReportController ;
 use App\Http\Controllers\Reports\StudentAccountController;
@@ -105,6 +106,8 @@ Route::middleware('auth')->group(function() {
 
     Route::view('/reports', 'reports.reports')->name('reports');
     Route::get('general-expenses-report', [GeneralExpenseReportController::class, 'generateGeneralExpenseSummary'])->name('reports.general-expense-report');
+    Route::get('employee-count-report', [EmployeeCountReportController::class, 'generateEmployeeCountReport'])->name('reports.employee-count-report');
+
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
 
     Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
