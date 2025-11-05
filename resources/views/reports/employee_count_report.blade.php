@@ -1,16 +1,14 @@
 <x-header title="تقرير توزيع الموظفين" />
     <style>
-        /* التنسيق الأساسي للعرض من اليمين لليسار */
         body { 
             direction: rtl; 
             font-family: 'Tajawal', sans-serif;
-            background-color: #f7f9fc; /* خلفية ناعمة جداً */
+            background-color: #f7f9fc;
         }
         
-        /* تصميم البطاقة النظيف */
         .card-clean {
             border-radius: 12px;
-            border: 1px solid #eef1f6; /* إطار خفيف جداً */
+            border: 1px solid #eef1f6;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease-in-out;
         }
@@ -18,20 +16,17 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
         
-        /* تصميم البطاقة الملونة (المجموع) */
         .card-summary {
             background-color: #ffffff;
             color: #343a40;
         }
 
-        /* شريط الإجمالي الكلي - بارز ولكنه هادئ */
         .total-banner {
-            background-color: #f0f8ff; /* أزرق فاتح جداً */
-            color: #0d6efd; /* اللون الأزرق الأساسي */
+            background-color: #f0f8ff; 
+            color: #0d6efd;
             border-left: 5px solid #0d6efd;
         }
 
-        /* بطاقات الأقسام - ألوان متناسقة وبسيطة */
         .category-card {
             min-height: 150px;
             display: flex;
@@ -39,7 +34,7 @@
         }
 
         .icon-box {
-            background-color: rgba(13, 110, 253, 0.1); /* خلفية خفيفة للأيقونة */
+            background-color: rgba(13, 110, 253, 0.1); 
             color: #0d6efd;
             border-radius: 8px;
             padding: 15px;
@@ -51,8 +46,6 @@
             align-items: center;
         }
 
-        /* تخصيص الألوان لكل فئة (لتكون هادئة) */
-        /* ملاحظة: تم تحديث الأيقونات إلى كلاسات Boxicons: bx-user-pin, bx-briefcase, bx-wrench, bx-question-mark */
         .teacher-color .icon-box { background-color: rgba(25, 135, 84, 0.1); color: #198754; } /* أخضر هادئ */
         .administrative-color .icon-box { background-color: rgba(108, 117, 125, 0.1); color: #6c757d; } /* رمادي */
         .worker-color .icon-box { background-color: rgba(255, 193, 7, 0.1); color: #ffc107; } /* أصفر هادئ */
@@ -60,7 +53,6 @@
         
         .count-number { font-size: 2.5rem; font-weight: 700; color: #343a40; }
         
-        /* تصميم زر الفلتر ليصبح عريضاً - تم إزالته حيث لا يوجد فلتر */
         .btn-filter {
             background-color: #6f42c1;
             border-color: #6f42c1;
