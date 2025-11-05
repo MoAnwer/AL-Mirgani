@@ -79,7 +79,7 @@
                             <div class="col-md-6">
                                 <label for="payment_date" class="form-label fw-bold">تاريخ الدفع الفعلي</label>
                                 <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
-                                       value="{{ old('payment_date',  $payroll->payment_date->format('Y-m-d') )}}">
+                                       value="{{ old('payment_date',  $payroll->payment_date?->format('Y-m-d') )}}">
                                 @error('payment_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
