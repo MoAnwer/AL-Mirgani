@@ -15,7 +15,6 @@
                 </div>
                 <div class="card-body p-4">
                     
-                    {{-- نموذج التعديل: نستخدم متود PUT/PATCH للتحديث --}}
                     <form action="{{ route('payroll.update', $payroll->id) }}" method="POST">
                         @csrf
                         @method('put')
@@ -100,10 +99,7 @@
     </div>
 </div>
 
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 <style>
-    /* إضافة الـ gradient الخاص بـ Warning ليتناسب مع التصميم العصري */
     .bg-gradient-warning {
         background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
     }
