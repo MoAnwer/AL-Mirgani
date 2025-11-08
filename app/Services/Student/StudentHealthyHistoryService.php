@@ -13,7 +13,7 @@ class StudentHealthyHistoryService
 
         $medication = explode(',', $request->string('medication'));
         
-        $student->healthyHistory()->update([
+        $student->healthyHistory()->updateOrCreate([
             'medication'        => $medication,
             'diagnosis'         => $request->string('diagnosis'),
             'notes'             => $request->string('notes')
