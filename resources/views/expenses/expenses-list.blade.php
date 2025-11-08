@@ -6,12 +6,16 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
-                        <h5>@lang('app.list', ['attribute' => __('app.the_expenses')])</h5>
+                        <h3>@lang('app.list', ['attribute' => __('app.the_expenses')])</h3>
                         <x-alert type="error" />
                         <x-alert type="message" />
 
                         <div class="row mx-1 mb-3">
-                            <div class="card text-center"> 
+                            <div class="card text-center p-2"> 
+                                <div class="card-header border-bottom py-4 mb-3">
+                                    <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                                </div>
+
                                 <form action="{{ URL::current() }}">
                                     <div class="row p-3">
                                         <div class="col-3">
@@ -44,7 +48,7 @@
                             </div>
                         </div>
 
-                         <div class="card"> 
+                         <div class="card shadow"> 
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <tr class="text-center">
@@ -55,7 +59,7 @@
                                         <td>@lang('app.date')</td>
                                         <td>@lang('app.statement')</td>
                                         <td>@lang('app.created_at')</td>
-                                        <td>@lang('app.actions')</td>
+                                        {{-- <td>@lang('app.actions')</td> --}}
                                     <tr>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
@@ -68,7 +72,7 @@
                                             <td>{{ $expense->date->format('Y-m-d') }}</td>
                                             <td>{{ $expense->statement }}</td>
                                             <td>{{ $expense->created_at }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
@@ -78,7 +82,7 @@
                                                         <a class="dropdown-item" href="{{ route('expenses.delete', $expense) }}"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @empty
                                         <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.expenses')]) }} </td>
