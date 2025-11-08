@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_name'              => 'مؤسسة الميرغني',
+    'app_name'              => env('APP_NAME'),
     'student'               => 'التلميذ',
     'students'              => 'تلاميذ',
     'list'                  => 'قائمة :attribute',
