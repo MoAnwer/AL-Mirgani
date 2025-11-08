@@ -78,16 +78,7 @@ Route::middleware('auth')->group(function() {
         Route::post('store', 'store')->name('store');
     });
 
-    Route::name('expenses.')->prefix('expenses')->group(function() {
-        Route::get('', [ExpenseController::class, 'index'])->name('index');
-        Route::get('/new', [ExpenseController::class, 'create'])->name('new');
-        Route::post('store', [ExpenseController::class, 'store'])->name('store');
-        Route::get('show/{expense}', [ExpenseController::class, 'show'])->name('show');
-        Route::get('edit/{expense}', [ExpenseController::class, 'edit'])->name('edit');
-        Route::put('update/{expense}', [ExpenseController::class, 'update'])->name('update');
-        Route::get('delete/{expense}', [ExpenseController::class, 'delete'])->name('delete');
-        Route::delete('destroy/{expense}', [ExpenseController::class, 'destroy'])->name('destroy');
-    });
+    require __DIR__.'/expenses.php';
 
     Route::name('student-healthy-history.')->prefix('student-healthy-history')->group(function() {
         Route::get('show/{student}', [StudentHealthyHistoryController::class, 'show'])->name('show');
