@@ -4,7 +4,7 @@ namespace App\Services\Payroll;
 
 use App\Enums\PaymentStatusEnum;
 use App\Events\Expense\PayrollPaid;
-use App\Http\Requests\StoreEmployeePayrollRequest;
+use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
 use App\Models\{Employee, EmployeePayroll};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

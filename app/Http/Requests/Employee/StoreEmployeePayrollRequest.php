@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -9,7 +9,7 @@ class StoreEmployeePayrollRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true; // يجب تعديلها لتتناسب مع صلاحيات المستخدم
+        return true;
     }
 
     public function rules(): array
@@ -20,8 +20,6 @@ class StoreEmployeePayrollRequest extends FormRequest
             'year' => ['required', 'integer', 'min:2020', 'max:' . (now()->year + 1)],
             'payment_date' => ['nullable', 'date'],
             'payment_status' => ['required', Rule::in(['Pending', 'Paid', 'Failed'])],
-            
-            // إضافة قواعد للتحقق من عدم تكرار كشف الراتب لنفس الشهر والسنة
             'employee_id' => [
                 Rule::unique('employee_payrolls', 'employee_id')->where(function ($query) {
                     return $query->where('month', $this->month)
@@ -29,11 +27,9 @@ class StoreEmployeePayrollRequest extends FormRequest
                 })
             ],
             
-            // الحقول التي يجب أن تكون موجودة افتراضياً أو يتم جلبها من نموذج الموظف
             'total_deductions' => ['required', 'numeric', 'min:0'],
             'total_fixed_allowances' => ['required', 'numeric', 'min:0'],
             'total_variable_additions' => ['required', 'numeric', 'min:0'],
-            // وغيرها من الحقول المُجمّعة...
         ];
     }
 

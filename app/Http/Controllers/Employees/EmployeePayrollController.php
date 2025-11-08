@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Employees;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEmployeePayrollRequest;
+use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
 use App\Models\EmployeePayroll;
 use App\Services\Payroll\PayrollService;
 use Illuminate\Http\Request;
