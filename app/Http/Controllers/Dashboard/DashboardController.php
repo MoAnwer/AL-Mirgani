@@ -12,15 +12,17 @@ class DashboardController extends Controller
 {
 
     public function __construct(
-        private Student $student,
-        private Expense $expense,
-        private ExpenseCategory $expenseCategories,
-        private Earning $earning
+        private readonly Student $student,
+        private readonly Expense $expense,
+        private readonly ExpenseCategory $expenseCategories,
+        private readonly Earning $earning
     ) {}
 
+    /**
+     * Show Dashboard Page with stats
+     */
     public function home()
     {
-
         $totalRevenue = $this->earning->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
 
         $totalExpenses = $this->expense->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
