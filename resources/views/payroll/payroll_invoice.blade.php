@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>قسيمة دفع راتب - {{ $payroll->employee->full_name ?? 'الموظف' }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+<x-header title=" قسيمة دفع راتب - {{ $payroll->employee->full_name ?? 'الموظف' }}" />
+
 
     <style>
         body {
             background-color: #f8f9fa;
         }
-        /* تصميم عصري للـ Payslip */
         .payslip-container {
             max-width: 800px;
             margin: 50px auto;
@@ -26,10 +19,10 @@
             margin-bottom: 30px;
         }
         .payslip-total {
-            background-color: #e9ecef; /* لون خلفية ناعم */
+            background-color: #e9ecef; 
             border-radius: 8px;
         }
-        /* لتنسيق الجدول بشكل نظيف */
+
         .table-clean th, .table-clean td {
             border-top: none !important;
             padding-top: 12px;
@@ -39,7 +32,7 @@
             color: #6c757d;
             font-weight: 500;
         }
-        /* تنسيقات Print.js مدمجة */
+        
         @media print {
             body {
                 background: #fff !important;
@@ -55,8 +48,6 @@
             }
         }
     </style>
-</head>
-<body>
 
     <div class="text-center mt-4 no-print">
         <button onclick="printPayslip()" class="btn btn-primary btn rounded-pill shadow-lg me-3">
@@ -164,9 +155,7 @@
 
 <style>
 
-    /* ستايل الطباعة الخاص بالـ Modal */
     @media print {
-        /* إخفاء خلفية الـ Modal ورأسه وتذييله */
         body {
             background: #fff !important;
             margin: auto;
@@ -174,21 +163,17 @@
         .no-print {
             display: none !important;
         }
-        /* هذا الجزء مهم لضمان عرض كامل للتصميم */
         .payslip-container {
             box-shadow: none !important;
             margin: auto !important;
             padding: 0 !important;
             width: 1000px;
-
         }
     }
 
-    </style>
+</style>
 <script>
     function printPayslip() {
             window.print();
     }
 </script>
-</body>
-</html>
