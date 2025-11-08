@@ -110,30 +110,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('incomeReport', [EarningStatementReportController::class, 'generateIncomeStatement'])->name('incomeReport');
 
-    Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
-        Route::get('/create', [PayrollDetailController::class, 'create'])->name('create');
-        Route::post('/', [PayrollDetailController::class, 'store'])->name('store');
-        
-        Route::get('/{detail}/edit', [PayrollDetailController::class, 'edit'])->name('edit');
-        Route::put('/{detail}', [PayrollDetailController::class, 'update'])->name('update');
-    });
 
-    Route::get('/payrolls', [EmployeePayrollController::class, 'index'])->name('payroll.index');
-    Route::get('/payrolls/create', [EmployeePayrollController::class, 'create'])->name('payroll.create');
-    Route::post('/payrolls/store', [PayrollProcessorController::class, 'processAndStore'])->name('payroll.store');
-    Route::get('/payrolls/{payroll}', [EmployeePayrollController::class, 'show'])->name('payroll.show');
-    Route::get('/payrolls/{payroll}/edit', [EmployeePayrollController::class, 'edit'])->name('payroll.edit');
-    Route::get('/payrolls/{payroll}/delete', [EmployeePayrollController::class, 'delete'])->name('payroll.delete');
-    Route::delete('/payrolls/{payroll}/destroy', [EmployeePayrollController::class, 'destroy'])->name('payroll.destroy');
-    Route::put('/payrolls/{payroll}/update', [EmployeePayrollController::class, 'update'])->name('payroll.update');
-    Route::get('/payrolls/{payroll}/print', [EmployeePayrollController::class, 'payrollInvoice'])->name('payroll.invoice.print');
-    Route::get('/payroll-summary-report', [PayrollSummaryReportController::class, 'generateSummaryReport'])->name('payroll.summary.report');
-
-
-
-    Route::get('/payroll-items/create', [PayrollItemController::class, 'create'])->name('payroll_items.create');
-    Route::post('/payroll-items', [PayrollItemController::class, 'store'])->name('payroll_items.store');
-    Route::get('/payroll-items', [PayrollItemController::class, 'index'])->name('payroll_items.index');
-    Route::get('/payroll-items/{payroll_item}/edit', [PayrollItemController::class, 'edit'])->name('payroll_items.edit');
-    Route::put('/payroll-items/{payroll_item}', [PayrollItemController::class, 'update'])->name('payroll_items.update');
+    require __DIR__ . '/payroll_details.php';
+    require __DIR__ . '/payrolls.php';
+    require __DIR__ . '/payroll-items.php';
 });
