@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Reports\StudentAccountController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\Student\StudentHealthyHistoryController;
 

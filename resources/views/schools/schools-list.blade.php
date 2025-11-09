@@ -1,0 +1,61 @@
+<x-header title="{{ __('app.list', ['attribute' => __('app.the_schools')]) }}"/>
+    <x-layout-wrapper>
+        <x-layout-container>
+            <x-aside />
+            <x-layout-page>
+                <x-nav />
+                <x-content-wrapper>
+                    <x-container>
+                        <x-alert type="error" />
+                        <x-alert type="message" />
+                        <div class="card">
+                            <div class="d-flex justify-content-between align-items-sm-center gap-6 pb-4 border-bottom">
+                                <div class="d-flex align-items-start align-items-sm-center px-3">
+                                    <div class="button-wrapper">
+                                        <h4 class="card-header">@lang('app.list', ['attribute' => __('app.the_schools')])</h4>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary text-white m-5 mt-10" href="{{ route('schools.create') }}">
+                                    <i class="icon-base bx bx-plus-circle icon-sm me-1_5 d-block rounded"></i>
+                                    @lang('app.create', ['attribute' => __('app.x-school')])
+                                </a>
+                            </div>
+                            <x-Table.BasicTable>
+                                <x-Table.Thead>
+                                    <tr class="text-center">
+                                        <td>#</td>
+                                        <td>@lang('app.school')</td>
+                                        <td>@lang('app.actions')</td>
+                                    </tr>
+                                </x-Table.Thead>
+                                <x-Table.Tbody>
+                                    @forelse($schools as $school)
+                                        <tr class="text-center">
+                                            <td>{{ $school->id }}</td>
+                                            <td>{{ $school->name }}</td>
+                                            <td>
+                                                <div class="dropdown mx-5">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="{{ route('schools.edit', $school) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.the_schools')]) }} </td>
+                                    @endforelse
+                                    @section('pagination')
+                                        <div class="mt-5 px-5">{{ $schools->links('vendor.pagination.bootstrap-5') }} </div>
+                                    @endsection
+                                </x-Table.Tbody>
+                            </x-Table.BasicTable>
+                        </div>
+                    </x-container>
+                </x-content-wrapper>
+            </x-layout-page>
+        </x-layout-container>
+    </x-layout-wrapper>
+<x-footer />
