@@ -46,6 +46,7 @@
                         <tr class="fw-bold">
                             <th class="text-center fw-bold">@lang('app.student_name')</th>
                             <th class="text-center fw-bold">@lang('app.class')</th>
+                            <th class="text-center fw-bold">@lang('app.school')</th>
                             <th class="text-center fw-bold">@lang('app.the_installment')</th>
                             <th class="text-center fw-bold">@lang('app.due_date')</th>
                             <th class="text-center fw-bold">@lang('app.due_amount')</th>
@@ -59,12 +60,21 @@
                             <tr>
                                 <td class="text-center">{{ $row['student_name'] }}</td>
                                 <td class="text-center">{{ $row['class_name'] }}</td>
+                                <td class="text-center">{{ $row['school_name'] }}</td>
                                 <td class="text-center">{{ $row['installment_number'] }}</td>
                                 <td class="text-center">{{ $row['due_date'] }}</td>
                                 <td class="text-center">{{ number_format($row['amount_due']) }}</td>
                                 <td class="text-center">{{ number_format($row['amount_paid']) }}</td>
                                 <td class="text-center" style="font-weight: bold; color: red;">{{ number_format($row['balance_due']) }}</td>
-                                <td class="text-center">{{ $row['days_overdue'] }}</td>
+                                <td class="text-center">
+                                    @if($row['days_overdue'] < 20)
+                                        <span class="badge bg-secondary-subtle text-secondary border border-secondary rounded">{{ $row['days_overdue'] }}</span>
+                                    @elseif($row['days_overdue'] > 20 && $row['days_overdue'] < 50)
+                                        <span class="badge bg-warning-subtle text-warning border border-warning rounded">{{ $row['days_overdue'] }}</span>
+                                    @elseif($row['days_overdue'] > 50)
+                                        <span class="badge bg-danger-subtle text-danger border border-danger rounded">{{ $row['days_overdue'] }}</span>
+                                    @endif
+                                </td>
                             </tr>
                         @empty
                             <tr>

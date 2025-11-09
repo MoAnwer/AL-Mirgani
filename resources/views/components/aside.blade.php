@@ -83,6 +83,15 @@
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
+        <x-Menu.MenuItem label="{{ __('app.the_schools') }}" icon="tf-icons bx bxs-school" classes='menu-toggle'>
+            <x-Menu.MenuSub>
+                <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_schools')]) }}" route="schools.index"/>
+                    <x-Menu.MenuItem label="اضافة مدرسة جديدة" route="schools.create"/>
+            </x-Menu.MenuSub>
+        </x-Menu.MenuItem>
+
+
+
         <x-Menu.MenuHeader title="{{ __('app.payrolls') }}"/>
 
         <x-Menu.MenuItem label="{{ __('app.payrolls_report') }}" route="payroll.index" icon="bx bx-money" />

@@ -8,28 +8,32 @@
             <x-container>
             <div class="container my-5">
                 <div class="card px-2 mb-3">
+                    <div class="card-header border-bottom py-4 mb-3">
+                        <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                    </div>
                     <form action="{{ URL::current() }}">
-                    <div class="row p-3">
+                    <div class="row p-3 mb-2">
                         <div class="col-4">
-                            <select class="form-select" name="school_id">
-                                <option value="{{ null }}" selected>@lang('app.school')</option>
+                            <label class="form-label py-2">@lang('app.school')</label>
+                            <select class="form-select" name="school_id" onchange="this.form.submit()">
+                                <option value="{{ null }}" selected>---</option>
                                     @foreach($schools as $key => $value)
                                         <option value="{{ $key }}" @selected(request()->query('school_id') == $key)>{{ $value }}</option>
                                     @endforeach
                             </select>
                         </div>
                         <div class="col-4">
+                            <label class="form-label py-2"> تاريخ البداية</label>
                             <div class="input-group">
-                                <input type="date" class="form-control" name="start_date" value="{{ request()->query('start_date') }}" />
+                                <input type="date" class="form-control" onchange="this.form.submit()" name="start_date" value="{{ request()->query('start_date') }}" />
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
+                            <label class="form-label py-2"> تاريخ النهاية</label>
                             <div class="input-group">
-                                <input type="date" class="form-control" name="end_date" value="{{ request()->query('end_date') }}" />
+                                <input type="date" class="form-control" onchange="this.form.submit()" name="end_date" value="{{ request()->query('end_date') }}" />
                             </div>
                         </div>                                  
-
-                        <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
                     </div>
                 </form>
                 </div>

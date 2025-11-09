@@ -104,7 +104,7 @@ class PayrollDetailController extends Controller
             $this->recalculatePayrollSummary($payroll);
         });
 
-        return to_route('payroll.show', $payroll->id)->with('success', 'تم تعديل البند التفصيلي بنجاح وتم تحديث الملخص.');
+        return to_route('payroll.show', $payroll->id)->with('message', 'تم تعديل البند التفصيلي بنجاح وتم تحديث الملخص.');
     }
     
     /**
