@@ -59,7 +59,7 @@ class ArrearsReportController extends Controller
                                         WHERE installment_payments.installment_id = installments.id
                                     ) IS NULL
                                 ')
-                                ->with(['student.class', 'payments'])
+                                ->with(['student.class', 'payments', 'student.school:id,name'])
                                 ->get();
 
         $reportData = [];
@@ -100,6 +100,7 @@ class ArrearsReportController extends Controller
             $reportData[] = [
                 'student_name'          => $installment->student->full_name ?? '',
                 'class_name'            => $installment->student->class->name ?? 'غير محدد',
+                'school_name'           => $installment->student->school->name ?? 'غير محدد',
                 'installment_number'    => $installment->number ?? '',
                 'due_date'              => date('Y-m-d', strtotime($installment->due_date)),
                 'amount_due'            => $installment->amount ?? 0,
