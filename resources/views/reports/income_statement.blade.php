@@ -34,8 +34,6 @@
                                 <input type="date" class="form-control" onchange="this.form.submit()" name="end_date" value="{{ request()->query('end_date') }}" />
                             </div>
                         </div>                                  
-
-                        {{-- <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                 --}}
                     </div>
                 </form>
                 </div>
