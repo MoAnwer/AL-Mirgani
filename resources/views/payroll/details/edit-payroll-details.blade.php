@@ -1,4 +1,4 @@
-<x-header />
+<x-header title="تعديل بند تفصيلي"/>
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -18,7 +18,6 @@
                 </div>
                 <div class="card-body p-4">
                     
-                    {{-- نموذج التعديل: نستخدم متود PUT/PATCH للتحديث --}}
                     <form action="{{ route('payroll.details.update', ['payroll' => $payroll->id, 'detail' => $detail->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -61,5 +60,3 @@
         </div>
     </div>
 </div>
-
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
