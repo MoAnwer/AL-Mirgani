@@ -61,7 +61,7 @@ final readonly class PayrollService
      */
     public function createPage()
     {
-        $employees = $this->employee->select('id', 'full_name', 'salary', 'fixed_allowances')->get();
+        $employees = $this->employee->select('id', 'full_name', 'salary')->get();
 
         $defaultMonth = now()->month;
         $defaultYear = now()->year;
