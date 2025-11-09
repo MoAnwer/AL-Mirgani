@@ -98,27 +98,6 @@
                           <h3 class="text-danger mb-1 mt-3">{{ $totalExpenses }}</h3>
                         </div>
                       </div>
-                      <ul class="p-0 m-0">
-                        
-
-                          @foreach ($expenseCategories as $category)
-                          <li class="d-flex align-items-center mb-5">
-                           <div class="avatar flex-shrink-0 me-3">
-                              <span class="avatar-initial rounded bg-label-primary">
-                                <i class="icon-base bx bx-mobile-alt"></i>
-                              </span>
-                            </div>
-                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                  <h6 class="mb-0">{{ $category->name ?? 0 }}</h6>
-                              </div>
-                              <div class="user-progress">
-                                <h6 class="mb-0">{{ $category->expenses->sum('amount') }}</h6>
-                              </div>
-                            </div>
-                          </li>
-                          @endforeach
-                      </ul>
                     </div>
                   </div>
                 </div>

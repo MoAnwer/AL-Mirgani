@@ -27,7 +27,6 @@ class DashboardController extends Controller
 
         $totalExpenses = $this->expense->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
 
-        $expenseCategories = $this->expenseCategories->with('expenses')->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->take(5)->inRandomOrder()->get();
 
         $latestStudents = $this->student->latest('created_at')->take(5)->get([
             'id',
@@ -42,7 +41,6 @@ class DashboardController extends Controller
             'totalExpenses' => number_format($totalExpenses),
             'totalProfit'   => number_format($totalRevenue - $totalExpenses),
             'latestStudents' => $latestStudents,
-            'expenseCategories'        => $expenseCategories
         ]);
     }
 }
