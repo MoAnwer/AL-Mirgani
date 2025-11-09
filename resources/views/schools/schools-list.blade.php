@@ -17,7 +17,7 @@
                                 </div>
                                 <a class="btn btn-primary text-white m-5 mt-10" href="{{ route('schools.create') }}">
                                     <i class="icon-base bx bx-plus-circle icon-sm me-1_5 d-block rounded"></i>
-                                    @lang('app.create', ['attribute' => __('app.x-school')])
+                                    اضافة مدرسة جديدة
                                 </a>
                             </div>
                             <x-Table.BasicTable>
