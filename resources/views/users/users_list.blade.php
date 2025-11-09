@@ -1,4 +1,4 @@
-<x-header title="{{ __('app.list', ['attribute' => __('app.the_students')]) }}"/>
+<x-header title="قائمة المستخدمين"/>
     <x-LayoutWrapper>
         <x-LayoutContainer>
             <x-aside />
