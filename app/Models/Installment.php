@@ -33,11 +33,11 @@ class Installment extends Model
 
     public function getRemainingAttribute()
     {
-        return (int) $this->amount -  $this->payments()->sum('paid_amount');
+        return (int) $this->amount -  $this->total_payments;
     }
 
     public function getTotalPaymentsAttribute()
     {
-        return $this->payments()->sum('paid_amount');
+        return $this->payments->sum('paid_amount');
     }
 }

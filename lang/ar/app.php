@@ -125,6 +125,7 @@ return [
     'delete_successful'             => 'تم حذف بيانات :attribute بنجاح',
     'empty_message'                 => 'لا يوجد :attributes',
     'installment_full_paid_message' => 'تم سداد  هذا القسط',
+    'fees_full_paid_message'        => 'مجموع مبالغ الاقساط يساوي الرسوم الدراسية بالفعل ',
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
    

@@ -42,7 +42,7 @@
                                         <h5>@lang('app.student_installments', ['student' => $student->full_name])</h5>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary text-white" href="{{ route('installments.create', $student->id) }}">@lang('app.create', ['attribute' => __('app.installment')])</a>
+                                <a class="btn btn-primary text-white" href="{{ route('installments.create', $student) }}">@lang('app.create', ['attribute' => __('app.installment')])</a>
                             </div>
                             </div>
                             <x-Table.BasicTable>

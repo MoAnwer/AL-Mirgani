@@ -51,9 +51,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="mb-3 mt-4">@lang('app.notes')</label>
+                                            <label class="mb-3 mt-4">@lang('app.statement')</label>
                                             <div class="input-group">
-                                              <textarea rows="5" class="form-control" name="notes">{{ $payment->notes ?? old('notes') }}</textarea>
+                                              <textarea rows="5" class="form-control" name="statement">{{ $payment->statement ?? old('statement') }}</textarea>
                                             </div>
                                         </div>
                                         <input type="hidden" name="student_id" value="{{ $payment->installment->student->id }}"/>

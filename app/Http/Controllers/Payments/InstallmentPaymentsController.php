@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Events\Earning\InstallmentPaymentIsPaid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentRequest;
 use App\Models\Installment;
