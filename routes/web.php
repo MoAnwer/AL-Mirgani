@@ -14,7 +14,8 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function() {
     Route::resource('users', UserController::class);
-    require __DIR__.'/students.php';
+    require __DIR__  . '/schools.php';
+    require __DIR__  . '/students.php';
     require __DIR__  . '/installments.php';
     require __DIR__  . '/payments.php';
     require __DIR__  . '/receipts.php';
