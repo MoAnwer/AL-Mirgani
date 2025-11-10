@@ -98,7 +98,7 @@ class UserController extends Controller
         try {
 
             if ($user->username == config('database.default_user.username')) {
-                return throw new Exception(__('app.remove_admin_msg'));
+                throw new Exception(__('app.remove_admin_msg'));
             }
 
             return view('users.delete-user', compact('user'));
