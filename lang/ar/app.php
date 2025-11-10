@@ -138,4 +138,5 @@ return [
     'not_found_msg'                 => 'لم يتمكن النظام على العثور على الصفحة التي تريدها',
     'internal_server_error'         => ' خطأ من جانب السيرفر',
     'internal_server_error_msg'     => 'تعذر على النظام معالجة طلبك',
+    'remove_admin_msg'              => 'لا يمكن حذف مدير النظام',
 ];
