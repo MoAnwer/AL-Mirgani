@@ -60,7 +60,7 @@
                       </svg>
                     </span>
                   </span>
-                  <span class="app-brand-text demo text-heading fw-bold">مؤسسة الميرغني</span>
+                  <span class="app-brand-text demo text-heading fw-bold">{{ __('app.app_name') }}</span>
                 </a>
               </div>
               @if($errors->any())
@@ -81,7 +81,7 @@
                 @method('POSt')
                 @csrf
                 <div class="mb-6">
-                  <label for="email" class="form-label"> اسم المستخدم</label>
+                  <label for="email" class="form-label">{{ __('app.username') }}</label>
                   <input
                     type="text"
                     class="form-control"
@@ -91,7 +91,7 @@
                     autofocus />
                 </div>
                 <div class="mb-6 form-password-toggle">
-                  <label class="form-label" for="password">كلمة السر</label>
+                  <label class="form-label" for="password"> {{ __('app.password') }} </label>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
