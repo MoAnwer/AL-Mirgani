@@ -12,7 +12,7 @@
         <x-layout-container>
             <x-container>
                 <div class="dashboard-container">
-                    <h3 class="mb-5">التقارير المالية 💰</h3>
+                    <h3 class="mb-5">التقارير  </h3>
                     <x-cards.cards-container>
                         <x-cards.card link="{{ route('accounts') }}" icon="bx bx-book-open" title=" كشف الحساب " description="الرصيد المرحل و الايرادات و المنصرفات ليوم معين"/>
                         <x-cards.card link="{{ route('payroll.summary.report') }}" icon="bx bx-box" title="  تقرير كشوف الرواتب " description="الإجماليات المُعالجة حسب الشهر و العام"/>
