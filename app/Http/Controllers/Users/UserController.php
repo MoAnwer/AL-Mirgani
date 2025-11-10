@@ -37,7 +37,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            
+            $data = $request->validate([
+                'name' => 'required|string',
+                'username' => 'required|string',
+                'password' => 'required|min:6'
+            ]);
+
+            $this->user->create($data);
+
+            return to_route('users.index')->with('message', __('app.create_successful', ['attribute' => __('app.user')]));
+
+        } catch (\Throwable $th) {
+            
+            report($th);
+
+            return to_route('users.create')->with('error', __('app.error' .' ' . $th->getMessage()));
+        }
     }
 
     /**
