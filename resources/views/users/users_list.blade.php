@@ -17,12 +17,16 @@
                                         {{ $users->count() }}
                                     </span>
                                 </div>
+                                <a class="btn btn-primary text-white" href="{{ route('users.create') }}">
+                                    <i class="bx bx-plus-circle me-3"></i>
+                                    @lang('app.create', ['attribute' => __('app.user')])
+                                </a>
                             </div>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
                                     <tr class="text-center">
                                         <td>#</td>
-                                        <td>@lang('app.user')</td>
+                                        <td>@lang('app.name')</td>
                                         <td>@lang('app.username')</td>
                                         <td>@lang('app.created_at')</td>
                                         <td>@lang('app.actions')</td>
