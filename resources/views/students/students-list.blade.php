@@ -12,7 +12,7 @@
                             <div class="card-header d-flex align-items-center justify-content-between">
                                 <div>
                                     <h4>@lang('app.list', ['attribute' => __('app.the_students')])</h4>
-                                     <span class="badge rounded text-black bg-success">
+                                    <span class="badge bg-success-subtle text-success border border-success rounded-pill fw-bold">
                                         عدد التلاميذ:   
                                         {{ $students->count() }}
                                     </span>
