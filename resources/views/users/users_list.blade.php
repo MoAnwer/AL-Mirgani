@@ -45,9 +45,8 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('users.show', $user) }}"><i class="icon-base text-primary bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.user')])</a>
                                                         <a class="dropdown-item" href="{{ route('users.edit', $user) }}"><i class="icon-base text-success bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
-
+                                                        <a class="dropdown-item" href="{{ route('users.delete', $user) }}"><i class="icon-base text-danger bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>
                                                 </div>
                                             </td>
