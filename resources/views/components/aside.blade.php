@@ -68,7 +68,7 @@
     
         <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="menu-icon tf-icons icon-base bx bx-home-alt" />
         
-        <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-user" classes='menu-toggle' >
+        <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-group me-2" classes='menu-toggle' >
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.register_new_student') }}" route="students.create"/>
                 <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_students')]) }}" route="students.index"/>
