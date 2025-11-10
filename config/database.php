@@ -171,4 +171,12 @@ return [
 
     ],
 
+
+
+    'default_user' => [
+        'name'  => env('ADMIN_DEFAULT_NAME', ''),
+        'username' => env('ADMIN_DEFAULT_USERNAME', ''),
+        'password' => env('ADMIN_DEFAULT_PASSWORD', ''),
+    ],
+
 ];
