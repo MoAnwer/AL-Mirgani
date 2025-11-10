@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -38,54 +39,93 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            
+
             $data = $request->validate([
                 'name' => 'required|string',
                 'username' => 'required|string',
                 'password' => 'required|min:6'
+            ], [
+                'password.min'  => 'كلمة السر يجب ان تكون من 6  احرف على الاقل'
             ]);
 
             $this->user->create($data);
 
             return to_route('users.index')->with('message', __('app.create_successful', ['attribute' => __('app.user')]));
-
         } catch (\Throwable $th) {
-            
+
             report($th);
 
-            return to_route('users.create')->with('error', __('app.error' .' ' . $th->getMessage()));
+            return to_route('users.create')->with('error', __('app.error')  . ' : ' . $th->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit-user', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        try {
+
+            $data = $request->validate([
+                'name' => 'required|string',
+                'username' => 'required|string',
+            ]);
+
+            $user->update($data);
+
+            return to_route('users.index')->with('message', __('app.update_successful', ['attribute' => __('app.user')]));
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return to_route('users.create')->with('error', __('app.error')  . ' : ' . $th->getMessage());
+        }
+    }
+
+    /**
+     * Show delete user page
+     */
+    public function delete(User $user)
+    {
+        try {
+
+            if ($user->username == config('database.default_user.username')) {
+                return throw new Exception(__('app.remove_admin_msg'));
+            }
+
+            return view('users.delete-user', compact('user'));
+
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return to_route('users.index')->with('error', __('app.error')  . ' : ' . $th->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        try {
+
+            $user->delete();
+
+            return to_route('users.index')->with('message', __('app.delete_successful', ['attribute' => __('app.user')]));
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return to_route('users.create')->with('error', __('app.error' . ' ' . $th->getMessage()));
+        }
     }
 }
