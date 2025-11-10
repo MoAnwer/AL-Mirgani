@@ -14,6 +14,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function() {
     Route::resource('users', UserController::class);
+    Route::get('users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
     require __DIR__  . '/schools.php';
     require __DIR__  . '/students.php';
     require __DIR__  . '/installments.php';
