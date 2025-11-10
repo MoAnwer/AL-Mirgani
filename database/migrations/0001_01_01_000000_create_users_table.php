@@ -20,7 +20,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        \App\Models\User::create(['username' => 'admin', 'password' => bcrypt(123456), 'name' => 'مدير النظام']);
+        \App\Models\User::create([
+            'username' => config('database.default_user.username'),
+            'password' => bcrypt(config('database.default_user.password')),
+            'name' => config('database.default_user.name')
+        ]);
     }
 
     /**
