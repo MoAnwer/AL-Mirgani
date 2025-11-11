@@ -1,4 +1,4 @@
-<x-header title="إنشاء عنصر راتب جديد"/>
+<x-header title="{{ __('app.create_new_payroll_item') }}"/>
 
 
 
@@ -9,7 +9,7 @@
             <x-nav />
             <x-ContentWrapper>
                 <x-container>
-                    <h4 class="mb-0">إنشاء عنصر راتب جديد</h4>
+                    <h4 class="mb-0">@lang('app.create_new_payroll_item')</h4>
                     <div class="container my-5">
                         <x-alert type="message" />
 
@@ -20,13 +20,11 @@
                                     <div class="form">
                                         <div class="content">
                                             
-                                            {{-- Form Start --}}
                                             <form action="{{ route('payroll_items.store') }}" method="POST">
                                                 @csrf
                                                 
-                                                {{-- اسم العنصر --}}
                                                 <div class="mb-5">
-                                                    <label for="name" class="form-label fw-bold">اسم العنصر (مثال: بدل لبس، غرامة غياب)</label>
+                                                    <label for="name" class="form-label fw-bold">@lang('app.item_name')</label>
                                                     <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" 
                                                         value="{{ old('name') }}" required>
                                                     @error('name')
@@ -34,16 +32,13 @@
                                                     @enderror
                                                 </div>
                                                 
-                                                {{-- نوع العنصر --}}
                                                 <div class="mb-5">
-                                                    <label for="type" class="form-label fw-bold">نوع الحركة</label>
+                                                    <label for="type" class="form-label fw-bold">@lang('app.category'):</label>
                                                     <select name="type" id="type" class="form-select @error('type') is-invalid @enderror" required>
-                                                        <option value="" disabled selected>-- اختر النوع --</option>
+                                                        <option value="" disabled selected>--  @lang('app.category') --</option>
                                                         @foreach ($itemTypes as $type)
                                                             <option value="{{ $type }}" {{ old('type') == $type ? 'selected' : '' }}>
-                                                                {{ $type == 'Addition' ? 'إضافة/علاوة' : 
-                                                                ($type == 'Deduction' ? 'استقطاع/خصم' : 
-                                                                    ($type == 'Tax' ? 'ضريبة' : 'منفعة/ميزة')) }}
+                                                                {{ $type == 'Addition' ? __('app.addition') :  __('app.deduction') }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -54,17 +49,15 @@
 
                                                 <hr>
                                                 
-                                                {{-- هل هو ثابت؟ --}}
                                                 <div class="form-check mb-5">
                                                     <input class="form-check-input" type="checkbox" name="is_fixed" id="is_fixed" value="1" {{ old('is_fixed') ? 'checked' : '' }}>
                                                     <label class="form-check-label fw-bold" for="is_fixed">
-                                                        هل هذا العنصر ثابت القيمة شهرياً؟ (مثل بدل النقل)
+                                                        @lang('app.is_fixed')
                                                     </label>
                                                 </div>
 
-                                                {{-- القيمة الافتراضية --}}
                                                 <div class="mb-5">
-                                                    <label for="default_value" class="form-label">القيمة الافتراضية (تُستخدم إذا كان العنصر ثابتاً)</label>
+                                                    <label for="default_value" class="form-label">@lang('app.default_value'):</label>
                                                     <input type="number" name="default_value" id="default_value" class="form-control @error('default_value') is-invalid @enderror" 
                                                         value="{{ old('default_value', 0) }}" step="0.01">
                                                     @error('default_value')
@@ -72,9 +65,8 @@
                                                     @enderror
                                                 </div>
 
-                                                <button type="submit" class="btn btn-success w-100 mt-3">حفظ العنصر المالي</button>
+                                                <button type="submit" class="btn btn-success w-100 mt-3">@lang('app.save')</button>
                                             </form>
-                                            {{-- Form End --}}
 
                                         </div>
                                     </div>
