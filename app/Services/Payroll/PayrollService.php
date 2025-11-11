@@ -103,7 +103,7 @@ final readonly class PayrollService
         ]);
 
 
-        return to_route('payroll.index')->with('message', 'تمت معالجة وحفظ كشف راتب ' . $employee->full_name . ' بنجاح!');
+        return to_route('payroll.index')->with('message', __('app.create_successful', ['attribute' => $employee->full_name]));
     }
 
     /**
@@ -114,6 +114,9 @@ final readonly class PayrollService
     public function show(EmployeePayroll $payroll)
     {
         $payroll->load(['employee', 'details.item']);
+
+        // verify employee is exist
+        if ($payroll->employee == null) return back()->with('error', __('app.empty_message', ['attributes' => __('app.employee')]));
 
         $additions = $payroll->details->where('item.type', 'Addition');
         $deductions = $payroll->details->where('item.type', 'Deduction');
@@ -174,7 +177,7 @@ final readonly class PayrollService
             }
         });
 
-        return to_route('payroll.show', $payroll->id)->with('message', 'تم تحديث ملخص كشف الراتب بنجاح.');
+        return to_route('payroll.show', $payroll->id)->with('message', __('app.payroll_saved'));
     }
 
     /**

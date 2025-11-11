@@ -1,5 +1,5 @@
 
-<x-header title="تعديل بيانات التلميذ {{ $student->full_name }}" />
+<x-header title="{{ __('app.edit') . ' ' .  $student->full_name }}" />
 
 <x-LayoutWrapper>
     <x-LayoutContainer>
@@ -16,7 +16,7 @@
                                     <div class="alert alert-success text-black mt-5">{{ session('message') }}</div>
                                 @endsession
                             
-                                <h4 class="card-header">تعديل بيانات التلميذ {{ $student->full_name }}</h4>
+                                <h4 class="card-header">{{ __('app.edit') . ' ' .  $student->full_name }}</h4>
 
                                 @if($errors->any())
                                     <div class="alert alert-danger">
@@ -42,7 +42,7 @@
                                         <div class="col-md-6">
                                         <label class="mb-3">@lang('app.address')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="العنوان"  name="address" value="{{ $student->address }}"/>
+                                                <input type="text" class="form-control" placeholder="{{ __('app.address') }}"  name="address" value="{{ $student->address }}"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6 mt-3">
@@ -64,14 +64,14 @@
                                         <div class="col-md-6 mt-3">
                                         <label class="mb-3">@lang('app.school')</label>
                                             <select class="form-select" name="school_id">
-                                                <option selected>-- المدرسة --</option>
+                                                <option selected>-- @lang('app.school') --</option>
                                                 @foreach($schools as $key => $value)
                                                     <option value="{{ $value }}" @selected($student->school->name == $key)>{{ $key }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mt-3">
-                                        <label class="mb-3">الرسوم الدراسية</label>
+                                        <label class="mb-3">@lang('app.total_fee')</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
                                             </div>
@@ -79,7 +79,7 @@
                                         </div>
                                         <button type="submit" class="mt-4 btn btn-success">
                                             <i class="icon-base bx bx-edit-alt me-1"></i>
-                                            تعديل
+                                            @lang('app.edit')
                                         </button>
                                     </form>
                                 </div>
