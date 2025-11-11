@@ -1,8 +1,8 @@
 <?php
 use App\Http\Controllers\PayrollDetailController;
+use App\Http\Middleware\EmployeeIsExists;
 
-
-Route::prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
+Route::middleware(EmployeeIsExists::class)->prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
     Route::get('/create', [PayrollDetailController::class, 'create'])->name('create');
     Route::post('/', [PayrollDetailController::class, 'store'])->name('store');
     
