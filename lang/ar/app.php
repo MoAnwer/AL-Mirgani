@@ -105,6 +105,7 @@ return [
     'startDate'             => 'تاريخ البداية',
     'endDate'               => 'تاريخ النهاية',
     'expense'               => 'منصرف',
+    'payrolls_list'         => 'قائمة كشوف الرواتب المُعالَجة',
     'expenses'              => 'منصرفات',
     'the_expenses'          => 'المنصرفات',
     'the_category'          => 'النوع',
