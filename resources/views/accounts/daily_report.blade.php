@@ -45,7 +45,7 @@
                                             <th>@lang('app.date')</th>
                                             <th>@lang('app.earning')</th>
                                             <th>@lang('app.expenses')</th>
-                                            <th class="text-center">البيان</th>
+                                            <th class="text-center">@lang('app.statement')</th>
                                             <th>الرصيد الجاري</th>
                                         </tr>
                                     </thead>
