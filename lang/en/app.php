@@ -143,6 +143,7 @@ return [
     'delete'                => 'delete'               ,
     'actions'               => 'actions'              ,
     'print'                 => 'print',
+    'view'                  => 'view',
 
 
     // Messages

@@ -140,6 +140,7 @@ return [
     'delete'                => 'حذف',
     'actions'               => 'اجراءات',
     'print'                 => 'طباعة',
+    'view'                  => 'عرض',
 
 
     // Messages
