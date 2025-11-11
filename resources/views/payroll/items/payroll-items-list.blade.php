@@ -1,4 +1,4 @@
-<x-header title="قائمة عناصر الرواتب"/>
+<x-header title="{{ __('app.payroll_items') }}"/>
 <x-LayoutWrapper>
     <x-LayoutContainer>
         <x-aside />
@@ -7,7 +7,7 @@
             <x-ContentWrapper>
                 <x-container>
                     <h4 class="mb-4">
-                        قائمة عناصر الرواتب
+                        {{ __('app.payroll_items') }}
                     </h4>
                     <div class="card">
                     <div class="card-body my-5 px-0">
@@ -16,18 +16,18 @@
                             <div class="d-flex justify-content-end mb-3 mx-5">
                                 <a href="{{ route('payroll_items.create') }}" class="btn btn-primary">
                                     <i class="bx bx-plus-circle"></i>
-                                    <span class="mx-2"> إضافة عنصر جديد</span>
+                                    <span class="mx-2">@lang('app.create', ['attribute' => __('app.item')])</span>
                                 </a>
                             </div>
                             <x-table.basic-table>
                                 <x-table.thead>
                                     <tr>
                                         <th class="text-center">#</th>
-                                        <th class="text-center">اسم العنصر</th>
-                                        <th class="text-center">النوع</th>
-                                        <th class="text-center">هل هو ثابت؟</th>
-                                        <th class="text-center">القيمة الافتراضية</th>
-                                        <th class="text-center">تاريخ الإنشاء</th>
+                                        <th class="text-center">@lang('app.item_name')</th>
+                                        <th class="text-center">@lang('app.category')</th>
+                                        <th class="text-center">@lang('app.is_fixed')</th>
+                                        <th class="text-center">@lang('app.default_value')</th>
+                                        <th class="text-center">@lang('app.created_at')</th>
                                         <th class="text-center">@lang('app.actions')</th>
                                     </tr>
                                 </x-table.thead>
@@ -74,8 +74,8 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center text-muted py-4">
-                                                لا توجد عناصر رواتب مسجلة حتى الآن. ابدأ بإضافة عنصر جديد!
+                                            <td colspan="7" class="text-center text-muted py-4">
+                                                @lang('app.empty_message', ['attributes' => __('app.payroll_items')])
                                             </td>
                                         </tr>
                                     @endforelse
