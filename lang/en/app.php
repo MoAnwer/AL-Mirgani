@@ -122,6 +122,7 @@ return [
     'medication'            => 'Medication'           ,
     'notes'                 => 'Notes'                ,
     'number'                => 'Number'               ,
+    'export_receipt'        => 'Export receipt',
     'earnings'              => 'Earnings'             ,
     'expense'               => 'Expense'              ,
     'expenses'              => 'Expenses'             ,
@@ -142,18 +143,20 @@ return [
     'earnings_through_month'    => 'Earnings through this month',
     'profit_through_month'    => 'Profit through this month',
     'expenses_through_week'    => 'Expenses through this week',
+    'count_of_students_by_school' => 'Count of students in the school',
+    'count_of_students_by_class' => 'Count of students in the class',
  
 
 
     // Actions
-    'create'                => 'create'               ,
-    'edit'                  => 'edit'                 ,
-    'save'                  => 'save'                 ,
-    'back'                  => 'back'                 ,
-    'delete'                => 'delete'               ,
-    'actions'               => 'actions'              ,
-    'print'                 => 'print',
-    'view'                  => 'view',
+    'create'                => 'Create'               ,
+    'edit'                  => 'Edit'                 ,
+    'save'                  => 'Save'                 ,
+    'back'                  => 'Back'                 ,
+    'delete'                => 'Delete'               ,
+    'actions'               => 'Actions'              ,
+    'print'                 => 'Print',
+    'view'                  => 'View',
 
 
     // Messages

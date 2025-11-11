@@ -116,6 +116,7 @@ return [
     'medication'            => 'الادوية التي يتناولها الطالب',
     'notes'                 => 'ملاحظات',
     'number'                => 'رقم :attribute',
+    'export_receipt'        => 'استخراج ايصال',
     'earnings'              => 'ايرادات',
     'startDate'             => 'تاريخ البداية',
     'endDate'               => 'تاريخ النهاية',
@@ -141,6 +142,8 @@ return [
     'earnings_through_month'    => 'الايرادات خلال شهر الحالي  ',
     'profit_through_month'    => 'الارباح خلال شهر الحالي  ',
     'expenses_through_week'    => 'منصرفات الاسبوع الحالي',
+    'count_of_students_by_school' => 'عدد التلاميذ حسب المدرسة',
+    'count_of_students_by_class' => 'عدد التلاميذ حسب الصف',
  
     // Actions
     'create'                => 'اضافة :attribute جديد',
