@@ -133,10 +133,12 @@ return [
     'filters'               => 'Search filters',
     'the_earnings'          => 'Earnings'         ,
     'payroll_details'       => 'Payroll details',
+    'net_salary_paid'       => 'Net due salary to paid',
     'dues'                  => 'Financial Dues',
     'deductions'            => 'Deductions',
     'edit_payroll'          => 'Edit payroll',
     'add_new_payroll_item'  => 'Add payroll item',
+    'payroll_saved'         => 'Payroll updated successfully.',
 
     // Reports
     'general_expense_report'=> 'Total expenses report',

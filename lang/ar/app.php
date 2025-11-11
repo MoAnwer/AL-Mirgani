@@ -133,11 +133,12 @@ return [
     'filters'               => 'فلاتر البحث',
     'the_earnings'          => 'الايرادات',
     'payroll_details'       => 'كشف الراتب المفصّل',
+    'net_salary_paid'       => 'صافي المبلغ المستحق الدفع',
     'dues'                  => 'المستحقات',
     'deductions'            => 'الاستقطاعات',
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
-
+    'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
 
     // Reports
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
