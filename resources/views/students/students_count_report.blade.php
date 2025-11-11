@@ -51,7 +51,7 @@
                 <x-nav />
                 <x-ContentWrapper>
                     <x-Container>
-                        <h3 class="mb-5">عدد التلاميذ حسب المدرسة</h3>
+                        <h3 class="mb-5">@lang('app.count_of_students_by_school')</h3>
                         <div class="cards-grid">
                             @foreach ($countBySchool as $school)
                                 <div class="card my-1 mx-1">
@@ -67,7 +67,7 @@
 
                         <hr />
                         
-                        <h3 class="mb-5">عدد التلاميذ حسب الصف</h3>
+                        <h3 class="mb-5">@lang('app.count_of_students_by_class')</h3>
                         <div class="cards-grid">
                             @foreach ($countByClass as $class)
                                 <div class="card my-1 mx-1">
