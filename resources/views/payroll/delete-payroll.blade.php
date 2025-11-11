@@ -13,7 +13,7 @@
                 </form>
                     <div class="text-center my-4 no-print">
                         <a href="{{ url()->previous() }}" class="btn btn-info btn-lg rounded-pill">
-                            <i class='bx bx-arrow-back me-2'></i> @lang('back')
+                            <i class='bx bx-arrow-back me-2'></i> @lang('app.back')
                         </a>
                     </div>
                 </div>
