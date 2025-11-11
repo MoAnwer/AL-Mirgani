@@ -12,15 +12,15 @@
         <x-layout-container>
             <x-container>
                 <div class="dashboard-container">
-                    <h3 class="mb-5">التقارير  </h3>
+                    <h3 class="mb-5">@lang('app.the_reports')</h3>
                     <x-cards.cards-container>
-                        <x-cards.card link="{{ route('accounts') }}" icon="bx bx-book-open" title=" كشف الحساب " description="الرصيد المرحل و الايرادات و المنصرفات ليوم معين"/>
-                        <x-cards.card link="{{ route('payroll.summary.report') }}" icon="bx bx-box" title="  تقرير كشوف الرواتب " description="الإجماليات المُعالجة حسب الشهر و العام"/>
-                        <x-cards.card link="{{ route('arrears.all') }}" icon="bx bx-money" title=" الأقساط المتأخرة" description="نظرة عامة عن متاخرات الاقساط"/>
-                        <x-cards.card link="{{ route('revenues') }}" icon='bx bxs-bar-chart-alt-2' title="ايرادات حسب الصف" description="تحليل الإيرادات حسب الصف للمرحلة كل المدارس"/>
-                        <x-cards.card link="{{ route('reports.general-expense-report') }}" icon='bx bx-wallet' title="إجمالي المصروفات العامة للمدرسة" description="الإجمالي الكلي للمصروفات التشغيلية والمدرسية ."/>
-                        <x-cards.card link="{{ route('incomeReport') }}" icon='bx bx-calculator' title="قائمة الدخل" description=" الإيرادات و المصروفات التشغيلية و صافي الربح"/>
-                        <x-cards.card link="{{ route('reports.employee-count-report') }}" icon='bx bxs-briefcase' title="توزيع الموظفين حسب القسم" description="نظرة عامة دقيقة على القوى العاملة حسب المهنة."/>
+                        <x-cards.card link="{{ route('accounts') }}" icon="bx bx-book-open" title="{{ __('app.account_statement') }}" description="{{ __('app.account_statement_description') }}"/>
+                        <x-cards.card link="{{ route('payroll.summary.report') }}" icon="bx bx-box" title="{{ __('app.payrolls_report') }}" description="{{ __('app.payroll_report_description') }}"/>
+                        <x-cards.card link="{{ route('arrears.all') }}" icon="bx bx-money" title="{{ __('app.arrears_installments') }}" description="{{ __('app.arrears_installments_description') }}"/>
+                        <x-cards.card link="{{ route('revenues') }}" icon='bx bxs-bar-chart-alt-2' title="{{ __('app.revenues_by_class_report') }}" description="{{ __('app.revenues_by_class_description') }}"/>
+                        <x-cards.card link="{{ route('reports.general-expense-report') }}" icon='bx bx-wallet' title="{{ __('app.total_expenses_report') }}" description="{{ __('app.total_expenses__description') }}"/>
+                        <x-cards.card link="{{ route('incomeReport') }}" icon='bx bx-calculator' title="{{ __('app.income_statement') }}" description="{{ __('app.income_statement_description') }}"/>
+                        <x-cards.card link="{{ route('reports.employee-count-report') }}" icon='bx bxs-briefcase' title="{{ __('app.employee_report') }}" description="{{ __('app.employee_report_description') }}"/>
                     </x-cards.cards-container>
                 </div>
             </x-container>
