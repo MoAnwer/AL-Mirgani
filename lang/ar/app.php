@@ -2,10 +2,13 @@
 
 return [
     'app_name'              => env('APP_NAME'),
+    'welcome'               => 'مرحبا :user لنستعرض آخر الإنجازات. 🎉!',
+    'intro_msg'             => 'ملخص مالي دقيق وقائمة محدّثة بآخر المنضمين إلينا. أنت على اطلاع دائم.',
     'student'               => 'التلميذ',
     'students'              => 'تلاميذ',
     'list'                  => 'قائمة :attribute',
     'the_students'          => ' التلاميذ',
+    'latest_student_in_system' =>'احدث التلاميذ بالنظام',
     'count_of'              => 'عدد :count',
     'create_new_school'     => 'اضافة مدرسة جديدة',
     'the_schools'           => 'المدارس',

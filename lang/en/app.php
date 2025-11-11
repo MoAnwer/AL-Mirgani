@@ -2,10 +2,13 @@
 
 return [
     'app_name'              => env('APP_NAME'),
+    'welcome'               => 'Welcome :user, let\'s view latest achieves 🎉!',
+    'intro_msg'             => 'todo',
     'student'               => 'Student',
     'students'              => 'Students',
     'list'                  => 'List of :attribute',
     'the_students'          => 'Students',
+    'latest_student_in_system' =>'New students in system',
     'count_of'              => 'Count of :count',
     'the_schools'           => 'Schools',
     'register_new_student'  => 'Register new student',
