@@ -102,6 +102,8 @@ return [
     'notes'                 => 'ملاحظات',
     'number'                => 'رقم :attribute',
     'earnings'              => 'ايرادات',
+    'startDate'             => 'تاريخ البداية',
+    'endDate'               => 'تاريخ النهاية',
     'expense'               => 'منصرف',
     'expenses'              => 'منصرفات',
     'the_expenses'          => 'المنصرفات',
@@ -115,6 +117,7 @@ return [
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
     'expenses_report_description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.',
     'expenses_report_total_amount_title' => 'الإجمالي الكلي للمصروفات في الفترة المحددة',
+    'expense_report_amount_description'  => 'هذا المبلغ يمثل مجموع جميع المصروفات المُسجلة والتي استوفت شروط البحث.',
  
     // Actions
     'create'                => 'اضافة :attribute جديد',
@@ -135,6 +138,7 @@ return [
     'fees_full_paid_message'        => 'مجموع مبالغ الاقساط يساوي الرسوم الدراسية بالفعل ',
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
+    'no_date_returned'              =>'لاتوجد بيانات مطابقة لفلاتر البحث',
    
     // Errors
 
