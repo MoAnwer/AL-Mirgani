@@ -43,7 +43,7 @@
                                     <thead  class="table-primary">
                                         <tr>
                                             <th>@lang('app.date')</th>
-                                            <th>الواردات (الإيرادات)</th>
+                                            <th>@lang('app.earning')</th>
                                             <th>المنصرفات (المصروفات)</th>
                                             <th class="text-center">البيان</th>
                                             <th>الرصيد الجاري</th>
