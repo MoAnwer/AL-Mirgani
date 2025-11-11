@@ -9,4 +9,6 @@ Route::name('employees.')->controller(EmployeeController::class)->prefix('employ
     Route::put('{employee}/update', 'update')->name('update');
     Route::get('{employee}/show', 'show')->name('show');
     Route::post('store', 'store')->name('store');
+    Route::get('{employee}/delete', 'delete')->name('delete');
+    Route::delete('{employee}/destroy', 'destroy')->name('destroy');
 });
