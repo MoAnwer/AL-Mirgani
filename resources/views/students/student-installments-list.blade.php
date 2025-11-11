@@ -58,7 +58,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $installment->number }}</td>
-                                            <td>{{ \Illuminate\Support\Number::currency($installment->amount, 'SDG', precision: 0) }}</td>
+                                            <td>{{ number_format($installment->amount) }}</td>
                                             <td>{{ $installment->due_date }} ({{ $installment->formatted_due_date }})</td>
                                             <td>
                                                 <div class="dropdown">
