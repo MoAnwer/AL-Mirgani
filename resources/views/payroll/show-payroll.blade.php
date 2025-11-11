@@ -111,7 +111,7 @@
                                             <h4 class="text-uppercase mb-2 fw-normal opacity-75">صافي المبلغ المستحق الدفع (Net Pay)</h4>
                                             <h1 class="fw-bolder mb-0 display-3">{{ number_format($payroll->net_salary_paid, 2) }}</h1>
                                             @if($payroll->payment_date)
-                                                <small class="text-white-75 mt-2 d-block fs-6">تاريخ الدفع الفعلي: <span class="fw-bold">{{ $payroll->payment_date->format('Y-m-d') }}</span></small>
+                                                <small class="text-white-75 mt-2 d-block fs-6">{{ __('app.payment_date') }}payment_date') }} الفعلي: <span class="fw-bold">{{ $payroll->payment_date->format('Y-m-d') }}</span></small>
                                             @endif
                                         </div>
                                     </div>
