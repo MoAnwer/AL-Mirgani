@@ -113,6 +113,8 @@ return [
 
     // Reports
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
+    'expenses_report_description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.',
+    'expenses_report_total_amount_title' => 'الإجمالي الكلي للمصروفات في الفترة المحددة',
  
     // Actions
     'create'                => 'اضافة :attribute جديد',
