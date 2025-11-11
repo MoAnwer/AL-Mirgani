@@ -13,7 +13,7 @@
                         <div class="row mx-1 mb-3">
                             <div class="card text-center p-2"> 
                                 <div class="card-header border-bottom py-4 mb-3">
-                                    <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                                    <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
                                 </div>
 
                                 <form action="{{ URL::current() }}">
