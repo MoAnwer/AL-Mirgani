@@ -103,7 +103,7 @@ final readonly class PayrollService
         ]);
 
 
-        return to_route('payroll.index')->with('message', 'تمت معالجة وحفظ كشف راتب ' . $employee->full_name . ' بنجاح!');
+        return to_route('payroll.index')->with('message', __('app.create_successful', ['attribute' => $employee->full_name]));
     }
 
     /**
