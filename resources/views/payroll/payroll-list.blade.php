@@ -9,6 +9,7 @@
                 <x-container>
                     <h3 class="mb-10">{{ __('app.payrolls_list') }}</h3>
                         <x-alert type="message" />
+                        <x-alert type="error" />
                         <div class="card shadow mb-4">
                             <div class="card-header border-bottom py-4">
                                 <h5 class="mb-0">{{ __('app.filters') }}</h5>
