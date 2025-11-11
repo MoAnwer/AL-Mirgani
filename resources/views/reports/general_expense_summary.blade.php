@@ -1,7 +1,6 @@
-<x-header title="تقرير إجمالي المصروفات العامة" />
+<x-header title="{{ __('app.general_expense_report') }}" />
 
     <style>
-        body { direction: rtl; }
         .card-expense {
             border-right: 5px solid #dc3545; 
         }
@@ -27,7 +26,7 @@
                             
                             <div class="p-3  border -sm rounded-3 mb-5">
                                 <div class="card-header border-bottom pt-1 pb-3 mb-5">
-                                    <h5 class="mb-0">فلاتر البحث</h5>
+                                    <h5 class="mb-0">{{ __('app.filters') }}</h5>
                                 </div>
                                 <form action="{{ url()->current() }}" method="GET" class="row g-3 align-items-end  pb-3">
                                     
