@@ -8,7 +8,7 @@
                 <h4 class="mb-6">@lang('app.arrears_details')</h4>
                     <div class="card text-center mb-2 pb-4"> 
                         <div class="card-header border-bottom py-4">
-                            <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                            <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
                         </div>
                         <form method="GET">
                             <div class="row p-3 text-start align-items-end">
@@ -79,7 +79,7 @@
                         @empty
                             <tr>
                                 <td colspan="8" class="text-center fw-bold py-8">
-                                    لاتوجد بيانات مطابقة لفلاتر البحث
+                                    {{ __('app.no_date_returned') }}
                                 </td>
                             </tr>
                         @endforelse
