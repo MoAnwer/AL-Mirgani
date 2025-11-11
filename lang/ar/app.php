@@ -130,13 +130,17 @@ return [
     'category'              => 'نوع',
     'earning'               => 'ايراد',
     'filters'               => 'فلاتر البحث',
-    'the_earnings'          => 'الايردات',
+    'the_earnings'          => 'الايرادات',
 
     // Reports
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
     'expenses_report_description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.',
     'expenses_report_total_amount_title' => 'الإجمالي الكلي للمصروفات في الفترة المحددة',
     'expense_report_amount_description'  => 'هذا المبلغ يمثل مجموع جميع المصروفات المُسجلة والتي استوفت شروط البحث.',
+    'expenses_through_month'    => 'المنصرفات خلال شهر الحالي  ',
+    'earnings_through_month'    => 'الايرادات خلال شهر الحالي  ',
+    'profit_through_month'    => 'الارباح خلال شهر الحالي  ',
+    'expenses_through_week'    => 'منصرفات الاسبوع الحالي',
  
     // Actions
     'create'                => 'اضافة :attribute جديد',
@@ -162,7 +166,6 @@ return [
     'no_date_returned'              =>'لاتوجد بيانات مطابقة لفلاتر البحث',
    
     // Errors
-
     'error'                         => 'حدث خطا',
     'not_found'                     => 'الصفحة غير موجودة',
     'not_found_msg'                 => 'لم يتمكن النظام على العثور على الصفحة التي تريدها',
