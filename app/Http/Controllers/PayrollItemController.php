@@ -22,14 +22,14 @@ class PayrollItemController extends Controller
     
     public function create()
     {
-        $itemTypes = ['Addition', 'Deduction', 'Tax', 'Benefit'];
+        $itemTypes = ['Addition', 'Deduction'];
         
         return view('payroll.items.create-payroll-item', compact('itemTypes'));
     }
 
     public function edit(PayrollItem $payrollItem)
     {
-        $itemTypes = ['Addition', 'Deduction', 'Tax', 'Benefit'];
+        $itemTypes = ['Addition', 'Deduction'];
         
         return view('payroll.items.edit-payroll-item', ['item' => $payrollItem, 'itemTypes' => $itemTypes]);
     }
