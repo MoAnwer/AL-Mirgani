@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employees;
 
 use App\Enums\EmployeeTypes;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Emlpoyee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Models\Employee;
 use App\Models\School;
@@ -66,15 +67,28 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('employees.edit-employee-form', compact('employee'));
+        $departments = EmployeeTypes::cases();
+
+        return view('employees.edit-employee-form', compact('employee', 'departments'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        try {
+            
+            $employee->update($request->validated());
+            
+            return back()->with('message', __('app.update_successful', ['attribute' => __('app.employee')]));
+
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
+        }
     }
 
     /**
