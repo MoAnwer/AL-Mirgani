@@ -20,7 +20,7 @@ class StudentService
     public function createStudentPage()
     {
         return view('students.register-new-student', [
-            'title'   => 'تسجيل طلاب جديد',
+            'title'   => trans('app.register_new_student'),
             'stages'  => StageEnum::cases(),
             'classes' => ClassRoom::pluck('id', 'name'),
             'schools' => School::pluck('id', 'name'),

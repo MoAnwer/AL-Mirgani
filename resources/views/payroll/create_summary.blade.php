@@ -1,4 +1,4 @@
-<x-header title="إنشاء سجل كشف راتب ملخص جديد" />
+<x-header title="{{ __('app.create_new_payroll') }}" />
 
 
 <x-layout-wrapper>
@@ -11,7 +11,7 @@
                 <x-alert type="message" />
                 <x-alert type="error" />
 
-                    <h4 class="mb-10">إنشاء سجل كشف راتب ملخص جديد</h3>
+                    <h4 class="mb-10">{{ __('app.create_new_payroll') }}</h3>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -28,12 +28,11 @@
                                     <div class="card-body">
                                         <form action="{{ route('payroll.store') }}" method="POST">
                                             @csrf
-                                            {{-- 1. اختيار الموظف والفترة --}}
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="employee_id" class="form-label  mb-3 fw-bold">اختيار الموظف</label>
+                                                    <label for="employee_id" class="form-label  mb-3 fw-bold">{{ __('app.select_employee') }}</label>
                                                     <select name="employee_id" id="employee_id" class="form-select @error('employee_id') is-invalid @enderror" required>
-                                                        <option value="" disabled selected>-- اختر الموظف --</option>
+                                                        <option value="" disabled selected>--{{ __('app.select_employee')  }}--</option>
                                                         @foreach ($employees as $employee)
                                                             <option value="{{ $employee->id }}" 
                                                                 data-salary="{{ $employee->salary }}"
@@ -48,11 +47,11 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-3 mb-3">
-                                                    <label for="month" class="form-label mb-3 ">الشهر</label>
+                                                    <label for="month" class="form-label mb-3 ">@lang('app.the_month')</label>
                                                     <input type="number" name="month" id="month" class="form-control" value="{{ old('month', $defaultMonth) }}" min="1" max="12" required>
                                                 </div>
                                                 <div class="col-md-3 mb-3">
-                                                    <label for="year" class="form-label mb-3 ">السنة</label>
+                                                    <label for="year" class="form-label mb-3 ">@lang('app.year')</label>
                                                     <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $defaultYear) }}" min="2020" required>
                                                 </div>
                                             </div>
@@ -61,26 +60,26 @@
                                             {{-- 2. إدخال القيم المُجمعة --}}
                                             <div class="row">
                                                 <div class="col-md-4 mb-3">
-                                                    <label for="total_fixed_allowances" class="form-label te mb-3 xt-success">إجمالي العلاوات الثابتة</label>
+                                                    <label for="total_fixed_allowances" class="form-label te mb-3 xt-success">@lang('app.fixed_allowances')</label>
                                                     <input type="number" name="total_fixed_allowances" id="total_fixed_allowances" class="form-control @error('total_fixed_allowances') is-invalid @enderror" 
                                                         value="{{ old('total_fixed_allowances', 0) }}" step="0.01" required>
                                                 </div>
                                                 <div class="col-md-4 mb-3">
-                                                    <label for="total_variable_additions" class="form-label te mb-3 xt-success">إجمالي الإضافات المتغيرة</label>
+                                                    <label for="total_variable_additions" class="form-label te mb-3 xt-success">@lang('app.total_variable_additions')</label>
                                                     <input type="number" name="total_variable_additions" id="total_variable_additions" class="form-control @error('total_variable_additions') is-invalid @enderror" 
                                                         value="{{ old('total_variable_additions', 0) }}" step="0.01" required>
                                                 </div>
                                                 <div class="col-md-4 mb-3">
-                                                    <label for="total_deductions" class="form-label te mb-3 xt-danger">إجمالي الاستقطاعات</label>
+                                                    <label for="total_deductions" class="form-label te mb-3 xt-danger">@lang('app.total_deductions')</label>
                                                     <input type="number" name="total_deductions" id="total_deductions" class="form-control @error('total_deductions') is-invalid @enderror" 
                                                         value="{{ old('total_deductions', 0) }}" step="0.01" required>
                                                 </div>
                                             </div>
 
-                                            {{-- 3. حالة الدفع --}}
+                                            {{-- 3. {{ __('app.payment_state') }} --}}
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="payment_status" class="form-label  mb-3 fw-bold">حالة الدفع</label>
+                                                    <label for="payment_status" class="form-label  mb-3 fw-bold">{{ __('app.payment_state') }}</label>
                                                     <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
                                                         <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>قيد الانتظار</option>
                                                         <option value="Paid" {{ old('payment_status') == 'Paid' ? 'selected' : '' }}>مدفوع</option>
@@ -88,13 +87,13 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="payment_date" class="form-label  mb-3 fw-bold">تاريخ الدفع الفعلي</label>
+                                                    <label for="payment_date" class="form-label  mb-3 fw-bold">{{ __('app.payment_date') }} </label>
                                                     <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
                                                         >
                                                 </div>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary w-100 mt-3">حفظ سجل كشف الراتب</button>
+                                            <button type="submit" class="btn btn-primary w-100 mt-3">@lang('app.save')</button>
                                         </form>
                                         
                                     </div>
@@ -108,24 +107,3 @@
     </x-layout-container>
 </x-layout-wrapper>
 <x-footer/> 
-
-<script>
-    // **JavaScript للمساعدة في ملء البيانات الثابتة تلقائيًا**
-    document.addEventListener('DOMContentLoaded', function () {
-        const employeeSelect = document.getElementById('employee_id');
-        const fixedAllowanceInput = document.getElementById('total_fixed_allowances');
-
-        employeeSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            // جلب قيمة العلاوات الثابتة من بيانات الخيار
-            const fixedAllowance = selectedOption.getAttribute('data-fixed-allowance');
-            
-            if (fixedAllowance !== null) {
-                // ملء حقل العلاوات الثابتة بقيمة الموظف الثابتة
-                fixedAllowanceInput.value = fixedAllowance;
-            } else {
-                fixedAllowanceInput.value = 0;
-            }
-        });
-    });
-</script>

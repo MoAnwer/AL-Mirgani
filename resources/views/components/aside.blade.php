@@ -16,9 +16,9 @@
 
     <ul class="menu-inner py-1">
     
-        <x-Menu.MenuItem route="dashboard" label="لوحة التحكم" icon="menu-icon tf-icons icon-base bx bx-home-alt" />
+        <x-Menu.MenuItem route="dashboard" label="{{ __('app.dashboard_title') }}" icon="menu-icon tf-icons icon-base bx bx-home-alt" />
         
-        <x-Menu.MenuItem route="students.index" label="التلاميذ" icon="tf-icons bx bx-group me-2" classes='menu-toggle' >
+        <x-Menu.MenuItem route="students.index" label="{{ __('app.students') }}" icon="tf-icons bx bx-group me-2" classes='menu-toggle' >
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.register_new_student') }}" route="students.create"/>
                 <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_students')]) }}" route="students.index"/>
@@ -36,7 +36,7 @@
         <x-Menu.MenuItem label="{{ __('app.the_schools') }}" icon="tf-icons bx bxs-school" classes='menu-toggle'>
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_schools')]) }}" route="schools.index"/>
-                    <x-Menu.MenuItem label="اضافة مدرسة جديدة" route="schools.create"/>
+                    <x-Menu.MenuItem label={{ __('app.create_new_school') }}" route="schools.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 

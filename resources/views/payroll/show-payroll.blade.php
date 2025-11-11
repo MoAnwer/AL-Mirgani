@@ -111,7 +111,7 @@
                                             <h4 class="text-uppercase mb-2 fw-normal opacity-75">صافي المبلغ المستحق الدفع (Net Pay)</h4>
                                             <h1 class="fw-bolder mb-0 display-3">{{ number_format($payroll->net_salary_paid, 2) }}</h1>
                                             @if($payroll->payment_date)
-                                                <small class="text-white-75 mt-2 d-block fs-6">تاريخ الدفع الفعلي: <span class="fw-bold">{{ $payroll->payment_date->format('Y-m-d') }}</span></small>
+                                                <small class="text-white-75 mt-2 d-block fs-6">{{ __('app.payment_date') }}: <span class="fw-bold">{{ $payroll->payment_date->format('Y-m-d') }}</span></small>
                                             @endif
                                         </div>
                                     </div>
@@ -147,11 +147,9 @@
 <x-footer/> 
 
 <style>
-    /* Custom styles for a more flat and modern look */
     .bg-gradient-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* A nice modern gradient */
-    }
-    .bg-success-subtle { /* Custom color for lighter badges */
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    .bg-success-subtle {
         background-color: #d1e7dd !important; 
     }
     .bg-warning-subtle {
@@ -160,26 +158,24 @@
     .bg-danger-subtle {
         background-color: #f8d7da !important;
     }
-    .text-white-75 { /* Slightly less opaque white text */
+    .text-white-75 { 
         color: rgba(255, 255, 255, 0.75) !important;
     }
     .card {
-        border: none !important; /* Remove default card border */
+        border: none !important; 
     }
     .table-borderless td, .table-borderless th {
-        border-top: none; /* Remove table borders */
+        border-top: none;
     }
     .table-sm td {
         padding-top: 0.6rem;
         padding-bottom: 0.6rem;
     }
-    /* جعل الأيقونة باهتة قليلاً في الحالة الطبيعية */
     .edit-icon-hover {
         opacity: 0.5;
         transition: opacity 0.2s ease-in-out;
     }
     
-    /* جعل الأيقونة واضحة عند مرور الماوس */
     .edit-icon-hover:hover {
         opacity: 1; 
     }

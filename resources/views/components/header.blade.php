@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-  lang="ar" dir="rtl"
+  lang="{{ config('app.locale') }}" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}"
   class="layout-wide customizer-hide"
   data-assets-path="{{ asset('assets') }}">
   <head>

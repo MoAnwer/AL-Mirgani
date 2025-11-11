@@ -10,7 +10,7 @@
                 <x-container>
                     <div class="card text-center mb-2"> 
                         <div class="card-header border-bottom py-4">
-                            <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                            <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
                         </div>
                         <form action="{{ URL::current() }}">
                             <div class="row p-3 text-start align-items-end">

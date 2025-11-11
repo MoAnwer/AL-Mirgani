@@ -1,4 +1,4 @@
-<x-header title="قائمة كشوف الرواتب المُعالَجة"/>
+<x-header title="{{ __('app.payrolls_list') }}"/>
 
 <x-layout-wrapper>
     <x-layout-container>
@@ -7,19 +7,19 @@
             <x-nav />
             <x-content-wrapper>
                 <x-container>
-                    <h3 class="mb-10">قائمة كشوف الرواتب المُعالَجة</h3>
+                    <h3 class="mb-10">{{ __('app.payrolls_list') }}</h3>
                         <x-alert type="message" />
                         <div class="card shadow mb-4">
                             <div class="card-header border-bottom py-4">
-                                <h5 class="mb-0">فلاتر البحث</h5>
+                                <h5 class="mb-0">{{ __('app.filters') }}</h5>
                             </div>
                             <div class="card-body mt-5">
                                 <form method="GET" action="{{ route('payroll.index') }}">
                                     <div class="row g-3">
                                         <div class="col-md-3">
-                                            <label for="employee_id" class="form-label">الموظف</label>
+                                            <label for="employee_id" class="form-label">{{ __('app.employee') }}</label>
                                             <select name="employee_id" onchange="this.form.submit()" id="employee_id" class="form-select">
-                                                <option value="">-- كل الموظفين --</option>
+                                                <option value="">----</option>
                                                 @foreach ($employees as $employee)
                                                     <option value="{{ $employee->id }}" {{ request('employee_id') == $employee->id ? 'selected' : '' }}>
                                                         {{ $employee->full_name }}
@@ -28,24 +28,24 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="payment_status" class="form-label">حالة الدفع</label>
+                                            <label for="payment_status" class="form-label">{{ __('app.payment_state') }}</label>
                                             <select name="payment_status" onchange="this.form.submit()" id="payment_status" class="form-select">
-                                                <option value="{{ null }}">-- كل الحالات --</option>
+                                                <option value="{{ null }}">---</option>
                                                 <option value="Paid" @selected(request('payment_status') == 'Paid')>مدفوع</option>
                                                 <option value="Pending" @selected(request('payment_status') == 'Pending')>في الانتظار</option>
                                                 <option value="Failed" @selected(request('payment_status') == 'Failed')>فشل</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="month" class="form-label">الشهر</label>
+                                            <label for="month" class="form-label">{{ __('app.the_month') }}</label>
                                             <input type="number" onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
                                         </div>
                                         <div class="col-md-2">
-                                            <label for="year" class="form-label">السنة</label>
+                                            <label for="year" class="form-label">{{ __('app.year') }}</label>
                                             <input type="number" onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
                                         </div>
                                         <div class="col-md-1 d-flex align-items-end">
-                                            <button type="submit" class="btn btn-primary w-100">بحث</button>
+                                            <button type="submit" class="btn btn-primary w-100">@lang('app.search')</button>
                                         </div>
                                     </div>
                                 </form>
@@ -58,22 +58,22 @@
                                         <x-table.thead>
                                             <tr class="text-center">
                                                 <th>#</th>
-                                                <th>الموظف</th>
-                                                <th>الفترة</th>
-                                                <th>الراتب الأساسي</th>
-                                                <th>إجمالي المستحقات</th>
-                                                <th>إجمالي الاستقطاعات</th>
-                                                <th>صافي المبلغ المدفوع</th>
-                                                <th>حالة الدفع</th>
-                                                <th>تاريخ الدفع</th>
-                                                <th>الإجراءات</th>
+                                                <th>@lang('app.employee')</th>
+                                                <th>@lang('app.interval')</th>
+                                                <th>@lang('app.basic_salary')</th>
+                                                <th>@lang('app.total_due')</th>
+                                                <th>@lang('app.total_deductions')</th>
+                                                <th>@lang('app.total_paid_amount')</th>
+                                                <th>@lang('app.payment_state')</th>
+                                                <th>@lang('app.payment_date')</th>
+                                                <th>@lang('app.actions')</th>
                                             </tr>
                                         </x-table.thead>
                                         <x-table.tbody>
                                             @forelse ($payrolls as $payroll)
                                                 <tr class="text-center">
                                                     <td>{{ $payroll->id }}</td>
-                                                    <td class="text-start fw-bold">{{ $payroll->employee->full_name ?? 'موظف محذوف' }}</td>
+                                                    <td class="text-start fw-bold">{{ $payroll->employee->full_name ?? __('app.deleted_employee') }}</td>
                                                     <td>{{ $payroll->month }}/{{ $payroll->year }}</td>
                                                     <td>{{ number_format($payroll->basic_salary_snapshot, 2) }} جنية</td>
                                                     <td>
@@ -109,16 +109,16 @@
                                                         <div class="dropdown-menu">
                                                              <a class="dropdown-item" href="{{ route('payroll.show', $payroll->id) }}" class="btn btn-sm btn-info">
                                                                 <i class='bx bx-news me-1 text-info'></i>
-                                                                 عرض
+                                                                @lang('app.view')
                                                             </a>
 
                                                             @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == \App\Enums\PaymentStatusEnum::FAILED->value)
-                                                                <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i> تعديل</a>
+                                                                <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i>@lang('app.edit')</a>
                                                                 <a class="dropdown-item" href="{{ route('payroll.delete', $payroll) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-trash me-1 text-danger'></i>@lang('app.delete')</a>
                                                             @endif
 
                                                             @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
-                                                                <a class="dropdown-item" href="{{ route('payroll.invoice.print', $payroll) }}" class="btn btn-sm btn-warning me-1"><i class='bx bxs-printer me-1 text-primary'></i> طباعة</a>
+                                                                <a class="dropdown-item" href="{{ route('payroll.invoice.print', $payroll) }}" class="btn btn-sm btn-warning me-1"><i class='bx bxs-printer me-1 text-primary'></i> @lang('app.print')</a>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -127,7 +127,7 @@
                                             @empty
                                                 <tr>
                                                     <td colspan="9" class="text-center text-muted py-4">
-                                                        لم يتم العثور على أي كشوف رواتب مطابقة لفلتر البحث.
+                                                        @lang('app.no_date_returned')
                                                     </td>
                                                 </tr>
                                             @endforelse
@@ -135,7 +135,7 @@
                                         <tfoot class="bg-label-secondary text-light">
                                             <tr class="text-light text-center fw-bold">
                                                 <td></td>
-                                                <td class="text-center" colspan="2">الاجمالي</td>
+                                                <td class="text-center" colspan="2">@lang('app.total')</td>
                                                 <td>{{ number_format($payrolls->sum('basic_salary_snapshot'), 2) }} جنية</td>
                                                 <td>{{ number_format(
                                                     $payrolls->sum('basic_salary_snapshot') + 
