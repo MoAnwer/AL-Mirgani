@@ -58,6 +58,7 @@ return [
     'total'                 => 'Total',
     'addition'              => 'Addition',
     'deduction'             => 'Deduction',
+    'account_statement'     => 'Account statement',
     'discount'              => 'Discount',
     'student_name'          => 'Student name',
     'student_number'        => 'Student number',

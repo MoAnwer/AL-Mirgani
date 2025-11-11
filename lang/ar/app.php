@@ -161,6 +161,7 @@ return [
     'dues'                  => 'المستحقات',
     'deductions'            => 'الاستقطاعات',
     'deduction'             => 'استقطاع/خصم',
+    'account_statement'     => '',
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
