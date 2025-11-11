@@ -107,24 +107,3 @@
     </x-layout-container>
 </x-layout-wrapper>
 <x-footer/> 
-
-<script>
-    // **JavaScript للمساعدة في ملء البيانات الثابتة تلقائيًا**
-    document.addEventListener('DOMContentLoaded', function () {
-        const employeeSelect = document.getElementById('employee_id');
-        const fixedAllowanceInput = document.getElementById('total_fixed_allowances');
-
-        employeeSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            // جلب قيمة العلاوات الثابتة من بيانات الخيار
-            const fixedAllowance = selectedOption.getAttribute('data-fixed-allowance');
-            
-            if (fixedAllowance !== null) {
-                // ملء حقل العلاوات الثابتة بقيمة الموظف الثابتة
-                fixedAllowanceInput.value = fixedAllowance;
-            } else {
-                fixedAllowanceInput.value = 0;
-            }
-        });
-    });
-</script>
