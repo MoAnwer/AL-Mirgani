@@ -142,6 +142,7 @@ return [
     'back'                  => 'back'                 ,
     'delete'                => 'delete'               ,
     'actions'               => 'actions'              ,
+    'print'                 => 'print',
 
 
     // Messages

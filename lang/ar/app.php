@@ -139,6 +139,7 @@ return [
     'back'                  => 'رجوع',
     'delete'                => 'حذف',
     'actions'               => 'اجراءات',
+    'print'                 => 'طباعة',
 
 
     // Messages
