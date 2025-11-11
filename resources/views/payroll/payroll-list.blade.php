@@ -11,7 +11,7 @@
                         <x-alert type="message" />
                         <div class="card shadow mb-4">
                             <div class="card-header border-bottom py-4">
-                                <h5 class="mb-0">فلاتر البحث</h5>
+                                <h5 class="mb-0">{{ __('app.filters') }}</h5>
                             </div>
                             <div class="card-body mt-5">
                                 <form method="GET" action="{{ route('payroll.index') }}">
