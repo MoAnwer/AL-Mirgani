@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="my-5">
                                         <hr />
-                                            <h5>بيانات ولي الامر</h5>
+                                            <h5>@lang('app.parent_data')</h5>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label class="form-label mb-2">@lang('app.parent_full_name')</label>
@@ -111,22 +111,22 @@
 
                                         <div>
                                         <hr />
-                                            <h5 class="mb-5">بيانات رسوم التسجيل</h5>
+                                            <h5 class="mb-5">@lang('app.registration_data')</h5>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label mb-2">رسوم التسجيل</label>
+                                                    <label class="form-label mb-2">@lang('app.registration_fee')</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="registration_fee" value="{{ old('registration_fee') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label class="form-label mb-2">المبلغ المدفوع</label>
+                                                    <label class="form-label mb-2">@lang('app.paid_amount')</label>
                                                     <div class="input-group">
                                                         <input type="number" class="form-control"  name="paid_amount" value="{{ old('paid_amount') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label class="form-label mb-2"> طريقة الدفع</label>
+                                                    <label class="form-label mb-2">@lang('app.payment_method')</label>
                                                     <select class="form-select" name="payment_method">
                                                     <option value="{{ null }}" selected>--</option>
                                                         @foreach(["كاش", "بنكك"] as $value)
@@ -136,20 +136,20 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <label class="form-label mb-2">رقم العملية</label>
+                                                    <label class="form-label mb-2">@lang('app.process_number')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" placeholder="رقم العملية" name="transaction_id" value="{{ old('transaction_id') }}"/>
+                                                        <input type="number" class="form-control" placeholder= "@lang('app.process_number')" name="transaction_id" value="{{ old('transaction_id') }}"/>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-2">
-                                                 <label class="form-label mb-2">تاريخ الدفع</label>
+                                                 <label class="form-label mb-2">{{ __('app.payment_date') }}</label>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" name="payment_date" value="{{ old('payment_date') }}"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class=" mt-4 btn btn-primary">اضافة</button>
+                                        <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
                                     </form>
                                 </div>
                             </div>
