@@ -13,8 +13,8 @@
                     <div class="d-flex align-items-center row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <h4 class="card-title text-primary mb-3">مرحبا {{ auth()->user()->name }}  !  لنستعرض آخر الإنجازات. 🎉</h4>
-                          <p>ملخص مالي دقيق وقائمة محدّثة بآخر المنضمين إلينا. أنت على اطلاع دائم.<p>
+                          <h4 class="card-title text-primary mb-3">@lang('app.welcome', ['user' => auth()->user()->username])</h4>
+                          <p>@lang('app.intro_msg')</p>
                         </div>
                       </div>
                       <div class="col-sm-5 text-center text-sm-left">
@@ -107,7 +107,7 @@
                 <div class="col-md-6 col-lg-8 order-2 mb-6">
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                      <h5 class="card-title m-0 me-2">احدث التلاميذ بالنظام</h5>
+                      <h5 class="card-title m-0 me-2">@lang('app.latest_student_in_system')</h5>
                     </div>
 
                   <div class="card-body pt-4">
