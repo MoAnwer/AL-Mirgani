@@ -122,6 +122,7 @@ return [
     'medication'            => 'Medication'           ,
     'notes'                 => 'Notes'                ,
     'number'                => 'Number'               ,
+    'export_receipt'        => 'Export receipt',
     'earnings'              => 'Earnings'             ,
     'expense'               => 'Expense'              ,
     'expenses'              => 'Expenses'             ,
@@ -148,14 +149,14 @@ return [
 
 
     // Actions
-    'create'                => 'create'               ,
-    'edit'                  => 'edit'                 ,
-    'save'                  => 'save'                 ,
-    'back'                  => 'back'                 ,
-    'delete'                => 'delete'               ,
-    'actions'               => 'actions'              ,
-    'print'                 => 'print',
-    'view'                  => 'view',
+    'create'                => 'Create'               ,
+    'edit'                  => 'Edit'                 ,
+    'save'                  => 'Save'                 ,
+    'back'                  => 'Back'                 ,
+    'delete'                => 'Delete'               ,
+    'actions'               => 'Actions'              ,
+    'print'                 => 'Print',
+    'view'                  => 'View',
 
 
     // Messages

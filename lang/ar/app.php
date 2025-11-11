@@ -116,6 +116,7 @@ return [
     'medication'            => 'الادوية التي يتناولها الطالب',
     'notes'                 => 'ملاحظات',
     'number'                => 'رقم :attribute',
+    'export_receipt'        => 'استخراج ايصال',
     'earnings'              => 'ايرادات',
     'startDate'             => 'تاريخ البداية',
     'endDate'               => 'تاريخ النهاية',

@@ -78,7 +78,7 @@
                                                                         <form method="post" action="{{ route('receipts.store', $payment) }}">
                                                                             @csrf
                                                                             @method('post')
-                                                                            <button class="dropdown-item"><i class="bx bx-news me-1"></i>استخراج ايصال</button>
+                                                                            <button class="dropdown-item"><i class="bx bx-news me-1"></i>@lang('app.export_receipt')</button>
                                                                             <a class="dropdown-item" href="{{ route('installments.payments.edit', $payment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                                         </form>
                                                                     @else 
