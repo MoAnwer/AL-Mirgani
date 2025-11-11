@@ -166,6 +166,8 @@ return [
     'arrears_installments'  => 'الأقساط المتأخرة',
     'arrears_installments_description'  => 'نظرة عامة عن متاخرات الاقساط',
     'payroll_report_description' => 'الإجماليات المُعالجة حسب الشهر و العام',
+    'revenues_by_class_report' => 'ايرادات حسب الصف',
+    'revenues_by_class_description' => 'تحليل الإيرادات حسب الصف للمرحلة كل المدارس',
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',

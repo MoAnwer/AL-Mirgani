@@ -63,6 +63,8 @@ return [
     'arrears_installments'  => 'Arrears',
     'arrears_installments_description'  => 'arrears overview',
     'payroll_report_description' => 'overview about payroll in months and years',
+    'revenues_by_class_report' => 'Classes revenues',
+    'revenues_by_class_description' => 'overview of revenues for each class',
     'discount'              => 'Discount',
     'student_name'          => 'Student name',
     'student_number'        => 'Student number',
