@@ -82,7 +82,7 @@
                                                                             <a class="dropdown-item" href="{{ route('installments.payments.edit', $payment) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                                         </form>
                                                                     @else 
-                                                                        <a class="dropdown-item" href="{{ route('receipts.show', $payment->receipt) }}"><i class="icon-base bx bx-news me-1"></i>عرض الايصال</a>
+                                                                        <a class="dropdown-item" href="{{ route('receipts.show', $payment->receipt) }}"><i class="icon-base bx bx-news me-1"></i>{{ __('app.view_receipt') }}</a>
                                                                     @endif
                                                                     <a class="dropdown-item" href="{{ route('installments.payments.delete', $payment) }}"><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                                 </div>
