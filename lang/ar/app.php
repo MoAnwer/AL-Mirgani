@@ -94,6 +94,7 @@ return [
     'payment_date'          => 'تاريخ الدفع',
     'process_number'        =>'رقم العملية',
     'receipt_number'        => 'رقم الايصال',
+    'view_receipt'          => 'عرض الايصال',
     'installment_payments'  => 'مدفوعات القسط',
     'payment'               => 'مدفوع',
     'the_installment'       => 'القسط',
@@ -139,6 +140,7 @@ return [
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
+    
 
     // Reports
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',

@@ -94,6 +94,7 @@ return [
     'payment_date'          => 'Payment date'         ,
     'process_number'        => 'Process number',
     'receipt_number'        => 'Receipt number'       ,
+    'view_receipt'          => 'View receipt',
     'installment_payments'  => 'Installment payments' ,
     'payment'               => 'Payment'              ,
     'the_installment'       => 'The installment'      ,
