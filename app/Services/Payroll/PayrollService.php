@@ -177,7 +177,7 @@ final readonly class PayrollService
             }
         });
 
-        return to_route('payroll.show', $payroll->id)->with('message', 'تم تحديث ملخص كشف الراتب بنجاح.');
+        return to_route('payroll.show', $payroll->id)->with('message', __('app.payroll_saved'));
     }
 
     /**
