@@ -116,6 +116,7 @@ return [
     'item'                  => 'عنصر',
     'item_name'             => 'اسم العنصر',
     'is_fixed'              => 'هل هو ثابت؟',
+    'default_value'         => 'القيمة الافتراضية',
     'payrolls_report'       => 'كشوف الرواتب',
     'create_payroll_scan'   => 'إنشاء ملخص كشف الراتب',
     'payroll_items'         => ' قائمة عناصر الرواتب',

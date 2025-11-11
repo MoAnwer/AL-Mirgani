@@ -19,6 +19,7 @@ return [
     'item'                  => 'item',
     'item_name'             => 'Item name',
     'is_fixed'              => 'it is fixed ?',
+    'default_value'         => 'Default value',
     'installment_scheduler' => 'Remaining installments dates',
     'net_total_due_fee'     => 'Net Total due fee',
     'student_remaining_amount' => 'Student remaining amount',
