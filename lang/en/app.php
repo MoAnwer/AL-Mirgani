@@ -142,6 +142,8 @@ return [
     'earnings_through_month'    => 'Earnings through this month',
     'profit_through_month'    => 'Profit through this month',
     'expenses_through_week'    => 'Expenses through this week',
+    'count_of_students_by_school' => 'Count of students in the school',
+    'count_of_students_by_class' => 'Count of students in the class',
  
 
 
