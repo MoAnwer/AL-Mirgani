@@ -34,9 +34,9 @@
                             <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
                                 <i class="icon-base bx bx-user icon-sm me-1_5 d-block w-px-100 h-px-100 rounded"></i>
                                 <div class="button-wrapper">
-                                    <h4>{{ $student->full_name }}</h4>
-                                    <span class="badge rounded bg-label-secondary">@lang('app.student_number') : {{ $student->student_number }}</span>
-                                    <span class="badge rounded bg-success">@lang('app.discount') : {{ $student->discount }}%</span>
+                                    <h3>{{ $student->full_name }}</h3>
+                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary fs-6 pe-2 rounded-pill">@lang('app.student_number') : {{ $student->student_number }}</span>
+                                    <span class="badge bg-success-subtle text-success border border-success fs-6 pe-2 rounded-pill">@lang('app.discount') : {{ $student->discount }}%</span>
                                 </div>
                             </div>
                             </div>
