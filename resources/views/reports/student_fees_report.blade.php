@@ -2,21 +2,20 @@
 
 <style>
     
-    /* Modern, Flat, and Calm CSS Styles */
     :root {
-        --primary-color: #686BFD; /* أزرق أساسي هادئ */
-        --secondary-color: #f8f9fa; /* خلفية الجداول والبنود */
-        --bg-color: #ffffff; /* خلفية الجسم */
-        --border-color: #e9ecef; /* لون الحدود الخفيف */
-        --paid-color: #28a745; /* أخضر للدفعات */
-        --due-color: #dc3545; /* أحمر خفيف للمستحق */
+        --primary-color: #686BFD; 
+        --secondary-color: #f8f9fa; 
+        --bg-color: #ffffff; 
+        --border-color: #e9ecef; 
+        --paid-color: #28a745; 
+        --due-color: #dc3545; 
     }
     
     .report-container {
         margin: 20px auto;
         background-color: var(--bg-color);
-        border-radius: 12px; /* حواف مستديرة */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* ظل ناعم */
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
         padding: 30px;
     }
 
@@ -28,23 +27,21 @@
         font-weight: 600;
     }
     
-    /* Box Styles */
     .summary-box, .financial-summary-box {
-        background-color: #e6f7ff; /* خلفية زرقاء فاتحة جدًا */
+        background-color: #e6f7ff; 
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
         border-center: 5px solid var(--primary-color);
     }
 
-    /* Table Styles */
     table {
         width: 100%;
-        border-collapse: separate; /* لإضافة حواف مستديرة */
+        border-collapse: separate;
         border-spacing: 0;
         margin-bottom: 30px;
         border-radius: 8px;
-        overflow: hidden; /* لاخفاء الحواف الزائدة */
+        overflow: hidden;
     }
     
     th, td {
@@ -64,17 +61,15 @@
         background-color: var(--secondary-color);
     }
     
-    /* Footer/Totals Styling */
     tfoot td {
-        background-color: #d1ecf1; /* لون مميز للإجمالي */
+        background-color: #d1ecf1; 
         font-weight: bold;
         color: #0c5460;
         border-top: 2px solid var(--primary-color);
     }
     
-    /* Status/Balance Styling */
     .balance-due-row td {
-        background-color: #f8d7da; /* خلفية وردية خفيفة */
+        background-color: #f8d7da;
         color: var(--due-color);
         font-weight: bold;
     }
@@ -86,11 +81,10 @@
     }
 
     .net-fees-cell {
-        background-color: #fff3cd; /* لون اصفر هادئ لصافي الرسوم */
+        background-color: #fff3cd;
         font-weight: bold;
     }
 
-    /* Adjusting text alignment for amounts */
     .align-center { text-align: left; }
     .align-center { text-align: center; }
 </style>
@@ -102,26 +96,26 @@
         <x-layout-container>
             <x-container>
                 <div class="report-container">
-                    <h2 style="text-align: center;">كشف تحصيل الرسوم للطالب</h2>
-                    <p style="text-align: center; color: #6c757d; margin-bottom: 40px">تاريخ التقرير: {{ now()->format('Y-m-d') }}</p>
+                    <h2 style="text-align: center;">@lang('app.student_financial_data')</h2>
+                    <p style="text-align: center; color: #6c757d; margin-bottom: 40px">@lang('app.date') : {{ now()->format('Y-m-d') }}</p>
 
                     <div class="summary-box">
-                        <h3 style="border-bottom: none; margin-bottom: 10px;">بيانات الالتزام المالي</h3>
+                        <h3 style="border-bottom: none; margin-bottom: 10px;">@lang('app.financial_data')</h3>
                         <table style="border-spacing: 5px; margin: 0;">
                             <tr style="background-color: transparent;">
-                                <td style="width: 20%; border: none; padding: 5px;"><strong>اسم الطالب:</strong></td>
+                                <td style="width: 20%; border: none; padding: 5px;"><strong> @lang('app.student_name'):</strong></td>
                                 <td style="width: 20%; border: none; padding: 5px;">{{ $student->full_name}}</td>
-                                <td style="width: 30%; border: none; padding: 5px;"><strong>الصف/المرحلة:</strong></td>
-                                <td style="width: 20%; border: none; padding: 5px;">{{ $student->stage ?? 'غير محدد' }}</td>
+                                <td style="width: 30%; border: none; padding: 5px;"><strong>@lang('app.class')</strong></td>
+                                <td style="width: 20%; border: none; padding: 5px;">{{ $student->stage ?? '-' }}</td>
                             </tr>
                             <tr style="background-color: transparent;">
-                                <td style="border: none; padding: 5px;"><strong>المستحقات الكلية:</strong></td>
+                                <td style="border: none; padding: 5px;"><strong> @lang('app.total_due')</strong></td>
                                 <td style="border: none; padding: 5px;">{{ number_format($grossFees , 2) }} جنية</td>
-                                <td style="border: none; padding: 5px;"><strong>الخصومات/الإعفاءات:</strong></td>
+                                <td style="border: none; padding: 5px;"><strong>@lang('app.discount')</strong></td>
                                 <td style="border: none; padding: 5px;">{{ $discountAmount }}%</td>
                             </tr>
                             <tr style="background-color: transparent;">
-                                <td colspan="3" style="text-align: left; font-size: 1.1em; border: none; padding: 8px;"><strong>صافي الرسوم المستحقة الكلية:</strong></td>
+                                <td colspan="3" style="text-align: left; font-size: 1.1em; border: none; padding: 8px;"><strong>@lang('app.net_total_fees'):</strong></td>
                                 <td class="net-fees-cell" style="font-size: 1.1em; border: none; text-align: left;"><strong>{{ number_format($netFees , 2) }} جنية</strong></td>
                             </tr>
                         </table>
@@ -150,17 +144,16 @@
                         </tbody>
                     </table>
 
-                    <h3 stype="">سجل الدفعات (التحصيل)</h3>
+                    <h3 stype="">@lang('app.payment_log')</h3>
                     <table>
                         <thead>
                             <tr>
                                 <th class="align-center">#</th>
                                 <th class="align-center">{{ __('app.payment_date') }}</th>
-                                <th class="align-center">رقم الإيصال</th>
-                                <th class="align-center">بيان الحركة</th>
-                                <th class="align-center">مبلغ الدفعة</th>
-                                <th class="align-center">طريقة الدفع</th>
-                                <th class="align-center">الموظف</th>
+                                <th class="align-center">@lang('app.receipt_number')</th>
+                                <th class="align-center">@lang('app.statement')</th>
+                                <th class="align-center">@lang('app.paid_amount')</th>
+                                <th class="align-center">@lang('app.payment_method')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,47 +165,46 @@
                                 <td class="align-center">{{ $payment['statement'] }}</td>
                                 <td class="align-center" class="align-center">{{ number_format($payment['paid_amount'] ?? 0, 2) }}</td>
                                 <td class="align-center">{{ $payment['payment_method']}}</td>
-                                <td class="align-center">{{ $payment['collector'] ??0}}</td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" style="text-align: center; color: #6c757d;">لم يتم تسجيل أي دفعات لهذا الطالب بعد.</td>
+                                <td colspan="7" style="text-align: center; color: #6c757d;">@lang('app.no_payment_log')</td>
                             </tr>
                             @endforelse
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="1" style="text-align: left;">الإجمالي المحصّل حتى تاريخه:</td>
+                                <td colspan="1" style="text-align: left;">@lang('app.total_paid_amount_collected')</td>
                                 <td colspan="6" class="paid-total-cell align-center">{{ number_format($totalPaid , 2) }} جنية</td>
                             </tr>
                         </tfoot>
                     </table>
 
 
-                    <h3>ملخص الموقف المالي</h3>
+                    <h3>@lang('app.financial_summary')</h3>
                     <table>
                         <tr>
-                            <td style="width: 40%;">صافي الرسوم المستحقة</td>
+                            <td style="width: 40%;">@lang('app.net_total_due_fee')</td>
                             <td style="width: 60%;">{{ number_format($netFees , 2) }} جنية</td>
                         </tr>
                         <tr>
-                            <td>إجمالي المبلغ المدفوع</td>
+                            <td>@lang('app.total_paid_amount')</td>
                             <td>{{ number_format($totalPaid , 2) }} جنية</td>
                         </tr>
                         <tr class="{{ 1 > 0 ? 'balance-due' : '' }}">
-                            <td><strong>المبلغ المتبقي على الطالب</strong></td>
+                            <td><strong>@lang('app.student_remaining_amount')</strong></td>
                             <td><strong>{{ number_format($balanceDue , 2) }} جنية</strong></td>
                         </tr>
                     </table>
 
-                    <h3 style="margin-top: 30px;">جدول الأقساط وتواريخ الاستحقاق المتبقية</h3>
+                    <h3 style="margin-top: 30px;">@lang('app.installment_scheduler')</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th class="align-center">القسط</th>
-                                <th class="align-center">تاريخ الاستحقاق</th>
-                                <th class="align-center">المبلغ المتوقع</th>
-                                <th class="align-center">الحالة الحالية</th>
+                                <th class="align-center">@lang('app.the_installment')</th>
+                                <th class="align-center">@lang('app.due_date')</th>
+                                <th class="align-center">@lang('app.due_amount')</th>
+                                <th class="align-center">@lang('app.paid_amount')</th>
                             </tr>
                         </thead>
                         <tbody>
