@@ -42,7 +42,7 @@
                                 <table class="table table-hover">
                                     <thead  class="table-primary">
                                         <tr>
-                                            <th>التاريخ</th>
+                                            <th>@lang('app.date')</th>
                                             <th>الواردات (الإيرادات)</th>
                                             <th>المنصرفات (المصروفات)</th>
                                             <th class="text-center">البيان</th>
