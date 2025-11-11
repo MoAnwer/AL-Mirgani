@@ -132,6 +132,12 @@ return [
     'earning'               => 'ايراد',
     'filters'               => 'فلاتر البحث',
     'the_earnings'          => 'الايرادات',
+    'payroll_details'       => 'كشف الراتب المفصّل',
+    'dues'                  => 'المستحقات',
+    'deductions'            => 'الاستقطاعات',
+    'edit_payroll'          => 'تعديل الملخص',
+    'add_new_payroll_item'  => ' إضافة بند تفصيلي',
+
 
     // Reports
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',

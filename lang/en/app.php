@@ -132,7 +132,11 @@ return [
     'earning'               => 'Earning'              ,
     'filters'               => 'Search filters',
     'the_earnings'          => 'Earnings'         ,
-
+    'payroll_details'       => 'Payroll details',
+    'dues'                  => 'Financial Dues',
+    'deductions'            => 'Deductions',
+    'edit_payroll'          => 'Edit payroll',
+    'add_new_payroll_item'  => 'Add payroll item',
 
     // Reports
     'general_expense_report'=> 'Total expenses report',
