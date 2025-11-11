@@ -73,8 +73,8 @@
                 </div>
               @endif
 
-              <h4 class="mb-1">اهلا بك 👋</h4>
-              <p class="mb-6">الرجاء ادخال بياناتك لتسجيل الدخول</p>
+              <h4 class="mb-1">@lang('auth.welcome')</h4>
+              <p class="mb-6">@lang('auth.enter_your_data')</p>
               
 
               <form id="formAuthentication" class="mb-6" action="{{ route('auth.login.action') }}" method="POST">
@@ -87,7 +87,7 @@
                     class="form-control"
                     id="email"
                     name="username"
-                    placeholder="ادخل اسم المستخدم"
+                    placeholder="{{ __('auth.enter_username') }}"
                     autofocus />
                 </div>
                 <div class="mb-6 form-password-toggle">
@@ -107,15 +107,15 @@
                   <div class="d-flex justify-content-between">
                     <div class="form-check mb-0">
                       <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me" />
-                      <label class="form-check-label" for="remember_me"> تذكرني المرة القادمة </label>
+                      <label class="form-check-label" for="remember_me">@lang('auth.remember_me')</label>
                     </div>
                     <a href="auth-forgot-password-basic.html">
-                      <span>نسيت كلمة السر ؟</span>
+                      <span>@lang('auth.forgot_password')</span>
                     </a>
                   </div>
                 </div>
                 <div class="mb-6">
-                  <button class="btn btn-primary d-grid w-100" type="submit">تسجيل الدخول</button>
+                  <button class="btn btn-primary d-grid w-100" type="submit">@lang('auth.login')</button>
                 </div>
               </form>
             </div>

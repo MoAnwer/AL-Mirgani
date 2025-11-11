@@ -138,6 +138,10 @@ return [
     'expenses_report_description' => 'Total of expenses based on selected interval',
     'expenses_report_total_amount_title' => 'Total of expenses based on selected interval',
     'expense_report_amount_description'  => 'this amount represent total amount of all expenses',
+    'expenses_through_month'    => 'Expenses through this month ',
+    'earnings_through_month'    => 'Earnings through this month',
+    'profit_through_month'    => 'Profit through this month',
+    'expenses_through_week'    => 'Expenses through this week',
  
 
 
