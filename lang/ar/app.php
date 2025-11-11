@@ -7,9 +7,9 @@ return [
     'list'                  => 'قائمة :attribute',
     'the_students'          => ' التلاميذ',
     'count_of'              => 'عدد :count',
+    'create_new_school'     => 'اضافة مدرسة جديدة',
     'the_schools'           => 'المدارس',
     'register_new_student'  => 'تسجيل تلميذ جديد',
-    'teachers'              => 'معلمين',
     'teachers'              => 'معلمين',
     'managers'              => 'اداريين',
     'workers'               => 'عاملين',
@@ -108,9 +108,12 @@ return [
     'the_category'          => 'النوع',
     'category'              => 'نوع',
     'earning'               => 'ايراد',
+    'filters'               => 'فلاتر البحث',
     'the_earnings'          => 'الايردات',
 
-
+    // Reports
+    'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
+ 
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
