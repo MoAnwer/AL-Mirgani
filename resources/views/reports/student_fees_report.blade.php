@@ -155,7 +155,7 @@
                         <thead>
                             <tr>
                                 <th class="align-center">#</th>
-                                <th class="align-center">{{ __('app.payment_date') }}payment_date') }}payment_date') }}payment_date') }}ة</th>
+                                <th class="align-center">{{ __('app.payment_date') }}</th>
                                 <th class="align-center">رقم الإيصال</th>
                                 <th class="align-center">بيان الحركة</th>
                                 <th class="align-center">مبلغ الدفعة</th>
