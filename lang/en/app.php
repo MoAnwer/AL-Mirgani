@@ -91,6 +91,8 @@ return [
     'accounts'              => 'Accounts'             ,
     'startDate'             => 'Start date',
     'endDate'               => 'End date',
+    'create_new_payroll'    => 'Create new payroll',
+    'select_employee'       => 'Select employee',
     'payrolls_list'         => 'List of employee payrolls',
     'accounts'              => 'Accounts'             ,
     'account_scan'          => 'Account scan'         ,
