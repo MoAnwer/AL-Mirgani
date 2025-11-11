@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="payment_status" class="form-label fw-bold">حالة الدفع</label>
+                                <label for="payment_status" class="form-label fw-bold">{{ __('app.payment_state') }}</label>
                                 <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
                                     <option value="Pending" {{ old('payment_status', $payroll->payment_status) == 'Pending' ? 'selected' : '' }}>قيد الانتظار</option>
                                     <option value="Paid" {{ old('payment_status', $payroll->payment_status) == 'Paid' ? 'selected' : '' }}>مدفوع</option>
@@ -76,7 +76,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <label for="payment_date" class="form-label fw-bold">تاريخ الدفع الفعلي</label>
+                                <label for="payment_date" class="form-label fw-bold">{{ __('app.payment_date') }} الفعلي</label>
                                 <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
                                        value="{{ old('payment_date',  $payroll->payment_date?->format('Y-m-d') )}}">
                                 @error('payment_date')
