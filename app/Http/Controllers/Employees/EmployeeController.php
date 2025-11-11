@@ -104,6 +104,19 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        try {
+
+            $employee->payrolls()->update(['employee_id' => null]);
+
+            $employee->delete();
+
+            return to_route('employees.index')->with('message', __('app.delete_successful', ['attribute' => __('app.employee')]));
+
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
+        }
     }
 }
