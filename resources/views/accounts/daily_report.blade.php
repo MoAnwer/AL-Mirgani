@@ -42,17 +42,17 @@
                                 <table class="table table-hover">
                                     <thead  class="table-primary">
                                         <tr>
-                                            <th>التاريخ</th>
-                                            <th>الواردات (الإيرادات)</th>
-                                            <th>المنصرفات (المصروفات)</th>
-                                            <th class="text-center">البيان</th>
-                                            <th>الرصيد الجاري</th>
+                                            <th>@lang('app.date')</th>
+                                            <th>@lang('app.earning')</th>
+                                            <th>@lang('app.expenses')</th>
+                                            <th class="text-center">@lang('app.statement')</th>
+                                            <th> @lang('app.current_balance')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td></td>
-                                            <td colspan="3" style="text-align: right; font-weight: bold;">الرصيد المرحل السابق (بداية اليوم)</td>
+                                            <td colspan="3" style="text-align: right; font-weight: bold;">@lang('app.forward_balance')</td>
                                             <td>{{ number_format($previousBalance, 2) }}</td>
                                         </tr>
                                         
@@ -68,10 +68,10 @@
                                     </tbody>
                                     <tfoot  class="table-secondary">
                                         <tr>
-                                            <td style="font-weight: bold;">الإجمالي اليومي:</td>
+                                            <td style="font-weight: bold;">@lang('app.total_for_the_day'):</td>
                                             <td style="font-weight: bold;">{{ number_format($dailyIncomeTotal, 2) }}</td>
                                             <td style="font-weight: bold;">{{ number_format($dailyExpenseTotal, 2) }}</td>
-                                            <td style="font-weight: bold;">الرصيد النهائي:</td>
+                                            <td style="font-weight: bold;">@lang('app.final_balance'):</td>
                                             <td style="font-weight: bold;">{{ number_format($finalDailyBalance, 2) }}</td>
                                         </tr>
                                     </tfoot>
