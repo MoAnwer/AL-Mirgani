@@ -1,4 +1,4 @@
-<x-header title="اضافة مدرسة جديدة" />
+<x-header title="{{ __('app.create_new_school') }}" />
 <x-LayoutWrapper>
     <x-LayoutContainer>
         <x-aside />
@@ -13,7 +13,7 @@
                                 <x-alert type="message" />
                                 <x-alert type="error" />
                             
-                                <h4 class="card-header">اضافة مدرسة جديدة</h4>
+                                <h4 class="card-header">{{ __('app.create_new_school') }}</h4>
 
                                 @if($errors->any())
                                     <div class="alert alert-danger">
@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class=" mt-4 btn btn-primary">اضافة</button>
+                                    <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
                                     </form>
                                 </div>
                             </div>
