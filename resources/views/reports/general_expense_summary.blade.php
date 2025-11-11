@@ -4,7 +4,6 @@
         .card-expense {
             border-right: 5px solid #dc3545; 
         }
-
     </style>
 
 
@@ -19,8 +18,8 @@
                     <div class="card -sm border-0 mb-5">
                         <div class="card-body p-4 p-md-5">
                             <header class="mb-4 border-bottom pb-3">
-                                <h1 class="h3 fw-bold text-dark">تقرير إجمالي المصروفات العامة للمدرسة</h1>
-                                <p class="text-muted">الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.</p>
+                                <h1 class="h3 fw-bold text-dark">{{ __('app.general_expense_report') }}</h1>
+                                <p class="text-muted">{{ __('app.expenses_report_description') }}</p>
                             </header>
 
                             
@@ -31,9 +30,9 @@
                                 <form action="{{ url()->current() }}" method="GET" class="row g-3 align-items-end  pb-3">
                                     
                                     <div class="col-md-3 col-sm-6">
-                                        <label for="school_id" class="form-label text-dark fw-medium pb-1">المدرسة</label>
+                                        <label for="school_id" class="form-label text-dark fw-medium pb-1">{{ __('app.all_school')  }}</label>
                                         <select name="school_id" id="school_id" class="form-select" onchange="this.form.submit()">
-                                            <option value="">جميع المدارس</option>
+                                            <option value="">{{ __('app.all_schools') }}</option>
                                             @foreach ($schools as $school)
                                                 <option value="{{ $school->id }}" @selected(request('school_id') == $school->id)>{{ $school->name }} </option>
                                             @endforeach
@@ -41,13 +40,13 @@
                                     </div>
 
                                     <div class="col-md-3 col-sm-6">
-                                        <label for="start_date" class="form-label text-dark fw-medium pb-1">تاريخ البداية</label>
+                                        <label for="start_date" class="form-label text-dark fw-medium pb-1">{{ __('app.startDate') }}</label>
                                         <input type="date" name="start_date" id="start_date" value="{{ $startDate }}" onchange="this.form.submit()"
                                             class="form-control">
                                     </div>
                                     
                                     <div class="col-md-3 col-sm-6">
-                                        <label for="end_date" class="form-label text-dark fw-medium pb-1">تاريخ النهاية</label>
+                                        <label for="end_date" class="form-label text-dark fw-medium pb-1">{{ __('app.endDate') }}</label>
                                         <input type="date" name="end_date" id="end_date" value="{{ $endDate }}" onchange="this.form.submit()"
                                             class="form-control">
                                     </div>
@@ -66,7 +65,7 @@
 
                             <div class="card shadow-0 card-expense border border-danger p-5">
                                 <div class="card-body p-4 ">
-                                    <h2 class="h5 text-dark mb-3">الإجمالي الكلي للمصروفات التشغيلية في الفترة المحددة</h2>
+                                    <h2 class="h5 text-dark mb-3">{{ __('app.expenses_report_total_amount_title') }}</h2>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="display-5 fw-bolder text-danger mb-0">
                                             {{ $reportData['total_amount'] }} جنية
@@ -74,7 +73,7 @@
                                         <i class="bx bx-dollar text-danger opacity-50" style="font-size: 3rem;"></i>
                                     </div>
                                     <p class="text-secondary mt-3 mb-0">
-                                        هذا المبلغ يمثل مجموع جميع المصروفات المُسجلة والتي استوفت شروط البحث.
+                                       {{ __('app.expense_report_amount_description') }}
                                     </p>
                                 </div>
                             </div>
