@@ -15,7 +15,7 @@
                         <div class="card shadow mb-4">
                             <div class="card text-center"> 
                                 <div class="card-header border-bottom py-4 mb-3">
-                                    <h5 class="mb-0 text-start">فلاتر البحث</h5>
+                                    <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
                                 </div>
 
                                 <div class="card-body pb-2">
