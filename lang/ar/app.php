@@ -173,6 +173,7 @@ return [
     'total_expenses__description' => '"الإجمالي الكلي للمصروفات التشغيلية والمدرسية .',
     'employee_report'       => 'توزيع الموظفين حسب القسم',
     'employee_report_description'       => 'نظرة عامة دقيقة على القوى العاملة حسب المهنة.',
+    'current_balance'       => ' الرصيد الجاري ',
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
