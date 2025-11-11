@@ -63,7 +63,7 @@
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="{{ route('employees.show', $employee) }}"><i class="icon-base bx bx-user me-1"></i>@lang('app.profile', ['attribute' => __('app.employee')])</a>
-                                                        <a class="dropdown-item" href=""><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
+                                                        <a class="dropdown-item" href="{{ route('employees.edit', $employee) }}"><i class="icon-base bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
                                                         <a class="dropdown-item" href=""><i class="icon-base bx bx-trash me-1"></i>@lang('app.delete')</a>
                                                     </div>
                                                 </div>
