@@ -115,6 +115,9 @@ final readonly class PayrollService
     {
         $payroll->load(['employee', 'details.item']);
 
+        // verify employee is exist
+        if ($payroll->employee == null) return back()->with('error', __('app.empty_message', ['attributes' => __('app.employee')]));
+
         $additions = $payroll->details->where('item.type', 'Addition');
         $deductions = $payroll->details->where('item.type', 'Deduction');
 
