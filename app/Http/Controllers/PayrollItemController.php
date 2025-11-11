@@ -78,6 +78,6 @@ class PayrollItemController extends Controller
             'default_value' => $request->default_value,
         ]);
 
-        return back()->with('message', 'تم إنشاء عنصر الراتب بنجاح: ' . $request->name);
+        return back()->with('message', __('app.create_successful', ['attribute' => __('app.item')]));
     }
 }
