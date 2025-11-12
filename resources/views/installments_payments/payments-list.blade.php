@@ -63,7 +63,7 @@
                                                 @forelse($installment->payments as $payment)
                                                     <tr class="text-center">
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ number_format($payment->paid_amount, 0) }} جنية</td>
+                                                        <td>{{ number_format($payment->paid_amount, 0) }} {{ __('app.currency')}}</td>
                                                         <td>{{ $payment->payment_method }}</td>
                                                         <td>{{ $payment->receipt_number ?? 'لا يوجد بعد' }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
@@ -95,11 +95,11 @@
                                                 <tfoot class="bg-label-secondary">
                                                     <tr class="fw-bold">
                                                         <td colspan="6">@lang('app.total_payment')</td>
-                                                        <td>{{ number_format($installment->total_payments, 0) }} جنية</td>
+                                                        <td>{{ number_format($installment->total_payments, 0) }} {{ __('app.currency')}}</td>
                                                     </tr>
                                                     <tr class="fw-bold">
                                                         <td colspan="6">@lang('app.remaining')</td>
-                                                        <td>{{ number_format($installment->remaining, 0) }} جنية</td>
+                                                        <td>{{ number_format($installment->remaining, 0) }} {{ __('app.currency')}}</td>
                                                     </tr>
                                                 </tfoot>
                                             </x-Table.Tbody>

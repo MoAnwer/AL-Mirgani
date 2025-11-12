@@ -26,11 +26,11 @@
                                             </div>
                                             <div>
                                                 @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
-                                                    <span class="badge bg-success-subtle text-success border border-success rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-check-circle me-1'></i> مدفوع</span>
+                                                    <span class="badge bg-success-subtle text-success border border-success rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-check-circle me-1'></i> @lang('app.paid')</span>
                                                 @elseif ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value)
-                                                    <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill fs-6 p-2 px-3 "><i class="bx bxs-time me-1"></i> قيد الانتظار</span>
+                                                    <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill fs-6 p-2 px-3 "><i class="bx bxs-time me-1"></i>@lang('app.pending')</span>
                                                 @else
-                                                    <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-x-circle me-1'></i> فشل</span>
+                                                    <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill fs-6 p-2 px-3 "><i class='bx bxs-x-circle me-1'></i> @lang('app.failed')</span>
                                                 @endif
                                             </div>
                                         </div>

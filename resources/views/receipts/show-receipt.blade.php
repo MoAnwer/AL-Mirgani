@@ -1,4 +1,4 @@
-<x-header title="إيصال دفع - رقم {{ $receipt->number }}"/>
+<x-header title="{{ __('app.receipt') .' / '. $receipt->number }}"/>
 
 <style>
         body { background-color: #f8f9fa; }
@@ -89,21 +89,20 @@
         <div class="col-md-6">
             <div class="card amount-box p-3 text-center shadow-none border border-success">
                 <p class="mb-1 fw-bold">@lang('app.paid_amount')</p>
-                <h4 class="fw-bolder mb-0">{{ number_format($receipt->amount, 2) }} جنيه</h4>
+                <h4 class="fw-bolder mb-0">{{ number_format($receipt->amount, 2) }} {{ __('app.currency')}}</h4>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="card p-3 py-5 text-center border border-secondary shadow-none">
                 <p class="mb-1 fw-bold text-muted">@lang('app.remaining')</p>
-                <h4 class="fw-bolder mb-0 text-dark">{{ number_format($receipt->remanent ?? 0, 2) }} جنيه</h4>
+                <h4 class="fw-bolder mb-0 text-dark">{{ number_format($receipt->remanent ?? 0, 2) }} {{ __('app.currency')}}</h4>
             </div>
         </div>
     </div>
 
     <div class="mt-4 pt-3 border-top">
         <p class="small text-muted mb-10">
-            {{-- * هذا الإيصال يثبت استلام المبلغ المذكور أعلاه كجزء من الرسوم الدراسية/رسوم البرنامج. --}}
         </p>
         <div class="d-flex justify-content-between">
             <div class="text-center mt-5">

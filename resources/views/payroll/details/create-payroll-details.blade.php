@@ -1,4 +1,4 @@
-<x-header title="إضافة بند جديد لكشف الراتب"/>
+<x-header title="{{ __('app.create_payroll_detail_item') }}"/>
 
 <x-layout-wrapper>
     <x-layout-container>
@@ -10,12 +10,12 @@
                 <x-alert type="message" />
                 <x-alert type="error" />
                 <div class="row justify-content-center">
-                        <h3 >إضافة بند جديد لكشف الراتب</h3  >
+                        <h3>@lang('app.create_payroll_detail_item')</h3>
                         <div class="col-md-12">
-                            <div class="text-center mb-4">
+                            <div class="mb-4">
                                 <p class="lead">
-                                    للموظف: <strong class="text-dark">{{ $payroll->employee->full_name }}</strong> | 
-                                    الفترة: <strong class="text-dark">{{ $payroll->month }}/{{ $payroll->year }}</strong>
+                                    @lang('app.employee'): <strong class="text-dark">{{ $payroll->employee->full_name }}</strong> | 
+                                    @lang('app.period'): <strong class="text-dark">{{ $payroll->month }}/{{ $payroll->year }}</strong>
                                 </p>
                             </div>
 
@@ -24,12 +24,12 @@
                                     <form action="{{ route('payroll.details.store', $payroll->id) }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="item_id" class="form-label fw-bold">اختر البند (إضافة أو استقطاع)</label>
+                                            <label for="item_id" class="form-label fw-bold">@lang('app.item_name')</label>
                                             <select name="item_id" id="item_id" class="form-select @error('item_id') is-invalid @enderror" required>
-                                                <option value="" disabled selected>-- اختر من قائمة العناصر --</option>
+                                                <option value="{{ null }}" disabled selected>----</option>
                                                 @foreach ($items as $item)
                                                     <option value="{{ $item->id }}" {{ old('item_id') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }} ({{ $item->type }})
+                                                        {{ $item->name }} - ({{ __("app.". strtolower($item->type) .'') }})
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -39,7 +39,7 @@
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="amount" class="form-label fw-bold">المبلغ</label>
+                                            <label for="amount" class="form-label fw-bold">@lang('app.amount')</label>
                                             <input type="number" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
                                                 value="{{ old('amount') }}" step="0.01" required placeholder="e.g., 500.00">
                                             @error('amount')
@@ -48,18 +48,14 @@
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="notes" class="form-label">ملاحظات (اختياري)</label>
+                                            <label for="notes" class="form-label fw-bold">@lang('app.statement')</label>
                                             <textarea name="notes" id="notes" class="form-control" rows="2" placeholder="e.g., Overtime hours for project X">{{ old('notes') }}</textarea>
                                         </div>
-
-                                        <div class="d-grid">
-                                            <button type="submit" class="btn btn-info btn-lg">إضافة البند وتحديث الكشف</button>
+                                        
+                                            <button type="submit" class="btn btn-success">@lang('app.save')</button>
+                                            <a href="{{ route('payroll.show', $payroll->id) }}" class="btn btn-secondary">@lang('app.back')</a>
                                         </div>
                                     </form>
-                                    
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a href="{{ route('payroll.show', $payroll->id) }}" class="btn btn-secondary btn-sm">إلغاء والعودة للكشف</a>
                                 </div>
                             </div>
                         </div>

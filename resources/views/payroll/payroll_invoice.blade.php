@@ -97,7 +97,7 @@
                     <tr class="border-bottom">
                         <th class="text-center">@lang('app.item')</th>
                         <th class="text-center">@lang('app.category')</th>
-                        <th class="text-center">@lang('app.amount')({{ $currency ?? 'SDG' }})</th>
+                        <th class="text-center">@lang('app.amount')({{ $currency ?? __('app.currency') }})</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,7 +112,7 @@
                         <tr>
                             <td class="text-center">{{ $detail->item->name ?? 0}}</td>
                             <td class="text-center text-success">@lang('app.variable_addition')</td>
-                            <td class="text-center text-success">+ {{ number_format($detail->amount ?? 0) }}</td>
+                            <td class="text-center text-success">{{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
                     @endforeach
 
@@ -121,18 +121,18 @@
                         <tr>
                             <td  class="text-center">{{ $detail->item->name ?? 0}}</td>
                             <td  class="text-center text-danger">@lang('app.deduction')</td>
-                            <td  class="text-center text-danger">-{{ number_format($detail->amount ?? 0) }}</td>
+                            <td  class="text-center text-danger">{{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
                     @endforeach
 
 
                     <tr class="border-top">
                         <td colspan="2" class="text fw-bold">@lang('app.total_due')</td>
-                        <td class="text-center fw-bold text-primary">{{ number_format($payroll?->basic_salary_snapshot + $payroll?->total_variable_additions + $payroll?->total_fixed_allowances) }} SDG</td>
+                        <td class="text-center fw-bold text-primary">{{ number_format($payroll?->basic_salary_snapshot + $payroll?->total_variable_additions + $payroll?->total_fixed_allowances) }} {{ __('app.currency') }}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="text fw-bold">@lang('app.total_deductions')</td>
-                        <td class="text-center fw-bold text-danger">{{ number_format($payroll?->total_deductions) }} SDG</td>
+                        <td class="text-center fw-bold text-danger">{{ number_format($payroll?->total_deductions) }} {{ __('app.currency') }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -141,7 +141,7 @@
 
     <div class="payslip-total p-4 text-center">
         <h4 class="text-dark mb-2 fw-normal">@lang('app.net_salary_paid')</h4>
-        <h1 class="display-3 fw-bolder text-primary mb-0">{{ number_format($payroll?->net_salary_paid) }} {{ $currency ?? 'SDG' }}</h1>
+        <h1 class="display-3 fw-bolder text-primary mb-0">{{ number_format($payroll?->net_salary_paid) }} {{ $currency ?? __('app.currency') }}</h1>
     </div>
 </div>
 
