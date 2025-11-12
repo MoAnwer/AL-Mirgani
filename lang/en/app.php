@@ -54,6 +54,9 @@ return [
     'year'                  => 'Year',
     'total_amount_collected'    => 'Total amount collected',
     'collection_rate'       => 'Collection rate',
+    'employee_report_heading' => 'Employees count based on departments',
+    'employee_report_bio'   => 'overview of employees count in all departments',
+    'employee_report_total_count'   => 'Total employees count in all departments',
     'healthy_history'       => 'Healthy history',
     'student_not_found'     => 'Student not found',
     'total_fee'             => 'Total fee',
@@ -186,6 +189,12 @@ return [
     'edit_payroll'          => 'Edit payroll',
     'add_new_payroll_item'  => 'Add payroll item',
     'payroll_saved'         => 'Payroll updated successfully.',
+
+    // Departments
+    'the_teachers' => 'Teachers',
+    'managers' => 'Managers',
+    'workers' => 'Works',
+    'other_departments' => 'Other',
 
     // Reports
     'report_of' => 'report of :report',
