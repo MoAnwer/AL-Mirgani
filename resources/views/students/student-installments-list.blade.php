@@ -47,19 +47,21 @@
                             </div>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
-                                    <th>#</th>
-                                    <th>@lang('app.number', ['attribute' => __('app.installment')])</th>
-                                    <th>@lang('app.amount')</th>
-                                    <th>@lang('app.due_date')</th>
-                                    <th>@lang('app.actions')</th>
+                                    <tr class="text-center">
+                                        <th>#</th>
+                                        <th>@lang('app.number', ['attribute' => __('app.installment')])</th>
+                                        <th>@lang('app.amount')</th>
+                                        <th>@lang('app.due_date')</th>
+                                        <th>@lang('app.actions')</th>
+                                    </tr>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
                                     @forelse($installments as $installment)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $installment->number }}</td>
                                             <td>{{ number_format($installment->amount) }}</td>
-                                            <td>{{ $installment->due_date }} ({{ $installment->formatted_due_date }})</td>
+                                            <td>{{ $installment->due_date->format('Y-m-d') }} ({{ $installment->formatted_due_date }})</td>
                                             <td>
                                                 <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
