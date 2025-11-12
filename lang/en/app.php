@@ -52,6 +52,8 @@ return [
     'month'                 => ':value month',
     'the_month'             => 'month',
     'year'                  => 'Year',
+    'total_amount_collected'    => 'Total amount collected',
+    'collection_rate'       => 'Collection rate',
     'healthy_history'       => 'Healthy history',
     'student_not_found'     => 'Student not found',
     'total_fee'             => 'Total fee',
@@ -70,6 +72,7 @@ return [
     'total_expenses_report' => 'Total expenses of school',
     'total_expenses__description' => 'Total expenses of school overview',
     'employee_report'       => 'Employees count',
+    'to'                    => 'to',
     'current_balance'       => 'Current balance',
     'forward_balance' => 'Forward balance',
     'total_for_the_day' => 'Total for the day',
@@ -104,7 +107,7 @@ return [
     'due_amount'            => 'Due amount',
     'salary_payments'       => 'Salary payments',
     'salary_payment'        => 'Salary payment'       ,
-    'all_schools'           => 'Schools'          ,
+    'all_schools'           => 'all schools'          ,
     'statement'             => 'Statement'            ,
     'installments'          => 'Installments'         ,
     'student_installments'  => 'Student installments' ,
@@ -185,6 +188,7 @@ return [
     'payroll_saved'         => 'Payroll updated successfully.',
 
     // Reports
+    'report_of' => 'report of :report',
     'general_expense_report'=> 'Total expenses report',
     'expenses_report_description' => 'Total of expenses based on selected period',
     'expenses_report_total_amount_title' => 'Total of expenses based on selected period',

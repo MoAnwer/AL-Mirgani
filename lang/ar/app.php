@@ -81,6 +81,7 @@ return [
     'student_installments'  => ' اقساط :student',
     'installment'           => 'قسط',
     'the_installments'      => 'الاقساط',
+    'to'                    => 'الى',
     'paid_amount'           => 'المبلغ المدفوع',
     'balance_due'           => 'المبلغ المتأخر',
     'days_overdue'          => 'فترة التأخير (أيام)	',
@@ -164,12 +165,14 @@ return [
     'deductions'            => 'الاستقطاعات',
     'deduction'             => 'استقطاع/خصم',
     'account_statement'     => 'كشف الحساب',
+    'total_amount_collected'    => 'إجمالي المبلغ المُحصَّل',
+    'collection_rate'       => 'نسبة التحصيل',
     'account_statement_description' => 'الرصيد المرحل و الايرادات و المنصرفات ليوم معين',
     'arrears_installments'  => 'الأقساط المتأخرة',
     'arrears_installments_description'  => 'نظرة عامة عن متاخرات الاقساط',
     'payroll_report_description' => 'الإجماليات المُعالجة حسب الشهر و العام',
     'revenues_by_class_report' => 'ايرادات حسب الصف',
-    'revenues_by_class_description' => 'تحليل الإيرادات حسب الصف للمرحلة كل المدارس',
+    'revenues_by_class_description' => 'تحليل الإيرادات حسب الصف',
     'income_statement'      => 'قائمة الدخل',
     'income_statement_description'      => 'الايرادات و المصروفات لفترة مالية معينة',
     'total_expenses_report' => 'الإجمالي الكلي للمصروفات ',
@@ -186,6 +189,7 @@ return [
     
 
     // Reports
+    'report_of' => 'تقرير :report',
     'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
     'expenses_report_description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.',
     'expenses_report_total_amount_title' => 'الإجمالي الكلي للمصروفات في الفترة المحددة',
