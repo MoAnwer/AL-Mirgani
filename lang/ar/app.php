@@ -8,7 +8,7 @@ return [
     'students'              => 'تلاميذ',
     'list'                  => 'قائمة :attribute',
     'the_students'          => ' التلاميذ',
-    'latest_student_in_system' =>'احدث التلاميذ بالنظام',
+    'latest_student_in_system' => 'احدث التلاميذ بالنظام',
     'count_of'              => 'عدد :count',
     'create_new_school'     => 'اضافة مدرسة جديدة',
     'the_schools'           => 'المدارس',
@@ -63,11 +63,11 @@ return [
     'class'                 => 'الصف',
     'registration_fee'      => 'رسوم التسجيل',
     'registration_data'     => 'بانات رسوم التسجيل',
-    'parent_data'           => 'بيانات ولي الامر',  
+    'parent_data'           => 'بيانات ولي الامر',
     'student_registration_fee'      => 'رسوم تسجيل طالب',
     'phone_one'             => 'رقم الهاتف 1',
     'phone_two'             => 'رقم الهاتف 2',
-    'address'               => 'العنوان', 
+    'address'               => 'العنوان',
     'school'                => 'المدرسة',
     'x-school'              => 'مدرسة',
     'date'                  => 'التاريخ',
@@ -87,14 +87,14 @@ return [
     'days_overdue'          => 'فترة التأخير (أيام)	',
     'arrears_bucket'        => 'تصنيف التأخير',
     'total_arrears_days'    => 'إجمالي المتأخر',
-    'arrears_summarize'     =>'ملخص تصنيف التأخير',
+    'arrears_summarize'     => 'ملخص تصنيف التأخير',
     'arrears_installments'  => ' الأقساط المتأخرة',
     'arrears_details'       => 'تفاصيل الأقساط المتأخرة',
     'student_account_scan'  => 'كشف تحصيل الرسوم',
     'total_payment'         => 'اجمالي المدفوع',
     'payment_method'        => 'طريقة الدفع',
     'payment_date'          => 'تاريخ الدفع',
-    'process_number'        =>'رقم العملية',
+    'process_number'        => 'رقم العملية',
     'receipt'               => 'إيصال دفع',
     'payment_details'       => 'تفاصيل الدفع',
     'receipt_number'        => 'رقم الايصال',
@@ -110,7 +110,7 @@ return [
     'payment_log'           => 'سجل الدفعات (التحصيل)',
     'net_total_fees'        => 'صافي الرسوم المستحقة الكلية',
     'financial_summary'     => 'ملخص الموقف المالي',
-    'installment_scheduler' =>'جدول الأقساط وتواريخ الاستحقاق المتبقية',
+    'installment_scheduler' => 'جدول الأقساط وتواريخ الاستحقاق المتبقية',
     'net_total_due_fee'     => 'صافي الرسوم المستحقة	',
     'student_remaining_amount' => 'المبلغ المتبقي على الطالب	',
     'no_payment_log'        => 'لم يتم تسجيل أي دفعات لهذا الطالب بعد.',
@@ -145,7 +145,7 @@ return [
     'payrolls_list'         => 'قائمة كشوف الرواتب المُعالَجة',
     'select_employee'       => 'اختيار الموظف',
     'deleted_employee'      => 'موظف محذوف',
-    'deleted_student'       =>'طالب محذوف',
+    'deleted_student'       => 'طالب محذوف',
     'cash'                  => 'كاش',
     'bankak'                => 'بنكك',
     'receiver_signature'    => 'توقيع المستلم',
@@ -178,6 +178,9 @@ return [
     'total_expenses_report' => 'الإجمالي الكلي للمصروفات ',
     'total_expenses__description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية.',
     'employee_report'       => 'توزيع الموظفين حسب القسم',
+    'employee_report_heading' => 'تقرير توزيع الموظفين حسب القسم الوظيفي',
+    'employee_report_bio'   => 'نظرة عامة دقيقة على القوى العاملة المصنفة حسب المهنة.',
+    'employee_report_total_count' => ' الإجمالي الكلي لعدد الموظفين ',
     'employee_report_description'       => 'نظرة عامة دقيقة على القوى العاملة حسب المهنة.',
     'current_balance'       => ' الرصيد الجاري ',
     'forward_balance' => 'الرصيد المرحل السابق (بداية اليوم)',
@@ -186,11 +189,17 @@ return [
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
-    
+
+    // Departments
+    'the_teachers' => 'المعلمون',
+    'managers' => 'الإداريون',
+    'workers' => 'العمال',
+    'other_departments' => 'أقسام أخرى',
+
 
     // Reports
     'report_of' => 'تقرير :report',
-    'general_expense_report'=> 'تقرير إجمالي المصروفات العامة',
+    'general_expense_report' => 'تقرير إجمالي المصروفات العامة',
     'expenses_report_description' => 'الإجمالي الكلي للمصروفات التشغيلية والمدرسية بناءً على الفلاتر المحددة.',
     'expenses_report_total_amount_title' => 'الإجمالي الكلي للمصروفات في الفترة المحددة',
     'expense_report_amount_description'  => 'هذا المبلغ يمثل مجموع جميع المصروفات المُسجلة والتي استوفت شروط البحث.',
@@ -202,7 +211,7 @@ return [
     'count_of_students_by_class' => 'عدد التلاميذ حسب الصف',
     'total_payrolls_report' => 'تقرير إجمالي كشوف الرواتب',
     'total_payrolls_report_description' => 'الإجماليات المُعالجة حسب الشهر لعام :year',
- 
+
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
@@ -224,8 +233,8 @@ return [
     'fees_full_paid_message'        => 'مجموع مبالغ الاقساط يساوي الرسوم الدراسية بالفعل ',
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
-    'no_date_returned'              =>'لاتوجد بيانات مطابقة لفلاتر البحث',
-   
+    'no_date_returned'              => 'لاتوجد بيانات مطابقة لفلاتر البحث',
+
     // Errors
     'error'                         => 'حدث خطا',
     'not_found'                     => 'الصفحة غير موجودة',
