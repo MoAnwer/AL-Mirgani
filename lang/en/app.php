@@ -202,6 +202,20 @@ return [
     'edit_payroll'          => 'Edit payroll',
     'add_new_payroll_item'  => 'Add payroll item',
     'payroll_saved'         => 'Payroll updated successfully.',
+    'edit_this_value_attention'   => 'Edit this value will recalculate the basic salary of selected employee',
+    'create_payroll_detail_item' => 'Add new payroll details',
+    'edit_payroll_detail'   => 'Edit payroll detail',
+    'detail_name'           => 'Detail name',
+    'detail'                => 'Detail',
+
+
+
+
+
+    // Payment States
+    'paid'      => 'Paid',
+    'pending'   => 'Pending',
+    'failed'     => 'Failed',
 
     // Departments
     'the_teachers' => 'Teachers',
@@ -248,7 +262,7 @@ return [
     'amount_less_then_message'      => 'please enter amount less than :amount'     ,
     'student_register_successfully' => 'student registered successfully ✅',
     'no_date_returned'              => 'No results',
-   
+    
     // Errors
 
     'error'                         => 'Error'                        ,
@@ -257,4 +271,7 @@ return [
     'internal_server_error'         => 'internal_server_error'        ,
     'internal_server_error_msg'     => 'internal_server_error_msg'    ,
     'remove_admin_msg'              => 'remove_admin_msg'             ,
+    'payroll_paid_error'            => 'you can\'t edit payroll already paid !',
+    'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
+
 ];
