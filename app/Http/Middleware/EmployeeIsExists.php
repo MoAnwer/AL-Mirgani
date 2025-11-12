@@ -15,7 +15,7 @@ class EmployeeIsExists
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(null == $request->employee) {
+        if(null == $request->payroll->employee) {
             return back()->with('error', __('app.empty_message', ['attributes' => __('app.employee')]));
         }
         return $next($request);
