@@ -223,6 +223,9 @@ return [
     'managers' => 'الإداريون',
     'workers' => 'العمال',
     'other_departments' => 'أقسام أخرى',
+    'teacher'   => 'معلم',
+    'manager'   => 'اداري',
+    'worker'    => 'عامل',
 
 
     // Reports

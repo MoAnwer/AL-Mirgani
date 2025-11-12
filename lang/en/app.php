@@ -227,6 +227,10 @@ return [
     'managers' => 'Managers',
     'workers' => 'Works',
     'other_departments' => 'Other',
+    'teacher'   => 'teacher',
+    'manager'   => 'manager',
+    'worker'    => 'worker',
+
 
     // Reports
     'report_of' => 'report of :report',
