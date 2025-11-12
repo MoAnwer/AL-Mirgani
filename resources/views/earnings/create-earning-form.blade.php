@@ -58,7 +58,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class=" mt-4 btn btn-primary">اضافة</button>
+                                    <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
                                     </form>
                                 </div>
                             </div>
