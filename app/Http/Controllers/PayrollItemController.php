@@ -44,7 +44,7 @@ class PayrollItemController extends Controller
                 'max:255', 
                 Rule::unique('payroll_items', 'name')->ignore($payrollItem->id),
             ],
-            'type' => ['required', Rule::in(['Addition', 'Deduction', 'Tax', 'Benefit'])],
+            'type' => ['required', Rule::in(['Addition', 'Deduction'])],
             'is_fixed' => 'boolean',
             'default_value' => 'nullable|numeric|min:0',
         ]);
@@ -57,7 +57,7 @@ class PayrollItemController extends Controller
         ]);
 
         return redirect()->route('payroll_items.index')
-                         ->with('success', 'تم تحديث العنصر المالي "' . $request->name . '" بنجاح.');
+                         ->with('messge', __('app.update_successful', ['attribute' => __('app.item') ]));
 
     }
 
