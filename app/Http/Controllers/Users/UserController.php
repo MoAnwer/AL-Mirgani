@@ -45,7 +45,7 @@ class UserController extends Controller
                 'username' => 'required|string',
                 'password' => 'required|min:6'
             ], [
-                'password.min'  => 'كلمة السر يجب ان تكون من 6  احرف على الاقل'
+                'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')])
             ]);
 
             $this->user->create($data);

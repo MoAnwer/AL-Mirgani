@@ -1,11 +1,11 @@
-<x-header title="{{ __('app.report', ['report' => __('app.arrears_installments')]) }}" />
+<x-header title="{{ ucfirst(__('app.report_of', ['report' => __('app.arrears_details')])) }}" />
 <x-layout-wrapper>
     <x-aside />
     <x-layout-page>
         <x-nav />
         <x-layout-container>
             <x-container>
-                <h4 class="mb-6">@lang('app.arrears_details')</h4>
+                <h4 class="mb-6">{{ ucfirst(__('app.report_of', ['report' => __('app.arrears_details')])) }}</h4>
                     <div class="card text-center mb-2 pb-4"> 
                         <div class="card-header border-bottom py-4">
                             <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
@@ -78,7 +78,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center fw-bold py-8">
+                                <td colspan="9" class="text-center fw-bold py-8">
                                     {{ __('app.no_date_returned') }}
                                 </td>
                             </tr>

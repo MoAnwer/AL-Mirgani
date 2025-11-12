@@ -60,7 +60,7 @@
                                             <tr class="text-center">
                                                 <th>#</th>
                                                 <th>@lang('app.employee')</th>
-                                                <th>@lang('app.interval')</th>
+                                                <th>@lang('app.period')</th>
                                                 <th>@lang('app.basic_salary')</th>
                                                 <th>@lang('app.total_due')</th>
                                                 <th>@lang('app.total_deductions')</th>

@@ -1,4 +1,4 @@
-<x-header title="تقرير إجمالي كشوف الرواتب"/>
+<x-header title="{{ __('app.total_payrolls_report') }}"/>
 
 
 <x-layout-wrapper>
@@ -8,13 +8,13 @@
         <x-layout-container>
             <x-container>
                 <header class="mb-2 border-b pb-4">
-                    <h3 class="text-3xl font-bold text-gray-800">تقرير إجمالي كشوف الرواتب</h3>
-                    <p class="text-gray-500">الإجماليات المُعالجة حسب الشهر لعام {{ $targetYear }}</p>
+                    <h3 class="text-3xl font-bold text-gray-800">@lang('app.total_payrolls_report')</h3>
+                    <p class="text-gray-500">@lang('app.total_payrolls_report_description', ['year' => $targetYear])</p>
                 </header>
                 <div class="max-w-7xl mx-auto bg-white p-8 rounded-xl shadow-lg">
                     <div class="mb-6 flex justify-start items-center space-x-4 space-x-reverse">
                         <form action="{{ url()->current() }}" method="GET" class="flex space-x-4 space-x-reverse w-25">
-                            <label for="year" class="self-center text-gray-700 font-medium">اختر السنة:</label>
+                            <label for="year" class="self-center text-gray-700 font-medium">@lang('app.year'):</label>
                             <select name="year" id="year" onchange="this.form.submit()" class="form-select col-1 my-2">
                                 @for ($year = now()->year; $year >= now()->year - 5; $year--)
                                     <option value="{{ $year }}" @if($year == $targetYear) selected @endif>{{ $year }}</option>
@@ -28,19 +28,19 @@
                             <x-table.thead>
                                 <tr class="text-center">
                                     <th class="py-5 fw-bold">
-                                        الفترة (الشهر/السنة)
+                                       @lang('app.period_year_month')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        إجمالي الراتب الأساسي
+                                        @lang('app.total_basic_salary')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        إجمالي المستحقات (البدلات)
+                                        @lang('app.total_due')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        إجمالي الاستقطاعات
+                                       @lang('app.total_deductions')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        صافي المبلغ المدفوع
+                                        @lang('app.total_paid_amount')
                                     </th>
                                 </tr>
                             </x-table.thead>
@@ -79,13 +79,13 @@
                                 @empty
                                     <tr class="text-center">
                                         <td colspan="5" class="px-6 py-10 text-center text-gray-500 text-lg">
-                                            لا توجد بيانات كشوف رواتب معالجة لعام {{ $targetYear }}.
+                                           @lang('app.empty_message', ['attributes' => __('app.payrolls')]).
                                         </td>
                                     </tr>
                                 @endforelse
 
                                 <tr class="bg-label-success text-center fw-bold">
-                                    <td class="px-6 py-4">الإجمالي الكلي</td>
+                                    <td class="px-6 py-4">@lang('app.total')</td>
                                     <td class="px-6 py-4">
                                         {{ number_format($grandTotalBasic) }}
                                     </td>

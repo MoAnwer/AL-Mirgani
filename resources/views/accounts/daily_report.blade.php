@@ -13,7 +13,7 @@
                             <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
                         </div>
                         <form action="{{ URL::current() }}">
-                            <div class="row p-3 text-start align-items-end">
+                            <div class="row p-3 text-start align-items-end p-6">
                                 <div class="col-6">
                                     <label class="mb-1">@lang('app.school')</label>
                                     <select class="form-select" name="school_id" onchange="this.form.submit()">
@@ -24,14 +24,12 @@
                                     </select>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-6">
                                     <label class="mb-1">@lang('app.date')</label>
                                     <div class="input-group">
                                         <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
                                     </div>
                                 </div>                                   
-
-                                <button type="submit" class=" h-0 col-2 btn btn-primary">{{ __('app.search') }}</button>                
                             </div>
                         </form>
                     </div>
@@ -43,8 +41,8 @@
                                     <thead  class="table-primary">
                                         <tr>
                                             <th>@lang('app.date')</th>
-                                            <th>@lang('app.earning')</th>
-                                            <th>@lang('app.expenses')</th>
+                                            <th>@lang('app.the_earnings')</th>
+                                            <th>@lang('app.the_expenses')</th>
                                             <th class="text-center">@lang('app.statement')</th>
                                             <th> @lang('app.current_balance')</th>
                                         </tr>

@@ -1,4 +1,4 @@
-<x-header title="قائمة المستخدمين"/>
+<x-header title="{{ __('app.list', ['attribute' => __('app.users')]) }}"/>
     <x-LayoutWrapper>
         <x-LayoutContainer>
             <x-aside />
@@ -13,7 +13,7 @@
                                 <div>
                                     <h4>@lang('app.list', ['attribute' => __('app.users')])</h4>
                                      <span class="badge bg-success-subtle text-success border border-success rounded-pill fw-bold">
-                                        عدد {{ __('app.users') }}:   
+                                        {{ __('app.count_of', ['count' => __('app.users') ]) }}:
                                         {{ $users->count() }}
                                     </span>
                                 </div>
