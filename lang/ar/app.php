@@ -200,6 +200,19 @@ return [
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
     'center'                => 'الإدارة',
+    'edit_this_value_attention'   =>'تعديل هذه القيمة سيؤدي إلى إعادة حساب صافي الراتب.',
+    'create_payroll_detail_item' => 'إضافة بند جديد لكشف الراتب',
+    'edit_payroll_detail'   => 'تعديل بند تفصيلي',
+    'detail_name'           => 'اسم البند',
+    'detail'                => 'البند',
+
+
+    // Payment States
+    'paid'      => ' مدفوع',
+    'pending'   => ' قيد الانتظار ',
+    'failed'     => 'فشل',
+
+
     // Departments
     'the_teachers' => 'المعلمون',
     'managers' => 'الإداريون',
@@ -244,7 +257,8 @@ return [
     'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
     'no_date_returned'              => 'لاتوجد بيانات مطابقة لفلاتر البحث',
-
+    'duplicate_paid_payroll'        => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
+    
     // Errors
     'error'                         => 'حدث خطا',
     'not_found'                     => 'الصفحة غير موجودة',
@@ -252,4 +266,5 @@ return [
     'internal_server_error'         => ' خطأ من جانب السيرفر',
     'internal_server_error_msg'     => 'تعذر على النظام معالجة طلبك',
     'remove_admin_msg'              => 'لا يمكن حذف مدير النظام',
+    'payroll_paid_error'            => 'لا يمكن تعديل كشف راتب تم دفعه بالفعل.',
 ];
