@@ -197,6 +197,8 @@ return [
     'the_earnings'          => 'Earnings'         ,
     'payroll_details'       => 'Payroll details',
     'net_salary_paid'       => 'Net due salary to paid',
+    'fixed_due'             => 'Fixed due',
+    'variable_addition'     => 'Variable addition',
     'dues'                  => 'Financial Dues',
     'deductions'            => 'Deductions',
     'edit_payroll'          => 'Edit payroll',
@@ -207,6 +209,9 @@ return [
     'edit_payroll_detail'   => 'Edit payroll detail',
     'detail_name'           => 'Detail name',
     'detail'                => 'Detail',
+    'payroll_invoice'       => 'Payroll invoice',
+    'payroll_invoice_date'  => 'invoice create date',
+    'invoice_details'        => 'Details of invoice',
 
 
 
@@ -241,7 +246,7 @@ return [
 
 
     // Actions
-    'create'                => 'Create'               ,
+    'create'                => 'Create :attribute'    ,
     'edit'                  => 'Edit'                 ,
     'save'                  => 'Save'                 ,
     'back'                  => 'Back'                 ,
