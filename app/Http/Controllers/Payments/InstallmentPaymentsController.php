@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class InstallmentPaymentsController extends Controller
 {
-    public function paymentsList(Installment $installment) 
+    public function paymentsList(Installment $installment)
     {
         return view('installments_payments.payments-list', compact('installment'));
     }
 
-    public function create(Installment $installment) {
-        return view('installments_payments.create-payment-form', compact('installment'));
+    public function create(Installment $installment)
+    {
+        $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
+
+        return view('installments_payments.create-payment-form', compact('installment', 'paymentMethods'));
     }
 
-    public function store(PaymentRequest $request, Installment $installment) 
+    public function store(PaymentRequest $request, Installment $installment)
     {
         try {
 
@@ -28,29 +31,30 @@ class InstallmentPaymentsController extends Controller
             // Verify the installment remaining less the sended paid amount
             if ($installment->remaining  < $data['paid_amount']) {
                 return redirect()
-                        ->back()
-                        ->with('error', __('app.amount_less_then_message', ['amount' => $installment->remaining]));
+                    ->back()
+                    ->with('error', __('app.amount_less_then_message', ['amount' => $installment->remaining]));
             }
 
-            DB::transaction(function() use ($installment, $data) {
+            DB::transaction(function () use ($installment, $data) {
                 $payment = $installment->payments()->create($data);
             });
 
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
-
         } catch (\Throwable $th) {
             report($th);
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
-    
+
 
     public function edit(InstallmentPayment $payment)
     {
-        return view('installments_payments.edit-payment-form', compact('payment'));
+        $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
+
+        return view('installments_payments.edit-payment-form', compact('payment', 'paymentMethods'));
     }
 
-    public function update(InstallmentPayment $payment, PaymentRequest $request) 
+    public function update(InstallmentPayment $payment, PaymentRequest $request)
     {
         try {
             $payment->update($request->validated());
@@ -58,7 +62,7 @@ class InstallmentPaymentsController extends Controller
         } catch (\Throwable $th) {
             report($th);
             return redirect()->back()->with('error', $th->getMessage());
-        }   
+        }
     }
 
     public function delete(InstallmentPayment $payment)
