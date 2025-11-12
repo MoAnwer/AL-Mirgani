@@ -163,6 +163,8 @@ return [
     'addition'              => 'إضافة/علاوة',
     'payroll_details'       => 'كشف الراتب المفصّل',
     'net_salary_paid'       => 'صافي المبلغ المستحق الدفع',
+    'fixed_due'             => 'استحقاق ثابت',
+    'variable_addition'     => 'إضافة متغيرة',
     'dues'                  => 'المستحقات',
     'deductions'            => 'الاستقطاعات',
     'deduction'             => 'استقطاع/خصم',
@@ -205,6 +207,9 @@ return [
     'edit_payroll_detail'   => 'تعديل بند تفصيلي',
     'detail_name'           => 'اسم البند',
     'detail'                => 'البند',
+    'payroll_invoice'       => ' قسيمة دفع راتب',
+    'payroll_invoice_date'  => 'تاريخ الإصدار',
+    'invoice_details'       => 'تفاصيل البنود',
 
 
     // Payment States
