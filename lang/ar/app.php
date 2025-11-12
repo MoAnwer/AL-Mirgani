@@ -199,7 +199,7 @@ return [
     'edit_payroll'          => 'تعديل الملخص',
     'add_new_payroll_item'  => ' إضافة بند تفصيلي',
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
-
+    'center'                => 'الإدارة',
     // Departments
     'the_teachers' => 'المعلمون',
     'managers' => 'الإداريون',

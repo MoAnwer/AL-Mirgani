@@ -81,6 +81,8 @@ return [
     'total_operating_profit' => 'Total operating profit',
     'non_operating_expenses'    => 'non-operating expenses',
     'net_profit_or_lose'   => 'Total profile / (lose)',
+    'center'                => 'Center',
+
 
     'income_statement_description'      => 'Earning and expenses in specific period',
     'total_expenses_report' => 'Total expenses of school',
