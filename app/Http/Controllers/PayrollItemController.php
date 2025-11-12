@@ -57,7 +57,7 @@ class PayrollItemController extends Controller
         ]);
 
         return redirect()->route('payroll_items.index')
-                         ->with('massage', __('app.update_successful', ['attribute' => __('app.item') ]));
+                         ->with('message', __('app.update_successful', ['attribute' => __('app.item') ]));
 
     }
 
