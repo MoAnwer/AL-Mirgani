@@ -104,7 +104,7 @@ return [
     'the_installment'       => 'القسط',
     'remaining'             => 'المتبقي',
     'accounts'              => 'الحسابات',
-    'payrolls'              => 'الرواتب',
+    'payrolls'              => ' كشوف الرواتب',
     'student_financial_data' => 'كشف تحصيل الرسوم للطالب',
     'financial_data'        => 'بيانات الالتزام المالي',
     'payment_log'           => 'سجل الدفعات (التحصيل)',
