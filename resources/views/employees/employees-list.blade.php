@@ -26,7 +26,7 @@
                                         <td>#</td>
                                         <td>@lang('app.the_employee')</td>
                                         <td>@lang('app.phone_one')</td>
-                                        <td>@lang('app.salary') (جنية)</td>
+                                        <td>@lang('app.salary') ({{ __('app.currency')}})</td>
                                         <td>@lang('app.department')</td>
                                         <td>@lang('app.actions')</td>
                                     </tr>

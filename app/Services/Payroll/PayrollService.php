@@ -133,7 +133,7 @@ final readonly class PayrollService
     public function editPage(EmployeePayroll $payroll)
     {
         if ($payroll->payment_status == 'Paid') {
-            return to_route('payroll.show', $payroll->id)->with('error', 'لا يمكن تعديل كشف راتب تم دفعه بالفعل.');
+            return to_route('payroll.show', $payroll->id)->with('error', __('app.payroll_paid_error'));
         }
 
         $employees = $this->employee->select('id', 'full_name')->get();

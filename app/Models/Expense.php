@@ -39,6 +39,6 @@ class Expense extends Model
 
     public function getFormattedAmountAttribute()
     {
-        return number_format($this->amount) . ' جنية ';
+        return number_format($this->amount) .' '.__('app.currency');
     }
 }

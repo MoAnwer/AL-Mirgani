@@ -16,10 +16,12 @@ return [
     'financial_summary'     => 'Financial summary',
     'no_payment_log'        => 'No payments log yet.',
     'total_paid_amount_collected' => 'Total paid amount until now',
-    'item'                  => 'item',
+    'item'                  => 'payroll item',
     'item_name'             => 'Item name',
     'is_fixed'              => 'it is fixed ?',
     'default_value'         => 'Default value',
+    'yes'                   => 'Yes',
+    'no'                    => 'No',
     'create_new_payroll_item' => 'Create new payroll item',
     'installment_scheduler' => 'Remaining installments dates',
     'net_total_due_fee'     => 'Net Total due fee',
@@ -54,6 +56,9 @@ return [
     'year'                  => 'Year',
     'total_amount_collected'    => 'Total amount collected',
     'collection_rate'       => 'Collection rate',
+    'employee_report_heading' => 'Employees count based on departments',
+    'employee_report_bio'   => 'overview of employees count in all departments',
+    'employee_report_total_count'   => 'Total employees count in all departments',
     'healthy_history'       => 'Healthy history',
     'student_not_found'     => 'Student not found',
     'total_fee'             => 'Total fee',
@@ -68,6 +73,17 @@ return [
     'revenues_by_class_report' => 'Classes revenues',
     'revenues_by_class_description' => 'overview of revenues for each class',
     'income_statement'      => 'Income statement',
+    'income_statement_title' => 'Income statement (earnings, expenses)',
+    'operating_earnings'    => 'Operating earning',    
+    'total_earnings'    => 'Total earnings',
+    'operating_expenses' => 'Operating expenses',
+    'total_operating_expenses' => 'Total Operating expenses',
+    'total_operating_profit' => 'Total operating profit',
+    'non_operating_expenses'    => 'non-operating expenses',
+    'net_profit_or_lose'   => 'Total profile / (lose)',
+    'center'                => 'Center',
+
+
     'income_statement_description'      => 'Earning and expenses in specific period',
     'total_expenses_report' => 'Total expenses of school',
     'total_expenses__description' => 'Total expenses of school overview',
@@ -181,11 +197,36 @@ return [
     'the_earnings'          => 'Earnings'         ,
     'payroll_details'       => 'Payroll details',
     'net_salary_paid'       => 'Net due salary to paid',
+    'fixed_due'             => 'Fixed due',
+    'variable_addition'     => 'Variable addition',
     'dues'                  => 'Financial Dues',
     'deductions'            => 'Deductions',
     'edit_payroll'          => 'Edit payroll',
     'add_new_payroll_item'  => 'Add payroll item',
     'payroll_saved'         => 'Payroll updated successfully.',
+    'edit_this_value_attention'   => 'Edit this value will recalculate the basic salary of selected employee',
+    'create_payroll_detail_item' => 'Add new payroll details',
+    'edit_payroll_detail'   => 'Edit payroll detail',
+    'detail_name'           => 'Detail name',
+    'detail'                => 'Detail',
+    'payroll_invoice'       => 'Payroll invoice',
+    'payroll_invoice_date'  => 'invoice create date',
+    'invoice_details'        => 'Details of invoice',
+
+
+
+
+
+    // Payment States
+    'paid'      => 'Paid',
+    'pending'   => 'Pending',
+    'failed'     => 'Failed',
+
+    // Departments
+    'the_teachers' => 'Teachers',
+    'managers' => 'Managers',
+    'workers' => 'Works',
+    'other_departments' => 'Other',
 
     // Reports
     'report_of' => 'report of :report',
@@ -205,7 +246,7 @@ return [
 
 
     // Actions
-    'create'                => 'Create'               ,
+    'create'                => 'Create :attribute'    ,
     'edit'                  => 'Edit'                 ,
     'save'                  => 'Save'                 ,
     'back'                  => 'Back'                 ,
@@ -226,7 +267,7 @@ return [
     'amount_less_then_message'      => 'please enter amount less than :amount'     ,
     'student_register_successfully' => 'student registered successfully ✅',
     'no_date_returned'              => 'No results',
-   
+    
     // Errors
 
     'error'                         => 'Error'                        ,
@@ -235,4 +276,8 @@ return [
     'internal_server_error'         => 'internal_server_error'        ,
     'internal_server_error_msg'     => 'internal_server_error_msg'    ,
     'remove_admin_msg'              => 'remove_admin_msg'             ,
+    'payroll_paid_error'            => 'you can\'t edit payroll already paid !',
+    'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
+
+    'currency'      => 'SDG',
 ];

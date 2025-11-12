@@ -44,7 +44,7 @@
 
         <x-Menu.MenuHeader title="{{ __('app.payrolls') }}"/>
 
-        <x-Menu.MenuItem label="{{ __('app.payrolls_report') }}" route="payroll.index" icon="bx bx-money" />
+        <x-Menu.MenuItem label="{{ __('app.payrolls') }}" route="payroll.index" icon="bx bx-money" />
         <x-Menu.MenuItem label="{{ __('app.create_payroll_scan') }}" route="payroll.create" icon="bx bx-book-bookmark" /> 
         <x-Menu.MenuItem label="{{ __('app.payroll_items') }}" route="payroll_items.index" icon="bx bx-food-menu" />
 

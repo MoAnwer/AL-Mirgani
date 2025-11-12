@@ -32,7 +32,7 @@ class ArrearsReportController extends Controller
         $currentPage = request()->input('page', 1);
 
         $overdueInstallments = $this->installment
-                                ->where('due_date', '<', $today)
+                                ->whereDate('due_date', '<', $today)
                                 ->when(!empty($filters['school_id']), function ($q) use ($filters) {
                                     $q->whereHas('student', function ($builder) use ($filters) {
                                         $builder->where('school_id', $filters['school_id']);
@@ -44,7 +44,7 @@ class ArrearsReportController extends Controller
                                     });
                                 })
                                 ->when(!empty($filters['date']), function ($q) use ($filters) {
-                                    $q->where('due_date', $filters['date']);
+                                    $q->whereDate('due_date', $filters['date']);
                                 })
                                 ->withSum('payments as paid_amount', 'paid_amount')
                                 ->whereRaw('

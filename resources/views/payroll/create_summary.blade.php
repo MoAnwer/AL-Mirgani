@@ -57,7 +57,6 @@
                                             </div>
 
                                             <hr>
-                                            {{-- 2. إدخال القيم المُجمعة --}}
                                             <div class="row">
                                                 <div class="col-md-4 mb-3">
                                                     <label for="total_fixed_allowances" class="form-label te mb-3 xt-success">@lang('app.fixed_allowances')</label>
@@ -76,14 +75,13 @@
                                                 </div>
                                             </div>
 
-                                            {{-- 3. {{ __('app.payment_state') }} --}}
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="payment_status" class="form-label  mb-3 fw-bold">{{ __('app.payment_state') }}</label>
                                                     <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
-                                                        <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>قيد الانتظار</option>
-                                                        <option value="Paid" {{ old('payment_status') == 'Paid' ? 'selected' : '' }}>مدفوع</option>
-                                                        <option value="Failed" {{ old('payment_status') == 'Failed' ? 'selected' : '' }}>فشل الدفع</option>
+                                                        <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>@lang('app.pending')</option>
+                                                        <option value="Paid" {{ old('payment_status') == 'Paid' ? 'selected' : '' }}>@lang('app.paid')</option>
+                                                        <option value="Failed" {{ old('payment_status') == 'Failed' ? 'selected' : '' }}> @lang('app.failed')</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 mb-3">

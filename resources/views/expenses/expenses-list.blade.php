@@ -22,7 +22,7 @@
                                             <select class="form-select" name="category_id" onchange="this.form.submit()">
                                             <option value="{{ null }}" selected>@lang('app.the_category')</option>
                                                 @foreach($categories as $key => $value)
-                                                    <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ $key }}</option>
+                                                    <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ __("expenses.$key") }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -67,8 +67,8 @@
                                         <tr class="text-center">
                                             <td>{{ $expense->id }}</td>
                                             <td>{{ $expense->formatted_amount }}</td>
-                                            <td>{{ $expense->category->name }}</td>
-                                            <td>{{ !empty($expense->school->name) ? $expense->school->name : 'الإدارة' }}</td>
+                                            <td>{{ __("expenses.{$expense->category->name}") }}</td>
+                                            <td>{{ !empty($expense->school->name) ? $expense->school->name : __('app.center') }}</td>
                                             <td>{{ $expense->date->format('Y-m-d') }}</td>
                                             <td>{{ $expense->statement }}</td>
                                             <td>{{ $expense->created_at }}</td>
@@ -78,8 +78,8 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('expenses.edit', $expense) }}"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-                                                        <a class="dropdown-item" href="{{ route('expenses.delete', $expense) }}"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
+                                                        <a class="dropdown-item" href="{{ route('expenses.edit', $expense) }}"><i class="icon-base bx bx-edit-alt me-1"></i> @lang('app.edit')</a>
+                                                        <a class="dropdown-item" href="{{ route('expenses.delete', $expense) }}"><i class="icon-base bx bx-trash me-1"></i> @lang('app.delete')</a>
                                                     </div>
                                                 </div>
                                             </td> --}}

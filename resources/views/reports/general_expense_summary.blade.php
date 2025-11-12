@@ -50,7 +50,7 @@
                                         <select class="form-select" name="category_id" onchange="this.form.submit()">
                                         <option value="{{ null }}" selected>---</option>
                                             @foreach($categories as $key => $value)
-                                                <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ $key }}</option>
+                                                <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ __("expenses.$key") }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -62,7 +62,7 @@
                                     <h2 class="h5 text-dark mb-3">{{ __('app.expenses_report_total_amount_title') }}</h2>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="display-5 fw-bolder text-danger mb-0">
-                                            {{ $reportData['total_amount'] }} جنية
+                                            {{ $reportData['total_amount'] }} {{ __('app.currency')}}
                                         </p>
                                         <i class="bx bx-dollar text-danger opacity-50" style="font-size: 3rem;"></i>
                                     </div>

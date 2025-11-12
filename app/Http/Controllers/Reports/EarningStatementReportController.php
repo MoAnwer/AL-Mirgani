@@ -46,7 +46,7 @@ class EarningStatementReportController extends Controller
         
         return view('reports.income_statement', [
             'revenue'                   => $this->revenue($totalFeesRevenue, $totalOperatingRevenue),
-            'period'                    => "من {$startDate} إلى {$endDate}",
+            'period'                    => " {$startDate} ". __('app.to') ." {$endDate}",
             'operating_expenses'        => $this->operatingExpenses($data['operating_expenses']),
             'total_operating'           => $totalOperatingExpenses,
             'non_operating_expenses'    => $this->nonOperatingExpenses($data['non_operating_expenses']),

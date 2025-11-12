@@ -34,7 +34,7 @@ class ExpenseService
                         )
                         ->when(!empty($filters['date']), 
                             function($q) use ($filters) {
-                                $q->where('date', $filters['date']);
+                                $q->whereDate('date', $filters['date']);
                             }
                         )
                         ->latest()

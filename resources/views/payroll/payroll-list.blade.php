@@ -32,9 +32,9 @@
                                             <label for="payment_status" class="form-label">{{ __('app.payment_state') }}</label>
                                             <select name="payment_status" onchange="this.form.submit()" id="payment_status" class="form-select">
                                                 <option value="{{ null }}">---</option>
-                                                <option value="Paid" @selected(request('payment_status') == 'Paid')>مدفوع</option>
-                                                <option value="Pending" @selected(request('payment_status') == 'Pending')>في الانتظار</option>
-                                                <option value="Failed" @selected(request('payment_status') == 'Failed')>فشل</option>
+                                                <option value="Paid" @selected(request('payment_status') == 'Paid')>@lang('app.paid')</option>
+                                                <option value="Pending" @selected(request('payment_status') == 'Pending')>@lang('app.pending')</option>
+                                                <option value="Failed" @selected(request('payment_status') == 'Failed')>@lang('app.failed')</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
@@ -76,25 +76,25 @@
                                                     <td>{{ $payroll->id }}</td>
                                                     <td class="text-start fw-bold">{{ $payroll->employee->full_name ?? __('app.deleted_employee') }}</td>
                                                     <td>{{ $payroll->month }}/{{ $payroll->year }}</td>
-                                                    <td>{{ number_format($payroll->basic_salary_snapshot, 2) }} جنية</td>
+                                                    <td>{{ number_format($payroll->basic_salary_snapshot, 2) }} {{ __('app.currency')}}</td>
                                                     <td>
-                                                        {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions, 2) }} جنية
+                                                        {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions, 2) }} {{ __('app.currency')}}
                                                     </td>
-                                                    <td class="text-danger">({{ number_format($payroll->total_deductions, 2) }} جنية) </td>
-                                                    <td class="fw-bolder text-primary">{{ number_format($payroll->net_salary_paid, 2) }} جنية</td>
+                                                    <td class="text-danger">({{ number_format($payroll->total_deductions, 2) }} {{ __('app.currency')}}) </td>
+                                                    <td class="fw-bolder text-primary">{{ number_format($payroll->net_salary_paid, 2) }} {{ __('app.currency')}}</td>
                                                     <td>
                                                         @if ($payroll->payment_status == 'Paid')
                                                             <span class="badge bg-success-subtle text-success border border-success rounded">
                                                                 <i class="bx bxs-check-circle"></i>
-                                                                مدفوع
+                                                                @lang('app.paid')
                                                             </span>
                                                         @elseif ($payroll->payment_status == 'Pending')
                                                             <span class="badge bg-warning-subtle text-warning border border-warning rounded">
                                                                 <i class="bx bxs-time"></i>
-                                                                قيد الانتظار
+                                                                @lang('app.pending')
                                                             </span>
                                                         @else
-                                                            <span class="badge bg-danger-subtle text-danger border border-danger rounded"> <i class='bx bxs-x-circle me-1'></i> فشل</span>
+                                                            <span class="badge bg-danger-subtle text-danger border border-danger rounded"> <i class='bx bxs-x-circle me-1'></i>@lang('app.failed')</span>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -137,14 +137,14 @@
                                             <tr class="text-light text-center fw-bold">
                                                 <td></td>
                                                 <td class="text-center" colspan="2">@lang('app.total')</td>
-                                                <td>{{ number_format($payrolls->sum('basic_salary_snapshot'), 2) }} جنية</td>
+                                                <td>{{ number_format($payrolls->sum('basic_salary_snapshot'), 2) }} {{ __('app.currency')}}</td>
                                                 <td>{{ number_format(
                                                     $payrolls->sum('basic_salary_snapshot') + 
                                                     $payrolls->sum('total_fixed_allowances') +
                                                     $payrolls->sum('total_variable_additions')
-                                                    , 2) }} جنية</td>
-                                                <td>{{ number_format($payrolls->sum('total_deductions'), 2) }} جنية</td>
-                                                <td>{{ number_format($payrolls->sum('net_salary_paid'), 2) }} جنية</td>
+                                                    , 2) }} {{ __('app.currency')}}</td>
+                                                <td>{{ number_format($payrolls->sum('total_deductions'), 2) }} {{ __('app.currency')}}</td>
+                                                <td>{{ number_format($payrolls->sum('net_salary_paid'), 2) }} {{ __('app.currency')}}</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>

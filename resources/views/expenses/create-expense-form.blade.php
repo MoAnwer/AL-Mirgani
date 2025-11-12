@@ -41,7 +41,7 @@
                                             <select class="form-select" name="category_id">
                                                 <option value="{{ null }}" selected>--</option>
                                                     @foreach($categories as $key => $value)
-                                                        <option value="{{ $value }}" @selected(old('category_id') == $value)>{{ $key }}</option>
+                                                        <option value="{{ $value }}" @selected(old('category_id') == $value)>{{ __("expenses.$key") }}</option>
                                                     @endforeach
                                             </select>
                                         </div>

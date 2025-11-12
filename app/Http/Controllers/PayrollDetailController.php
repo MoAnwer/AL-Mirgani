@@ -35,7 +35,7 @@ class PayrollDetailController extends Controller
     public function edit(EmployeePayroll $payroll, PayrollDetail $detail)
     {
         if ($detail->payroll_id !== $payroll->id) {
-            abort(404, 'البند التفصيلي غير مرتبط بكشف الراتب هذا.');
+            abort(404);
         }
 
         $detail->load('item'); 
@@ -78,7 +78,7 @@ class PayrollDetailController extends Controller
             $this->recalculatePayrollSummary($payroll);
         });
 
-        return to_route('payroll.show', $payroll->id)->with('message', 'تم اضافة بند جديد الى كشف المرتب بنجاح');
+        return to_route('payroll.show', $payroll->id)->with('message', __('app.create_successful', ['attribute' => __('app.salary')]));
     }
 
 
@@ -91,7 +91,7 @@ class PayrollDetailController extends Controller
         ]);
         
         if ($detail->payroll_id !== $payroll->id) {
-            abort(403, 'لا تملك صلاحية تعديل هذا البند.');
+            abort(403);
         }
 
         DB::transaction(function () use ($request, $payroll, $detail) {
@@ -104,7 +104,7 @@ class PayrollDetailController extends Controller
             $this->recalculatePayrollSummary($payroll);
         });
 
-        return to_route('payroll.show', $payroll->id)->with('message', 'تم تعديل البند التفصيلي بنجاح وتم تحديث الملخص.');
+        return to_route('payroll.show', $payroll->id)->with('message', __('app.update_successful', ['attribute' => __('app.detail')]));
     }
     
     /**

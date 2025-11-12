@@ -39,7 +39,7 @@
                                             <label class="mb-3">@lang('app.payment_method')</label>
                                                 <select class="form-select" name="payment_method">
                                                 <option value="{{ null }}" selected>--</option>
-                                                @foreach(["كاش", "بنكك"] as $value)
+                                                @foreach([__('app.cash'), __('app.bankak')] as $value)
                                                         <option value="{{ $value }}" @selected($value == $payment->payment_method)>{{ $value }}</option>
                                                 @endforeach
                                             </select>
