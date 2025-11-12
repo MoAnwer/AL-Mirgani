@@ -14,7 +14,7 @@
                                 
                                 <div class="text-center mb-5 card pt-6 pb-3">
                                     <h2 class="display-5 fw-bold text-primary mb-3">{{ __('app.payroll_details') }}</h2>
-                                    <p class="lead text-muted fs-5">@lang('app.interval'): <span class="fw-bold text-dark">{{ $payroll->month }}/{{ $payroll->year }}</span></p>
+                                    <p class="lead text-muted fs-5">@lang('app.period'): <span class="fw-bold text-dark">{{ $payroll->month }}/{{ $payroll->year }}</span></p>
                                 </div>
 
                                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
