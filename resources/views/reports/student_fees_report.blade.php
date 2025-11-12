@@ -164,7 +164,7 @@
                                 <td class="align-center">{{ $payment['receipt_number'] ??0 }}</td>
                                 <td class="align-center">{{ $payment['statement'] }}</td>
                                 <td class="align-center" class="align-center">{{ number_format($payment['paid_amount'] ?? 0, 2) }}</td>
-                                <td class="align-center">{{ $payment['payment_method']}}</td>
+                                <td class="align-center">{{ $payment['payment_method'] }}</td>
                             </tr>
                             @empty
                             <tr>
@@ -216,7 +216,7 @@
                                 <td class="text-center">{{ number_format($installment['status'] ) }}</td>
                             </tr>
                             @empty
-                                <td colspan="4" style="text-align: center; color: #6c757d;">لم يتم تسجيل أي اقساط لهذا الطالب بعد.</td>
+                                <td colspan="4" style="text-align: center; color: #6c757d;">@lang('app.empty_message', ['attributes' => __('app.installments')])</td>
                             @endforelse
                         </tbody>
                     </table>

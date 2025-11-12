@@ -64,8 +64,8 @@
                                                     <tr class="text-center">
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ number_format($payment->paid_amount, 0) }} {{ __('app.currency')}}</td>
-                                                        <td>{{ $payment->payment_method }}</td>
-                                                        <td>{{ $payment->receipt_number ?? 'لا يوجد بعد' }}</td>
+                                                        <td>{{ ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak')) }}</td>
+                                                        <td>{{ $payment->receipt_number ?? '-' }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
                                                         <td>{{ $payment->statement }}</td>
                                                         <td>
