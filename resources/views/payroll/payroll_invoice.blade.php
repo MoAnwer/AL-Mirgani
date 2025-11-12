@@ -1,4 +1,4 @@
-<x-header title=" قسيمة دفع راتب - {{ $payroll->employee->full_name ?? 'الموظف' }}" />
+<x-header title=" {{ __('app.payroll_invoice') .' - '.$payroll->employee->full_name ?? __('app.employee') }}" />
 
 
     <style>
@@ -51,10 +51,10 @@
 
     <div class="text-center mt-4 no-print">
         <button onclick="printPayslip()" class="btn btn-primary btn rounded-pill shadow-lg me-3">
-            <i class='bx bxs-printer me-2'></i> طباعة قسيمة الدفع
+            <i class='bx bxs-printer me-2'></i>@lang('app.print')  
         </button>
         <a href="{{ route('payroll.show', $payroll?->id) }}" class="btn btn-outline-secondary btn rounded-pill">
-            <i class='bx bx-arrow-back me-2'></i> العودة للكشف
+            <i class='bx bx-arrow-back me-2'></i>@lang('app.back') 
         </a>
     </div>
 
@@ -62,77 +62,77 @@
     
     <div class="payslip-header d-flex justify-content-between align-items-center">
         <div>
-            <h1 class="text-primary fw-bolder mb-2">قسيمة دفع راتب</h1>
-            <p class="text-muted mb-0">للفترة المالية: <span class="fw-bold">{{ $payroll?->month }}/{{ $payroll?->year }}</span></p>
+            <h1 class="text-primary fw-bolder mb-2">@lang('app.payroll_invoice')</h1>
+            <p class="text-muted mb-0">@lang('app.period'): <span class="fw-bold">{{ $payroll?->month }}/{{ $payroll?->year }}</span></p>
         </div>
         <div class="text-end">
-            <h4 class="mb-2">{{ config('app.name') ?? 'مؤسسة المبرمجي' }}</h4>
-            <small class="text-muted">تاريخ الإصدار: {{ date('Y-m-d') }}</small>
+            <h4 class="mb-2">{{ config('app.name') ?? '-'}}</h4>
+            <small class="text-muted"> @lang('app.payroll_invoice_date'): {{ date('Y-m-d') }}</small>
         </div>
     </div>
 
     <div class="row mb-4">
         <div class="col-4">
-            <p class="mb-1 text-muted">اسم الموظف:</p>
-            <p class="fw-bold fs-5 mb-0">{{ $payroll?->employee->full_name ?? 'موظف محذوف' }}</p>
+            <p class="mb-1 text-muted">@lang('app.employee_name'): </p>
+            <p class="fw-bold fs-5 mb-0">{{ $payroll?->employee->full_name ?? __('app.deleted_employee') }}</p>
         </div>
         <div class="col-4 text-end">
-            <p class="mb-1 text-muted">حالة الدفع:</p>
+            <p class="mb-1 text-muted">@lang('app.payment_state')</p>
             @if ($payroll?->payment_status == 'Paid')
-                <span class="badge bg-success-subtle text-success border border-success fs-6 p-2 rounded-pill"><i class='bx bxs-check-circle me-1'></i> مدفوع</span>
+                <span class="badge bg-success-subtle text-success border border-success fs-6 p-2 rounded-pill"><i class='bx bxs-check-circle me-1'></i>@lang('app.paid')</span>
             @else
-                <span class="badge bg-warning-subtle text-warning border border-warning fs-6 p-2 rounded-pill"><i class='bxs-time me-1'></i> {{ $payroll?->payment_status ?? 'قيد الانتظار' }}</span>
+                <span class="badge bg-warning-subtle text-warning border border-warning fs-6 p-2 rounded-pill"><i class='bxs-time me-1'></i> {{ $payroll?->payment_status ?? __('app.pending') }}</span>
             @endif
         </div>
         <div class="col-4 text-end">
-            <p class="mb-0 mt-1 text-muted">تاريخ الدفع: {{ $payroll->payment_date->format('Y-m-d') ?? 'غير محدد' }}</p>
+            <p class="mb-0 mt-1 text-muted">@lang('app.payment_date'): {{ $payroll->payment_date->format('Y-m-d') ?? '-' }}</p>
         </div>
     </div>
     
     <div class="row mb-4">
         <div class="col-12">
-            <h5 class="mb-3 fw-bold text-secondary">تفاصيل البنود</h5>
+            <h5 class="mb-3 fw-bold text-secondary">@lang('app.invoice_details')</h5>
             <table class="table table-clean mb-0">
                 <thead>
                     <tr class="border-bottom">
-                        <th class="text-center">البند</th>
-                        <th class="text-center">النوع</th>
-                        <th class="text-center">المبلغ ({{ $currency ?? 'جنيه' }})</th>
+                        <th class="text-center">@lang('app.item')</th>
+                        <th class="text-center">@lang('app.category')</th>
+                        <th class="text-center">@lang('app.amount')({{ $currency ?? 'SDG' }})</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr class="table-light">
-                        <td class="text-center fw-bold">الراتب الأساسي</td>
-                        <td class="text-center">استحقاق ثابت</td>
-                        <td class="text-center fw-bold text-success">{{ number_format($payroll?->basic_salary_snapshot, 2) }}</td>
+                        <td class="text-center fw-bold">@lang('app.basic_salary')</td>
+                        <td class="text-center">@lang('app.fixed_due')</td>
+                        <td class="text-center fw-bold text-success">{{ number_format($payroll?->basic_salary_snapshot) }}</td>
                     </tr>
                     
                     @foreach($additions as $detail)
                         <tr>
                             <td class="text-center">{{ $detail->item->name ?? 0}}</td>
-                            <td class="text-center text-success">إضافة متغيرة</td>
-                            <td class="text-center text-success">+ {{ number_format($detail->amount ?? 0, 2) }}</td>
+                            <td class="text-center text-success">@lang('app.variable_addition')</td>
+                            <td class="text-center text-success">+ {{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
                     @endforeach
 
 
                     @foreach($deductions as $detail)
                         <tr>
-                            <td class="text-center">{{ $detail->item->name ?? 0}}</td>
-                            <td class="text-center text-danger">استقطاع/ضريبة</td>
-                            <td class="text-center text-danger">({{ number_format($detail->amount ?? 0, 2) }})</td>
+                            <td  class="text-center">{{ $detail->item->name ?? 0}}</td>
+                            <td  class="text-center text-danger">@lang('app.deduction')</td>
+                            <td  class="text-center text-danger">-{{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
                     @endforeach
 
 
                     <tr class="border-top">
-                        <td colspan="2" class="text-end fw-bold">إجمالي المستحقات (الإجمالي)</td>
-                        <td class="text-center fw-bold text-primary">{{ number_format($payroll?->basic_salary_snapshot + $payroll?->total_variable_additions + $payroll?->total_fixed_allowances, 2) }} جنية</td>
+                        <td colspan="2" class="text fw-bold">@lang('app.total_due')</td>
+                        <td class="text-center fw-bold text-primary">{{ number_format($payroll?->basic_salary_snapshot + $payroll?->total_variable_additions + $payroll?->total_fixed_allowances) }} SDG</td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="text-end fw-bold">إجمالي الاستقطاعات</td>
-                        <td class="text-center fw-bold text-danger">({{ number_format($payroll?->total_deductions, 2) }}) جنية</td>
+                        <td colspan="2" class="text fw-bold">@lang('app.total_deductions')</td>
+                        <td class="text-center fw-bold text-danger">{{ number_format($payroll?->total_deductions) }} SDG</td>
                     </tr>
                 </tbody>
             </table>
@@ -140,14 +140,8 @@
     </div>
 
     <div class="payslip-total p-4 text-center">
-        <h4 class="text-dark mb-2 fw-normal">صافي المبلغ المستحق الدفع (NET PAY)</h4>
-        <h1 class="display-3 fw-bolder text-primary mb-0">{{ number_format($payroll?->net_salary_paid, 2) }} {{ $currency ?? 'جنيه' }}</h1>
-    </div>
-
-    <div class="mt-4 pt-3 border-top">
-        <p class="small text-muted mb-0">
-            * هذا المستند هو قسيمة دفع آلية، ولا يتطلب توقيعاً.
-        </p>
+        <h4 class="text-dark mb-2 fw-normal">@lang('app.net_salary_paid')</h4>
+        <h1 class="display-3 fw-bolder text-primary mb-0">{{ number_format($payroll?->net_salary_paid) }} {{ $currency ?? 'SDG' }}</h1>
     </div>
 </div>
 
