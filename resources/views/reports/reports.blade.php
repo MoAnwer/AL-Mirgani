@@ -11,7 +11,6 @@
         <x-nav />
         <x-layout-container>
             <x-container>
-                <div class="dashboard-container">
                     <h3 class="mb-5">@lang('app.the_reports')</h3>
                     <x-cards.cards-container>
                         <x-cards.card link="{{ route('accounts') }}" icon="bx bx-book-open" title="{{ __('app.account_statement') }}" description="{{ __('app.account_statement_description') }}"/>
@@ -22,7 +21,6 @@
                         <x-cards.card link="{{ route('incomeReport') }}" icon='bx bx-calculator' title="{{ __('app.income_statement') }}" description="{{ __('app.income_statement_description') }}"/>
                         <x-cards.card link="{{ route('reports.employee-count-report') }}" icon='bx bxs-briefcase' title="{{ __('app.employee_report') }}" description="{{ __('app.employee_report_description') }}"/>
                     </x-cards.cards-container>
-                </div>
             </x-container>
         </x-layout-container>
     </x-layout-page>
