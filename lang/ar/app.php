@@ -57,7 +57,8 @@ return [
     'wait'                  => 'في الانتظار',
     'salary'                => 'المرتب',
     'basic_salary'          => 'الراتب الأساسي',
-    'interval'              => 'الفترة',
+    'total_basic_salary'    => 'إجمالي الراتب الأساسي',
+    'period'              => 'الفترة',
     'stage'                 => 'المرحلة',
     'class'                 => 'الصف',
     'registration_fee'      => 'رسوم التسجيل',
@@ -154,6 +155,7 @@ return [
     'category'              => 'نوع',
     'earning'               => 'ايراد',
     'filters'               => 'فلاتر البحث',
+    'period_year_month'     => 'الفترة (الشهر/السنة)',
     'the_earnings'          => 'الايرادات',
     'addition'              => 'إضافة/علاوة',
     'payroll_details'       => 'كشف الراتب المفصّل',
@@ -194,6 +196,8 @@ return [
     'expenses_through_week'    => 'منصرفات الاسبوع الحالي',
     'count_of_students_by_school' => 'عدد التلاميذ حسب المدرسة',
     'count_of_students_by_class' => 'عدد التلاميذ حسب الصف',
+    'total_payrolls_report' => 'تقرير إجمالي كشوف الرواتب',
+    'total_payrolls_report_description' => 'الإجماليات المُعالجة حسب الشهر لعام :year',
  
     // Actions
     'create'                => 'اضافة :attribute جديد',

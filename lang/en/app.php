@@ -66,7 +66,7 @@ return [
     'revenues_by_class_report' => 'Classes revenues',
     'revenues_by_class_description' => 'overview of revenues for each class',
     'income_statement'      => 'Income statement',
-    'income_statement_description'      => 'Earning and expenses in specific interval',
+    'income_statement_description'      => 'Earning and expenses in specific period',
     'total_expenses_report' => 'Total expenses of school',
     'total_expenses__description' => 'Total expenses of school overview',
     'employee_report'       => 'Employees count',
@@ -86,7 +86,8 @@ return [
     'wait'                  => 'Wait',
     'salary'                => 'Salary',
     'basic_salary'          => 'Basic salary',
-    'interval'              => 'Interval',
+    'total_basic_salary'    => 'Total basic salary',
+    'period'              => 'period',
     'stage'                 => 'Stage',
     'class'                 => 'Class',
     'registration_data'     => 'Registration data',
@@ -173,6 +174,7 @@ return [
     'category'              => 'Category'             ,
     'earning'               => 'Earning'              ,
     'filters'               => 'Search filters',
+    'period_year_month'     => 'Period (month/year)',
     'the_earnings'          => 'Earnings'         ,
     'payroll_details'       => 'Payroll details',
     'net_salary_paid'       => 'Net due salary to paid',
@@ -184,8 +186,8 @@ return [
 
     // Reports
     'general_expense_report'=> 'Total expenses report',
-    'expenses_report_description' => 'Total of expenses based on selected interval',
-    'expenses_report_total_amount_title' => 'Total of expenses based on selected interval',
+    'expenses_report_description' => 'Total of expenses based on selected period',
+    'expenses_report_total_amount_title' => 'Total of expenses based on selected period',
     'expense_report_amount_description'  => 'this amount represent total amount of all expenses',
     'expenses_through_month'    => 'Expenses through this month ',
     'earnings_through_month'    => 'Earnings through this month',
@@ -193,6 +195,8 @@ return [
     'expenses_through_week'    => 'Expenses through this week',
     'count_of_students_by_school' => 'Count of students in the school',
     'count_of_students_by_class' => 'Count of students in the class',
+    'total_payrolls_report' => 'Total payrolls report',
+    'total_payrolls_report_description' => 'total payrolls paid by month for the year :year',
  
 
 
