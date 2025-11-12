@@ -21,40 +21,34 @@
                                 <h1 class="h3 fw-bold text-dark">{{ __('app.general_expense_report') }}</h1>
                                 <p class="text-muted">{{ __('app.expenses_report_description') }}</p>
                             </header>
-
-                            
                             <div class="p-3  border -sm rounded-3 mb-5">
                                 <div class="card-header border-bottom pt-1 pb-3 mb-5">
                                     <h5 class="mb-0">{{ __('app.filters') }}</h5>
                                 </div>
                                 <form action="{{ url()->current() }}" method="GET" class="row g-3 align-items-end  pb-3">
-                                    
                                     <div class="col-md-3 col-sm-6">
-                                        <label for="school_id" class="form-label text-dark fw-medium pb-1">{{ __('app.all_school')  }}</label>
+                                        <label for="school_id" class="form-label text-dark fw-medium pb-1">{{ __('app.all_schools')  }}</label>
                                         <select name="school_id" id="school_id" class="form-select" onchange="this.form.submit()">
-                                            <option value="">{{ __('app.all_schools') }}</option>
+                                            <option value="{{ null }}">{{ __('app.all_schools') }}</option>
                                             @foreach ($schools as $school)
                                                 <option value="{{ $school->id }}" @selected(request('school_id') == $school->id)>{{ $school->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="col-md-3 col-sm-6">
                                         <label for="start_date" class="form-label text-dark fw-medium pb-1">{{ __('app.startDate') }}</label>
                                         <input type="date" name="start_date" id="start_date" value="{{ $startDate }}" onchange="this.form.submit()"
                                             class="form-control">
                                     </div>
-                                    
                                     <div class="col-md-3 col-sm-6">
                                         <label for="end_date" class="form-label text-dark fw-medium pb-1">{{ __('app.endDate') }}</label>
                                         <input type="date" name="end_date" id="end_date" value="{{ $endDate }}" onchange="this.form.submit()"
                                             class="form-control">
                                     </div>
-
                                      <div class="col-3">
                                         <label class="form-label text-dark fw-medium pb-1">@lang('app.the_category')</label>
                                         <select class="form-select" name="category_id" onchange="this.form.submit()">
-                                        <option value="{{ null }}" selected></option>
+                                        <option value="{{ null }}" selected>---</option>
                                             @foreach($categories as $key => $value)
                                                 <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ $key }}</option>
                                             @endforeach
@@ -63,7 +57,7 @@
                                 </form>
                             </div>
 
-                            <div class="card shadow-0 card-expense border border-danger p-5">
+                            <div class="card card-expense border border-danger p-5">
                                 <div class="card-body p-4 ">
                                     <h2 class="h5 text-dark mb-3">{{ __('app.expenses_report_total_amount_title') }}</h2>
                                     <div class="d-flex justify-content-between align-items-center">
