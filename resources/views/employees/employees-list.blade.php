@@ -42,17 +42,17 @@
                                                 @if($employee->department == \App\Enums\EmployeeTypes::TEACHER->value)
                                                     <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill  py-1 px-2">
                                                         <i class="icon-base bx bx-user icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.teacher') }}
                                                     </span>
                                                 @elseif($employee->department == \App\Enums\EmployeeTypes::MANAGER->value)
                                                 <span class="badge bg-success-subtle text-success border border-success rounded-pill  py-1 px-2">
                                                         <i class="icon-base bx bx-check icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.manager') }}
                                                     </span>
                                                 @else                                                
                                                     <span class="badge bg-info-subtle text-info border border-info rounded-pill py-1 px-2">
                                                         <i class="icon-base bx bx-pin icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.worker') }}
                                                     </span>
                                                 @endif
                                             </td>
