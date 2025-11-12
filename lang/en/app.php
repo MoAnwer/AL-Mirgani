@@ -279,4 +279,5 @@ return [
     'payroll_paid_error'            => 'you can\'t edit payroll already paid !',
     'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
 
+    'currency'      => 'SDG',
 ];

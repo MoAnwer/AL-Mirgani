@@ -272,4 +272,7 @@ return [
     'internal_server_error_msg'     => 'تعذر على النظام معالجة طلبك',
     'remove_admin_msg'              => 'لا يمكن حذف مدير النظام',
     'payroll_paid_error'            => 'لا يمكن تعديل كشف راتب تم دفعه بالفعل.',
+
+
+    'currency'      => 'جنيه',
 ];
