@@ -24,6 +24,7 @@ class StudentService
             'stages'  => StageEnum::cases(),
             'classes' => ClassRoom::pluck('id', 'name'),
             'schools' => School::pluck('id', 'name'),
+            'paymentMethods' => ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
         ]);
     }
  
