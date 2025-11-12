@@ -36,7 +36,7 @@ class StoreEmployeePayrollRequest extends FormRequest
     public function messages()
     {
         return [
-            'unique' => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
+            'unique' => __('app.duplicate_paid_payroll'),
         ];
     }
 }
