@@ -27,10 +27,10 @@ class StudentAccountController extends Controller
                 return [
                     'payment_date' => $payment->payment_date ?? 0,
                     'receipt_number' => $payment->receipt_number ?? 0,
-                    'statement' => $payment->notes ?? '',
+                    'statement' => $payment->statement ?? '',
                     'paid_amount' => $payment->paid_amount ?? 0,
-                    'payment_method' => $payment->payment_method ?? '',
-                    'collector' => $payment->collector->name ?? 'موظف مالي', // إذا كان لديك علاقة مع موظف
+                    'payment_method' => ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))  ?? '',
+                    'collector' => $payment->collector->name ?? '-', 
                 ];
             });
         }
@@ -59,7 +59,7 @@ class StudentAccountController extends Controller
             'paid_amount'    => number_format($student->registrationFees->paid_amount),
             'payment_date'   => $student->registrationFees->payment_date,
             'transaction_id' => $student->registrationFees->transaction_id ?? '-',
-            'payment_method' => $student->registrationFees->payment_method
+            'payment_method' => ($student->registrationFees->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))
         ];
 
         $installmentsSchedule = $student->installments->sortBy('date')->map(function($installment)  {
