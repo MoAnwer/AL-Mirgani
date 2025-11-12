@@ -1,4 +1,4 @@
-<x-header title="تحليل الإيرادات حسب الصف للمرحلة الابتدائية"/>
+<x-header title="{{ __('app.revenues_by_class_description') }}"/>
 
 <x-layout-wrapper>
     <x-aside />
@@ -6,10 +6,14 @@
         <x-nav />
         <x-layout-container>
             <x-container>
-                <div class="card px-2 mb-3">
+                <div class="card px-2 mb-3 py-3">
+                    <div class="card-header border-bottom py-4">
+                        <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
+                    </div>
                     <form action="{{ URL::current() }}">
-                    <div class="row p-3">
+                    <div class="row p-5">
                         <div class="col-4">
+                            <label class="form-label">@lang('app.school')</label>
                             <select class="form-select" name="school_id" onchange="this.form.submit()">
                                 <option value="{{ null }}" selected>@lang('app.school')</option>
                                     @foreach($schools as $key => $value)
@@ -18,33 +22,33 @@
                             </select>
                         </div>
                         <div class="col-4">
+                            <label class="form-label">@lang('app.startDate')</label>
                             <div class="input-group">
                                 <input type="date" onchange="this.form.submit()" class="form-control" name="start_date" value="{{ request()->query('start_date') }}" />
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
+                            <label class="form-label">@lang('app.endDate')</label>
                             <div class="input-group">
                                 <input type="date" onchange="this.form.submit()" class="form-control" name="end_date" value="{{ request()->query('end_date') }}" />
                             </div>
-                        </div>                                  
-
-                        <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
+                        </div>
                     </div>
                 </form>
                 </div>
                 
                 <div class="card">
-                <h4 class="text-center pt-4 text-primary">تحليل الإيرادات حسب الصف للمرحلة {{ $schoolName }}</h4>
-                <p class="text-center lead mb-10">للفترة: <b>{{ $startDate }}</b> الى <b>{{ $endDate }}</b></p>
+                <h4 class="text-center pt-4 text-primary">{{ __('app.revenues_by_class_description') }}  - {{ $schoolName }}</h4>
+                <p class="text-center lead mb-10">@lang('app.period'): <b>{{ $startDate }}</b> @lang('app.to') <b>{{ $endDate }}</b></p>
                 <x-table.basic-table>
                     <x-table.thead>
                         <tr>
-                            <th class="text-center">الصف</th>
-                            <th class="text-center">عدد الطلاب</th>
-                            <th class="text-center">صافي الرسوم المستحقة (جنية)</th>
-                            <th class="text-center">إجمالي المبلغ المُحصَّل (جنية)</th>
-                            <th class="text-center">الرصيد المتبقي (جنية)</th>
-                            <th class="text-center">نسبة التحصيل</th>
+                            <th class="text-center">@lang('app.class')</th>
+                            <th class="text-center">@lang('app.count_of', ['count' => __('app.the_students')])</th>
+                            <th class="text-center">@lang('app.net_total_fees')</th>
+                            <th class="text-center">@lang('app.total_amount_collected')</th>
+                            <th class="text-center">@lang('app.remaining')</th>
+                            <th class="text-center">@lang('app.collection_rate')</th>
                         </tr>
                     </x-table.thead>
 
@@ -73,7 +77,7 @@
                     </x-table.tbody>
                     <tfoot>
                         <tr class="table-primary fw-bold">
-                            <td class="text-center">الإجمالي الكلي</td>
+                            <td class="text-center">@lang('app.total')</td>
                             <td class="text-center">-</td>
                             <td  class="text-center">{{ number_format($classTotalFees, 2) }}</td>
                             <td class="text-center">{{ number_format($classTotalPaid, 2) }}</td>
