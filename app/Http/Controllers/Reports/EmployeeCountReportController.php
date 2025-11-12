@@ -12,7 +12,7 @@ class EmployeeCountReportController extends Controller
 {
     function __construct(private Employee $employee) {}
 
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\View\View
@@ -43,10 +43,10 @@ class EmployeeCountReportController extends Controller
         $data = [];
 
         $categoryStyles = [
-            EmployeeTypes::TEACHER->value       => ['title' => 'المعلمون', 'icon' => 'bi-person-video', 'bg' => 'primary'],
-            EmployeeTypes::MANAGER->value       => ['title' => 'الإداريون', 'icon' => 'bi-briefcase', 'bg' => 'info'],
-            EmployeeTypes::WORKER->value        => ['title' => 'العمال', 'icon' => 'bi-tools', 'bg' => 'warning'],
-            'other'                             => ['title' => 'أقسام أخرى', 'icon' => 'bi-question-circle', 'bg' => 'secondary'],
+            EmployeeTypes::TEACHER->value       => ['title' => __('app.the_teachers'), 'icon' => 'bi-person-video', 'bg' => 'primary'],
+            EmployeeTypes::MANAGER->value       => ['title' => __('app.managers'), 'icon' => 'bi-briefcase', 'bg' => 'info'],
+            EmployeeTypes::WORKER->value        => ['title' => __('app.workers'), 'icon' => 'bi-tools', 'bg' => 'warning'],
+            'other'                             => ['title' => __('app.other_departments'), 'icon' => 'bi-question-circle', 'bg' => 'secondary'],
         ];
 
         foreach ($counts as $item) {
@@ -69,10 +69,10 @@ class EmployeeCountReportController extends Controller
         ];
 
         $iconMap = [
-            'المعلمون' => 'bxs-user-pin',
-            'الإداريون' => 'bxs-briefcase',
-            'العمال'  => 'bxs-wrench',
-            'أقسام أخرى' => 'bx-question-mark',
+            __('app.the_teachers') => 'bxs-user-pin',
+            __('app.managers') => 'bxs-briefcase',
+            __('app.workers')  => 'bxs-wrench',
+            __('app.other_departments') => 'bx-question-mark',
         ];
 
         return [$data, $iconMap, $categoryMap];
