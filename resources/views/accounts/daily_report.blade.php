@@ -43,8 +43,8 @@
                                     <thead  class="table-primary">
                                         <tr>
                                             <th>@lang('app.date')</th>
-                                            <th>@lang('app.earning')</th>
-                                            <th>@lang('app.expenses')</th>
+                                            <th>@lang('app.the_earnings')</th>
+                                            <th>@lang('app.the_expenses')</th>
                                             <th class="text-center">@lang('app.statement')</th>
                                             <th> @lang('app.current_balance')</th>
                                         </tr>
