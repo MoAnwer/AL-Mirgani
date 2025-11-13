@@ -25,6 +25,7 @@ return [
     'users'                 => 'المستخدمين',
     'name'                  => 'اسم رباعي',
     'password'              => 'كلمة السر',
+    'new_password'          => 'كلمة السر الجديدة',
     'username'              => 'اسم المستخدم ',
     'employees'             => 'موظفين',
     'hire_date'             => 'تاريخ التعيين',
@@ -266,6 +267,7 @@ return [
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
     'no_date_returned'              => 'لاتوجد بيانات مطابقة لفلاتر البحث',
     'duplicate_paid_payroll'        => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
+    'password_reset_successfully'   => 'تم اعادة تعيين كلمة السر بنجاح  :user',
     
     // Errors
     'error'                         => 'حدث خطا',
@@ -278,4 +280,15 @@ return [
 
 
     'currency'      => 'جنيه',
+
+    'enter_your_username'   => 'ادخل اسم المستخدم الخاص بك',
+    'enter_new_password'   => 'ادخل كلمة السر الجديدة ',
+    'account_verification'  => 'تحقق من الحساب',
+    'verify'                => 'تحقق',
+    'username_exists_msg'   => 'مرحباً :user',
+    'security_questions' => 'اسئلة الأمان',
+    'reset_password'    => 'اعادة تعيين كلمة السر',
+    'checking_error'    => 'حدث خطا اثناء عملية التحقق',
+    'answer'            => 'الإجابة',
+    'send_answer'       => 'إرسال الإجابة',
 ];

@@ -43,6 +43,7 @@ return [
     'users'                 => 'Users',
     'name'                  => 'Name',
     'password'              => 'Password',
+    'new_password'          => 'New password',
     'username'              => 'Username',
     'employees'             => 'Employees',
     'hire_date'             => 'Hire date',
@@ -271,9 +272,9 @@ return [
     'amount_less_then_message'      => 'please enter amount less than :amount'     ,
     'student_register_successfully' => 'student registered successfully ✅',
     'no_date_returned'              => 'No results',
+    'password_reset_successfully'   => 'Password reset successfully :user',
     
     // Errors
-
     'error'                         => 'Error'                        ,
     'not_found'                     => 'Resource Not Found'                    ,
     'not_found_msg'                 => 'not_found_msg'                ,
@@ -284,4 +285,15 @@ return [
     'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
 
     'currency'      => 'SDG',
+
+    'enter_your_username'   => 'Enter your username',
+    'enter_new_password'   => 'ُEnter your new password',
+    'account_verification'  => 'Account verification',
+    'verify'                => 'Verify',
+    'username_exists_msg'   => 'Hello :user',
+    'checking_error'    => 'Checking error',
+    'reset_password'    => 'Reset password',
+    'security_questions' => 'Security Questions',
+    'answer'            => 'answer',
+    'send_answer'       => 'Send answer',
 ];
