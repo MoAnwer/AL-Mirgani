@@ -49,7 +49,7 @@
                                             <select class="form-select" name="class">
                                                 <option value="{{ null }}" selected>----</option>
                                                 @foreach($classes as $key => $value)
-                                                    <option value="{{ $value }}" @selected(old('class') == $value)>{{ $key }}</option>
+                                                    <option value="{{ $value }}" @selected(old('class') == $value)>{{ __("classes.$key") }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -58,7 +58,7 @@
                                             <select class="form-select" name="stage">
                                                 <option value="{{ null }}" selected>----</option>
                                                 @foreach($stages as $value)
-                                                    <option value="{{ $value->value }}" @selected(old('stage') == $value->value)>{{ $value->value }}</option>
+                                                    <option value="{{ $value->value }}" @selected(old('stage') == $value->value)>{{ __("classes.{$value->value}") }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
