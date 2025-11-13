@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Enums\StageEnum;
 use App\Http\Requests\Student\{UpdateStudentRequest, RegisterStudentRequest};
-use App\Models\{ClassRoom, School, Student};
+use App\Models\Student;
 use App\Services\Student\StudentService;
 use App\Http\Controllers\Controller;
 
