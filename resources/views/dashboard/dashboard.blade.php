@@ -120,7 +120,7 @@
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                               <h6 class="fw-normal mb-0">{{ $student->full_name }}</h6>
-                              <small class="d-block">{{ $student->stage }}</small>
+                              <small class="d-block">{{ __("classes.{$student->stage}") }}</small>
                             </div>
                             <div class="user-progress d-flex align-items-center gap-2">
                               <h6 class="fw-normal mb-0">{{ $student->formatted_created_at  }}</h6>
