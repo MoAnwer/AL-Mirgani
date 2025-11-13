@@ -75,7 +75,7 @@
                                         <span>{{ $class->count }}</span>
                                     </div>
                                     <div class="card-content">
-                                        <h3>{{ $class->name }}</h3>
+                                        <h3>{{ __("classes.{$class->name}") }}</h3>
                                     </div>
                                 </div>
                             @endforeach
