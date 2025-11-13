@@ -6,7 +6,7 @@
         <x-layout-container>
             <x-container>
                 <div class="card -sm border-0 mb-5">
-
+                    <x-alert type="error" />
                     @if($errors->any())
                     <div class="alert alert-danger">
                         <ul>
