@@ -295,6 +295,7 @@ return [
     'checking_error'    => 'Checking error',
     'reset_password'    => 'Reset password',
     'security_questions' => 'Security Questions',
+    'question'          => 'Question',
     'answer'            => 'answer',
     'send_answer'       => 'Send answer',
 ];

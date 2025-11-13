@@ -292,6 +292,7 @@ return [
     'security_questions' => 'اسئلة الأمان',
     'reset_password'    => 'اعادة تعيين كلمة السر',
     'checking_error'    => 'حدث خطا اثناء عملية التحقق',
+    'question'          => '',
     'answer'            => 'الإجابة',
     'send_answer'       => 'إرسال الإجابة',
 ];
