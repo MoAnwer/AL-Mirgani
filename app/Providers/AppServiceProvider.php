@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
@@ -24,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Number::useLocale('ar');
+
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
+        }
     }
 }
