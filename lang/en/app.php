@@ -21,6 +21,8 @@ return [
     'is_fixed'              => 'it is fixed ?',
     'default_value'         => 'Default value',
     'yes'                   => 'Yes',
+    'employees_salaries'    => 'Salaries of employees',
+    'edu_fees'              => 'Installments and study fees',
     'no'                    => 'No',
     'create_new_payroll_item' => 'Create new payroll item',
     'installment_scheduler' => 'Remaining installments dates',
