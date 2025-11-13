@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    //
+    public function settingsPage() {
+        return view('settings.settings-page');
+    }
 }
