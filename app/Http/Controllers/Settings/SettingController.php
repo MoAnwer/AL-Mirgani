@@ -14,7 +14,8 @@ class SettingController extends Controller
     public function settingsPage()
     {
         $securityQuestions = $this->securityQuestion->where('user_id', auth()->user()->id)->get();
+        $local = session()->get('locale');
 
-        return view('settings.settings-page', compact('securityQuestions'));
+        return view('settings.settings-page', compact('securityQuestions', 'local'));
     }
 }
