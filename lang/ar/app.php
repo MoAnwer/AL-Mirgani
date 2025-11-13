@@ -273,6 +273,7 @@ return [
     'no_date_returned'              => 'لاتوجد بيانات مطابقة لفلاتر البحث',
     'duplicate_paid_payroll'        => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
     'password_reset_successfully'   => 'تم اعادة تعيين كلمة السر بنجاح  :user',
+    'security_questions_limit_completed'    => 'العدد الأقصى لأسئلة الأمان 3 اسئلة',
     
     // Errors
     'error'                         => 'حدث خطا',

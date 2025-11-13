@@ -276,6 +276,7 @@ return [
     'student_register_successfully' => 'student registered successfully ✅',
     'no_date_returned'              => 'No results',
     'password_reset_successfully'   => 'Password reset successfully :user',
+    'security_questions_limit_completed'    => 'Max number of questions is 3',
     
     // Errors
     'error'                         => 'Error'                        ,
