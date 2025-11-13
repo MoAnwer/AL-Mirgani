@@ -215,7 +215,8 @@ return [
     'invoice_details'        => 'Details of invoice',
 
 
-
+    'notifications' => 'Notifications',
+    'unread_notifications' => 'Unread notifications',
 
 
     // Payment States

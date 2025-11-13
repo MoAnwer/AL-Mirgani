@@ -244,6 +244,9 @@ return [
     'total_payrolls_report' => 'تقرير إجمالي كشوف الرواتب',
     'total_payrolls_report_description' => 'الإجماليات المُعالجة حسب الشهر لعام :year',
 
+    'notifications' => 'اﻹشعارات',
+    'unread_notifications' => 'اﻹشعارات غير المقروءه',
+
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
