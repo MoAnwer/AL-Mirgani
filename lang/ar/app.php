@@ -298,4 +298,13 @@ return [
     'question'          => 'السؤال',
     'answer'            => 'الإجابة',
     'send_answer'       => 'إرسال الإجابة',
+
+
+    'lang'     => 'اللغة',
+    'current_lang'  => 'اللغة الحالية',
+    'switch_lang' => 'تبديل اللغة',
+    'arabic'    => 'العربية',
+    'english'   => 'English',
+    'ar'    =>  'العربية',
+    'en'    => 'English',
 ];
