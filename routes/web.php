@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\{LoginController, LogoutController};
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\UserController;
+
+require __DIR__ . '/locale.php';
+
 
 Route::get('/', HomeController::class);
 
