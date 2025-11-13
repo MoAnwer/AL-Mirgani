@@ -26,7 +26,7 @@
                                     <select class="form-select" name="class_id" onchange="this.form.submit()">
                                         <option value="{{ null }}" selected>@lang('app.class')</option>
                                             @foreach($classes as $class)
-                                                <option value="{{ $class->id }}" @selected(request()->query('class_id') == $class->id)>{{ $class->name }}</option>
+                                                <option value="{{ $class->id }}" @selected(request()->query('class_id') == $class->id)>{{ __("classes.{$class->name}") }}</option>
                                             @endforeach
                                     </select>
                                 </div>
@@ -59,7 +59,7 @@
                        @forelse ($reportData as $row)
                             <tr>
                                 <td class="text-center">{{ $row['student_name'] }}</td>
-                                <td class="text-center">{{ $row['class_name'] }}</td>
+                                <td class="text-center">{{ __("classes.{$row['class_name']}") }}</td>
                                 <td class="text-center">{{ $row['school_name'] }}</td>
                                 <td class="text-center">{{ $row['installment_number'] }}</td>
                                 <td class="text-center">{{ $row['due_date'] }}</td>
