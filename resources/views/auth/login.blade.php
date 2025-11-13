@@ -109,7 +109,7 @@
                       <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me" />
                       <label class="form-check-label" for="remember_me">@lang('auth.remember_me')</label>
                     </div>
-                    <a href="auth-forgot-password-basic.html">
+                    <a href="{{ route('auth.forgot_password.page') }}">
                       <span>@lang('auth.forgot_password')</span>
                     </a>
                   </div>
