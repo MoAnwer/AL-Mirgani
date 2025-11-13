@@ -121,6 +121,8 @@ return [
     'item_name'             => 'اسم العنصر',
     'is_fixed'              => 'هل هو ثابت؟',
     'yes'                   => 'نعم',
+    'employees_salaries'    => 'رواتب المعلمين والموظفين',
+    'edu_fees'              => ' 	رسوم الأقساط والتعليم',
     'no'                    => 'لا',
     'default_value'         => 'القيمة الافتراضية',
     'payrolls_report'       => 'كشوف الرواتب',
@@ -244,6 +246,9 @@ return [
     'total_payrolls_report' => 'تقرير إجمالي كشوف الرواتب',
     'total_payrolls_report_description' => 'الإجماليات المُعالجة حسب الشهر لعام :year',
 
+    'notifications' => 'اﻹشعارات',
+    'unread_notifications' => 'اﻹشعارات غير المقروءه',
+
     // Actions
     'create'                => 'اضافة :attribute جديد',
     'edit'                  => 'تعديل',
@@ -289,6 +294,7 @@ return [
     'security_questions' => 'اسئلة الأمان',
     'reset_password'    => 'اعادة تعيين كلمة السر',
     'checking_error'    => 'حدث خطا اثناء عملية التحقق',
+    'question'          => 'السؤال',
     'answer'            => 'الإجابة',
     'send_answer'       => 'إرسال الإجابة',
 ];

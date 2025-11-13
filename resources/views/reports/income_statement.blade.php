@@ -55,7 +55,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>رسوم الأقساط والتعليم</td>
+                                    <td>@lang('app.edu_fees')</td>
                                     <td class="text-end">{{ number_format($revenue['fees']) }}</td>
                                 </tr>
                                 <tr class="bg-success text-white fw-bold">

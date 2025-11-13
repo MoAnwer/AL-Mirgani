@@ -27,4 +27,5 @@ Route::middleware('auth')->group(function() {
     require __DIR__  . '/payroll_details.php';
     require __DIR__  . '/payrolls.php';
     require __DIR__  . '/payroll-items.php';
+    require __DIR__  . '/settings.php';
 });

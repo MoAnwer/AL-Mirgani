@@ -21,6 +21,8 @@ return [
     'is_fixed'              => 'it is fixed ?',
     'default_value'         => 'Default value',
     'yes'                   => 'Yes',
+    'employees_salaries'    => 'Salaries of employees',
+    'edu_fees'              => 'Installments and study fees',
     'no'                    => 'No',
     'create_new_payroll_item' => 'Create new payroll item',
     'installment_scheduler' => 'Remaining installments dates',
@@ -215,7 +217,8 @@ return [
     'invoice_details'        => 'Details of invoice',
 
 
-
+    'notifications' => 'Notifications',
+    'unread_notifications' => 'Unread notifications',
 
 
     // Payment States
@@ -294,6 +297,7 @@ return [
     'checking_error'    => 'Checking error',
     'reset_password'    => 'Reset password',
     'security_questions' => 'Security Questions',
+    'question'          => 'Question',
     'answer'            => 'answer',
     'send_answer'       => 'Send answer',
 ];

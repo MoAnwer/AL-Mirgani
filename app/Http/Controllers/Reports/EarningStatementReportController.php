@@ -132,11 +132,11 @@ class EarningStatementReportController extends Controller
     private function operatingExpenses(array $data): array 
     {
         return [
-            'salaries'                  => [$data['salaries'], "رواتب المعلمين والموظفين"],
-            'electricityAndWaterExpense'=> [$data['electricityAndWater'], ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value],
-            'furnitureExpense'          => [$data['furniture'], ExpenseCategoryEnum::FURNITURE->value],
-            'rent'                      => [$data['rents'], ExpenseCategoryEnum::RENTS->value],
-            'maintenance'               => [$data['maintenance'], ExpenseCategoryEnum::UPKEEP->value],
+            'salaries'                  => [$data['salaries'], __('app.employees_salaries')],
+            'electricityAndWaterExpense'=> [$data['electricityAndWater'], __('expenses.'.ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value . '')],
+            'furnitureExpense'          => [$data['furniture'], __('expenses.'.ExpenseCategoryEnum::FURNITURE->value . '')],
+            'rent'                      => [$data['rents'], __('expenses.'.ExpenseCategoryEnum::RENTS->value . '')],
+            'maintenance'               => [$data['maintenance'], __('expenses.'.ExpenseCategoryEnum::UPKEEP->value . '')],
         ];
     }
 
@@ -144,17 +144,17 @@ class EarningStatementReportController extends Controller
     private function nonOperatingExpenses($data): array 
     {
         return [
-            'booksExpense'              => [$data['books'], ExpenseCategoryEnum::BOOKS->value],
-            'buffetExpense'             => [$data['buffet'], ExpenseCategoryEnum::BUFFET->value],
-            'helpsExpense'              => [$data['helps'], ExpenseCategoryEnum::HELPS->value],
-            'interBranchExpense'        => [$data['interBranch'], ExpenseCategoryEnum::INTER_BRANCH->value],
-            'managementExpense'         => [$data['management'], ExpenseCategoryEnum::MANAGEMENT->value],
-            'printExamsExpense'         => [$data['printExams'], ExpenseCategoryEnum::PRINT_EXAMS->value],
-            'travelExpense'             => [$data['travel'], ExpenseCategoryEnum::TRAVEL->value],
-            'uniformExpense'            => [$data['uniform'], ExpenseCategoryEnum::UNIFORM->value],
-            'schoolsExpense'            => [$data['schools'], ExpenseCategoryEnum::SCHOOLS->value],
-            'toolsExpense'              => [$data['tools'], ExpenseCategoryEnum::TOOLS->value],
-            'othersExpense'             => [$data['other'], ExpenseCategoryEnum::OTHER->value],
+            'booksExpense'              => [$data['books'], __('expenses.'.ExpenseCategoryEnum::BOOKS->value . '')],
+            'buffetExpense'             => [$data['buffet'], __('expenses.'.ExpenseCategoryEnum::BUFFET->value . '')],
+            'helpsExpense'              => [$data['helps'], __('expenses.'.ExpenseCategoryEnum::HELPS->value . '')],
+            'interBranchExpense'        => [$data['interBranch'], __('expenses.'.ExpenseCategoryEnum::INTER_BRANCH->value . '')],
+            'managementExpense'         => [$data['management'], __('expenses.'.ExpenseCategoryEnum::MANAGEMENT->value . '')],
+            'printExamsExpense'         => [$data['printExams'], __('expenses.'.ExpenseCategoryEnum::PRINT_EXAMS->value . '')],
+            'travelExpense'             => [$data['travel'], __('expenses.'.ExpenseCategoryEnum::TRAVEL->value . '')],
+            'uniformExpense'            => [$data['uniform'], __('expenses.'.ExpenseCategoryEnum::UNIFORM->value . '')],
+            'schoolsExpense'            => [$data['schools'], __('expenses.'.ExpenseCategoryEnum::SCHOOLS->value . '')],
+            'toolsExpense'              => [$data['tools'], __('expenses.'.ExpenseCategoryEnum::TOOLS->value . '')],
+            'othersExpense'             => [$data['other'], __('expenses.'.ExpenseCategoryEnum::OTHER->value . '')],
         ];
     }
 }
