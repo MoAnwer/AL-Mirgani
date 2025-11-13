@@ -55,7 +55,7 @@
                     <x-table.tbody>
                         @foreach ($reportData as $row)
                             <tr>
-                                <td class="text-center">{{ $row['class_name'] }}</td>
+                                <td class="text-center">{{ __("classes.{$row['class_name']}") }}</td>
                                 <td class="text-center">{{ $row['student_count'] }}</td>
                                 <td  class="text-center">{{ number_format($row['net_fees'], 2) }}</td>
                                 

@@ -49,7 +49,7 @@
                                             <label class="mb-3">@lang('app.class')</label>
                                             <select class="form-select" name="class_id">
                                                 @foreach($classes as $key => $value)
-                                                    <option value="{{ $value }}" @selected($student->class->name == $key)>{{ $key }}</option>
+                                                    <option value="{{ $value }}" @selected($student->class->name == $key)>{{ __("classes.$key") }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -57,7 +57,7 @@
                                         <label class="mb-3">@lang('app.stage')</label>
                                             <select class="form-select" name="stage">
                                                 @foreach($stages as $value)
-                                                    <option value="{{ $value->value }}" @selected($student->stage == $value->value)>{{ $value->value }}</option>
+                                                    <option value="{{ $value->value }}" @selected($student->stage == $value->value)>{{ __("classes.{$value->value}") }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -81,6 +81,7 @@
                                             <i class="icon-base bx bx-edit-alt me-1"></i>
                                             @lang('app.edit')
                                         </button>
+                                        <a href="{{ route('students.index') }}" class="btn btn-secondary mt-4">@lang('app.back')</a>
                                     </form>
                                 </div>
                             </div>

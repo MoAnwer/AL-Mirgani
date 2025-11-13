@@ -61,13 +61,13 @@
                                          <div class="col-md-6 mt-3">
                                             <label class="mb-3">@lang('app.class')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  name="address" value="{{ $student->class->name }}"/>
+                                                <input type="text" class="form-control"  name="address" value="{{ __("classes.{$student->class->name}") }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-3">
                                         <label class="mb-3">@lang('app.stage')</label>
                                            <div class="input-group">
-                                                <input type="text" class="form-control"  name="stage" value="{{ $student->stage }}"/>
+                                                <input type="text" class="form-control"  name="stage" value="{{ __("classes.{$student->stage}") }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-3">
@@ -83,6 +83,10 @@
                                             </div>
                                         </div>
                                         </div>
+                                        <a href="{{ route('students.edit', $student) }}" class="mt-3 btn btn-success">
+                                            <i class="icon-base bx bx-edit-alt me-1"></i>
+                                            @lang('app.edit')
+                                        </a>
                                     </form>
                                 </div>
                             </div>

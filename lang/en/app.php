@@ -301,4 +301,13 @@ return [
     'question'          => 'Question',
     'answer'            => 'answer',
     'send_answer'       => 'Send answer',
+
+
+    'lang'     => 'Language',
+    'current_lang'  => 'Current language',
+    'switch_lang' => 'Switch language',
+    'arabic'    => 'Arabic',
+    'english'   => 'English',
+    'ar'    =>  'Arabic',
+    'en'    => 'English',
 ];

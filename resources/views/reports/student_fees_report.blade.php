@@ -106,7 +106,7 @@
                                 <td style="width: 20%; border: none; padding: 5px;"><strong> @lang('app.student_name'):</strong></td>
                                 <td style="width: 20%; border: none; padding: 5px;">{{ $student->full_name}}</td>
                                 <td style="width: 30%; border: none; padding: 5px;"><strong>@lang('app.class')</strong></td>
-                                <td style="width: 20%; border: none; padding: 5px;">{{ $student->stage ?? '-' }}</td>
+                                <td style="width: 20%; border: none; padding: 5px;">{{ __("classes.{$student->stage}") ?? '-' }}</td>
                             </tr>
                             <tr style="background-color: transparent;">
                                 <td style="border: none; padding: 5px;"><strong> @lang('app.total_due')</strong></td>
