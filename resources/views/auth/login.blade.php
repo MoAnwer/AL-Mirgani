@@ -73,6 +73,8 @@
                 </div>
               @endif
 
+              <x-alert type="message" />
+
               <h4 class="mb-1">@lang('auth.welcome')</h4>
               <p class="mb-6">@lang('auth.enter_your_data')</p>
               
@@ -109,7 +111,7 @@
                       <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me" />
                       <label class="form-check-label" for="remember_me">@lang('auth.remember_me')</label>
                     </div>
-                    <a href="{{ route('auth.forgot_password.page') }}">
+                    <a href="{{ route('auth.forgot_password.check_username') }}">
                       <span>@lang('auth.forgot_password')</span>
                     </a>
                   </div>
