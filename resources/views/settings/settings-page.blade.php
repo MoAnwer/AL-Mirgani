@@ -7,12 +7,18 @@
             <x-container>
                 <div class="card -sm border-0 mb-5">
                     <div class="card-body p-4 p-md-5">
+                        <x-alert type="message"/>
+                        <x-alert type="error"/>
                         <header class="mb-4 border-bottom pb-3">
                             <h2 class="h3 fw-bold text-dark">{{ __('app.settings') }}</h2>
                         </header>
                         <div class="p-3  border -sm rounded-3 mb-5">
-                            <div class="card-header border-bottom pt-1 pb-3 mb-5">
-                                <h5 class="mb-0">@lang('app.security_questions')</h5>
+                            <div class="card-header border-bottom pt-1 pb-3 mb-5 d-flex justify-content-between">
+                                <h4 class="mb-0">@lang('app.security_questions')</h4>
+                                <a href="{{ route('settings.create_security_question') }}" class="btn btn-primary">
+                                    <i class="bx bx-plus-circle me-2"></i>
+                                    @lang('app.create', ['attribute' => __('app.question')])
+                                </a>
                             </div>
 
                             <x-table.basic-table>
@@ -36,8 +42,12 @@
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        {{-- <a class="dropdown-item" href="{{ route('users.edit', $user) }}"><i class="icon-base text-success bx bx-edit-alt me-1"></i>@lang('app.edit')</a> --}}
-                                                        {{-- <a class="dropdown-item" href="{{ route('users.delete', $user) }}"><i class="icon-base text-danger bx bx-trash me-1"></i>@lang('app.delete')</a> --}}
+                                                        <a class="dropdown-item" href="{{ route('settings.edit_security_question', $securityQuestion) }}"><i class="icon-base text-success bx bx-edit-alt me-1"></i>@lang('app.edit')</a>
+                                                       <form action="{{ route('settings.delete_security_question', $securityQuestion) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="dropdown-item" type="submit"><i class="icon-base text-danger bx bx-trash me-1"></i>@lang('app.delete')</button>
+                                                       </form>
                                                     </div>
                                                 </div>
                                             </td>
