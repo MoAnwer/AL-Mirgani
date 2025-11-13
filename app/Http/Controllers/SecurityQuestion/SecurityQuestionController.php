@@ -9,11 +9,16 @@ use Illuminate\Http\Request;
 class SecurityQuestionController extends Controller
 {
 
+    public function __construct(private readonly SecurityQuestion $securityQuestion) {}
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+        if ($this->securityQuestion->where('user_id', auth()->user()->id)->count() >= 3) {
+            return back()->with('error', __('app.security_questions_limit_completed'));
+        }
         return view('settings.create-security-question');
     }
 
@@ -22,7 +27,25 @@ class SecurityQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $data = $request->validate([
+                'question' => 'required|string',
+                'answer' => 'required|string',
+            ], [], [
+                'question' => __('app.question'),
+                'answer' => __('app.answer'),
+            ]);
+
+            $data['user_id'] = auth()->user()->id;
+
+            $this->securityQuestion->create($data);
+
+            return to_route('settings.page')->with('message', __('app.create_successful', ['attribute' => __('app.question')]));
+        } catch (\Throwable $th) {
+
+            return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
+        }
     }
 
     /**
