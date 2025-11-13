@@ -44,24 +44,19 @@ class SecurityQuestionController extends Controller
             return to_route('settings.page')->with('message', __('app.create_successful', ['attribute' => __('app.question')]));
         } catch (\Throwable $th) {
 
-            return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
+            report($th);
+
+            return back()->with('error', __('validation.required', ['attribute' => __('app.question')])  .' - ' . __('validation.required', ['attribute' => __('app.answer')]));
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SecurityQuestion $securityQuestion)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(SecurityQuestion $securityQuestion)
     {
-        //
+        return view('settings.update-security-question', compact('securityQuestion'));
     }
 
     /**
@@ -69,7 +64,25 @@ class SecurityQuestionController extends Controller
      */
     public function update(Request $request, SecurityQuestion $securityQuestion)
     {
-        //
+         try {
+
+            $data = $request->validate([
+                'question' => 'required|string',
+                'answer' => 'required|string',
+            ], [], [
+                'question' => __('app.question'),
+                'answer' => __('app.answer'),
+            ]);
+
+            $securityQuestion->update($data);
+
+            return to_route('settings.page')->with('message', __('app.update_successful', ['attribute' => __('app.question')]));
+
+        } catch (\Throwable $th) {
+
+            report($th);
+            return back()->with('error', __('validation.required', ['attribute' => __('app.question')])  .' - ' . __('validation.required', ['attribute' => __('app.answer')]));
+        }
     }
 
     /**
@@ -77,6 +90,12 @@ class SecurityQuestionController extends Controller
      */
     public function destroy(SecurityQuestion $securityQuestion)
     {
-        //
+        try {
+            $securityQuestion->delete();
+            return to_route('settings.page')->with('message', __('app.delete_successful', ['attribute' => __('app.question')]));
+        } catch (\Throwable $th) {
+            report($th);
+            return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
+        }
     }
 }
