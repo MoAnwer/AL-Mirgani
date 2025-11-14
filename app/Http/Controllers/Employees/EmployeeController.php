@@ -9,6 +9,7 @@ use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Models\Employee;
 use App\Models\School;
 use App\Notifications\CreateEmployeeNotification;
+use App\Notifications\DeleteEmployeeNotification;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -114,6 +115,8 @@ class EmployeeController extends Controller
             $employee->payrolls()->update(['employee_id' => null]);
 
             $employee->delete();
+
+            auth()->user()->notify(new DeleteEmployeeNotification($employee));
 
             return to_route('employees.index')->with('message', __('app.delete_successful', ['attribute' => __('app.employee')]));
 
