@@ -8,6 +8,7 @@ use App\Http\Requests\Emlpoyee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Models\Employee;
 use App\Models\School;
+use App\Notifications\CreateEmployeeNotification;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -46,7 +47,11 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         try {
-            $this->employee->create($request->validated());
+
+            $employee = $this->employee->create($request->validated());
+
+            auth()->user()->notify(new CreateEmployeeNotification($employee));
+            
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.employee')]));
         } catch (\Throwable $th) {
             report($th);
