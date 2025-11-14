@@ -4,6 +4,7 @@ namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
 use App\Models\School;
+use App\Notifications\CreateSchoolNotification;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
@@ -42,7 +43,9 @@ class SchoolController extends Controller
 
             $data = $request->validate(['name' => 'required|string']);
 
-            $this->school->create($data);
+            $school = $this->school->create($data);
+
+            auth()->user()->notify(new CreateSchoolNotification($school));
 
             return to_route('schools.index')->with('message', __('app.create_successful', ['attribute' => __('app.school')]));
 
