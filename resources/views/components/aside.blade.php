@@ -1,8 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
     <a href="{{ route('dashboard') }}" class="app-brand-link mt-3">
-        <span class="app-brand-logo"></span>
-        <span class="demo fw-bold ms-2">{{ __('app.app_name') }}</span>
+        <h5 class="demo text-primary fw-bold ms-6">{{ __('app.app_name') }}</h5>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
