@@ -12,6 +12,7 @@ return [
     'count_of'              => 'عدد :count',
     'create_new_school'     => 'اضافة مدرسة جديدة',
     'the_schools'           => 'المدارس',
+    'name_of'               => 'اسم :name',
     'register_new_student'  => 'تسجيل تلميذ جديد',
     'teachers'              => 'معلمين',
     'managers'              => 'اداريين',
@@ -274,6 +275,7 @@ return [
     'duplicate_paid_payroll'        => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
     'password_reset_successfully'   => 'تم اعادة تعيين كلمة السر بنجاح  :user',
     'security_questions_limit_completed'    => 'العدد الأقصى لأسئلة الأمان 3 اسئلة',
+    'payroll_paid_statement'        => "تم دفع مرتب :employee  لشهر  :month/:year" , 
     
     // Errors
     'error'                         => 'حدث خطا',

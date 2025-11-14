@@ -8,6 +8,7 @@ return [
     'students'              => 'Students',
     'list'                  => 'List of :attribute',
     'the_students'          => 'Students',
+    'name_of'               => ':name name',
     'latest_student_in_system' =>'New students in system',
     'student_financial_data' => 'Student fee collection statement',
     'financial_data'        => 'Financial commit data',
@@ -277,6 +278,7 @@ return [
     'no_date_returned'              => 'No results',
     'password_reset_successfully'   => 'Password reset successfully :user',
     'security_questions_limit_completed'    => 'Max number of questions is 3',
+    'payroll_paid_statement'        => "Paid payroll of :employee for month :month/:year" , 
     
     // Errors
     'error'                         => 'Error'                        ,

@@ -14,7 +14,6 @@
         <x-nav />
         <x-layout-container>
             <x-container>
-                <div class="container-fluid py-3">
                     <div class="card -sm border-0 mb-5">
                         <div class="card-body p-4 p-md-5">
                             <header class="mb-4 border-bottom pb-3">
@@ -74,7 +73,6 @@
 
                         </div>
                     </div>
-                </div>
             </x-container>
         </x-layout-container>
     </x-layout-page>

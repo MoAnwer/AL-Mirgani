@@ -38,7 +38,7 @@
                                                                 data-salary="{{ $employee->salary }}"
                                                                 data-fixed-allowance="{{ $employee->fixed_allowances }}"
                                                                 {{ old('employee_id') == $employee->id ? 'selected' : '' }}>
-                                                                {{ $employee->full_name }} (أساسي: {{ number_format($employee->salary, 2) }})
+                                                                {{ $employee->full_name }} ({{ __('app.basic_salary') }}: {{ number_format($employee->salary, 2) }})
                                                             </option>
                                                         @endforeach
                                                     </select>

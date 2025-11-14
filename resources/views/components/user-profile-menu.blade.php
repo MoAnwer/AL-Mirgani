@@ -32,16 +32,14 @@
         </a>
     </li>
     <li>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{ route('settings.page') }}">
         <i class="icon-base bx bx-cog icon-md me-3"></i><span>{{ __('app.settings') }}</span>
         </a>
     </li>
     <li>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBackdrop" aria-controls="offcanvasBackdrop">
         <span class="d-flex align-items-center align-middle">
-            <i class="flex-shrink-0 icon-base bx bx-credit-card icon-md me-3"></i
-            ><span class="flex-grow-1 align-middle">Billing Plan</span>
-            <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
+            <i class="flex-shrink-0  icon-md me-3 bx bx-bell"></i><span class="flex-grow-1 align-middle">{{ __('app.notifications') }}</span>
         </span>
         </a>
     </li>

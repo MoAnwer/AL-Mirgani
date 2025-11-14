@@ -70,7 +70,7 @@ class SchoolController extends Controller
     {
         try {
 
-            $data = $request->validate(['name' => 'required|string']);
+            $data = $request->validate(['name' => 'required|string'], [], ['name' => __('app.name_of', ['name' => __('app.school')])]);
 
             $school->update($data);
 
@@ -80,7 +80,7 @@ class SchoolController extends Controller
 
             report($th);
 
-            return back()->with('error', __('app.error') . ' ' . $th->getMessage());
+            return back()->with('error', __('app.error') . ': ' . $th->getMessage());
         }
     }
 
