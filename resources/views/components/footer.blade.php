@@ -1,4 +1,6 @@
-    <x-notifications-list />
+    @if(!request()->routeIs('auth.login.*'))
+      <x-notifications-list />
+    @endif
     <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{asset('assets/vendor/libs/popper/popper.min.js')}}"></script>
     <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
