@@ -1,4 +1,4 @@
-<x-header title="تعديل مدرسة {{ $school->name }}" />
+<x-header title="{{ __('app.edit') . ' ' . __('app.school') . ' ' . $school->name }}" />
 <x-LayoutWrapper>
     <x-LayoutContainer>
         <x-aside />
@@ -13,7 +13,7 @@
                                 <x-alert type="message" />
                                 <x-alert type="error" />
                             
-                                <h4 class="card-header">تعديل مدرسة {{ $school->name }}</h4>
+                                <h4 class="card-header">{{ __('app.edit') . ' ' . __('app.school') . ' ' . $school->name }}</h4>
 
                                 @if($errors->any())
                                     <div class="alert alert-danger">
@@ -38,7 +38,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class=" mt-4 btn btn-primary">تعديل</button>
+                                    <button type="submit" class=" mt-4 btn btn-primary">@lang('app.edit')</button>
                                     </form>
                                 </div>
                             </div>
