@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\NewUserNotification;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -48,9 +49,12 @@ class UserController extends Controller
                 'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')])
             ]);
 
-            $this->user->create($data);
+            $user = $this->user->create($data);
 
+            auth()->user()->notify(new NewUserNotification($user));
+            
             return to_route('users.index')->with('message', __('app.create_successful', ['attribute' => __('app.user')]));
+
         } catch (\Throwable $th) {
 
             report($th);
