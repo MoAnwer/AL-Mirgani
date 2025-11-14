@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
 
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
+        } else {
+            App::setLocale('ar');
         }
     }
 }

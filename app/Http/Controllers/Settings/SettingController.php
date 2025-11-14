@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Models\SecurityQuestion;
-use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -14,7 +13,8 @@ class SettingController extends Controller
     public function settingsPage()
     {
         $securityQuestions = $this->securityQuestion->where('user_id', auth()->user()->id)->get();
-        $local = session()->get('locale');
+
+        $local = session()->get('locale') ?? 'ar';
 
         return view('settings.settings-page', compact('securityQuestions', 'local'));
     }
