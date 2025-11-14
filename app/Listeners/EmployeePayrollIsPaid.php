@@ -6,8 +6,8 @@ use App\Enums\ExpenseCategoryEnum;
 use App\Events\Expense\PayrollPaid;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Notifications\PayrollPaidNotification;
+
 
 class EmployeePayrollIsPaid
 {
@@ -29,8 +29,14 @@ class EmployeePayrollIsPaid
             'amount'      => $event->payroll->net_salary_paid,
             'category_id' => ExpenseCategory::where('name', ExpenseCategoryEnum::SALARIES)->value('id'),
             'date'        => $event->payroll->payment_date,
-            'statement'   => "دفع مرتب الموظف {$event->payroll->employee->full_name}  لشهر {$event->payroll->month} لسنة {$event->payroll->year} " , 
+            'statement'   => __('app.payroll_paid_statement', ['employee' => $event->payroll->employee->full_name, 'month' => $event->payroll->month, 'year' => $event->payroll->year]),
             'user_id'     => auth()->id(),
         ]);
+
+        auth()->user()->notify(new PayrollPaidNotification([
+            'employee'  => $event->payroll->employee->full_name,
+            'month' => $event->payroll->month,
+            'year' => $event->payroll->year
+        ]));
     }
 }
