@@ -164,7 +164,7 @@ final readonly class PayrollService
 
             $originalBasicSalary = $payroll->basic_salary_snapshot;
 
-            tap($payroll->update($request->all()));
+            $payroll->update($request->all());
 
             if ($originalBasicSalary != $request->basic_salary_snapshot) {
                 $this->recalculatePayrollSummary($payroll);
