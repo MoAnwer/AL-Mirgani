@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\DeleteUserNotification;
+use App\Notifications\NewUserNotification;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -42,15 +44,19 @@ class UserController extends Controller
 
             $data = $request->validate([
                 'name' => 'required|string',
-                'username' => 'required|string',
+                'username' => 'required|string|unique:users,username',
                 'password' => 'required|min:6'
             ], [
+                'username.unique' => __('validation.unique', ['attribute' => __('app.username')]),
                 'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')])
             ]);
 
-            $this->user->create($data);
+            $user = $this->user->create($data);
 
+            auth()->user()->notify(new NewUserNotification($user));
+            
             return to_route('users.index')->with('message', __('app.create_successful', ['attribute' => __('app.user')]));
+
         } catch (\Throwable $th) {
 
             report($th);
@@ -86,7 +92,7 @@ class UserController extends Controller
 
             report($th);
 
-            return to_route('users.create')->with('error', __('app.error')  . ' : ' . $th->getMessage());
+            return to_route('users.edit', $user)->with('error', __('app.error')  . ' : ' . $th->getMessage());
         }
     }
 
@@ -120,7 +126,10 @@ class UserController extends Controller
 
             $user->delete();
 
+            auth()->user()->notify(new DeleteUserNotification($user));
+
             return to_route('users.index')->with('message', __('app.delete_successful', ['attribute' => __('app.user')]));
+
         } catch (\Throwable $th) {
 
             report($th);

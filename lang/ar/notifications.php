@@ -16,7 +16,7 @@ return [
         'payroll_paid'      => "تم دفع مرتب الموظف :employee  لشهر  :month/:year",
         'installment_paid'  => 'تم اكمال دفع القسط رقم :number الخاص بالطالب :student',
         'password_reset'    => ':user, تم اعادة تعيين كلمة السر الخاصة بك',
-        'new_user_added'    => 'تم اضافة المستخدم :user بنجاح الى النظام',
+        'new_user_added'    => 'تم اضافة المستخدم :user الى النظام بنجاح',
         'user_deleted'      => 'تم حذف المستخدم :user من النظام بنجاح',
         'employee_added'    => 'تم اضافة الموظف :employee بنجاح الى النظام',
         'employee_deleted'  => 'تم حذف الموظف :employee من النظام بنجاح',

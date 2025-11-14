@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\SecurityQuestion;
 use App\Models\User;
+use App\Notifications\PasswordResetNotification;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ForgotPasswordController extends Controller
 {
@@ -140,6 +142,9 @@ class ForgotPasswordController extends Controller
                 ]);
 
                 $user->save();
+
+                Notification::sendNow($user, new PasswordResetNotification($user));
+
 
                 return to_route('auth.login.form')->with('message', __('app.password_reset_successfully', ['user' => session()->get('username')]));
 
