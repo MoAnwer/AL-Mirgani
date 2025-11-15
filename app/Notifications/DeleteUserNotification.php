@@ -33,6 +33,8 @@ class DeleteUserNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-user-minus',
+            'color'       => 'danger',
             'title'       => __('notifications.titles.user_deleted'),
             'message'     => __('notifications.messages.user_deleted', [
                 'user'  => $this->user->username,
