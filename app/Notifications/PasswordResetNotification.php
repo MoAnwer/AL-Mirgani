@@ -30,6 +30,8 @@ class PasswordResetNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-lock',
+            'color'       => 'warning',
             'title'       => __('notifications.titles.password_reset'),
             'message'     => __('notifications.messages.password_reset', [
                 'user'  => $this->user->name,
