@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers\Employees;
 
-use App\Enums\EmployeeTypes;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Emlpoyee\UpdateEmployeeRequest;
-use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Models\Employee;
-use App\Models\School;
-use App\Notifications\CreateEmployeeNotification;
-use App\Notifications\DeleteEmployeeNotification;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Employee\{StoreEmployeeRequest, UpdateEmployeeRequest};
+use App\Services\Employee\EmployeeService;
 
 class EmployeeController extends Controller
 {
-    function __construct(
-        private School $school,
-        private Employee $employee
-    ) {}
-
+    function __construct(private readonly EmployeeService $employeeService) {}
 
     /**
      * Display a listing of the resource.
      */
     public function index(Employee $employee)
     {
-        return view('employees.employees-list', [
-            'employees' => $employee->latest()->paginate(15)
-        ]);
+        return $this->employeeService->index($employee);
     }
 
     /**
@@ -35,11 +24,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create-employee-form', [
-            'title'         => __('app.create', ['attribute' => __('app.employee')]),
-            'schools'       => $this->school->pluck('id', 'name'),
-            'departments'   => EmployeeTypes::cases(),
-        ]);
+        return $this->employeeService->create();
     }
 
     /**
@@ -47,17 +32,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        try {
-
-            $employee = $this->employee->create($request->validated());
-
-            auth()->user()->notify(new CreateEmployeeNotification($employee));
-            
-            return back()->with('message', __('app.create_successful', ['attribute' => __('app.employee')]));
-        } catch (\Throwable $th) {
-            report($th);
-            return back()->with('error', __('app.error') .' :'. $th->getMessage());
-        }
+        return $this->employeeService->store($request);
     }
 
     /**
@@ -65,7 +40,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return view('employees.employee-profile', compact('employee'));
+        return $this->employeeService->show($employee);
     }
 
     /**
@@ -73,9 +48,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $departments = EmployeeTypes::cases();
-
-        return view('employees.edit-employee-form', compact('employee', 'departments'));
+        return $this->employeeService->edit($employee);
     }
 
     /**
@@ -83,26 +56,15 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        try {
-            
-            $employee->update($request->validated());
-            
-            return back()->with('message', __('app.update_successful', ['attribute' => __('app.employee')]));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
-        }
+        return $this->employeeService->update($request, $employee);
     }
 
     /**
      * Show delete confirmation page
      */
-    public function delete(Employee $employee) 
+    public function delete(Employee $employee)
     {
-        return view('employees.delete-employee', compact('employee'));
+        return $this->employeeService->delete($employee);
     }
 
     /**
@@ -110,21 +72,6 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        try {
-
-            $employee->payrolls()->update(['employee_id' => null]);
-
-            $employee->delete();
-
-            auth()->user()->notify(new DeleteEmployeeNotification($employee));
-
-            return to_route('employees.index')->with('message', __('app.delete_successful', ['attribute' => __('app.employee')]));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
-        }
+        return $this->employeeService->destroy($employee);
     }
 }
