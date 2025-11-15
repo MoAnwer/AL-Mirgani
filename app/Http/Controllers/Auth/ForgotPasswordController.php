@@ -146,7 +146,7 @@ class ForgotPasswordController extends Controller
                 Notification::sendNow($user, new PasswordResetNotification($user));
 
 
-                return to_route('auth.login.form')->with('message', __('app.password_reset_successfully', ['user' => session()->get('username')]));
+                return to_route('login')->with('message', __('app.password_reset_successfully', ['user' => session()->get('username')]));
 
             } catch (\Throwable $th) {
 

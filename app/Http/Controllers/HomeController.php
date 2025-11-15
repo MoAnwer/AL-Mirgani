@@ -11,6 +11,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return auth()->user() == null ? to_route('auth.login.form') : to_route('dashboard');
+        return auth()->user() == null ? to_route('login') : to_route('dashboard');
     }
 }

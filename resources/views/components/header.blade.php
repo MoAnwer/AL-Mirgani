@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />  
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    @if(request()->routeIs('auth.login.form') || request()->routeIs('forgot_password.page'))
+    @if(request()->routeIs('login') || request()->routeIs('forgot_password.page'))
       <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-misc.css') }}" />
     @endif

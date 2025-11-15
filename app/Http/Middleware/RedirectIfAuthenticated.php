@@ -17,7 +17,7 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards): Response
     {
         if (Auth::guard($guards)->check()) {
-            return to_route('auth.login.form');
+            return to_route('login');
         }
         return $next($request);
     }

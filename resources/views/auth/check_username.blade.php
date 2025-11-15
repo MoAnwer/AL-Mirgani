@@ -27,7 +27,7 @@
                         <button class="btn btn-primary d-grid w-100">@lang('app.verify')</button>
                     </form>
                     <div class="text-center">
-                        <a href="{{ route('auth.login.form') }}" class="d-flex justify-content-center">
+                        <a href="{{ route('login') }}" class="d-flex justify-content-center">
                             <i class="icon-base bx bx-chevron-left me-1"></i>
                             @lang('app.back')
                         </a>

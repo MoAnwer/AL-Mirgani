@@ -79,7 +79,7 @@
               <p class="mb-6">@lang('auth.enter_your_data')</p>
               
 
-              <form id="formAuthentication" class="mb-6" action="{{ route('auth.login.action') }}" method="POST">
+              <form id="formAuthentication" class="mb-6" action="{{ route('login.action') }}" method="POST">
                 @method('POSt')
                 @csrf
                 <div class="mb-6">
