@@ -6,8 +6,9 @@ use App\Enums\ExpenseCategoryEnum;
 use App\Events\Expense\PayrollPaid;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
+use App\Models\User;
 use App\Notifications\PayrollPaidNotification;
-
+use Illuminate\Support\Facades\Notification;
 
 class EmployeePayrollIsPaid
 {
@@ -33,7 +34,7 @@ class EmployeePayrollIsPaid
             'user_id'     => auth()->id(),
         ]);
 
-        auth()->user()->notify(new PayrollPaidNotification([
+        Notification::send(User::all(), new PayrollPaidNotification([
             'employee'  => $event->payroll->employee->full_name,
             'month' => $event->payroll->month,
             'year' => $event->payroll->year
