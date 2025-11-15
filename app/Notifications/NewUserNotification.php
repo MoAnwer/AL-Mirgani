@@ -38,6 +38,8 @@ class NewUserNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-user-plus',
+            'color'       => 'success',
             'title'       => __('notifications.titles.new_user_added'),
             'message'     => __('notifications.messages.new_user_added', [
                 'user'  => $this->user->username,
