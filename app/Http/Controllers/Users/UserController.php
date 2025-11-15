@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\DeleteUserNotification;
 use App\Notifications\NewUserNotification;
+use App\Services\User\UserService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
 
     function __construct(
-        private User $user
+        private User $user,
+        private readonly UserService $userService
     ) {}
 
 
@@ -22,9 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->latest()->paginate(15);
-
-        return view('users.users_list', compact('users'));
+        return $this->userService->index();
     }
 
     /**
@@ -32,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create-user');
+        return $this->userService->create();
     }
 
     /**
@@ -40,29 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-
-            $data = $request->validate([
-                'name' => 'required|string',
-                'username' => 'required|string|unique:users,username',
-                'password' => 'required|min:6'
-            ], [
-                'username.unique' => __('validation.unique', ['attribute' => __('app.username')]),
-                'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')])
-            ]);
-
-            $user = $this->user->create($data);
-
-            auth()->user()->notify(new NewUserNotification($user));
-            
-            return to_route('users.index')->with('message', __('app.create_successful', ['attribute' => __('app.user')]));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return to_route('users.create')->with('error', __('app.error')  . ' : ' . $th->getMessage());
-        }
+        return $this->userService->store($request);
     }
 
     /**
@@ -70,7 +49,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit-user', compact('user'));
+        return $this->userService->edit($user);
     }
 
     /**
@@ -78,22 +57,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        try {
-
-            $data = $request->validate([
-                'name' => 'required|string',
-                'username' => 'required|string',
-            ]);
-
-            $user->update($data);
-
-            return to_route('users.index')->with('message', __('app.update_successful', ['attribute' => __('app.user')]));
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return to_route('users.edit', $user)->with('error', __('app.error')  . ' : ' . $th->getMessage());
-        }
+        return $this->userService->update($request, $user);
     }
 
     /**
@@ -126,7 +90,7 @@ class UserController extends Controller
 
             $user->delete();
 
-            auth()->user()->notify(new DeleteUserNotification($user));
+            Notification::send(User::all(), new DeleteUserNotification($user));
 
             return to_route('users.index')->with('message', __('app.delete_successful', ['attribute' => __('app.user')]));
 
