@@ -4,8 +4,10 @@ namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
 use App\Models\School;
+use App\Models\User;
 use App\Notifications\CreateSchoolNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class SchoolController extends Controller
 {
@@ -45,7 +47,7 @@ class SchoolController extends Controller
 
             $school = $this->school->create($data);
 
-            auth()->user()->notify(new CreateSchoolNotification($school));
+            Notification::sendNow(User::all(), new CreateSchoolNotification($school));
 
             return to_route('schools.index')->with('message', __('app.create_successful', ['attribute' => __('app.school')]));
 
