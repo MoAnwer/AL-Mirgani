@@ -168,7 +168,7 @@ class StudentService
 
             'countByClass' => $this->student
                                     ->select('class_id', 'classes.name as name', DB::raw('COUNT(students.id) AS count'))
-                                    ->join('classes', 'classes.id', 'students.class_id')
+                                    ->rightJoin('classes', 'classes.id', 'students.class_id')
                                     ->groupBy('class_id', 'name')
                                     ->get(),
         ];
