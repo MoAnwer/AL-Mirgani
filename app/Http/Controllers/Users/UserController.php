@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Notifications\DeleteUserNotification;
-use App\Notifications\NewUserNotification;
 use App\Services\User\UserService;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -65,20 +61,7 @@ class UserController extends Controller
      */
     public function delete(User $user)
     {
-        try {
-
-            if ($user->username == config('database.default_user.username')) {
-                throw new Exception(__('app.remove_admin_msg'));
-            }
-
-            return view('users.delete-user', compact('user'));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return to_route('users.index')->with('error', __('app.error')  . ' : ' . $th->getMessage());
-        }
+       return $this->userService->delete($user);
     }
 
     /**
@@ -86,19 +69,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
-
-            $user->delete();
-
-            Notification::send(User::all(), new DeleteUserNotification($user));
-
-            return to_route('users.index')->with('message', __('app.delete_successful', ['attribute' => __('app.user')]));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return to_route('users.create')->with('error', __('app.error' . ' ' . $th->getMessage()));
-        }
+        return $this->userService->destroy($user);
     }
 }
