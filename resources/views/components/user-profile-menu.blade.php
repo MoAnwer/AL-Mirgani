@@ -37,7 +37,7 @@
         </a>
     </li>
     <li>
-        <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBackdrop" aria-controls="offcanvasBackdrop">
+        <a class="dropdown-item" href="{{ route('notifications.index') }}">
         <span class="d-flex align-items-center align-middle">
             <i class="flex-shrink-0  icon-md me-3 bx bx-bell"></i><span class="flex-grow-1 align-middle">{{ __('app.notifications') }}</span>
         </span>
