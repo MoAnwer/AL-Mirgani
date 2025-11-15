@@ -4,8 +4,11 @@ namespace App\Listeners;
 
 use App\Events\Student\RegisterStudent;
 use App\Models\Earning;
+use App\Models\User;
+use App\Notifications\EarningNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Notification;
 
 class RegisterFeeEarning
 {
@@ -19,11 +22,13 @@ class RegisterFeeEarning
      */
     public function handle(RegisterStudent $event): void
     {
-        Earning::create([
+        $earning = Earning::create([
             'amount'    => $event->student->registrationFees->paid_amount,
             'school_id' => $event->student->school->id,
             'statement' => __('app.student_registration_fee'),
             'date'      => now()
         ]);
+        
+        Notification::send(User::all(), new EarningNotification($earning));
     }
 }
