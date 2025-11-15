@@ -20,6 +20,7 @@
                         <x-cards.card link="{{ route('reports.general-expense-report') }}" icon='bx bx-wallet' title="{{ __('app.total_expenses_report') }}" description="{{ __('app.total_expenses__description') }}"/>
                         <x-cards.card link="{{ route('incomeReport') }}" icon='bx bx-calculator' title="{{ __('app.income_statement') }}" description="{{ __('app.income_statement_description') }}"/>
                         <x-cards.card link="{{ route('reports.employee-count-report') }}" icon='bx bxs-briefcase' title="{{ __('app.employee_report') }}" description="{{ __('app.employee_report_description') }}"/>
+                        <x-cards.card link="{{ route('students.count-report') }}" icon='bx bxs-user-account' title="{{ __('app.count_of', ['count' => __('app.the_students') ]) }}" description="{{ __('app.count_of_students_by_school') . ' , ' . __('app.count_of_students_by_class') }}"/>
                     </x-cards.cards-container>
             </x-container>
         </x-layout-container>
