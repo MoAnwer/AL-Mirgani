@@ -8,9 +8,10 @@ return [
         'new_user_added'    => 'اضافة مستخدم جديد',
         'user_deleted'      => 'تم حذف مستخدم',
         'employee_added'    => 'اضافة موظف جديد',
-        'employee_deleted'  => 'حذف مستخدم',
+        'employee_deleted'  => 'حذف موظف',
         'new_school_added'  => 'اضافة مدرسة جديدة',
         'school_deleted'    => 'حذف مدرسة',
+        'new_earning'       => 'ايراد مالي جديد',
     ],
     'messages' => [
         'payroll_paid'      => "تم دفع مرتب الموظف :employee  لشهر  :month/:year",
@@ -22,5 +23,6 @@ return [
         'employee_deleted'  => 'تم حذف الموظف :employee من النظام بنجاح',
         'new_school_added'  => 'تم اضافة المدرسة :school بنجاح الى النظام',
         'school_deleted'    => 'تم حذف المدرسة :school من النظام بنجاح',
+        'new_earning'       => 'تم تسجيل ايراد جديد بقيمة :amount عبر فرع :school',
     ]
 ];

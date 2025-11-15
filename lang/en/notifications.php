@@ -11,6 +11,7 @@ return [
         'employee_deleted'  => 'Deleted employee',
         'new_school_added'  => 'Add new school',
         'school_deleted'    => 'Deleted school',
+        'new_earning'       => 'New earning',
     ],
     'messages' => [
         'payroll_paid'      => "Paid payroll of :employee for month :month/:year",
@@ -22,5 +23,6 @@ return [
         'employee_deleted'  => 'Employee :employee deleted from system successfully',
         'new_school_added'  => 'New school :school added to system successfully',
         'school_deleted'    => 'School :school deleted from system successfully',
+        'new_earning'       => 'New earning registered with amount :amount in the brach :school',
     ]
 ];

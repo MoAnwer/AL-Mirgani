@@ -30,6 +30,8 @@ class DeleteEmployeeNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-user-minus',
+            'color'       => 'danger',
             'title'       => __('notifications.titles.employee_deleted'),
             'message'     => __('notifications.messages.employee_deleted', [
                 'employee'  => $this->employee->full_name,

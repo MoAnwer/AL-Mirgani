@@ -33,6 +33,8 @@ class CreateEmployeeNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-user-plus',
+            'color'       => 'success',
             'title'       => __('notifications.titles.employee_added'),
             'message'     => __('notifications.messages.employee_added', [
                 'employee'  => $this->employee->full_name,

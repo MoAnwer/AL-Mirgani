@@ -2,15 +2,18 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\Models\Earning;
+use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetNotification extends Notification
+class EarningNotification extends Notification
 {
-     /**
+    use Queueable;
+
+    /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $user) {}
+    public function __construct(private readonly Earning $earning) {}
 
     /**
      * Get the notification's delivery channels.
@@ -30,11 +33,12 @@ class PasswordResetNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'icon'        => 'bx bx-lock',
-            'color'       => 'warning',
-            'title'       => __('notifications.titles.password_reset'),
-            'message'     => __('notifications.messages.password_reset', [
-                'user'  => $this->user->name,
+            'icon'        => 'bx bx-money',
+            'color'       => 'success',
+            'title'       => __('notifications.titles.new_earning'),
+            'message'     => __('notifications.messages.new_earning', [
+                'amount'  => $this->earning->amount,
+                'school'  => $this->earning->school->name
             ])
         ];
     }

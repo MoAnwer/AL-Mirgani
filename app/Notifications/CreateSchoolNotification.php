@@ -30,6 +30,8 @@ class CreateSchoolNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-school',
+            'color'       => 'secondary',
             'title'       => __('notifications.titles.new_school_added'),
             'message'     => __('notifications.messages.new_school_added', [
                 'school'  => $this->school->name,

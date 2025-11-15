@@ -35,6 +35,8 @@ class PayrollPaidNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'icon'        => 'bx bx-user-minus',
+            'color'       => 'primary',
             'title'       => __('notifications.titles.payroll_paid'),
             'message'     => __('notifications.messages.payroll_paid', [
                 'employee'  => $this->data['employee'],
