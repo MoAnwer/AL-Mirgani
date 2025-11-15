@@ -248,7 +248,15 @@ return [
     'total_payrolls_report_description' => 'الإجماليات المُعالجة حسب الشهر لعام :year',
 
     'notifications' => 'اﻹشعارات',
-    'unread_notifications' => 'اﻹشعارات غير المقروءه',
+    'unread_notifications' => 'الإشعارات غير المقروءة',
+    'flow_your_latest_new' => 'تتبع آخر المستجدات والتنبيهات الخاصة بك.',
+    'new_notification'   => 'تنبيه جديد',
+    'no_notification_text' =>  'لا يوجد نص محدد للإشعار.',
+    'mark_as_read'   => 'وضع علامة مقروء',
+    'mark_read_failed' => 'فشل في وضع علامة "مقروء". يرجى المحاولة مرة أخرى.',
+    'connection_error' => 'حدث خطأ في الاتصال بالخادم.',
+    'no_unread_header' => 'لا توجد إشعارات غير مقروءة حاليًا.',
+    'no_unread_body' => 'عُد لاحقًا لتجد آخر التنبيهات.',
 
     // Actions
     'create'                => 'اضافة :attribute جديد',

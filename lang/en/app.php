@@ -220,6 +220,14 @@ return [
 
     'notifications' => 'Notifications',
     'unread_notifications' => 'Unread notifications',
+    'flow_your_latest_new' => 'Track your latest updates and alerts.',
+    'new_notification' => 'New Alert',
+    'no_notification_text' => 'No specific notification text available.',
+    'mark_as_read' => 'Mark as Read',
+    'mark_read_failed' => 'Failed to mark as read. Please try again.',
+    'connection_error' => 'A connection error occurred with the server.',
+    'no_unread_header' => 'No unread notifications currently.',
+    'no_unread_body' => 'Check back later for the latest alerts.',
 
 
     // Payment States
