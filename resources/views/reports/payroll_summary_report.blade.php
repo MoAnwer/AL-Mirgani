@@ -72,7 +72,7 @@
                                     </tr>
                                     @php
                                         $grandTotalBasic += (float) str_replace(['.', ','], '', $data['basic_salary']);
-                                        $grandTotalAllowances += (float) str_replace(['.', ','], '', $data['total_allowances']);
+                                        $grandTotalAllowances += (float) str_replace(['.', ','], '', $data['basic_salary']  + $data['total_allowances'] + $data['total_additions']);
                                         $grandTotalDeductions += (float) str_replace(['.', ','], '', $data['total_deductions']);
                                         $grandTotalNet += (float) str_replace(['.', ','], '', $data['net_paid_amount']);
                                     @endphp
@@ -96,7 +96,7 @@
                                         {{ number_format($grandTotalDeductions) }}
                                     </td>
                                     <td class="px-6 py-4 ">
-                                        {{ number_format($grandTotalNet, 2) }}
+                                        {{ number_format($grandTotalNet) }}
                                     </td>
                                 </tr>
 
