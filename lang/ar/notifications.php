@@ -8,7 +8,7 @@ return [
         'new_user_added'    => 'اضافة مستخدم جديد',
         'user_deleted'      => 'تم حذف مستخدم',
         'employee_added'    => 'اضافة موظف جديد',
-        'employee_deleted'  => 'حذف مستخدم',
+        'employee_deleted'  => 'حذف موظف',
         'new_school_added'  => 'اضافة مدرسة جديدة',
         'school_deleted'    => 'حذف مدرسة',
     ],
