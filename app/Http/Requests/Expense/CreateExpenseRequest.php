@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Expense;
 
+use App\Rules\PaymentMethodValidation;
+use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateExpenseRequest extends FormRequest
@@ -27,7 +29,9 @@ class CreateExpenseRequest extends FormRequest
             'category_id'   => ['required'],
             'school_id'     => ['required'],
             'date'          => ['required'],
-            'user_id'       => ['nullable']
+            'user_id'       => ['nullable'],
+            'payment_method'    => ['sometimes'],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees'], 'transaction_id')],
         ];
     }
 
@@ -39,6 +43,8 @@ class CreateExpenseRequest extends FormRequest
             'category_id'   => __('app.category'),
             'school_id'     => __('app.school'),
             'date'          => __('app.date'),
+            'payment_method' => __('app.payment_method'),
+            'transaction_id' => __('app.process_number')
         ];
     }
 
