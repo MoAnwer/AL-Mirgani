@@ -14,7 +14,7 @@
                         </div>
                         <form action="{{ URL::current() }}">
                             <div class="row p-3 text-start align-items-end p-6">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label class="mb-1">@lang('app.school')</label>
                                     <select class="form-select" name="school_id" onchange="this.form.submit()">
                                         <option value="{{ null }}" selected>@lang('app.school')</option>
@@ -24,12 +24,21 @@
                                     </select>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label class="mb-1">@lang('app.date')</label>
                                     <div class="input-group">
                                         <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
                                     </div>
-                                </div>                                   
+                                </div>      
+                                
+                                 <div class="col-4">
+                                    <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                        <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
+                                        @foreach($paymentMethods as $key => $value)
+                                            <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     </div>
