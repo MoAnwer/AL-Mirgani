@@ -37,9 +37,9 @@
                                             </div>       
                                             
                                             <div class="col-3">
-                                                    <select class="form-select" name="payment_method" onchange="this.form.submit()">
-                                                        <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
-                                                            @foreach($paymentMethods as $key => $value)
+                                                <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                                    <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
+                                                    @foreach($paymentMethods as $key => $value)
                                                         <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
                                                     @endforeach
                                                 </select>
