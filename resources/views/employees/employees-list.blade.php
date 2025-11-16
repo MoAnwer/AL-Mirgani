@@ -73,7 +73,7 @@
                                         <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.employees')]) }} </td>
                                     @endforelse
                                     @section('pagination')
-                                        <div class="mt-5 px-5">{{ $employees->links('vendor.pagination.bootstrap-5') }} </div>
+                                        <div class="mt-5 px-5">{{ $employees->withQueryString()->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
                                 </x-Table.Tbody>
                             </x-Table.BasicTable>

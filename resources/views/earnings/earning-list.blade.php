@@ -94,7 +94,7 @@
                                     @endforelse
                                 </x-Table.Tbody>
                                 @section('pagination')
-                                    <div class="mt-5 px-5">{{ $earnings->links('vendor.pagination.bootstrap-5') }} </div>
+                                    <div class="mt-5 px-5">{{ $earnings->withQueryString()->links('vendor.pagination.bootstrap-5') }} </div>
                                 @endsection
                             </x-Table.BasicTable>
                         </div>
