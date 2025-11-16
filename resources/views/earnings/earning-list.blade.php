@@ -21,20 +21,29 @@
                                 <div class="card-body pb-2">
                                     <form action="{{ URL::current() }}">
                                         <div class="row p-3">
-                                            <div class="col-6">
+                                            <div class="col-4">
                                                 <select class="form-select" name="school_id" onchange="this.form.submit()">
-                                                    <option value="{{ null }}" selected>@lang('app.school')</option>
+                                                    <option value="{{ null }}" selected>-- @lang('app.school') --</option>
                                                         @foreach($schools as $key => $value)
                                                             <option value="{{ $value }}" @selected(request()->query('school_id') == $value)>{{ $key }}</option>
                                                         @endforeach
                                                 </select>
                                             </div>
 
-                                            <div class="col-5">
+                                            <div class="col-4">
                                                 <div class="input-group" title="{{ __('app.payment_date') }}">
                                                     <input type="date" class="form-control" name="date" value="{{ request()->query('date') }}" onchange="this.form.submit()"/>
                                                 </div>
-                                            </div>                                   
+                                            </div>       
+                                            
+                                            <div class="col-3">
+                                                    <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                                        <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
+                                                            @foreach($paymentMethods as $key => $value)
+                                                        <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
                                             <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
                                         </div>
@@ -57,19 +66,25 @@
                             </h4>
                             <x-Table.BasicTable>
                                 <x-Table.Thead>
-                                    <td>#</td>
-                                    <td>@lang('app.amount')</td>
-                                    <td>@lang('app.school')</td>
-                                    <td>@lang('app.date')</td>
-                                    <td>@lang('app.statement')</td>
-                                    <td>@lang('app.created_at')</td>
+                                    <tr class="text-center">
+                                        <td>#</td>
+                                        <td>@lang('app.amount')</td>
+                                        <td>@lang('app.school')</td>
+                                        <td>@lang('app.payment_method')</td>
+                                        <td>@lang('app.process_number')</td>
+                                        <td>@lang('app.date')</td>
+                                        <td>@lang('app.statement')</td>
+                                        <td>@lang('app.created_at')</td>
+                                    </tr>
                                 </x-Table.Thead>
                                 <x-Table.Tbody>
                                     @forelse($earnings as $earning)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                        <tr class='text-center'>
+                                            <td>{{ $earning->id }}</td>
                                             <td>{{ $earning->formattedAmount }}</td>
-                                            <td>{{ $earning->school?->name ?? 'الادارة' }}</td>
+                                            <td>{{ $earning->school?->name ?? __('app.center') }}</td>
+                                            <td>{{ ($earning->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))   ?? __('app.cash') }}</td>
+                                            <td>{{ $earning->transaction_id ?? '' }}</td>
                                             <td>{{ $earning->date->format('Y-m-d') }}</td>
                                             <td>{{ $earning->statement }}</td>
                                             <td>{{ $earning->formatted_created_at }}</td>
@@ -77,10 +92,10 @@
                                     @empty
                                         <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.earnings')]) }} </td>
                                     @endforelse
-                                    <div class="mt-5 px-5">{{ $earnings->links('vendor.pagination.bootstrap-5') }} </div>
-                                    @section('pagination')
-                                    @endsection
                                 </x-Table.Tbody>
+                                @section('pagination')
+                                    <div class="mt-5 px-5">{{ $earnings->links('vendor.pagination.bootstrap-5') }} </div>
+                                @endsection
                             </x-Table.BasicTable>
                         </div>
                     </x-Container>
