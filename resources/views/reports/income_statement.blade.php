@@ -13,7 +13,7 @@
                     </div>
                     <form action="{{ URL::current() }}">
                     <div class="row p-3 mb-2">
-                        <div class="col-4">
+                        <div class="col-3">
                             <label class="form-label py-2">@lang('app.school')</label>
                             <select class="form-select" name="school_id" onchange="this.form.submit()">
                                 <option value="{{ null }}" selected>---</option>
@@ -22,18 +22,27 @@
                                     @endforeach
                             </select>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <label class="form-label py-2">@lang('app.startDate')</label>
                             <div class="input-group">
                                 <input type="date" class="form-control" onchange="this.form.submit()" name="start_date" value="{{ request()->query('start_date') }}" />
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <label class="form-label py-2"> @lang('app.endDate') </label>
                             <div class="input-group">
                                 <input type="date" class="form-control" onchange="this.form.submit()" name="end_date" value="{{ request()->query('end_date') }}" />
                             </div>
-                        </div>                                  
+                        </div>   
+                        <div class="col-3">
+                            <label class="form-label py-2">@lang('app.payment_method')</label>
+                            <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
+                                    @foreach($paymentMethods as $key => $value)
+                                <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
+                            @endforeach
+                            </select>
+                        </div>                               
                     </div>
                 </form>
                 </div>
@@ -44,7 +53,13 @@
                     @else
                         <h5 class="py-3 text-center">@lang('app.all_schools')</h5>
                     @endif
+
+                    @if(!empty(request()->query('payment_method')))
+                        <h5 class="py-0 text-center">@lang('app.earning') {{ request()->query('payment_method') }}</h5>
+                    @endif
+
                     <p class="text-center lead">@lang('app.period'): <b>{{ $period }}</b></p>
+                    
                 
                     <div class="card-body">
                         <table class="table">
