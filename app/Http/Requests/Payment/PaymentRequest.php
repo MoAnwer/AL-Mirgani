@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Payment;
 
+use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PaymentRequest extends FormRequest
@@ -26,7 +27,8 @@ class PaymentRequest extends FormRequest
             'payment_method'    => 'required',
             'payment_date'      => 'required|date',
             'statement'         => 'required',
-            'student_id'        => 'required'
+            'student_id'        => 'required',
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
         ];
     }
 
@@ -36,7 +38,8 @@ class PaymentRequest extends FormRequest
             'paid_amount'       => __('app.paid_amount'),
             'payment_method'    => __('app.payment_method'),
             'payment_date'      => __('app.payment_date'),
-            'statement'         => __('app.notes')
+            'statement'         => __('app.notes'),
+            'transaction_id'    => __('app.process_number')
         ];
     }
 }
