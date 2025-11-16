@@ -55,7 +55,7 @@
                     @endif
 
                     @if(!empty(request()->query('payment_method')))
-                        <h5 class="py-0 text-center">@lang('app.earning') {{ request()->query('payment_method') }}</h5>
+                        <h5 class="py-0 text-center">{{ request()->query('payment_method') }}</h5>
                     @endif
 
                     <p class="text-center lead">@lang('app.period'): <b>{{ $period }}</b></p>
