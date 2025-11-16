@@ -6,7 +6,6 @@
         <x-nav />
         <x-layout-container>
             <x-container>
-            <div class="container my-5">
                 <div class="card px-2 mb-3">
                     <div class="card-header border-bottom py-4 mb-3">
                         <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
@@ -127,7 +126,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
             </x-container>
         </x-layout-container>
     </x-layout-page>
