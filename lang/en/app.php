@@ -151,6 +151,7 @@ return [
     'total_deductions'      => 'Total deductions',
     'payment_date'          => 'Payment date'         ,
     'process_number'        => 'Process number',
+    'transaction_id'        => 'Transaction number',
     'receipt'               => 'Receipt',
     'payment_details'       => 'Payment details',
     'receipt_number'        => 'Receipt number'       ,
