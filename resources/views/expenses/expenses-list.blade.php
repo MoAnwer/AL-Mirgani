@@ -101,7 +101,7 @@
                                         <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.expenses')]) }} </td>
                                     @endforelse
                                     @section('pagination')
-                                        <div class="mt-5 px-5">{{ $expenses->links('vendor.pagination.bootstrap-5') }} </div>
+                                        <div class="mt-5 px-5">{{ $expenses->withQueryString()->links('vendor.pagination.bootstrap-5') }} </div>
                                     @endsection
                                 </x-Table.Tbody>
                             </x-Table.BasicTable>
