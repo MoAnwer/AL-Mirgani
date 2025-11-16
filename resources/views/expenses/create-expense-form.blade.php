@@ -12,63 +12,79 @@
 
                                 <x-alert type="message" />
                                 <x-alert type="error" />
-                            
+
                                 <h4 class="card-header">@lang('app.create', ['attribute' => __('app.expense')])</h4>
 
                                 @if($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
+                                <div class="alert alert-danger">
+                                    <ul>
                                         @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
+                                        <li>{{ $error }}</li>
                                         @endforeach
-                                        </ul>
-                                    </div>
+                                    </ul>
+                                </div>
                                 @endif
 
                                 <div class="card-body">
-                                
                                     <form action="{{ route('expenses.store') }}" method="POST">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="form-label">@lang('app.amount')</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" name="amount" value="{{ old('amount') }}" />
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="form-label mb-2">@lang('app.amount')</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" name="amount" value="{{ old('amount') }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">@lang('app.the_category')</label>
-                                            <select class="form-select" name="category_id">
-                                                <option value="{{ null }}" selected>--</option>
+                                            <div class="col-md-4">
+                                                <label class="form-label">@lang('app.the_category')</label>
+                                                <select class="form-select" name="category_id">
+                                                    <option value="{{ null }}" selected>--</option>
                                                     @foreach($categories as $key => $value)
-                                                        <option value="{{ $value }}" @selected(old('category_id') == $value)>{{ __("expenses.$key") }}</option>
+                                                    <option value="{{ $value }}" @selected(old('category_id')==$value)>
+                                                        {{ __("expenses.$key") }}
+                                                    </option>
                                                     @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mt-2">
-                                            <label class="form-label">@lang('app.school')</label>
-                                            <select class="form-select" name="school_id">
-                                                <option value="{{ null }}" selected>--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label mb-2">@lang('app.school')</label>
+                                                <select class="form-select" name="school_id">
+                                                    <option value="{{ null }}" selected>--</option>
                                                     @foreach($schools as $key => $value)
-                                                        <option value="{{ $value }}" @selected(old('school_id') == $value)>{{ $key }}</option>
+                                                    <option value="{{ $value }}" @selected(old('school_id')==$value)>{{ $key }}</option>
                                                     @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mt-2">
-                                            <label class="form-label">@lang('app.date')</label>
-                                            <div class="input-group">
-                                                <input type="date" class="form-control" name="date" value="{{ old('date') }}" />
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mt-5">
-                                            <label class="form-label">@lang('app.statement')</label>
-                                            <div class="input-group">
-                                              <textarea rows="10" class="form-control" name="statement">{{ old('statement') }}</textarea>
+                                            <div class="col-md-4 mt-4">
+                                                <label class="form-label mb-2">@lang('app.payment_method')</label>
+                                                <select class="form-select" name="payment_method">
+                                                    <option value="{{ null }}" selected>--</option>
+                                                    @foreach(['كاش' => __('app.cash'), 'بنكك' => __('app.bankak')] as $key => $value)
+                                                    <option value="{{ $key }}" @selected(old('payment_method')==$key)>{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
+                                             <div class="col-md-4 mt-4">
+                                                <label class="form-label mb-2">@lang('app.process_number')</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mt-4">
+                                                <label class="form-label mb-2">@lang('app.date')</label>
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" name="date" value="{{ old('date') }}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-5">
+                                                <label class="form-label mb-2">@lang('app.statement')</label>
+                                                <div class="input-group">
+                                                    <textarea rows="10" class="form-control" name="statement">{{ old('statement') }}</textarea>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="{{ auth()->id() }}" name="user_id" />
                                         </div>
-                                        <input type="hidden" value="{{ auth()->id() }}" name="user_id"/>
-                                    </div>
-                                    <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
+                                        <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
                                     </form>
                                 </div>
                             </div>
@@ -79,4 +95,4 @@
         </x-LayoutPage>
     </x-LayoutContainer>
 </x-LayoutWrapper>
-<x-footer/> 
+<x-footer />
