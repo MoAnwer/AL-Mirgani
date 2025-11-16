@@ -132,7 +132,7 @@
                         if (response.ok) {
                             if (card) {
                                 card.style.opacity = '0';
-                                card.style.transform = 'opacity: 0';
+                                card.style.transform = 'translateY(50%)';
                                 setTimeout(() => {
                                     card.remove();
                                     const remainingCards = document.querySelectorAll('.notification-card').length;
