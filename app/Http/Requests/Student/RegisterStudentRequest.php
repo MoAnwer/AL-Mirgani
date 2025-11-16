@@ -36,7 +36,7 @@ class RegisterStudentRequest extends FormRequest
             'registration_fee'  => ['required', 'integer'],
             'paid_amount'       => ['required', 'integer'],
             'payment_method'    => ['nullable', 'string'],
-            'transaction_id'    => ['nullable', new UniqueInTables(['earnings', 'expenses', 'registration_fees'], 'transaction_id')],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
             'payment_date'      => ['nullable'],
         ];
     }

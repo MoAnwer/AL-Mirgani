@@ -132,7 +132,7 @@ final readonly class PayrollService
      */
     public function editPage(EmployeePayroll $payroll)
     {
-        if ($payroll->payment_status == 'Paid') {
+        if ($payroll->isPaid()) {
             return to_route('payroll.show', $payroll->id)->with('error', __('app.payroll_paid_error'));
         }
 
@@ -172,7 +172,7 @@ final readonly class PayrollService
 
 
             // Register new expense in expenses table 
-            if ($payroll->payment_status == 'Paid') {
+            if ($payroll->isPaid()) {
                 event(new PayrollPaid($payroll));
             }
         });
@@ -216,7 +216,7 @@ final readonly class PayrollService
     public function payrollInvoice(EmployeePayroll $payroll)
     {
 
-        if ($payroll->payment_status != PaymentStatusEnum::PAID->value) {
+        if (!$payroll->isPaid()) {
             return back();
         }
 
@@ -258,6 +258,6 @@ final readonly class PayrollService
         // delete payroll
         $payroll->forceDelete();
 
-        return to_route('payroll.index')->with('message', __('app.delete_successful', ['attribute' => $employeeName . " كشف راتب "]));
+        return to_route('payroll.index')->with('message', __('app.delete_successful', ['attribute' => $employeeName . ' ' .__('app.salary')]));
     }
 }

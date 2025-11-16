@@ -76,19 +76,19 @@
                                         <td>{{ $payroll->id }}</td>
                                         <td class="text-start fw-bold">{{ $payroll->employee->full_name ?? __('app.deleted_employee') }}</td>
                                         <td>{{ $payroll->month }}/{{ $payroll->year }}</td>
-                                        <td>{{ number_format($payroll->basic_salary_snapshot, 2) }} {{ __('app.currency')}}</td>
+                                        <td>{{ number_format($payroll->basic_salary_snapshot) }} {{ __('app.currency')}}</td>
                                         <td>
-                                            {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions, 2) }} {{ __('app.currency')}}
+                                            {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions) }} {{ __('app.currency')}}
                                         </td>
-                                        <td class="text-danger">({{ number_format($payroll->total_deductions, 2) }} {{ __('app.currency')}}) </td>
-                                        <td class="fw-bolder text-primary">{{ number_format($payroll->net_salary_paid, 2) }} {{ __('app.currency')}}</td>
+                                        <td class="text-danger">({{ number_format($payroll->total_deductions) }} {{ __('app.currency')}}) </td>
+                                        <td class="fw-bolder text-primary">{{ number_format($payroll->net_salary_paid) }} {{ __('app.currency')}}</td>
                                         <td>
-                                            @if ($payroll->payment_status == 'Paid')
+                                            @if ($payroll->isPaid())
                                             <span class="badge bg-success-subtle text-success border border-success rounded">
                                                 <i class="bx bxs-check-circle"></i>
                                                 @lang('app.paid')
                                             </span>
-                                            @elseif ($payroll->payment_status == 'Pending')
+                                            @elseif ($payroll->isPending())
                                             <span class="badge bg-warning-subtle text-warning border border-warning rounded">
                                                 <i class="bx bxs-time"></i>
                                                 @lang('app.pending')
@@ -102,7 +102,7 @@
                                             {{ $payroll->payment_date->format('Y-m-d') }}
                                             @endif
                                         </td>
-                                        @if($payroll->employee != null)
+                                        @if($payroll->employee)
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -113,13 +113,11 @@
                                                         <i class='bx bx-news me-1 text-info'></i>
                                                         @lang('app.view')
                                                     </a>
-
-                                                    @if ($payroll->payment_status == \App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == \App\Enums\PaymentStatusEnum::FAILED->value)
+                                                    @if ($payroll->isPending())
                                                     <a class="dropdown-item" href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-edit-alt me-1 text-success'></i>@lang('app.edit')</a>
                                                     <a class="dropdown-item" href="{{ route('payroll.delete', $payroll) }}" class="btn btn-sm btn-warning me-1"> <i class='bx bxs-trash me-1 text-danger'></i>@lang('app.delete')</a>
                                                     @endif
-
-                                                    @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
+                                                    @if($payroll->isPaid())
                                                     <a class="dropdown-item" href="{{ route('payroll.invoice.print', $payroll) }}" class="btn btn-sm btn-warning me-1"><i class='bx bxs-printer me-1 text-primary'></i> @lang('app.print')</a>
                                                     @endif
                                                 </div>
@@ -139,14 +137,14 @@
                                     <tr class="text-light text-center fw-bold">
                                         <td></td>
                                         <td class="text-center" colspan="2">@lang('app.total')</td>
-                                        <td>{{ number_format($payrolls->sum('basic_salary_snapshot'), 2) }} {{ __('app.currency')}}</td>
+                                        <td>{{ number_format($payrolls->sum('basic_salary_snapshot')) }} {{ __('app.currency')}}</td>
                                         <td>{{ number_format(
                                                     $payrolls->sum('basic_salary_snapshot') + 
                                                     $payrolls->sum('total_fixed_allowances') +
                                                     $payrolls->sum('total_variable_additions')
-                                                    , 2) }} {{ __('app.currency')}}</td>
-                                        <td>{{ number_format($payrolls->sum('total_deductions'), 2) }} {{ __('app.currency')}}</td>
-                                        <td>{{ number_format($payrolls->sum('net_salary_paid'), 2) }} {{ __('app.currency')}}</td>
+                                                    ) }} {{ __('app.currency')}}</td>
+                                        <td>{{ number_format($payrolls->sum('total_deductions')) }} {{ __('app.currency')}}</td>
+                                        <td>{{ number_format($payrolls->sum('net_salary_paid')) }} {{ __('app.currency')}}</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

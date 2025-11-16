@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PaymentStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -40,5 +41,17 @@ class EmployeePayroll extends Model
     public function details()
     {
         return $this->hasMany(PayrollDetail::class, 'payroll_id');
+    }
+
+    public function isPaid(): bool {
+        return $this->payment_status == PaymentStatusEnum::PAID->value;
+    }
+
+    public function isPending(): bool {
+        return $this->payment_status == PaymentStatusEnum::PENDING->value;
+    }
+
+    public function isFailed(): bool {
+        return $this->payment_status == PaymentStatusEnum::FAILED->value;
     }
 }

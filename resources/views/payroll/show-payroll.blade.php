@@ -45,13 +45,13 @@
                                                     <tbody>
                                                         <tr>
                                                             <td class="text-muted ps-0">@lang('app.basic_salary')</td>
-                                                            <td class="text-end fw-bold text-dark">{{ number_format($payroll->basic_salary_snapshot, 2) }}</td>
+                                                            <td class="text-end fw-bold text-dark">{{ number_format($payroll->basic_salary_snapshot) }}</td>
                                                         </tr>
                                                         @foreach($additions as $detail)
                                                         <tr>
                                                             <td class="text-muted ps-0">{{ $detail->item->name }}</td>
-                                                            <td class="text-end text-success fw-medium">+ {{ number_format($detail->amount, 2) }}</td>
-                                                            @if($payroll->payment_status !== \App\Enums\PaymentStatusEnum::PAID->value)
+                                                            <td class="text-end text-success fw-medium">+ {{ number_format($detail->amount) }}</td>
+                                                            @if(!$payroll->isPaid())
                                                                 
                                                                 <td class="text-end ps-0" style="width: 5%;">
                                                                     <a href="{{ route('payroll.details.edit', ['payroll' => $payroll->id, 'detail' => $detail->id]) }}" 
@@ -70,7 +70,7 @@
                                                         <tr class="fw-bold fs-5 text-primary">
                                                             <td class="ps-0 pt-3">@lang('app.total_due') </td>
                                                             <td class="text-end pt-3">
-                                                                {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions, 2) }}
+                                                                {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions) }}
                                                             </td>
                                                         </tr>
                                                     </tfoot>
@@ -84,8 +84,8 @@
                                                         @foreach($deductions as $detail)
                                                         <tr>
                                                             <td class="text-muted ps-0">{{ $detail->item->name }}</td>
-                                                            <td class="text-end text-danger fw-medium">({{ number_format($detail->amount, 2) }})</td>
-                                                            @if($payroll->payment_status !== 'Paid')
+                                                            <td class="text-end text-danger fw-medium">({{ number_format($detail->amount) }})</td>
+                                                            @if(!$payroll->isPaid())
                                                                 <td class="text-end ps-0" style="width: 5%;">
                                                                     <a href="{{ route('payroll.details.edit', ['payroll' => $payroll->id, 'detail' => $detail->id]) }}" 
                                                                     class="text-info opacity-75 edit-icon-hover"
@@ -100,7 +100,7 @@
                                                     <tfoot class="border-top mt-4 pt-3"> 
                                                         <tr class="fw-bold fs-5 text-danger">
                                                             <td class="ps-0 pt-3">@lang('app.total_deductions')</td>
-                                                            <td class="text-end pt-3">({{ number_format($payroll->total_deductions, 2) }})</td>
+                                                            <td class="text-end pt-3">({{ number_format($payroll->total_deductions) }})</td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -109,7 +109,7 @@
 
                                         <div class="mt-10 p-4 bg-primary bg-gradient-success text-white rounded-3 text-center shadow">
                                             <h4 class="text-uppercase mb-2 fw-normal opacity-75">@lang('app.net_salary_paid')</h4>
-                                            <h1 class="fw-bolder mb-0 display-3">{{ number_format($payroll->net_salary_paid, 2) }}</h1>
+                                            <h1 class="fw-bolder mb-0 display-3">{{ number_format($payroll->net_salary_paid) }}</h1>
                                             @if($payroll->payment_date)
                                                 <small class="text-white-75 mt-2 d-block fs-6">{{ __('app.payment_date') }}: <span class="fw-bold">{{ $payroll->payment_date->format('Y-m-d') }}</span></small>
                                             @endif
@@ -122,7 +122,7 @@
                                         </a>
 
 
-                                        @if ($payroll->payment_status == App\Enums\PaymentStatusEnum::PENDING->value || $payroll->payment_status == App\Enums\PaymentStatusEnum::FAILED->value)
+                                        @if (!$payroll->isPaid())
                                         <a href="{{ route('payroll.details.create', $payroll->id) }}" class="btn btn-primary btn-lg  px-4">
                                             <i class='bx bx-plus-circle me-2'></i>@lang('app.add_new_payroll_item')
                                         </a>
@@ -131,7 +131,7 @@
                                         </a>
                                         @endif
 
-                                        @if($payroll->payment_status == \App\Enums\PaymentStatusEnum::PAID->value)
+                                        @if($payroll->isPaid())
                                             <a class="btn btn-primary btn-lg  px-4" href="{{ route('payroll.invoice.print', $payroll) }}"><i class='bx bxs-printer me-1'></i>@lang('app.print')</a>
                                         @endif
 
