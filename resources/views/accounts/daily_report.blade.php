@@ -67,8 +67,8 @@
                                     <tfoot  class="table-secondary">
                                         <tr>
                                             <td style="font-weight: bold;">@lang('app.total_for_the_day'):</td>
-                                            <td style="font-weight: bold;">{{ number_format($dailyIncomeTotal) }}</td>
-                                            <td style="font-weight: bold;">{{ number_format($dailyExpenseTotal) }}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{ number_format($dailyIncomeTotal) }}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{ number_format($dailyExpenseTotal) }}</td>
                                             <td style="font-weight: bold;">@lang('app.final_balance'):</td>
                                             <td style="font-weight: bold;">{{ number_format($finalDailyBalance) }}</td>
                                         </tr>
