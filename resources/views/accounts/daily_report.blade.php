@@ -51,26 +51,26 @@
                                         <tr>
                                             <td></td>
                                             <td colspan="3" style="text-align: right; font-weight: bold;">@lang('app.forward_balance')</td>
-                                            <td>{{ number_format($previousBalance, 2) }}</td>
+                                            <td>{{ number_format($previousBalance) }}</td>
                                         </tr>
                                         
                                         @foreach ($reportData as $row)
                                         <tr>
                                             <td>{{ $row['date'] }}</td>
-                                            <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount'], 2) : '0' }}</td>
-                                            <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount'], 2) : '0' }}</td>
+                                            <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount']) : '0' }}</td>
+                                            <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount']) : '0' }}</td>
                                             <td>{{ $row['statement'] }}</td>
-                                            <td>{{ number_format($row['running_balance'], 2) }}</td>
+                                            <td>{{ number_format($row['running_balance']) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot  class="table-secondary">
                                         <tr>
                                             <td style="font-weight: bold;">@lang('app.total_for_the_day'):</td>
-                                            <td style="font-weight: bold;">{{ number_format($dailyIncomeTotal, 2) }}</td>
-                                            <td style="font-weight: bold;">{{ number_format($dailyExpenseTotal, 2) }}</td>
+                                            <td style="font-weight: bold;">{{ number_format($dailyIncomeTotal) }}</td>
+                                            <td style="font-weight: bold;">{{ number_format($dailyExpenseTotal) }}</td>
                                             <td style="font-weight: bold;">@lang('app.final_balance'):</td>
-                                            <td style="font-weight: bold;">{{ number_format($finalDailyBalance, 2) }}</td>
+                                            <td style="font-weight: bold;">{{ number_format($finalDailyBalance) }}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
