@@ -34,7 +34,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-3 col-sm-6">
+                                    <div class="col-md-2 col-sm-6">
                                         <label for="start_date" class="form-label text-dark fw-medium pb-1">{{ __('app.startDate') }}</label>
                                         <input type="date" name="start_date" id="start_date" value="{{ $startDate }}" onchange="this.form.submit()"
                                             class="form-control">
@@ -44,12 +44,21 @@
                                         <input type="date" name="end_date" id="end_date" value="{{ $endDate }}" onchange="this.form.submit()"
                                             class="form-control">
                                     </div>
-                                     <div class="col-3">
+                                    <div class="col-2">
                                         <label class="form-label text-dark fw-medium pb-1">@lang('app.the_category')</label>
                                         <select class="form-select" name="category_id" onchange="this.form.submit()">
                                         <option value="{{ null }}" selected>---</option>
                                             @foreach($categories as $key => $value)
                                                 <option value="{{ $value }}" @selected(request()->query('category_id') == $value)>{{ __("expenses.$key") }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                            <label class="form-label text-dark fw-medium pb-1">@lang('app.payment_method')</label>
+                                            <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                                <option value="{{ null }}" selected>----</option>
+                                                    @foreach($paymentMethods as $key => $value)
+                                                <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
                                             @endforeach
                                         </select>
                                     </div>
