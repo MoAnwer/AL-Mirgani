@@ -16,7 +16,9 @@ class Expense extends Model
         'school_id', 
         'date', 
         'statement', 
-        'user_id'
+        'user_id',
+        'payment_method', 
+        'transaction_id'
     ];
 
     protected function casts(): array 
