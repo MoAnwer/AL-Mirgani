@@ -39,7 +39,7 @@
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-hover">
                                     <thead  class="table-primary">
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>@lang('app.date')</th>
                                             <th>@lang('app.the_earnings')</th>
                                             <th>@lang('app.the_expenses')</th>
@@ -48,14 +48,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr class="text-center">
                                             <td></td>
                                             <td colspan="3" style="text-align: right; font-weight: bold;">@lang('app.forward_balance')</td>
                                             <td>{{ number_format($previousBalance) }}</td>
                                         </tr>
                                         
                                         @foreach ($reportData as $row)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $row['date'] }}</td>
                                             <td class="bg-label-success text-center">{{ $row['type'] === 'income' ? number_format($row['amount']) : '0' }}</td>
                                             <td class="bg-label-danger  text-center">{{ $row['type'] === 'expense' ? number_format($row['amount']) : '0' }}</td>
@@ -65,7 +65,7 @@
                                         @endforeach
                                     </tbody>
                                     <tfoot  class="table-secondary">
-                                        <tr>
+                                        <tr class="text-center">
                                             <td style="font-weight: bold;">@lang('app.total_for_the_day'):</td>
                                             <td style="font-weight: bold;" class="text-center">{{ number_format($dailyIncomeTotal) }}</td>
                                             <td style="font-weight: bold;" class="text-center">{{ number_format($dailyExpenseTotal) }}</td>
