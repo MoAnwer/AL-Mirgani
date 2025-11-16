@@ -3,8 +3,10 @@
 namespace App\Services\Expense;
 
 use Exception;
-use App\Models\{Expense, ExpenseCategory, School};
+use App\Models\{Expense, ExpenseCategory, School, User};
+use App\Notifications\NewExpenseNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ExpenseService 
 {
@@ -62,7 +64,10 @@ class ExpenseService
     {
 
         try {
-            $this->expense->create($request->validated());
+            $expense = $this->expense->create($request->validated());
+
+            Notification::sendNow(User::all(), new NewExpenseNotification($expense));
+
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.expense')]));
         } catch (Exception $e) {
             report($e);
