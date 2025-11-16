@@ -53,6 +53,7 @@
                                                     <th>#</th>
                                                     <th>@lang('app.paid_amount')</th>
                                                     <th>@lang('app.payment_method')</th>
+                                                    <th>@lang('app.process_number')</th>
                                                     <th>@lang('app.receipt_number')</th>
                                                     <th>@lang('app.payment_date')</th>
                                                     <th>@lang('app.statement')</th>
@@ -65,6 +66,7 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ number_format($payment->paid_amount, 0) }} {{ __('app.currency')}}</td>
                                                         <td>{{ ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak')) }}</td>
+                                                        <td>{{ $payment->transaction_id }}</td>
                                                         <td>{{ $payment->receipt_number ?? '-' }}</td>
                                                         <td>{{ $payment->payment_date }}</td>
                                                         <td>{{ $payment->statement }}</td>
@@ -90,15 +92,15 @@
                                                         </td>
                                                     </tr>
                                                 @empty
-                                                    <td colspan="7" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.installment_payments')]) }} </td>
+                                                    <td colspan="9" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.installment_payments')]) }} </td>
                                                 @endforelse
                                                 <tfoot class="bg-label-secondary">
                                                     <tr class="fw-bold">
-                                                        <td colspan="6">@lang('app.total_payment')</td>
+                                                        <td colspan="7">@lang('app.total_payment')</td>
                                                         <td>{{ number_format($installment->total_payments, 0) }} {{ __('app.currency')}}</td>
                                                     </tr>
                                                     <tr class="fw-bold">
-                                                        <td colspan="6">@lang('app.remaining')</td>
+                                                        <td colspan="7">@lang('app.remaining')</td>
                                                         <td>{{ number_format($installment->remaining, 0) }} {{ __('app.currency')}}</td>
                                                     </tr>
                                                 </tfoot>
