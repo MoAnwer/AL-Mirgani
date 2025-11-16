@@ -37,7 +37,7 @@ class EarningNotification extends Notification
             'color'       => 'success',
             'title'       => __('notifications.titles.new_earning'),
             'message'     => __('notifications.messages.new_earning', [
-                'amount'  => $this->earning->amount,
+                'amount'  => number_format($this->earning->amount),
                 'school'  => $this->earning->school->name
             ])
         ];
