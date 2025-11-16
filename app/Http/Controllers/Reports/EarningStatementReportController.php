@@ -19,6 +19,8 @@ class EarningStatementReportController extends Controller
     {
         $school_id = request()->query('school_id') ?? 0;
 
+        $payment_method = request()->query('payment_method') ?? 0;
+
         $startDate = request()->query('start_date') ?? date('Y-m-d', strtotime(now()->startOfYear()->toString()));
 
         $endDate = request()->query('end_date') ??  date('Y-m-d', strtotime(now()->endOfYear()->toString()));
@@ -34,7 +36,7 @@ class EarningStatementReportController extends Controller
         
         $totalOperatingRevenue = $totalFeesRevenue;
 
-        $data = $this->getExpenses($school_id, $startDate, $endDate);
+        $data = $this->getExpenses($school_id, $payment_method, $startDate, $endDate);
 
         $interestExpense        = array_sum($data['non_operating_expenses']);
 
@@ -54,12 +56,13 @@ class EarningStatementReportController extends Controller
             'netOperatingIncome'        => $netOperatingIncome,
             'netProfit'                 => $netProfit,
             'schools'                   => $this->school->pluck('name', 'id'),
-            'selected_school'           => $this->school->find($school_id) ?? null
+            'selected_school'           => $this->school->find($school_id) ?? null,
+            'paymentMethods'           =>  ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
         ]);
     }
 
 
-    private function getExpenses(int $school_id, $startDate, $endDate): array 
+    private function getExpenses(int $school_id, $payment_method, $startDate, $endDate): array 
     {
         $data = [
             'operating_expenses' => [
@@ -91,6 +94,9 @@ class EarningStatementReportController extends Controller
             ->groupBy('category_id')
             ->when($school_id != 0, function($q) use ($school_id) {
                 $q->where('school_id', $school_id);
+            })
+            ->when($payment_method != 0, function($q) use ($payment_method) {
+                $q->where('payment_method', $payment_method);
             })
             ->whereBetween('date', [$startDate, $endDate])
             ->get()

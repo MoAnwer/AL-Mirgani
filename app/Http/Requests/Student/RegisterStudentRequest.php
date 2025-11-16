@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Student;
 
+use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterStudentRequest extends FormRequest
@@ -33,9 +34,9 @@ class RegisterStudentRequest extends FormRequest
             'phone_one'         => ['required', 'string'],
             'phone_two'         => ['nullable', 'string'],
             'registration_fee'  => ['required', 'integer'],
-            'paid_amount'       => ['nullable', 'integer'],
+            'paid_amount'       => ['required', 'integer'],
             'payment_method'    => ['nullable', 'string'],
-            'transaction_id'    => ['nullable', 'string'],
+            'transaction_id'    => ['nullable', new UniqueInTables(['earnings', 'expenses', 'registration_fees'], 'transaction_id')],
             'payment_date'      => ['nullable'],
         ];
     }
@@ -46,6 +47,7 @@ class RegisterStudentRequest extends FormRequest
             'full_name'         => __('app.student_full_name'),
             'stage'             => __('app.stage'),
             'class'             => __('app.class'),
+            'paid_amount'       => __('app.paid_amount'),
             'school'            => __('app.school'),
             'total_fee'         => __('app.total_fee'),
             'registration_fee'  => __('app.registration_fee'),

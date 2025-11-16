@@ -10,7 +10,7 @@ class Earning extends Model
 {
     use ReadableHumanDate;
 
-    protected $fillable = ['amount', 'date', 'statement', 'school_id'];
+    protected $fillable = ['amount', 'date', 'statement', 'school_id', 'payment_method', 'transaction_id'];
 
     protected function casts(): array
     {
@@ -26,6 +26,6 @@ class Earning extends Model
 
     protected function getFormattedAmountAttribute()
     {
-        return number_format($this->amount, 2);
+        return number_format($this->amount) .' '. __('app.currency');
     }
 }

@@ -2,18 +2,19 @@
 
 namespace App\Notifications;
 
-use App\Models\Earning;
+use App\Models\Expense;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EarningNotification extends Notification
+class NewExpenseNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Earning $earning) {}
+    public function __construct(private readonly Expense $expense) {}
 
     /**
      * Get the notification's delivery channels.
@@ -25,6 +26,7 @@ class EarningNotification extends Notification
         return ['database'];
     }
 
+
     /**
      * Get the array representation of the notification.
      *
@@ -33,12 +35,12 @@ class EarningNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'icon'        => 'bx bx-money',
-            'color'       => 'success',
-            'title'       => __('notifications.titles.new_earning'),
-            'message'     => __('notifications.messages.new_earning', [
-                'amount'  => number_format($this->earning->amount),
-                'school'  => $this->earning->school->name
+            'icon'        => 'bx bx-right-arrow-alt',
+            'color'       => 'danger',
+            'title'       => __('notifications.titles.new_expense'),
+            'message'     => __('notifications.messages.new_expense', [
+                'amount'  => number_format($this->expense->amount),
+                'school'  => $this->expense->school->name
             ])
         ];
     }

@@ -27,7 +27,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <select class="form-select" name="school_id" onchange="this.form.submit()">
                                                 <option value="{{ null }}" selected>@lang('app.school')</option>
                                                     @foreach($schools as $key => $value)
@@ -36,11 +36,20 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <div class="input-group">
                                                 <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
                                             </div>
-                                        </div>                                   
+                                        </div>
+                                        
+                                        <div class="col-2">
+                                                <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                                    <option value="{{ null }}" selected>-- @lang('app.payment_method') --</option>
+                                                        @foreach($paymentMethods as $key => $value)
+                                                    <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                         <button type="submit" class="col-1 btn btn-primary">{{ __('app.search') }}</button>                
                                     </div>
@@ -56,6 +65,8 @@
                                         <td>@lang('app.amount')</td>
                                         <td>@lang('app.category')</td>
                                         <td>@lang('app.school')</td>
+                                        <td>@lang('app.payment_method')</td>
+                                        <td>@lang('app.process_number')</td>
                                         <td>@lang('app.date')</td>
                                         <td>@lang('app.statement')</td>
                                         <td>@lang('app.created_at')</td>
@@ -69,6 +80,8 @@
                                             <td>{{ $expense->formatted_amount }}</td>
                                             <td>{{ __("expenses.{$expense->category->name}") }}</td>
                                             <td>{{ !empty($expense->school->name) ? $expense->school->name : __('app.center') }}</td>
+                                            <td>{{ ($expense->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))   ?? __('app.cash') }}</td>
+                                            <td>{{ $expense->transaction_id ?? '' }}</td>
                                             <td>{{ $expense->date->format('Y-m-d') }}</td>
                                             <td>{{ $expense->statement }}</td>
                                             <td>{{ $expense->created_at }}</td>

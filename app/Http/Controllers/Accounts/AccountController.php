@@ -50,7 +50,7 @@ class AccountController extends Controller
             }
 
             $reportData[] = [
-                'date' => $transaction['date'],
+                'date' => date('Y-m-d', strtotime($transaction['date'])),
                 'statement' => $transaction['statement'],
                 'type' => $transaction['type'],
                 'amount' => $transaction['amount'],

@@ -12,6 +12,7 @@ return [
         'new_school_added'  => 'اضافة مدرسة جديدة',
         'school_deleted'    => 'حذف مدرسة',
         'new_earning'       => 'ايراد مالي جديد',
+        'new_expense'       => 'منصرف مالي جديد',
     ],
     'messages' => [
         'payroll_paid'      => "تم دفع مرتب الموظف :employee  لشهر  :month/:year",
@@ -24,5 +25,6 @@ return [
         'new_school_added'  => 'تم اضافة المدرسة :school بنجاح الى النظام',
         'school_deleted'    => 'تم حذف المدرسة :school من النظام بنجاح',
         'new_earning'       => 'تم تسجيل ايراد جديد بقيمة :amount عبر فرع :school',
+        'new_expense'       => 'تم تسجيل منصرف جديد بقيمة :amount عبر فرع :school',
     ]
 ];

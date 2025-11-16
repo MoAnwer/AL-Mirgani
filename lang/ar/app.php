@@ -97,6 +97,7 @@ return [
     'payment_method'        => 'طريقة الدفع',
     'payment_date'          => 'تاريخ الدفع',
     'process_number'        => 'رقم العملية',
+    'transaction_id'        =>  'رقم العملية',
     'receipt'               => 'إيصال دفع',
     'payment_details'       => 'تفاصيل الدفع',
     'receipt_number'        => 'رقم الايصال',

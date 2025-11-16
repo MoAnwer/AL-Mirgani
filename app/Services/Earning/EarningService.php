@@ -23,6 +23,7 @@ final readonly class EarningService
         $filters = [
             'school_id'   => request()->query('school_id'),
             'date'        => request()->query('date'),
+            'payment_method' => request()->query('payment_method')
         ];
 
         $earnings = $this->earning
@@ -40,12 +41,20 @@ final readonly class EarningService
                     $q->whereDate('date', $filters['date']);
                 }
             )
+            ->when(
+                !empty($filters['payment_method']),
+                function ($q) use ($filters) {
+                    $q->where('payment_method', $filters['payment_method']);
+                }
+            )
             ->latest()
             ->paginate(15);
 
         $schools    = $this->school->pluck('id', 'name');
 
-        return view('earnings.earning-list', compact('earnings', 'schools'));
+        $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
+
+        return view('earnings.earning-list', compact('earnings', 'schools', 'paymentMethods'));
     }
 
 
