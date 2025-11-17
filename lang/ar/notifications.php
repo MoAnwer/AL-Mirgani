@@ -15,7 +15,7 @@ return [
         'new_expense'       => 'منصرف مالي جديد',
     ],
     'messages' => [
-        'payroll_paid'      => "تم دفع مرتب الموظف :employee  لشهر  :month/:year",
+        'payroll_paid'      => "تم دفع مرتب الموظف :employee  لشهر  :month/:year - :method",
         'installment_paid'  => 'تم اكمال دفع القسط رقم :number الخاص بالطالب :student',
         'password_reset'    => ':user, تم اعادة تعيين كلمة السر الخاصة بك',
         'new_user_added'    => 'تم اضافة المستخدم :user الى النظام بنجاح',

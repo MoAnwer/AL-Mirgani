@@ -15,7 +15,7 @@ return [
         'new_expense'       => 'New expense',
     ],
     'messages' => [
-        'payroll_paid'      => "Paid payroll of :employee for month :month/:year",
+        'payroll_paid'      => "Paid payroll of :employee for month :month/:year - :method",
         'installment_paid'  => 'Installment :number of :student is fully paid',
         'password_reset'    => ':user, your password reset successfully',
         'new_user_added'    => 'New user :user added to system successfully',
