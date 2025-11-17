@@ -22,6 +22,8 @@ class EmployeePayroll extends Model
         'school_total_cost',
         'payment_status',
         'payment_date',
+        'payment_method',
+        'transaction_id',
     ];
 
     protected function casts(): array {
