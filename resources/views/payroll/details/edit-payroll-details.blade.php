@@ -30,7 +30,7 @@
                             <div class="input-group">
                                 <input type="number" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
                                        value="{{ old('amount', number_format($detail->amount, 2, '.', '')) }}" step="0.01" required placeholder="500.00">
-                                <span class="input-group-text">USD</span>
+                                <span class="input-group-text">@lang('app.currency')</span>
                             </div>
                             @error('amount')
                                 <div class="invalid-feedback">{{ $message }}</div>
