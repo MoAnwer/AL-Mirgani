@@ -31,7 +31,7 @@ class CreateExpenseRequest extends FormRequest
             'date'          => ['required'],
             'user_id'       => ['nullable'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 

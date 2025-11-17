@@ -140,11 +140,12 @@ final readonly class IncomeReportService
     private function operatingExpenses(array $data): array
     {
         return [
-            'salaries'                  => [$data['salaries'], __('app.employees_salaries')],
+            'salaries'                   => [$data['salaries'], __('app.employees_salaries')],
             'electricityAndWaterExpense' => [$data['electricityAndWater'], __('expenses.' . ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value . '')],
-            'furnitureExpense'          => [$data['furniture'], __('expenses.' . ExpenseCategoryEnum::FURNITURE->value . '')],
-            'rent'                      => [$data['rents'], __('expenses.' . ExpenseCategoryEnum::RENTS->value . '')],
-            'maintenance'               => [$data['maintenance'], __('expenses.' . ExpenseCategoryEnum::UPKEEP->value . '')],
+            'furnitureExpense'           => [$data['furniture'], __('expenses.' . ExpenseCategoryEnum::FURNITURE->value . '')],
+            'rent'                       => [$data['rents'], __('expenses.' . ExpenseCategoryEnum::RENTS->value . '')],
+            'incentives'                 => [$data['incentives'], __('expenses.' . ExpenseCategoryEnum::INCENTIVES->value . '')],
+            'maintenance'                => [$data['maintenance'], __('expenses.' . ExpenseCategoryEnum::UPKEEP->value . '')],
         ];
     }
 

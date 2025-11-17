@@ -27,7 +27,7 @@ class CreateEarningRequest extends FormRequest
             'statement' => ['required', 'string'],
             'date'      => ['required'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
             'school_id' => ['required']
         ];
     }

@@ -6,6 +6,7 @@ use App\Enums\PaymentStatusEnum;
 use App\Events\Expense\PayrollPaid;
 use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
 use App\Models\{Employee, EmployeePayroll};
+use App\Rules\UniqueInTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,7 @@ final readonly class PayrollService
         $year = $request->get('year');
         $employeeId = $request->get('employee_id');
         $paymentStatus = $request->get('payment_status');
+        $paymentMethod = $request->get('payment_method');
 
         $payrolls = $this->employee_payroll->with('employee')
             ->when($month, function ($q, $month) {
@@ -41,6 +43,9 @@ final readonly class PayrollService
             })
             ->when($paymentStatus, function ($q, $paymentStatus) {
                 return $q->where('payment_status', $paymentStatus);
+            })
+            ->when($paymentMethod, function ($q, $paymentMethod) {
+                return $q->where('payment_method', $paymentMethod);
             })
             ->orderByDesc('id')
             ->orderByDesc('year')
@@ -80,28 +85,38 @@ final readonly class PayrollService
 
         $employee = $this->employee->findOrFail($request->employee_id);
 
-        $variableAdditions = (float) $request->total_fixed_allowances;
-        $variableDeductions = (float) $request->total_variable_additions;
+        $netSalary = $employee->salary;
 
-        $totalAdditions = $employee->fixed_allowances + $variableAdditions;
-        $totalDeductions = $employee->compulsory_deduction + $variableDeductions;
-        $grossSalary = $employee->salary + $totalAdditions;
-        $netSalary = $grossSalary - $totalDeductions;
-
-
-        $this->employee_payroll->create([
-            'employee_id' => $request->employee_id,
-            'month' => $request->month,
-            'year' => $request->year,
-            'basic_salary_snapshot' => $employee->salary,
-            'total_fixed_allowances' => $employee->fixed_allowances ?? 0,
-            'total_variable_additions' => $variableAdditions ?? 0,
-            'total_deductions' => $totalDeductions ?? 0,
-            'net_salary_paid' => $netSalary ?? 0,
-            'school_total_cost' => 0,
-            'payment_status' => $request->payment_status,
-        ]);
-
+        if (empty($request->payment_method) || $request->payment_method == "كاش") {
+             $this->employee_payroll->create([
+                'employee_id' => $request->employee_id,
+                'month' => $request->month,
+                'year' => $request->year,
+                'basic_salary_snapshot' => $employee->salary,
+                'total_fixed_allowances' => 0,
+                'total_variable_additions' => 0,
+                'total_deductions' => 0,
+                'net_salary_paid' => $netSalary ?? 0,
+                'school_total_cost' => 0,
+                'payment_status' => $request->payment_status,
+                'payment_method' => $request->payment_method ?? "كاش",
+            ]);
+        } else {
+            $this->employee_payroll->create([
+                'employee_id' => $request->employee_id,
+                'month' => $request->month,
+                'year' => $request->year,
+                'basic_salary_snapshot' => $employee->salary,
+                'total_fixed_allowances' => 0,
+                'total_variable_additions' => 0,
+                'total_deductions' => 0,
+                'net_salary_paid' => $netSalary ?? 0,
+                'school_total_cost' => 0,
+                'payment_status' => $request->payment_status,
+                'payment_method' => $request->payment_method ?? "كاش",
+                'transaction_id' => $request->transaction_id,
+            ]);
+        }
 
         return to_route('payroll.index')->with('message', __('app.create_successful', ['attribute' => $employee->full_name]));
     }
@@ -158,6 +173,8 @@ final readonly class PayrollService
             'basic_salary_snapshot' => 'required|numeric|min:0',
             'payment_status' => 'required|in:Pending,Paid,Failed',
             'payment_date' => 'nullable|date',
+            'payment_method'    => ['nullable'],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ]);
 
         DB::transaction(function () use ($request, $payroll) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,9 +28,11 @@ class StoreEmployeePayrollRequest extends FormRequest
                 })
             ],
             
-            'total_deductions' => ['required', 'numeric', 'min:0'],
-            'total_fixed_allowances' => ['required', 'numeric', 'min:0'],
-            'total_variable_additions' => ['required', 'numeric', 'min:0'],
+            'total_deductions' => ['nullable', 'numeric'],
+            'total_fixed_allowances' => ['nullable', 'numeric'],
+            'total_variable_additions' => ['nullable', 'numeric'],
+            'payment_method'    => ['sometimes'],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 
@@ -37,6 +40,8 @@ class StoreEmployeePayrollRequest extends FormRequest
     {
         return [
             'unique' => __('app.duplicate_paid_payroll'),
+            'payment_method' => __('app.payment_method'),
+            'transaction_id' => __('app.process_number')
         ];
     }
 }

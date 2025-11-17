@@ -32,12 +32,15 @@ class EmployeePayrollIsPaid
             'date'        => $event->payroll->payment_date,
             'statement'   => __('app.payroll_paid_statement', ['employee' => $event->payroll->employee->full_name, 'month' => $event->payroll->month, 'year' => $event->payroll->year]),
             'user_id'     => auth()->id(),
+            'payment_method' => $event->payroll->payment_method,
+            'transaction_id' => $event->payroll->transaction_id ?? null
         ]);
 
         Notification::send(User::all(), new PayrollPaidNotification([
             'employee'  => $event->payroll->employee->full_name,
-            'month' => $event->payroll->month,
-            'year' => $event->payroll->year
+            'month'     => $event->payroll->month,
+            'year'      => $event->payroll->year,
+            'method'    => $event->payroll->payment_method
         ]));
     }
 }

@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $totalExpenses = $this->expense->whereBetween('date', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
 
 
-        $latestStudents = $this->student->latest('created_at')->take(5)->get([
+        $latestStudents = $this->student->latest('created_at')->take(3)->get([
             'id',
             'full_name',
             'stage',

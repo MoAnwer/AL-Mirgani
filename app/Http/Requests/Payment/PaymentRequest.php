@@ -28,7 +28,7 @@ class PaymentRequest extends FormRequest
             'payment_date'      => 'required|date',
             'statement'         => 'required',
             'student_id'        => 'required',
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
+            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 

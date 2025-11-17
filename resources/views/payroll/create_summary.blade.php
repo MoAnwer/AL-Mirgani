@@ -56,27 +56,24 @@
                                                 </div>
                                             </div>
 
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="total_fixed_allowances" class="form-label te mb-3 xt-success">@lang('app.fixed_allowances')</label>
-                                                    <input type="number" name="total_fixed_allowances" id="total_fixed_allowances" class="form-control @error('total_fixed_allowances') is-invalid @enderror" 
-                                                        value="{{ old('total_fixed_allowances', 0) }}" step="0.01" required>
+                                            <hr />
+                                           <div class="row">
+                                                <div class="col-md-3">
+                                                  <label class="form-label  mb-3 fw-bold">@lang('app.payment_method')</label>
+                                                    <select class="form-select" name="payment_method">
+                                                        <option value="{{ null }}" selected>--</option>
+                                                        @foreach(['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')] as $key => $value)
+                                                            <option value="{{ $key }}" @selected(old('payment_method') == $key)>{{ $value }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="total_variable_additions" class="form-label te mb-3 xt-success">@lang('app.total_variable_additions')</label>
-                                                    <input type="number" name="total_variable_additions" id="total_variable_additions" class="form-control @error('total_variable_additions') is-invalid @enderror" 
-                                                        value="{{ old('total_variable_additions', 0) }}" step="0.01" required>
+                                                <div class="col-md-3">
+                                                    <label class="form-label  mb-3 fw-bold">@lang('app.process_number')</label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label for="total_deductions" class="form-label te mb-3 xt-danger">@lang('app.total_deductions')</label>
-                                                    <input type="number" name="total_deductions" id="total_deductions" class="form-control @error('total_deductions') is-invalid @enderror" 
-                                                        value="{{ old('total_deductions', 0) }}" step="0.01" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6 mb-3">
+                                                <div class="col-md-3 mb-3">
                                                     <label for="payment_status" class="form-label  mb-3 fw-bold">{{ __('app.payment_state') }}</label>
                                                     <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
                                                         <option value="Pending" {{ old('payment_status') == 'Pending' ? 'selected' : '' }}>@lang('app.pending')</option>
@@ -84,12 +81,11 @@
                                                         <option value="Failed" {{ old('payment_status') == 'Failed' ? 'selected' : '' }}> @lang('app.failed')</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-6 mb-3">
+                                                <div class="col-md-3 mb-3">
                                                     <label for="payment_date" class="form-label  mb-3 fw-bold">{{ __('app.payment_date') }} </label>
                                                     <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
                                                         >
                                                 </div>
-                                            </div>
 
                                             <button type="submit" class="btn btn-primary w-100 mt-3">@lang('app.save')</button>
                                         </form>

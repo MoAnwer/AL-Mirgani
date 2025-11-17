@@ -42,6 +42,7 @@ class PayrollPaidNotification extends Notification
                 'employee'  => $this->data['employee'],
                 'month'     => $this->data['month'],
                 'year'      => $this->data['year'],
+                'method'    => $this->data['method']
             ])
         ];
     }
