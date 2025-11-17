@@ -3,7 +3,7 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            
+            <x-alert type="error" />
             <div class="text-center mb-4">
                 <h2 class="display-6 fw-bold text-warning mb-2">@lang('app.edit_payroll')</h2>
                 <p class="lead text-muted">@lang('app.period'): {{ $payroll->month }}/{{ $payroll->year }}</p>
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="month" class="form-label fw-bold">@lang('app.month')</label>
+                                <label for="month" class="form-label fw-bold">@lang('app.the_month')</label>
                                 <input type="number" name="month" id="month" class="form-control @error('month') is-invalid @enderror" 
                                        value="{{ old('month', $payroll->month) }}" min="1" max="12" required>
                                 @error('month')
@@ -52,8 +52,8 @@
                                 <label for="basic_salary_snapshot" class="form-label fw-bold">@lang('app.basic_salary')</label>
                                 <div class="input-group">
                                     <input type="number" name="basic_salary_snapshot" id="basic_salary_snapshot" class="form-control @error('basic_salary_snapshot') is-invalid @enderror" 
-                                           value="{{ old('basic_salary_snapshot', number_format($payroll->basic_salary_snapshot, 2, '.', '')) }}" step="0.01" required placeholder="50000.00">
-                                    <span class="input-group-text">USD</span>
+                                        value="{{ old('basic_salary_snapshot', number_format($payroll->basic_salary_snapshot, 0, '.', '')) }}" step="0.01" required>
+                                    <span class="input-group-text">@lang('app.currency')</span>
                                 </div>
                                 @error('basic_salary_snapshot')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -61,6 +61,26 @@
                                 <small class="text-muted">@lang('app.edit_this_value_attention')</small>
                             </div>
 
+                            <div class="col-md-6 my-4">
+                                <label class="form-label mb-2">@lang('app.payment_method')</label>
+                                <select class="@error('payment_method') is-invalid @enderror form-select" name="payment_method">
+                                    <option value="{{ null }}" selected>--</option>
+                                    @foreach(['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')] as $key => $value)
+                                        <option value="{{ $key }}" @selected($payroll->payment_method == $key)>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 my-4">
+                                <label class="form-label mb-2">@lang('app.process_number')</label>
+                                <div class="input-group">
+                                    <input type="number" class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" value="{{ $payroll->transaction_id }}" />
+                                </div>
+                                @error('transaction_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            
                             <div class="col-md-6">
                                 <label for="payment_status" class="form-label fw-bold">{{ __('app.payment_state') }}</label>
                                 <select name="payment_status" id="payment_status" class="form-select @error('payment_status') is-invalid @enderror" required>
