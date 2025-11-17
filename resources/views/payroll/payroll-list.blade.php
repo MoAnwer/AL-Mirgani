@@ -18,7 +18,7 @@
                             <form method="GET" action="{{ route('payroll.index') }}">
                                 <div class="row g-3">
                                     <div class="col-md-3">
-                                        <label for="employee_id" class="form-label">{{ __('app.employee') }}</label>
+                                        <label for="employee_id" class="form-label pb-1">{{ __('app.employee') }}</label>
                                         <select name="employee_id" onchange="this.form.submit()" id="employee_id" class="form-select">
                                             <option value="">----</option>
                                             @foreach ($employees as $employee)
@@ -29,7 +29,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="payment_status" class="form-label">{{ __('app.payment_state') }}</label>
+                                        <label for="payment_status" class="form-label  pb-1">{{ __('app.payment_state') }}</label>
                                         <select name="payment_status" onchange="this.form.submit()" id="payment_status" class="form-select">
                                             <option value="{{ null }}">---</option>
                                             <option value="Paid" @selected(request('payment_status')=='Paid' )>@lang('app.paid')</option>
@@ -37,16 +37,22 @@
                                             <option value="Failed" @selected(request('payment_status')=='Failed' )>@lang('app.failed')</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="month" class="form-label">{{ __('app.the_month') }}</label>
+                                     <div class="col-2">
+                                            <label class="form-label text-dark fw-medium pb-1">@lang('app.payment_method')</label>
+                                            <select class="form-select" name="payment_method" onchange="this.form.submit()">
+                                                <option value="{{ null }}" selected>----</option>
+                                                    @foreach(['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')] as $key => $value)
+                                                <option value="{{ $key }}" @selected(request()->query('payment_method') == $key)>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="month" class="form-label  pb-1">{{ __('app.the_month') }}</label>
                                         <input type="number" onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="year" class="form-label">{{ __('app.year') }}</label>
+                                        <label for="year" class="form-label  pb-1">{{ __('app.year') }}</label>
                                         <input type="number" onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
-                                    </div>
-                                    <div class="col-md-1 d-flex align-items-end">
-                                        <button type="submit" class="btn btn-primary w-100">@lang('app.search')</button>
                                     </div>
                                 </div>
                             </form>
@@ -58,16 +64,18 @@
                             <x-table.basic-table>
                                 <x-table.thead>
                                     <tr class="text-center">
-                                        <th>#</th>
-                                        <th>@lang('app.employee')</th>
-                                        <th>@lang('app.period')</th>
-                                        <th>@lang('app.basic_salary')</th>
-                                        <th>@lang('app.total_due')</th>
-                                        <th>@lang('app.total_deductions')</th>
-                                        <th>@lang('app.total_paid_amount')</th>
-                                        <th>@lang('app.payment_state')</th>
-                                        <th>@lang('app.payment_date')</th>
-                                        <th>@lang('app.actions')</th>
+                                        <td>#</td>
+                                        <td>@lang('app.employee')</td>
+                                        <td>@lang('app.period')</td>
+                                        <td>@lang('app.basic_salary')</td>
+                                        <td>@lang('app.total_due')</td>
+                                        <td>@lang('app.total_deductions')</td>
+                                        <td>@lang('app.total_paid_amount')</td>
+                                        <td>@lang('app.payment_state')</td>
+                                        <td>@lang('app.payment_method')</td>
+                                        <td>@lang('app.process_number')</td>
+                                        <td>@lang('app.payment_date')</td>
+                                        <td>@lang('app.actions')</td>
                                     </tr>
                                 </x-table.thead>
                                 <x-table.tbody>
@@ -97,6 +105,8 @@
                                             <span class="badge bg-danger-subtle text-danger border border-danger rounded"> <i class='bx bxs-x-circle me-1'></i>@lang('app.failed')</span>
                                             @endif
                                         </td>
+                                        <td>{{ ($payroll->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))   ?? __('app.cash') }}</td>
+                                        <td>{{ $payroll->transaction_id ?? '' }}</td>
                                         <td>
                                             @if ($payroll->payment_date)
                                             {{ $payroll->payment_date->format('Y-m-d') }}
@@ -127,7 +137,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="9" class="text-center text-muted py-4">
+                                        <td colspan="12" class="text-center text-muted py-4">
                                             @lang('app.no_date_returned')
                                         </td>
                                     </tr>
@@ -145,14 +155,12 @@
                                                     ) }} {{ __('app.currency')}}</td>
                                         <td>{{ number_format($payrolls->sum('total_deductions')) }} {{ __('app.currency')}}</td>
                                         <td>{{ number_format($payrolls->sum('net_salary_paid')) }} {{ __('app.currency')}}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td colspan="5"></td>
                                     </tr>
                                 </tfoot>
                             </x-table.basic-table>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer mt-5">
                             {{ $payrolls->withQueryString()->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
