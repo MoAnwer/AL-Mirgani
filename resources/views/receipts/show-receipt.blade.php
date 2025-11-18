@@ -89,15 +89,17 @@
         <div class="col-md-6">
             <div class="card amount-box p-3 text-center shadow-none border border-success">
                 <p class="mb-1 fw-bold">@lang('app.paid_amount')</p>
-                <h4 class="fw-bolder mb-0">{{ number_format($receipt->amount, 2) }} {{ __('app.currency')}}</h4>
+                <h4 class="fw-bolder mb-0">{{ number_format($receipt->amount ?? 0) }} {{ __('app.currency')}}</h4>
             </div>
+            <p class="mt-5 text-center fw-bold"><span class="text-success">@lang('app.paid_amount')</span> : {{ Number::spell($receipt->amount ?? 0, app()->getLocale()) .' '.  __('app.currency')  }}</p>
         </div>
         
         <div class="col-md-6">
             <div class="card p-3 py-5 text-center border border-secondary shadow-none">
                 <p class="mb-1 fw-bold text-muted">@lang('app.remaining')</p>
-                <h4 class="fw-bolder mb-0 text-dark">{{ number_format($receipt->remanent ?? 0, 2) }} {{ __('app.currency')}}</h4>
+                <h4 class="fw-bolder mb-0 text-dark">{{ number_format($receipt->remanent ?? 0) }} {{ __('app.currency')}}</h4>
             </div>
+            <p class="mt-5 text-center fw-bold"><span class="text-warning">@lang('app.remaining')</span> : {{ Number::spell($receipt->remanent ?? 0, app()->getLocale()) .' '.  __('app.currency')  }}</p>
         </div>
     </div>
 
