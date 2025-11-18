@@ -218,6 +218,20 @@ return [
     'payroll_invoice_date'  => 'invoice create date',
     'invoice_details'        => 'Details of invoice',
 
+    'receipts_list' => 'Receipts List',
+    'receipt_number' => 'Receipt Number',
+    'student' => 'Student',
+    'paid_amount' => 'Paid Amount',
+    'remanent' => 'Remanent',
+    'issue_date' => 'Issue Date',
+    'payment_date' => 'Payment Date',
+    'actions' => 'Actions',
+    'search_receipt_placeholder' => 'Search by receipt number or student name',
+    'view_receipt' => 'View Receipt',
+    'deleted_student' => 'Deleted Student',
+    'not_specified' => 'Not Specified',
+    'no_receipts_recorded' => 'No receipts are currently recorded.',
+
 
     'notifications' => 'Notifications',
     'unread_notifications' => 'Unread notifications',
