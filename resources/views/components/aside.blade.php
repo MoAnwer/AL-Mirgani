@@ -35,7 +35,7 @@
         <x-Menu.MenuItem label="{{ __('app.the_schools') }}" icon="tf-icons bx bxs-school" classes='menu-toggle'>
             <x-Menu.MenuSub>
                 <x-Menu.MenuItem label="{{ __('app.list', ['attribute' => __('app.the_schools')]) }}" route="schools.index"/>
-                    <x-Menu.MenuItem label={{ __('app.create_new_school') }}" route="schools.create"/>
+                    <x-Menu.MenuItem label="{{ __('app.create_new_school') }}" route="schools.create"/>
             </x-Menu.MenuSub>
         </x-Menu.MenuItem>
 
@@ -50,6 +50,8 @@
         <x-Menu.MenuHeader title="{{ __('app.accounts') }}"/>
 
         <x-Menu.MenuItem label="{{ __('app.account_scan') }}" icon="bx bx-book-open" route="accounts"/>
+
+        <x-Menu.MenuItem label="{{ __('app.receipts_list') }}" icon="bx bx-receipt" route="receipts.index"/>
 
         <x-Menu.MenuItem label="{{ __('app.the_reports') }}" icon="bx bx-news" route="reports"/>
 
