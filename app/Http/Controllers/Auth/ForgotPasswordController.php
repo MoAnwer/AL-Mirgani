@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\SecurityQuestion;
 use App\Models\User;
 use App\Notifications\PasswordResetNotification;
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class ForgotPasswordController extends Controller
@@ -18,6 +18,11 @@ class ForgotPasswordController extends Controller
     }
 
 
+    /**
+     * Verify account is exists
+     * 
+     * @param Request $request
+     */
     public function verifyAccount(Request $request)
     {
         try {
@@ -33,8 +38,8 @@ class ForgotPasswordController extends Controller
             session()->put('username',  $data['username']);
 
             return to_route('auth.forgot_password.page')->with('message', __('app.username_exists_msg', ['user' => $data['username']]));
-        } catch (\Throwable $th) {
 
+        } catch (\Throwable $th) {
             report($th);
 
             return back()->with('error', __('app.error') . ' :' . $th->getMessage());
@@ -82,19 +87,16 @@ class ForgotPasswordController extends Controller
                 if (null != $check) {
 
                     return to_route('auth.forgot_password.reset_password_page');
-                    
                 } else {
 
                     return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
                 }
-
             } catch (\Throwable $th) {
 
                 report($th);
 
                 return back()->with('error', __('app.error') . ' :' . $th->getMessage());
             }
-
         } else {
 
             return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
@@ -115,17 +117,18 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Reset password process 
+     * Reset password process
+     * 
      * @param Request $request
      */
     public function resetPasswordAction(Request $request)
     {
-        
+
         if (session()->has('username')) {
-            
+
             $user = User::where('username', session()->get('username'))->first();
 
-            if ( $user == null ) {
+            if ($user == null) {
                 return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
             }
 
@@ -143,20 +146,20 @@ class ForgotPasswordController extends Controller
 
                 $user->save();
 
+                // To authenticate the user and create session for it
+                Auth::login($user);
+
                 Notification::sendNow($user, new PasswordResetNotification($user));
 
-
-                return to_route('login')->with('message', __('app.password_reset_successfully', ['user' => session()->get('username')]));
+                return to_route('dashboard')->with('message', __('app.password_reset_successfully', ['user' => session()->get('username')]));
 
             } catch (\Throwable $th) {
 
-                return back()->with('error', __('app.checking_error') . ' :'. $th->getMessage());    
+                return back()->with('error', __('app.checking_error') . ' :' . $th->getMessage());
             }
 
         } else {
-
-            return back()->with('error', __('app.error') . ' :'. __('app.checking_error'));
+            return back()->with('error', __('app.error') . ' :' . __('app.checking_error'));
         }
     }
-
 }

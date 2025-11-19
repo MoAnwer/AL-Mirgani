@@ -10,6 +10,7 @@
                 <div class="row">
                 <div class="col-xxl-12 mb-6 order-0">
                   <div class="card">
+                    <x-alert type="message" />
                     <div class="d-flex align-items-center row">
                       <div class="col-sm-7">
                         <div class="card-body">
