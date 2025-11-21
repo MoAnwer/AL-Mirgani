@@ -110,13 +110,13 @@
                             </tr>
                             <tr style="background-color: transparent;">
                                 <td style="border: none; padding: 5px;"><strong> @lang('app.total_due')</strong></td>
-                                <td style="border: none; padding: 5px;">{{ number_format($grossFees , 2) }} {{ __('app.currency')}}</td>
+                                <td style="border: none; padding: 5px;">{{ number_format($grossFees ) }} {{ __('app.currency')}}</td>
                                 <td style="border: none; padding: 5px;"><strong>@lang('app.discount')</strong></td>
                                 <td style="border: none; padding: 5px;">{{ $discountAmount }}%</td>
                             </tr>
                             <tr style="background-color: transparent;">
                                 <td colspan="3" style="text-align: left; font-size: 1.1em; border: none; padding: 8px;"><strong>@lang('app.net_total_fees'):</strong></td>
-                                <td class="net-fees-cell" style="font-size: 1.1em; border: none; text-align: left;"><strong>{{ number_format($netFees , 2) }} {{ __('app.currency')}}</strong></td>
+                                <td class="net-fees-cell" style="font-size: 1.1em; border: none; text-align: left;"><strong>{{ number_format($netFees ) }} {{ __('app.currency')}}</strong></td>
                             </tr>
                         </table>
                     </div>
@@ -163,7 +163,7 @@
                                 <td class="align-center">{{ $payment['payment_date']  }}</td>
                                 <td class="align-center">{{ $payment['receipt_number'] ??0 }}</td>
                                 <td class="align-center">{{ $payment['statement'] }}</td>
-                                <td class="align-center" class="align-center">{{ number_format($payment['paid_amount'] ?? 0, 2) }}</td>
+                                <td class="align-center" class="align-center">{{ number_format($payment['paid_amount'] ?? 0) }}</td>
                                 <td class="align-center">{{ $payment['payment_method'] }}</td>
                             </tr>
                             @empty
@@ -175,7 +175,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="1" style="text-align: left;">@lang('app.total_paid_amount_collected')</td>
-                                <td colspan="6" class="paid-total-cell align-center">{{ number_format($totalPaid , 2) }} {{ __('app.currency')}}</td>
+                                <td colspan="6" class="paid-total-cell align-center">{{ number_format($totalPaid ) }} {{ __('app.currency')}}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -185,15 +185,15 @@
                     <table>
                         <tr>
                             <td style="width: 40%;">@lang('app.net_total_due_fee')</td>
-                            <td style="width: 60%;">{{ number_format($netFees , 2) }} {{ __('app.currency')}}</td>
+                            <td style="width: 60%;">{{ number_format($netFees ) }} {{ __('app.currency')}}</td>
                         </tr>
                         <tr>
                             <td>@lang('app.total_paid_amount')</td>
-                            <td>{{ number_format($totalPaid , 2) }} {{ __('app.currency')}}</td>
+                            <td>{{ number_format($totalPaid ) }} {{ __('app.currency')}}</td>
                         </tr>
                         <tr class="{{ 1 > 0 ? 'balance-due' : '' }}">
                             <td><strong>@lang('app.student_remaining_amount')</strong></td>
-                            <td><strong>{{ number_format($balanceDue , 2) }} {{ __('app.currency')}}</strong></td>
+                            <td><strong>{{ number_format($balanceDue ) }} {{ __('app.currency')}}</strong></td>
                         </tr>
                     </table>
 
@@ -212,7 +212,7 @@
                             <tr>
                                 <td class="text-center">{{ $installment['number'] }}</td>
                                 <td class="text-center">{{ $installment['due_date'] }}</td>
-                                <td class="text-center" class="align-center">{{ number_format($installment['amount'] ??  0, 2) }}</td>
+                                <td class="text-center" class="align-center">{{ number_format($installment['amount'] ??  0) }}</td>
                                 <td class="text-center">{{ number_format($installment['status'] ) }}</td>
                             </tr>
                             @empty
