@@ -78,7 +78,10 @@ class Student extends Model
 
     public function totalPaidBetween($startDate, $endDate) {
         return $this->payments->whereBetween('payment_date', [$startDate, $endDate])?->sum(function($payment) {
-            return $payment?->paid_amount ?? 0;
+            // Check if the payment has receipt
+            if ($payment->receipt_number != null) {
+                return $payment?->paid_amount ?? 0;
+            }
         });
     }
 }
