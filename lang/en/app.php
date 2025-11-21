@@ -74,8 +74,8 @@ return [
     'arrears_installments'  => 'Arrears',
     'arrears_installments_description'  => 'arrears overview',
     'payroll_report_description' => 'overview about payroll in months and years',
-    'revenues_by_class_report' => 'Classes revenues',
-    'revenues_by_class_description' => 'overview of revenues for each class',
+    'revenues_by_class_report' => 'Classes installments revenues',
+    'revenues_by_class_description' => 'overview of installments revenues for each class',
     'income_statement'      => 'Income statement',
     'income_statement_title' => 'Income statement (earnings, expenses)',
     'operating_earnings'    => 'Operating earning',    
@@ -302,6 +302,8 @@ return [
     'password_reset_successfully'   => 'Password reset successfully :user',
     'security_questions_limit_completed'    => 'Max number of questions is 3',
     'payroll_paid_statement'        => "Paid payroll of :employee for month :month/:year" , 
+    'pls_select'                    => "Please select :item",
+    
     
     // Errors
     'error'                         => 'Error'                        ,
