@@ -57,7 +57,7 @@ class ReceiptController extends Controller
                       // To register payment in earing table
                     event(new InstallmentPaymentIsPaid($payment));
 
-                    return to_route('receipts.show', $receiptObject)->with('message', __('app.create_successful', __('app.receipt')));
+                    return to_route('receipts.show', $receiptObject)->with('message', __('app.create_successful', ['attribute' => __('app.receipt')]));
             });
 
         } else {
