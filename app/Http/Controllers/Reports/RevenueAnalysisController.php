@@ -31,6 +31,8 @@ class RevenueAnalysisController extends Controller
         $classTotalPaid = 0;
         $classTotalDiscount = 0;
 
+        $totalStudents = 0;
+
         foreach ($classes as $class) {
 
             // Get students with classes and school
@@ -74,6 +76,7 @@ class RevenueAnalysisController extends Controller
             // Collect Totals
             $classTotalFees += $netFees;
             $classTotalPaid += $totalPaid;
+            $totalStudents += $studentCount;
 
             $reportData[] = [
                 'class_name' => $class->name,
@@ -91,6 +94,6 @@ class RevenueAnalysisController extends Controller
         
         $classCollectionRate = ($classTotalFees > 0) ? ($classTotalPaid / $classTotalFees) * 100 : 0;
 
-        return view('reports.revenue_by_class', compact('startDate', 'endDate', 'schools', 'schoolName', 'reportData', 'classTotalFees', 'classTotalPaid', 'classBalanceDue', 'classCollectionRate'));
+        return view('reports.revenue_by_class', compact('totalStudents', 'startDate', 'endDate', 'schools', 'schoolName', 'reportData', 'classTotalFees', 'classTotalPaid', 'classBalanceDue', 'classCollectionRate'));
     }
 }

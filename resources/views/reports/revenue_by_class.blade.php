@@ -57,9 +57,9 @@
                             <tr>
                                 <td class="text-center">{{ __("classes.{$row['class_name']}") }}</td>
                                 <td class="text-center">{{ $row['student_count'] }}</td>
-                                <td  class="text-center">{{ number_format($row['net_fees'], 2) }}</td>
+                                <td  class="text-center">{{ number_format($row['net_fees']) }}</td>
                                 
-                                <td class="bg-success-subtle fw-bold text-center">{{ number_format($row['total_paid'], 2) }}</td>
+                                <td class="bg-success-subtle fw-bold text-center">{{ number_format($row['total_paid']) }}</td>
                                 
                                 <td class="fw-bold text-center
                                     @if ($row['balance_due'] > 0)
@@ -68,7 +68,7 @@
                                         text-success
                                     @endif
                                 ">
-                                    {{ number_format($row['balance_due'], 2) }}
+                                    {{ number_format($row['balance_due']) }}
                                 </td>
                                 
                                 <td class="text-center">{{ $row['collection_rate'] }}</td>
@@ -78,7 +78,7 @@
                     <tfoot>
                         <tr class="table-primary fw-bold">
                             <td class="text-center">@lang('app.total')</td>
-                            <td class="text-center">-</td>
+                            <td class="text-center">{{ number_format($totalStudents) }}</td>
                             <td  class="text-center">{{ number_format($classTotalFees, 2) }}</td>
                             <td class="text-center">{{ number_format($classTotalPaid, 2) }}</td>
                             

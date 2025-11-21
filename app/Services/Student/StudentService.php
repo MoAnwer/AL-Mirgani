@@ -119,12 +119,23 @@ class StudentService
     {
         try {
 
+            $totalPaymentsPaid = $student->totalPaid();
+
+            // To check the sended total_fee grater than total installments payments 
+            if ($totalPaymentsPaid > $request->input('total_fee')) return back()->withErrors(['full_name' => __('app.amount_less_then_message', ['amount' => $totalPaymentsPaid])]);
+
             $student->update($request->validated());
 
             return back()->with('message', __('app.update_successful', [
                 'attribute' => __('app.student')
             ]));
 
+        } catch (Exception $e) {
+            if ($e->getCode() == 23000) {
+                return back()->withErrors([
+                    'full_name' => __('app.pls_select', ['item' => __('app.x-school')])
+                ]);
+            }
         } catch (Exception $e) {
             return back()->withErrors([
                 'full_name' => $e->getMessage()
