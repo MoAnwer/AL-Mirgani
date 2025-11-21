@@ -72,9 +72,7 @@ class Student extends Model
 
     public function totalPaid() {
         return $this->payments?->sum(function($payment) {
-            if ($payment->receipt_number != null) {
-                return $payment?->paid_amount ?? 0;
-            }
+            return $payment?->paid_amount ?? 0;
         });
     }
 
