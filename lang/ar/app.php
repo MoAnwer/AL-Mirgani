@@ -180,8 +180,8 @@ return [
     'arrears_installments'  => 'الأقساط المتأخرة',
     'arrears_installments_description'  => 'نظرة عامة عن متاخرات الاقساط',
     'payroll_report_description' => 'الإجماليات المُعالجة حسب الشهر و العام',
-    'revenues_by_class_report' => 'ايرادات حسب الصف',
-    'revenues_by_class_description' => 'تحليل الإيرادات حسب الصف',
+    'revenues_by_class_report' => 'ايرادات الاقساط حسب الصف',
+    'revenues_by_class_description' => 'تحليل إيرادات الاقساط حسب الصف',
     'income_statement'      => 'قائمة الدخل',
     'income_statement_title' => 'قائمة الدخل (الإيرادات والمصروفات)',
     'operating_earnings'    => 'الإيرادات التشغيلية',
@@ -299,6 +299,7 @@ return [
     'password_reset_successfully'   => 'تم اعادة تعيين كلمة السر بنجاح  :user',
     'security_questions_limit_completed'    => 'العدد الأقصى لأسئلة الأمان 3 اسئلة',
     'payroll_paid_statement'        => "تم دفع مرتب :employee  لشهر  :month/:year" , 
+    'pls_select'                    => "الرجاء اختيار :item",
     
     // Errors
     'error'                         => 'حدث خطا',
