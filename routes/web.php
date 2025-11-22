@@ -1,23 +1,16 @@
 <?php
 
-use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Notifications\NotificationController;
 use App\Http\Controllers\Users\UserController;
-
-require __DIR__ . '/locale.php';
-
-Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 Route::get('/', HomeController::class);
 
-Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
-
+require __DIR__ . '/locale.php';
 require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function() {
+    require __DIR__.'/dashboard.php';
     Route::resource('users', UserController::class);
     Route::get('users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
     require __DIR__  . '/schools.php';
@@ -33,4 +26,5 @@ Route::middleware('auth')->group(function() {
     require __DIR__  . '/payrolls.php';
     require __DIR__  . '/payroll-items.php';
     require __DIR__  . '/settings.php';
+    require __DIR__ . '/notifications.php';
 });
