@@ -42,7 +42,7 @@
                             </div>
                           </div>
                           <p class="mb-1">@lang('app.expenses_through_month')</p>
-                          <h4 class="card-title mb-3">{{ $totalExpenses }}</h4>
+                          <h4 class="card-title mb-3">{{ $totalExpenses }} @lang('app.currency')</h4>
                           <small class="text-danger fw-medium"
                             ><i class="icon-base bx bx-{{ $totalExpenses > $totalProfit ?  'up' : 'down' }}-arrow-alt"></i>{{ $totalExpenses }}</small
                           >
@@ -58,7 +58,7 @@
                             </div>
                           </div>
                           <p class="mb-1">@lang('app.earnings_through_month')</p>
-                          <h4 class="card-title mb-3">{{ $totalRevenue }}</h4>
+                          <h4 class="card-title mb-3">{{ $totalRevenue }} @lang('app.currency')</h4>
                           <small class="text-success fw-medium"><i class="icon-base bx bx-up-arrow-alt"></i> {{ $totalRevenue }}</small>
                         </div>
                       </div>
@@ -75,7 +75,7 @@
                             </div>
                           </div>
                           <p class="mb-1">@lang('app.profit_through_month')</p>
-                          <h4 class="card-title mb-3">{{ $totalProfit }}</h4>
+                          <h4 class="card-title mb-3">{{ $totalProfit }} @lang('app.currency')</h4>
                           <small class="text-{{ $totalProfit > $totalExpenses ? 'success' : 'danger'  }} fw-medium">
                             <i class="icon-base bx bx-{{ $totalProfit > $totalExpenses ? 'up' : 'down'  }}-arrow-alt"></i> {{ $totalProfit }}</small>
                         </div>
@@ -90,13 +90,13 @@
                   <div class="card h-100">
                     <div class="card-header d-flex justify-content-between">
                       <div class="card-title mb-0">
-                        <h5 class="mb-1 me-2">@lang('app.expenses_through_week')</h5>
+                        <h5 class="mb-1 me-2">@lang('app.expenses_through_month')</h5>
                       </div>
                     </div>
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-6">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h3 class="text-danger mb-1 mt-3">{{ $totalWeekExpenses }}</h3>
+                          <h3 class="text-danger mb-1 mt-3">{{ $totalExpenses }} @lang('app.currency')</h3>
                         </div>
                       </div>
                     </div>
