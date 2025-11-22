@@ -96,7 +96,7 @@
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-6">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h3 class="text-danger mb-1 mt-3">{{ $totalExpenses }}</h3>
+                          <h3 class="text-danger mb-1 mt-3">{{ $totalWeekExpenses }}</h3>
                         </div>
                       </div>
                     </div>
