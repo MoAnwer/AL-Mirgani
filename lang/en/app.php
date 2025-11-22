@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_name'              => env('APP_NAME'),
+    'app_name'              => config('app.name'),
     'welcome'               => 'Welcome :user, let\'s view latest achieves 🎉!',
     'intro_msg'             => 'todo',
     'student'               => 'Student',
