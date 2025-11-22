@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_name'              => env('APP_NAME'),
+    'app_name'              => config('app.name'),
     'welcome'               => 'مرحبا :user لنستعرض آخر الإنجازات. 🎉!',
     'intro_msg'             => 'ملخص مالي دقيق وقائمة محدّثة بآخر المنضمين إلينا. أنت على اطلاع دائم.',
     'student'               => 'التلميذ',
