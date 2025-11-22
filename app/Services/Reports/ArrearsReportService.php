@@ -29,6 +29,7 @@ final class ArrearsReportService
         $currentPage = request()->input('page', 1);
 
         $overdueInstallments = $this->installment
+            ->whereHas('student')
             ->whereDate('due_date', '<', $today)
             ->when(!empty($filters['school_id']), function ($q) use ($filters) {
                 $q->whereHas('student', function ($builder) use ($filters) {
@@ -96,9 +97,9 @@ final class ArrearsReportService
 
             // To ignore the completed installment payment that hav due date equal $day
             $reportData[] = [
-                'student_name'          => $installment->student->full_name ?? '',
-                'class_name'            => $installment->student->class->name ?? 'غير محدد',
-                'school_name'           => $installment->student->school->name ?? 'غير محدد',
+                'student_name'          => $installment->student->full_name ?? '-',
+                'class_name'            => $installment->student->class->name ?? '-',
+                'school_name'           => $installment->student->school->name ?? '-',
                 'installment_number'    => $installment->number ?? '',
                 'due_date'              => date('Y-m-d', strtotime($installment->due_date)),
                 'amount_due'            => $installment->amount ?? 0,
