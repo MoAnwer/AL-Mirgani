@@ -148,6 +148,7 @@ return [
     'total_variable_additions'  => 'Total variable additions',
     'total_due'             => 'Total Due',
     'total_paid_amount'     => 'Total paid amount',
+    'total_due_amount'      => 'Total due amount',
     'total_deductions'      => 'Total deductions',
     'payment_date'          => 'Payment date'         ,
     'process_number'        => 'Process number',
