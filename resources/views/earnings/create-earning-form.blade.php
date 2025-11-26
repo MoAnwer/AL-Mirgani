@@ -63,7 +63,7 @@
                                         <div class="col-md-6 mt-4">
                                             <label class="form-label mb-2">@lang('app.date')</label>
                                             <div class="input-group">
-                                                <input type="date" class="form-control" name="date" value="{{ old('date') }}" />
+                                                <input type="date" class="form-control" name="date" max="{{ date('Y-m-d') }}" value="{{ old('date') }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-5">

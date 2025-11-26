@@ -17,7 +17,7 @@
                         <div class="card-body mt-5">
                             <form method="GET" action="{{ route('payroll.index') }}">
                                 <div class="row g-3">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <label for="employee_id" class="form-label pb-1">{{ __('app.employee') }}</label>
                                         <select name="employee_id" onchange="this.form.submit()" id="employee_id" class="form-select">
                                             <option value="">----</option>
@@ -28,14 +28,18 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label for="payment_status" class="form-label  pb-1">{{ __('app.payment_state') }}</label>
                                         <select name="payment_status" onchange="this.form.submit()" id="payment_status" class="form-select">
                                             <option value="{{ null }}">---</option>
-                                            <option value="Paid" @selected(request('payment_status')=='Paid' )>@lang('app.paid')</option>
-                                            <option value="Pending" @selected(request('payment_status')=='Pending' )>@lang('app.pending')</option>
-                                            <option value="Failed" @selected(request('payment_status')=='Failed' )>@lang('app.failed')</option>
+                                            <option value="Paid" @selected(request('payment_status') == 'Paid' )>@lang('app.paid')</option>
+                                            <option value="Pending" @selected(request('payment_status') == 'Pending' )>@lang('app.pending')</option>
+                                            <option value="Failed" @selected(request('payment_status') == 'Failed' )>@lang('app.failed')</option>
                                         </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="transaction_id" class="form-label  pb-1">{{ __('app.process_number') }}</label>
+                                        <input type="number" onchange="this.form.submit()" name="transaction_id" id="transaction_id" class="form-control" value="{{ request('transaction_id') }}">
                                     </div>
                                      <div class="col-2">
                                             <label class="form-label text-dark fw-medium pb-1">@lang('app.payment_method')</label>
@@ -46,11 +50,11 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <label for="month" class="form-label  pb-1">{{ __('app.the_month') }}</label>
                                         <input type="number" onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <label for="year" class="form-label  pb-1">{{ __('app.year') }}</label>
                                         <input type="number" onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
                                     </div>
@@ -67,10 +71,10 @@
                                         <td>#</td>
                                         <td>@lang('app.employee')</td>
                                         <td>@lang('app.period')</td>
-                                        <td>@lang('app.basic_salary')</td>
-                                        <td>@lang('app.total_due')</td>
-                                        <td>@lang('app.total_deductions')</td>
-                                        <td>@lang('app.total_paid_amount')</td>
+                                        <td>@lang('app.salary')</td>
+                                        <td>@lang('expenses.حوافز مالية')</td>
+                                        <td>@lang('app.deductions')</td>
+                                        <td>@lang('app.paid_amount')</td>
                                         <td>@lang('app.payment_state')</td>
                                         <td>@lang('app.payment_method')</td>
                                         <td>@lang('app.process_number')</td>
@@ -86,7 +90,7 @@
                                         <td>{{ $payroll->month }}/{{ $payroll->year }}</td>
                                         <td>{{ number_format($payroll->basic_salary_snapshot) }} {{ __('app.currency')}}</td>
                                         <td>
-                                            {{ number_format($payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $payroll->total_variable_additions) }} {{ __('app.currency')}}
+                                            {{ number_format($payroll->total_fixed_allowances + $payroll->total_variable_additions) }} {{ __('app.currency')}}
                                         </td>
                                         <td class="text-danger">({{ number_format($payroll->total_deductions) }} {{ __('app.currency')}}) </td>
                                         <td class="fw-bolder text-primary">{{ number_format($payroll->net_salary_paid) }} {{ __('app.currency')}}</td>
@@ -106,10 +110,12 @@
                                             @endif
                                         </td>
                                         <td>{{ ($payroll->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))   ?? __('app.cash') }}</td>
-                                        <td>{{ $payroll->transaction_id ?? '' }}</td>
+                                        <td>{{ $payroll->transaction_id ?? '--' }}</td>
                                         <td>
                                             @if ($payroll->payment_date)
                                             {{ $payroll->payment_date->format('Y-m-d') }}
+                                            @else 
+                                                @lang('app.not_specify')
                                             @endif
                                         </td>
                                         @if($payroll->employee)
@@ -149,7 +155,6 @@
                                         <td class="text-center" colspan="2">@lang('app.total')</td>
                                         <td>{{ number_format($payrolls->sum('basic_salary_snapshot')) }} {{ __('app.currency')}}</td>
                                         <td>{{ number_format(
-                                                    $payrolls->sum('basic_salary_snapshot') + 
                                                     $payrolls->sum('total_fixed_allowances') +
                                                     $payrolls->sum('total_variable_additions')
                                                     ) }} {{ __('app.currency')}}</td>

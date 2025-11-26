@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Student;
 
+use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStudentRequest extends FormRequest
@@ -27,7 +28,10 @@ class UpdateStudentRequest extends FormRequest
             'address'   => ['required'],
             'total_fee' => ['required', 'integer'],
             'class_id'  => ['required'],
-            'school_id' => ['required']
+            'school_id' => ['required'],
+            'phone_one' => ['nullable'],
+            'phone_two' => ['nullable'],
+            'parent_full_name' => ['nullable'],
         ];
     }
 

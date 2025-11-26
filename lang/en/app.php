@@ -67,6 +67,7 @@ return [
     'student_not_found'     => 'Student not found',
     'total_fee'             => 'Total fee',
     'total'                 => 'Total',
+    'x-total'               => 'Total',
     'addition'              => 'Addition',
     'deduction'             => 'Deduction',
     'account_statement'     => 'Account statement',
@@ -82,6 +83,8 @@ return [
     'total_earnings'    => 'Total earnings',
     'operating_expenses' => 'Operating expenses',
     'total_operating_expenses' => 'Total Operating expenses',
+    'total_services_expenses' => 'Total servicing expenses',
+    'services_expenses' => 'Servicing expenses',
     'total_operating_profit' => 'Total operating profit',
     'non_operating_expenses'    => 'non-operating expenses',
     'net_profit_or_lose'   => 'Total profile / (lose)',
@@ -148,6 +151,7 @@ return [
     'total_variable_additions'  => 'Total variable additions',
     'total_due'             => 'Total Due',
     'total_paid_amount'     => 'Total paid amount',
+    'total_due_amount'      => 'Total due amount',
     'total_deductions'      => 'Total deductions',
     'payment_date'          => 'Payment date'         ,
     'process_number'        => 'Process number',
@@ -210,6 +214,7 @@ return [
     'add_new_payroll_item'  => 'Add payroll item',
     'payroll_saved'         => 'Payroll updated successfully.',
     'edit_this_value_attention'   => 'Edit this value will recalculate the basic salary of selected employee',
+    'edit_do_not_change_this_value' => 'Keep it empty if you need to update it',
     'create_payroll_detail_item' => 'Add new payroll details',
     'edit_payroll_detail'   => 'Edit payroll detail',
     'detail_name'           => 'Detail name',
@@ -217,6 +222,7 @@ return [
     'payroll_invoice'       => 'Payroll invoice',
     'payroll_invoice_date'  => 'invoice create date',
     'invoice_details'        => 'Details of invoice',
+    'not_specify'          => 'Not paid yet',
 
     'receipts_list' => 'Receipts List',
     'receipt_number' => 'Receipt Number',
@@ -315,6 +321,7 @@ return [
     'payroll_paid_error'            => 'you can\'t edit payroll already paid !',
     'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
 
+    'close'         => 'Close',
     'currency'      => 'SDG',
 
     'enter_your_username'   => 'Enter your username',

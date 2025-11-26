@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,16 +24,14 @@ class StoreEmployeePayrollRequest extends FormRequest
             'payment_status' => ['required', Rule::in(['Pending', 'Paid', 'Failed'])],
             'employee_id' => [
                 Rule::unique('employee_payrolls', 'employee_id')->where(function ($query) {
-                    return $query->where('month', $this->month)
-                                 ->where('year', $this->year);
+                    return $query->where('month', $this->month)->where('year', $this->year);
                 })
             ],
-            
             'total_deductions' => ['nullable', 'numeric'],
             'total_fixed_allowances' => ['nullable', 'numeric'],
             'total_variable_additions' => ['nullable', 'numeric'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 
@@ -41,6 +40,12 @@ class StoreEmployeePayrollRequest extends FormRequest
         return [
             'unique' => __('app.duplicate_paid_payroll'),
             'payment_method' => __('app.payment_method'),
+        ];
+    }
+    
+    public function attributes()
+    {
+        return [
             'transaction_id' => __('app.process_number')
         ];
     }

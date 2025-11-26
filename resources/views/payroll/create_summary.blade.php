@@ -83,19 +83,15 @@
                                                 </div>
                                                 <div class="col-md-3 mb-3">
                                                     <label for="payment_date" class="form-label  mb-3 fw-bold">{{ __('app.payment_date') }} </label>
-                                                    <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
-                                                        >
+                                                    <input type="date" name="payment_date" id="payment_date" max="{{ date('Y-m-d') }}"  class="form-control @error('payment_date') is-invalid @enderror">
                                                 </div>
-
                                             <button type="submit" class="btn btn-primary w-100 mt-3">@lang('app.save')</button>
                                         </form>
-                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    </x-container>
+                </x-container>
             </x-content-wrapper>
         </x-layout-page>
     </x-layout-container>

@@ -22,10 +22,12 @@ class UniqueInTables implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        foreach($this->tables as $table) {
-            if (DB::table($table)->where($this->column, $value)->exists()) {
-                $fail(__('validation.unique', ['attribute' => __("app.$attribute")]));
-                return;
+        if (request()->input('transaction_id') != null) {
+            foreach($this->tables as $table) {
+                if (DB::table($table)->where($this->column, $value)->exists()) {
+                    $fail(__('validation.unique', ['attribute' => __("app.$attribute")]));
+                    return;
+                }
             }
         }
     }

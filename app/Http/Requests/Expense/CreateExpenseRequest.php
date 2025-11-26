@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Expense;
 
 use App\Rules\PaymentMethodValidation;
+use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +32,7 @@ class CreateExpenseRequest extends FormRequest
             'date'          => ['required'],
             'user_id'       => ['nullable'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 

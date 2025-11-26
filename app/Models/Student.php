@@ -59,6 +59,10 @@ class Student extends Model
         return $this->hasManyThrough(InstallmentPayment::class, Installment::class, 'student_id', 'installment_id');
     }
 
+    public function father(): BelongsTo
+    {
+        return $this->belongsTo(Father::class);
+    }
 
     public static function generateStudentNumber(): int
     {

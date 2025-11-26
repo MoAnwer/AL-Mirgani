@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Student;
 
+use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -36,7 +37,7 @@ class RegisterStudentRequest extends FormRequest
             'registration_fee'  => ['required', 'integer'],
             'paid_amount'       => ['required', 'integer'],
             'payment_method'    => ['nullable', 'string'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments'], 'transaction_id')],
+            'transaction_id'    => ['sometimes', new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
             'payment_date'      => ['nullable'],
         ];
     }

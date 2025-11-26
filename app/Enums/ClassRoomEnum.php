@@ -13,4 +13,7 @@ enum ClassRoomEnum: string
     case MIDDLE_ONE = "الاول المتوسط";
     case MIDDLE_TWO = "الثاني المتوسط";
     case MIDDLE_THREE = "الثالث المتوسط";
+    case SECONDARY_ONE = "الاول الثانوي";
+    case SECONDARY_TWO = "الثاني الثانوي";
+    case SECONDARY_THREE = "الثالث الثانوي";
 }

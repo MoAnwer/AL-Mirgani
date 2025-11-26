@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label class="form-label mb-3">@lang('app.hire_date')</label>
-                                            <input type="date" class="form-control"  name="hire_date" value="{{ old('hire_date') }}"/>
+                                            <input type="date" class="form-control" max="{{ date('Y-m-d') }}" name="hire_date" value="{{ old('hire_date') }}"/>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label class="form-label mb-3">@lang('app.department')</label>
