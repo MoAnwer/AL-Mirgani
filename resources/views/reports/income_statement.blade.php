@@ -63,6 +63,8 @@
                     <div class="card-body">
                         <table class="table">
                             <tbody>
+
+                                {{-- Earnings --}}
                                 <tr class="table-success-subtle fw-bold">
                                     <td colspan="2">@lang('app.operating_earnings') :</td>
                                     <td class="text-end"></td>
@@ -73,10 +75,13 @@
                                     <td class="text-end">{{ number_format($revenue['fees']) }}</td>
                                 </tr>
                                 <tr class="bg-success text-white fw-bold">
-                                    <td colspan="2">@lang('app.total_earnings') (1)</td>
-                                    <td class="text-end">{{ number_format($revenue['total']) }}</td>
+                                    <td colspan="2" class="text-black">@lang('app.total_earnings') (1)</td>
+                                    <td class="text-end text-black">{{ number_format($revenue['total']) }}</td>
                                 </tr>
+                                {{--/ Earnings --}}
 
+
+                                {{-- Operating Expenses --}}
                                 <tr class="table-danger-subtle fw-bold">
                                     <td colspan="2" class="pt-4">@lang('app.operating_expenses') :</td>
                                     <td class="text-end"></td>
@@ -85,30 +90,56 @@
                                     <tr>
                                         <td></td>
                                         <td>{{ $expense[1] }}</td>
-                                        <td class="text-end text-danger">({{ number_format($expense[0]) }})</td>
+                                        <td class="text-end text-danger">{{ number_format($expense[0]) }}</td>
                                     </tr>
                                 @endforeach
                                 <tr class="bg-danger fw-bold">
                                     <td colspan="2" class="text-white">  @lang('app.total_operating_expenses') (2)</td>
-                                    <td class="text-end text-white">({{ number_format($total_operating) }})</td>
+                                    <td class="text-end text-white">{{ number_format($total_operating) }}</td>
                                 </tr>
-
                                 <tr class="table-info fw-bold">
                                     <td colspan="2">@lang('app.total_operating_profit')  (1 - 2)</td>
                                     <td class="text-end">{{ number_format($netOperatingIncome) }}</td>
                                 </tr>
+                                {{--/ Operating Expenses --}}
 
+                                {{-- Services expenses --}}
+                                <tr class="table-danger-subtle fw-bold">
+                                    <td colspan="2" class="pt-4 text-danger">@lang('app.services_expenses') :</td>
+                                    <td class="text-end"></td>
+                                </tr>
+
+                                 @foreach ($services_expenses as $expense)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ $expense[1] }}</td>
+                                        <td class="text-end text-danger">{{ number_format($expense[0]) }}</td>
+                                    </tr>
+                                @endforeach
+                                <tr class="text-info fw-bold bg-danger">
+                                    <td colspan="2" class="text-white">  @lang('app.total_services_expenses')</td>
+                                    <td class="text-end text-white">{{ number_format($totalServicesExpenses) }}</td>
+                                </tr>
+                               
+                                {{--/ Services expenses --}}
+
+                                {{-- non Operating Expenses --}}
                                 <tr class="fw-bold">
-                                    <td colspan="2" class="pt-4">@lang('app.non_operating_expenses') :</td>
+                                    <td colspan="2" class="pt-4 text-danger">@lang('app.non_operating_expenses') :</td>
                                     <td class="text-end"></td>
                                 </tr>
                                  @foreach ($non_operating_expenses as $expense)
                                     <tr>
                                         <td></td>
                                         <td>{{ $expense[1] }}</td>
-                                        <td class="text-end text-danger">({{ number_format($expense[0]) }})</td>
+                                        <td class="text-end text-danger">{{ number_format($expense[0]) }}</td>
                                     </tr>
                                 @endforeach
+                                 <tr class="text-info fw-bold bg-danger">
+                                    <td colspan="2" class="text-white">@lang('app.x-total') @lang('app.non_operating_expenses')</td>
+                                    <td class="text-end text-white">{{ number_format($interest) }}</td>
+                                </tr>
+                                {{--/ non Operating Expenses --}}
                                
                                 
                                 <tr class="table-primary fw-bolder fs-5">
