@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentRequest;
 use App\Models\Installment;
 use App\Models\InstallmentPayment;
+use App\Rules\RequiredIfBankak;
+use App\Rules\UniqueInTables;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class InstallmentPaymentsController extends Controller
@@ -49,15 +52,52 @@ class InstallmentPaymentsController extends Controller
 
     public function edit(InstallmentPayment $payment)
     {
+        if ($payment->receipt_number != null) {
+            return to_route('installments.payments.list', $payment->installment->id);
+        }
+
         $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
+
+        $payment->loadMissing(['installment:id,number,student_id', 'installment.student:id,full_name']);
 
         return view('installments_payments.edit-payment-form', compact('payment', 'paymentMethods'));
     }
 
-    public function update(InstallmentPayment $payment, PaymentRequest $request)
+    public function update(InstallmentPayment $payment, Request $request)
     {
         try {
-            $payment->update($request->validated());
+
+            $data = $request->validate([
+                'paid_amount'       => 'required',
+                'payment_method'    => 'nullable',
+                'payment_date'      => 'required|date',
+                'statement'         => 'required',
+                'student_id'        => 'required',
+                'transaction_id'    =>  [
+                    'sometimes',
+                    $request->transaction_id != null ? new RequiredIfBankak() : '',
+                    $request->transaction_id == null && $payment->transaction_id == null && $request->payment_method == 'بنكك' ? new RequiredIfBankak() : '',
+                    $request->transaction_id != $payment->transaction_id ? 
+                    new UniqueInTables(
+                        tables: ['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'],
+                        column: 'transaction_id',
+                    ) : '',
+                ],
+            ]);
+
+              // Check if transaction_id is null and payment_date is bankak
+            if ($data['transaction_id'] == null && $data['payment_method'] == 'بنكك') {
+                // make the send transaction id == old payroll transaction id
+                $data['transaction_id'] = $payment->transaction_id;
+            }
+
+            // Check if transaction_id is null and payment_date is not bankak
+            if ($data['transaction_id'] == null && $data['payment_method'] != 'بنكك') {
+                // make the send transaction id equal null
+                $data['transaction_id'] = null;
+            }
+            
+            $payment->update($data);
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
         } catch (\Throwable $th) {
             report($th);
