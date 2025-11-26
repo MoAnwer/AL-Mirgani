@@ -68,6 +68,17 @@
                             <div class="card card-expense border border-danger p-5">
                                 <div class="card-body p-4 ">
                                     <h2 class="h5 text-dark mb-3">{{ __('app.expenses_report_total_amount_title') }}</h2>
+                                    <p class="lead">@lang('app.period'): <b>{{ $period }}</b></p>
+                                    @if(request()->query('payment_method'))
+                                        <p class="lead">{{ request()->query('payment_method') }}</p>
+                                    @endif
+                                    @if(request()->query('category_id'))
+                                        @foreach($categories as $key => $value)
+                                            @if($value == request()->query('category_id'))
+                                                <p class="lead">@lang('app.category') : <b>{{ $key }}</b></p>
+                                            @endif
+                                        @endforeach    
+                                    @endif
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="display-5 fw-bolder text-danger mb-0">
                                             {{ $reportData['total_amount'] }} {{ __('app.currency')}}
