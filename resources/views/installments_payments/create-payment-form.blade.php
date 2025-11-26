@@ -52,7 +52,7 @@
                                         <div class="col-md-3">
                                             <label class="mb-3">@lang('app.payment_date')</label>
                                             <div class="input-group">
-                                                <input type="date" name="payment_date" class="form-control" value="{{ old('payment_date') }}"/>
+                                                <input type="date" name="payment_date" max="{{ date('Y-m-d') }}" class="form-control" value="{{ old('payment_date') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
