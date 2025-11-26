@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Earning;
 
+use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,7 @@ class CreateEarningRequest extends FormRequest
             'statement' => ['required', 'string'],
             'date'      => ['required'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
             'school_id' => ['required']
         ];
     }
