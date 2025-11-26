@@ -32,12 +32,7 @@ class GeneralExpenseReportController extends Controller
             ->when($startDate, fn($q, $startDate)     => $q->whereDate('date', '>=', Carbon::parse($startDate)->toDateString()))
             ->when($endDate,   fn($q, $endDate)       => $q->whereDate('date', '<=', Carbon::parse($endDate)->toDateString()))
             ->when($paymentMethod, fn($q, $paymentMethod) => $q->where('payment_method', $paymentMethod))
-            ->when(
-                $category,
-                function ($q) use ($category) {
-                    $q->whereHas('category', fn($q)   => $q->where('category_id', $category));
-                }
-            );
+            ->when($category, fn ($q) => $q->whereHas('category', fn($q) => $q->where('category_id', $category)) );
 
 
         $totalExpenses = $query->sum('amount');
