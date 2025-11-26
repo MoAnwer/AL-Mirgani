@@ -8,46 +8,36 @@ use App\Notifications\NewExpenseNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
-class ExpenseService 
+class ExpenseService
 {
     public function __construct(private Expense $expense, private ExpenseCategory $expense_category, private School $school) {}
 
 
-    public function expensesList() 
+    /**
+     * Expenses list with filters functionality
+     * 
+     * @return View
+     */
+    public function expensesList()
     {
         $filters = [
-            'category_id' => request()->query('category_id'),
-            'school_id'   => request()->query('school_id'),
-            'date'        => request()->query('date'),
-            'payment_method' => request()->query('payment_method')
+            'category_id'    => request()->query('category_id'),
+            'school_id'      => request()->query('school_id'),
+            'date'           => request()->query('date'),
+            'payment_method' => request()->query('payment_method'),
+            'transaction_id' => request()->query('transaction_id'),
         ];
-       
+
         $data = $this->expense
-                        ->query()
-                        ->with('school:id,name', 'category:id,name')
-                        ->when(!empty($filters['category_id']), 
-                            function($q) use ($filters) {
-                                $q->where('category_id', $filters['category_id']);
-                            }
-                        )
-                        ->when(!empty($filters['school_id']), 
-                            function($q) use ($filters) {
-                                $q->where('school_id', $filters['school_id']);
-                            }
-                        )
-                        ->when(!empty($filters['date']), 
-                            function($q) use ($filters) {
-                                $q->whereDate('date', $filters['date']);
-                            }
-                        )
-                        ->when(
-                            !empty($filters['payment_method']),
-                            function ($q) use ($filters) {
-                                $q->where('payment_method', $filters['payment_method']);
-                            }
-                        )
-                        ->latest()
-                        ->paginate(15);
+            ->query()
+            ->with('school:id,name', 'category:id,name')
+            ->when($filters['category_id'], fn($q) => $q->where('category_id', $filters['category_id']))
+            ->when($filters['school_id'], fn ($q) => $q->where('school_id', $filters['school_id']))
+            ->when($filters['date'], fn($q) => $q->whereDate('date', $filters['date']))
+            ->when($filters['payment_method'], fn ($q) => $q->where('payment_method', $filters['payment_method']))
+            ->when($filters['transaction_id'], fn($q) => $q->where('transaction_id', $filters['transaction_id']))
+            ->latest()
+            ->paginate(15);
 
         $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
 
@@ -60,10 +50,17 @@ class ExpenseService
     }
 
 
+    /**
+     * Create new expenses 
+     * 
+     * @param $request
+     * @return View|RedirectResponse
+     */
     public function create(Request $request)
     {
 
         try {
+
             $expense = $this->expense->create($request->validated());
 
             Notification::sendNow(User::all(), new NewExpenseNotification($expense));
