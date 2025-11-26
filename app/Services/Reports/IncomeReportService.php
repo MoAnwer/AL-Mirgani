@@ -40,26 +40,30 @@ final readonly class IncomeReportService
 
         $data = $this->getExpenses($school_id, $payment_method, $startDate, $endDate);
 
-        $interestExpense        = array_sum($data['non_operating_expenses']);
+        $totalNonOperatingExpenses  = array_sum($data['non_operating_expenses']);
 
         $totalOperatingExpenses = array_sum($data['operating_expenses']);
 
+        $totalServicesExpenses = array_sum($data['services_expenses']);
+
         $netOperatingIncome = $totalOperatingRevenue - $totalOperatingExpenses;
 
-        $netProfit = $netOperatingIncome - $interestExpense;
+        $netProfit = $netOperatingIncome - ($totalServicesExpenses + $totalNonOperatingExpenses);
 
         return view('reports.income_statement', [
             'revenue'                   => $this->revenue($totalFeesRevenue, $totalOperatingRevenue),
             'period'                    => " {$startDate} " . __('app.to') . " {$endDate}",
             'operating_expenses'        => $this->operatingExpenses($data['operating_expenses']),
+            'services_expenses'         => $this->servicesExpenses($data['services_expenses']),
             'total_operating'           => $totalOperatingExpenses,
+            'totalServicesExpenses'     => $totalServicesExpenses,
             'non_operating_expenses'    => $this->nonOperatingExpenses($data['non_operating_expenses']),
-            'interest'                  => $interestExpense,
+            'interest'                  => $totalNonOperatingExpenses,
             'netOperatingIncome'        => $netOperatingIncome,
             'netProfit'                 => $netProfit,
             'schools'                   => $this->school->pluck('name', 'id'),
             'selected_school'           => $this->school->find($school_id) ?? null,
-            'paymentMethods'           =>  ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
+            'paymentMethods'            =>  ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
         ]);
     }
 
@@ -69,11 +73,7 @@ final readonly class IncomeReportService
         $data = [
             'operating_expenses' => [
                 "salaries"               => 0,
-                "rents"                 => 0,
-                "electricityAndWater"   => 0,
-                "maintenance"           => 0,
                 "incentives"            => 0,
-                "furniture"             => 0,
             ],
             'non_operating_expenses' => [
                 'books'         => 0,
@@ -88,6 +88,12 @@ final readonly class IncomeReportService
                 'tools'         => 0,
                 'other'         => 0,
             ],
+            'services_expenses'  => [
+                "furniture"             => 0,
+                "rents"                 => 0,
+                "electricityAndWater"   => 0,
+                "maintenance"           => 0,
+            ]
         ];
 
         $this->expense
@@ -100,16 +106,17 @@ final readonly class IncomeReportService
             ->when($payment_method != 0, function ($q) use ($payment_method) {
                 $q->where('payment_method', $payment_method);
             })
-            ->whereBetween('date', [$startDate, $endDate])
+            ->whereDate('date', '>=', $startDate)
+            ->whereDate('date', '<=', $endDate)
             ->get()
             ->map(function ($n) use (&$data) {
                 return match ($n['name']) {
                     ExpenseCategoryEnum::SALARIES->value                => $data['operating_expenses']['salaries'] = $n['amount'],
                     ExpenseCategoryEnum::INCENTIVES->value              => $data['operating_expenses']['incentives'] = $n['amount'],
-                    ExpenseCategoryEnum::RENTS->value                   => $data['operating_expenses']['rents'] = $n['amount'],
-                    ExpenseCategoryEnum::FURNITURE->value               => $data['operating_expenses']['furniture'] = $n['amount'],
-                    ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value   => $data['operating_expenses']['electricityAndWater'] = $n['amount'],
-                    ExpenseCategoryEnum::UPKEEP->value                  => $data['operating_expenses']['maintenance'] = $n['amount'],
+                    ExpenseCategoryEnum::RENTS->value                   => $data['services_expenses']['rents'] = $n['amount'],
+                    ExpenseCategoryEnum::FURNITURE->value               => $data['services_expenses']['furniture'] = $n['amount'],
+                    ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value   => $data['services_expenses']['electricityAndWater'] = $n['amount'],
+                    ExpenseCategoryEnum::UPKEEP->value                  => $data['services_expenses']['maintenance'] = $n['amount'],
 
                     ExpenseCategoryEnum::BOOKS->value                   => $data['non_operating_expenses']['books'] = $n['amount'],
                     ExpenseCategoryEnum::BUFFET->value                  => $data['non_operating_expenses']['buffet'] = $n['amount'],
@@ -141,10 +148,16 @@ final readonly class IncomeReportService
     {
         return [
             'salaries'                   => [$data['salaries'], __('app.employees_salaries')],
+            'incentives'                 => [$data['incentives'], __('expenses.' . ExpenseCategoryEnum::INCENTIVES->value . '')],
+        ];
+    }
+
+    private function servicesExpenses(array $data): array
+    {
+        return [
             'electricityAndWaterExpense' => [$data['electricityAndWater'], __('expenses.' . ExpenseCategoryEnum::ELECTRICITY_AND_WATER->value . '')],
             'furnitureExpense'           => [$data['furniture'], __('expenses.' . ExpenseCategoryEnum::FURNITURE->value . '')],
             'rent'                       => [$data['rents'], __('expenses.' . ExpenseCategoryEnum::RENTS->value . '')],
-            'incentives'                 => [$data['incentives'], __('expenses.' . ExpenseCategoryEnum::INCENTIVES->value . '')],
             'maintenance'                => [$data['maintenance'], __('expenses.' . ExpenseCategoryEnum::UPKEEP->value . '')],
         ];
     }
