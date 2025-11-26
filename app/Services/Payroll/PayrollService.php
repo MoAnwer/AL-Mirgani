@@ -6,7 +6,7 @@ use App\Enums\PaymentStatusEnum;
 use App\Events\Expense\PayrollPaid;
 use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
 use App\Models\{Employee, EmployeePayroll};
-use App\Rules\UniqueInTables;
+use App\Rules\{RequiredIfBankak, UniqueInTables};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,6 +30,7 @@ final readonly class PayrollService
         $employeeId = $request->get('employee_id');
         $paymentStatus = $request->get('payment_status');
         $paymentMethod = $request->get('payment_method');
+        $transactionId = $request->input('transaction_id');
 
         $payrolls = $this->employee_payroll->with('employee')
             ->when($month, function ($q, $month) {
@@ -47,6 +48,7 @@ final readonly class PayrollService
             ->when($paymentMethod, function ($q, $paymentMethod) {
                 return $q->where('payment_method', $paymentMethod);
             })
+            ->when($transactionId, fn ($q) => $q->where('transaction_id', $transactionId))
             ->orderByDesc('id')
             ->orderByDesc('year')
             ->orderByDesc('month')
@@ -88,7 +90,7 @@ final readonly class PayrollService
         $netSalary = $employee->salary;
 
         if (empty($request->payment_method) || $request->payment_method == "كاش") {
-             $this->employee_payroll->create([
+            $this->employee_payroll->create([
                 'employee_id' => $request->employee_id,
                 'month' => $request->month,
                 'year' => $request->year,
@@ -123,6 +125,7 @@ final readonly class PayrollService
 
     /**
      * Show page of employee payroll
+     * 
      * @param EmployeePayroll $payroll
      * @return View
      */
@@ -142,6 +145,7 @@ final readonly class PayrollService
 
     /**
      * Edit page of employee payroll
+     * 
      * @param EmployeePayroll $payroll
      * @return View
      */
@@ -166,35 +170,66 @@ final readonly class PayrollService
      */
     public function update(Request $request, EmployeePayroll $payroll)
     {
-        $request->validate([
-            'employee_id' => 'required|exists:employees,id',
-            'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:2000',
-            'basic_salary_snapshot' => 'required|numeric|min:0',
-            'payment_status' => 'required|in:Pending,Paid,Failed',
-            'payment_date' => 'nullable|date',
-            'payment_method'    => ['nullable'],
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
-        ]);
+        try {
 
-        DB::transaction(function () use ($request, $payroll) {
+            $data = $request->validate([
+                'employee_id' => 'required|exists:employees,id',
+                'month' => 'required|integer|min:1|max:12',
+                'year' => 'required|integer|min:2000',
+                'basic_salary_snapshot' => 'required|numeric|min:0',
+                'payment_status' => 'required|in:Pending,Paid,Failed',
+                'payment_date' => 'nullable|date',
+                'payment_method'    => ['nullable'],
+                'transaction_id'    =>  [
+                    'sometimes',
+                    $request->transaction_id != null ? new RequiredIfBankak() : '',
+                    $request->transaction_id == null && $payroll->transaction_id == null && $request->payment_method == 'بنكك' ? new RequiredIfBankak() : '',
+                    $request->transaction_id != $payroll->transaction_id ? new UniqueInTables(
+                        tables: ['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'],
+                        column: 'transaction_id',
+                    ) : '',
+                ],
+            ]);
 
-            $originalBasicSalary = $payroll->basic_salary_snapshot;
-
-            $payroll->update($request->all());
-
-            if ($originalBasicSalary != $request->basic_salary_snapshot) {
-                $this->recalculatePayrollSummary($payroll);
+            // Check if transaction_id is null and payment_date is bankak
+            if ($data['transaction_id'] == null && $data['payment_method'] == 'بنكك') {
+                // make the send transaction id == old payroll transaction id
+                $data['transaction_id'] = $payroll->transaction_id;
             }
 
-
-            // Register new expense in expenses table 
-            if ($payroll->isPaid()) {
-                event(new PayrollPaid($payroll));
+            // Check if transaction_id is null and payment_date is not bankak
+            if ($data['transaction_id'] == null && $data['payment_method'] != 'بنكك') {
+                // make the send transaction id equal null
+                $data['transaction_id'] = null;
             }
-        });
 
-        return to_route('payroll.show', $payroll->id)->with('message', __('app.payroll_saved'));
+            DB::transaction(function () use ($request, $payroll, $data) {
+
+                $originalBasicSalary = $payroll->basic_salary_snapshot;
+
+                $payroll->update($data);
+
+                if ($originalBasicSalary != $request->basic_salary_snapshot) {
+                    $this->recalculatePayrollSummary($payroll);
+                }
+
+                // Register new expense in expenses table 
+                if ($payroll->isPaid()) {
+                    event(new PayrollPaid($payroll));
+                }
+            });
+
+            return to_route('payroll.show', $payroll->id)->with('message', __('app.payroll_saved'));
+        } catch (\Exception $e) {
+
+            report($e);
+
+            if ($e->getCode() == 23000) {
+                return back()->with('error', __('validation.unique', ['attribute' => __('app.duplicate_paid_payroll')]));
+            }
+
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -275,6 +310,6 @@ final readonly class PayrollService
         // delete payroll
         $payroll->forceDelete();
 
-        return to_route('payroll.index')->with('message', __('app.delete_successful', ['attribute' => $employeeName . ' ' .__('app.salary')]));
+        return to_route('payroll.index')->with('message', __('app.delete_successful', ['attribute' => $employeeName . ' ' . __('app.salary')]));
     }
 }
