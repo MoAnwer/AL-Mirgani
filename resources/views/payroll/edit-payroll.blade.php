@@ -49,10 +49,10 @@
                             </div>
 
                             <div class="col-12 mb-3">
-                                <label for="basic_salary_snapshot" class="form-label fw-bold">@lang('app.basic_salary')</label>
+                                <label for="basic_salary_snapshot" class="form-label fw-bold">@lang('app.salary')</label>
                                 <div class="input-group">
                                     <input type="number" name="basic_salary_snapshot" id="basic_salary_snapshot" class="form-control @error('basic_salary_snapshot') is-invalid @enderror" 
-                                        value="{{ old('basic_salary_snapshot', number_format($payroll->basic_salary_snapshot, 0, '.', '')) }}" step="0.01" required>
+                                        value="{{ old('basic_salary_snapshot', number_format($payroll->basic_salary_snapshot, 0, '.', '')) }}" required>
                                     <span class="input-group-text">@lang('app.currency')</span>
                                 </div>
                                 @error('basic_salary_snapshot')
@@ -74,11 +74,12 @@
                             <div class="col-md-6 my-4">
                                 <label class="form-label mb-2">@lang('app.process_number')</label>
                                 <div class="input-group">
-                                    <input type="number" class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" value="{{ $payroll->transaction_id }}" />
+                                    <input type="number" class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" placeholder="{{ $payroll->transaction_id }}" />
                                 </div>
                                 @error('transaction_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <small class="text-muted">@lang('app.edit_do_not_change_this_value')</small>
                             </div>
                             
                             <div class="col-md-6">
@@ -94,7 +95,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="payment_date" class="form-label fw-bold">{{ __('app.payment_date') }} </label>
-                                <input type="date" name="payment_date" id="payment_date" class="form-control @error('payment_date') is-invalid @enderror" 
+                                <input type="date" name="payment_date" id="payment_date" max="{{ date('Y-m-d') }}" class="form-control @error('payment_date') is-invalid @enderror" 
                                        value="{{ old('payment_date',  $payroll->payment_date?->format('Y-m-d') )}}">
                                 @error('payment_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
