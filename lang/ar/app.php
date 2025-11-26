@@ -43,6 +43,7 @@ return [
     'student_not_found'     => 'لم يتم ايجاد التلميذ',
     'total_fee'             => 'الرسوم الدراسية',
     'total'                 => 'الإجمالي',
+    'x-total'                 => 'إجمالي',
     'discount'              => 'نسبة الخصم',
     'student_name'          => 'اسم التلميذ',
     'student_number'        => 'الرقم المدرسي',
@@ -189,6 +190,8 @@ return [
     'total_earnings'    => 'إجمالي الإيرادات ',
     'operating_expenses' => 'المصروفات التشغيلية',
     'total_operating_expenses' => 'إجمالي المصروفات التشغيلية',
+    'total_services_expenses' => 'إجمالي المصروفات الخدمية',
+    'services_expenses' => ' المصروفات الخدمية',
     'total_operating_profit' => 'صافي الدخل التشغيلي',
     'non_operating_expenses'    => 'مصروفات أخرى (غير تشغيلية)',
     'net_profit_or_lose'   => 'صافي الربح / (الخسارة)',
@@ -209,6 +212,7 @@ return [
     'payroll_saved'         => 'تم تحديث ملخص كشف الراتب بنجاح.',
     'center'                => 'الإدارة',
     'edit_this_value_attention'   =>'تعديل هذه القيمة سيؤدي إلى إعادة حساب صافي الراتب.',
+    'edit_do_not_change_this_value' => 'دع هذا الحقل فارغاً اذا لم ترغب بتعديله',
     'create_payroll_detail_item' => 'إضافة بند جديد لكشف الراتب',
     'edit_payroll_detail'   => 'تعديل بند تفصيلي',
     'detail_name'           => 'اسم البند',
@@ -216,6 +220,7 @@ return [
     'payroll_invoice'       => ' قسيمة دفع راتب',
     'payroll_invoice_date'  => 'تاريخ الإصدار',
     'invoice_details'       => 'تفاصيل البنود',
+    'not_specify'          => 'لم يحدد بعد',
 
 
     // Payment States
@@ -293,7 +298,7 @@ return [
     'empty_message'                 => 'لا يوجد :attributes',
     'installment_full_paid_message' => 'تم سداد  هذا القسط',
     'fees_full_paid_message'        => 'مجموع مبالغ الاقساط يساوي الرسوم الدراسية بالفعل ',
-    'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من :amount',
+    'amount_less_then_message'      => 'الرجاء ادخال مبلغ اقل من او يساوي :amount',
     'student_register_successfully' => 'تم تسجيل الطالب بنجاح ✅',
     'no_date_returned'              => 'لاتوجد بيانات مطابقة لفلاتر البحث',
     'duplicate_paid_payroll'        => 'تم دفع المرتب لهذا الموظف بالفعل لهذا الشهر',
@@ -311,6 +316,7 @@ return [
     'remove_admin_msg'              => 'لا يمكن حذف مدير النظام',
     'payroll_paid_error'            => 'لا يمكن تعديل كشف راتب تم دفعه بالفعل.',
 
+    'close'         => 'إغلاق',
 
     'currency'      => 'جنيه',
 
