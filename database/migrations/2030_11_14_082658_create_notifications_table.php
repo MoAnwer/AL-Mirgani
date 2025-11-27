@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -12,15 +13,17 @@ return new class extends Migration
     public function up(): void
     {
         if (!file_exists(database_path('notifications.sqlite'))) {
-            Schema::connection('notifications')->create('notifications', function (Blueprint $table) {
-                $table->uuid('id')->primary();
-                $table->string('type');
-                $table->morphs('notifiable');
-                $table->text('data');
-                $table->timestamp('read_at')->nullable();
-                $table->timestamps();
-            });
+            touch(database_path('notifications.sqlite'));
         }
+
+        Schema::connection('notifications')->create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
