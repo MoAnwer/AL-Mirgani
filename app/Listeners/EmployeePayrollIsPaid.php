@@ -22,14 +22,10 @@ class EmployeePayrollIsPaid
      */
     public function handle(PayrollPaid $event): void
     {
-        // set payment date
-        $event->payroll->payment_date = now()->toDateString();
-        $event->payroll->save();
-
         $this->expense->create([
             'amount'      => $event->payroll->net_salary_paid,
             'category_id' => ExpenseCategory::where('name', ExpenseCategoryEnum::SALARIES)->value('id'),
-            'date'        => $event->payroll->payment_date,
+            'date'        => $event->payroll->payment_date->toDateString(),
             'statement'   => __('app.payroll_paid_statement', ['employee' => $event->payroll->employee->full_name, 'month' => $event->payroll->month, 'year' => $event->payroll->year]),
             'user_id'     => auth()->id(),
             'payment_method' => $event->payroll->payment_method,
