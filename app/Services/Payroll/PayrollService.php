@@ -104,6 +104,7 @@ final readonly class PayrollService
                 'school_total_cost' => 0,
                 'payment_status' => $request->payment_status,
                 'payment_method' => $request->payment_method ?? "كاش",
+                'payment_date'  => $request->payment_date ?? null,
             ]);
         } else {
             $payroll = $this->employee_payroll->create([
@@ -119,10 +120,11 @@ final readonly class PayrollService
                 'payment_status' => $request->payment_status,
                 'payment_method' => $request->payment_method ?? "كاش",
                 'transaction_id' => $request->transaction_id,
+                'payment_date'  => $request->payment_date ?? null,
             ]);
         }
 
-        if ($request->payment_status == "Paid") {
+        if ($payroll->isPaid()) {
             event(new PayrollPaid($payroll));
         }
 
@@ -184,7 +186,7 @@ final readonly class PayrollService
                 'year' => 'required|integer|min:2000',
                 'basic_salary_snapshot' => 'required|numeric|min:0',
                 'payment_status' => 'required|in:Pending,Paid,Failed',
-                'payment_date' => 'nullable|date',
+                'payment_date' => 'nullable',
                 'payment_method'    => ['nullable'],
                 'transaction_id'    =>  [
                     'sometimes',
