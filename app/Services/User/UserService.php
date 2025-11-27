@@ -104,7 +104,7 @@ final readonly class UserService
     {
         try {
 
-            if ($user->username == config('database.default_user.username')) {
+            if ($user->username == config('database.default_user.username') || $user->id == 1) {
                 throw new Exception(__('app.remove_admin_msg'));
             }
 
@@ -124,6 +124,10 @@ final readonly class UserService
     public function destroy(User $user)
     {
         try {
+
+            if ($user->id == 1 || $user->username == 'admin') {
+                return back()->with('error', __('app.remove_admin_msg'));
+            }
 
             $user->delete();
 
