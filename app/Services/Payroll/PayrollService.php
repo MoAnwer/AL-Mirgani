@@ -88,9 +88,11 @@ final readonly class PayrollService
         $employee = $this->employee->findOrFail($request->employee_id);
 
         $netSalary = $employee->salary;
+        
+        $payroll = null;
 
         if (empty($request->payment_method) || $request->payment_method == "كاش") {
-            $this->employee_payroll->create([
+            $payroll = $this->employee_payroll->create([
                 'employee_id' => $request->employee_id,
                 'month' => $request->month,
                 'year' => $request->year,
@@ -104,7 +106,7 @@ final readonly class PayrollService
                 'payment_method' => $request->payment_method ?? "كاش",
             ]);
         } else {
-            $this->employee_payroll->create([
+            $payroll = $this->employee_payroll->create([
                 'employee_id' => $request->employee_id,
                 'month' => $request->month,
                 'year' => $request->year,
@@ -118,6 +120,10 @@ final readonly class PayrollService
                 'payment_method' => $request->payment_method ?? "كاش",
                 'transaction_id' => $request->transaction_id,
             ]);
+        }
+
+        if ($request->payment_status == "Paid") {
+            event(new PayrollPaid($payroll));
         }
 
         return to_route('payroll.index')->with('message', __('app.create_successful', ['attribute' => $employee->full_name]));
