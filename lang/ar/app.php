@@ -108,6 +108,7 @@ return [
     'payment'               => 'مدفوع',
     'the_installment'       => 'القسط',
     'remaining'             => 'المتبقي',
+    'installment_remaining' => 'المتبقي من القسط',
     'accounts'              => 'الحسابات',
     'payrolls'              => ' كشوف الرواتب',
     'student_financial_data' => 'كشف تحصيل الرسوم للطالب',
