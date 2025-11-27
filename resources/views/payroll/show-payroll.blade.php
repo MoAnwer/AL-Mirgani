@@ -44,7 +44,7 @@
                                                 <table class="table table-sm table-borderless mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="text-muted ps-0">@lang('app.basic_salary')</td>
+                                                            <td class="text-muted ps-0">@lang('app.salary')</td>
                                                             <td class="text-end fw-bold text-dark">{{ number_format($payroll->basic_salary_snapshot) }}</td>
                                                         </tr>
                                                         @foreach($additions as $detail)
