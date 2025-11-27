@@ -29,8 +29,18 @@ class UpdateStudentRequest extends FormRequest
             'total_fee' => ['required', 'integer'],
             'class_id'  => ['required'],
             'school_id' => ['required'],
-            'phone_one' => ['nullable'],
-            'phone_two' => ['nullable'],
+            'phone_one'         => [
+                'nullable',
+                'unique:fathers,phone_one,' . $this->student->father->id,
+                'unique:fathers,phone_two,' . $this->student->father->id ,
+                'unique:employees,phone_number',
+            ],
+            'phone_two'         => [
+                'nullable',
+                'unique:fathers,phone_one,' . $this->student->father->id,
+                'unique:fathers,phone_two,' . $this->student->father->id ,
+                'unique:employees,phone_number'
+            ],
             'parent_full_name' => ['nullable'],
         ];
     }
@@ -43,7 +53,9 @@ class UpdateStudentRequest extends FormRequest
             'class_id'      => __('app.class'),
             'total_fee'     => __('app.total_fee'),
             'school_id'     => __('app.school'),
-            'address'       => __('app.address')
+            'address'       => __('app.address'),
+            'phone_one'         => __('app.phone_one'),
+            'phone_two'         => __('app.phone_two')
         ];
     }
 }

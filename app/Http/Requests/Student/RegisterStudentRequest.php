@@ -65,7 +65,8 @@ class RegisterStudentRequest extends FormRequest
             'total_fee'         => __('app.total_fee'),
             'registration_fee'  => __('app.registration_fee'),
             'parent_name'       => __('app.parent_full_name'),
-            'phone_one'         => __('app.phone_one')
+            'phone_one'         => __('app.phone_one'),
+            'phone_two'         => __('app.phone_two')
         ];
     }
 }

@@ -79,13 +79,13 @@
                                          <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.phone_one')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control"  name="phone_one" value="{{ $student->father->phone_one }}"/>
+                                                <input type="text" class="form-control"  name="phone_one" value="{{ $student->father->phone_one }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.phone_two')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control"  name="phone_two" value="{{ $student->father->phone_two }}"/>
+                                                <input type="text" class="form-control"  name="phone_two" value="{{ $student->father->phone_two }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-3">
