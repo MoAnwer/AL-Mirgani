@@ -164,6 +164,7 @@ return [
     'payment'               => 'Payment'              ,
     'the_installment'       => 'The installment'      ,
     'remaining'             => 'Remaining'            ,
+    'installment_remaining' => 'Installment remaining amount',
     'accounts'              => 'Accounts'             ,
     'payrolls'              => 'Payrolls'             ,
     'payrolls_report'       => 'Payrolls report'      ,
