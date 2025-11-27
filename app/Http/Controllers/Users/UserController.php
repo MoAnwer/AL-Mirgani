@@ -11,7 +11,6 @@ class UserController extends Controller
 {
 
     function __construct(
-        private User $user,
         private readonly UserService $userService
     ) {}
 
