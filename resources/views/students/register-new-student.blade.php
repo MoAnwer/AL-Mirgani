@@ -138,7 +138,7 @@
                                                 <div class="col-md-2">
                                                     <label class="form-label mb-2">@lang('app.process_number')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" value="{{ null }}" placeholder= "@lang('app.process_number')" name="transaction_id" value="{{ old('transaction_id') }}"/>
+                                                        <input type="number" class="form-control" value="{{ old('transaction_id') ?? null }}" placeholder= "@lang('app.process_number')" name="transaction_id" value="{{ old('transaction_id') }}"/>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-2">

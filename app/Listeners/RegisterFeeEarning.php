@@ -28,7 +28,7 @@ class RegisterFeeEarning
             'payment_method' => $event->student->registrationFees->payment_method,
             'transaction_id' => $event->student->registrationFees->transaction_id,
             'statement' => __('app.student_registration_fee'),
-            'date'      => now()
+            'date'      => $event->student->registrationFees->payment_date
         ]);
         
         Notification::send(User::all(), new EarningNotification($earning));

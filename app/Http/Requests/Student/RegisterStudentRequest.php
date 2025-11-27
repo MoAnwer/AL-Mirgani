@@ -32,8 +32,20 @@ class RegisterStudentRequest extends FormRequest
             'total_fee'         => ['required', 'integer'],
             'discount'          => ['nullable'],
             'parent_name'       => ['required', 'string'],
-            'phone_one'         => ['required', 'string'],
-            'phone_two'         => ['nullable', 'string'],
+            'phone_one'         => [
+                'required',
+                'string',
+                'unique:fathers,phone_one',
+                'unique:fathers,phone_two',
+                'unique:employees,phone_number',
+            ],
+            'phone_two'         => [
+                'nullable',
+                'string',
+                'unique:fathers,phone_one',
+                'unique:fathers,phone_two',
+                'unique:employees,phone_number'
+            ],
             'registration_fee'  => ['required', 'integer'],
             'paid_amount'       => ['required', 'integer'],
             'payment_method'    => ['nullable', 'string'],
@@ -41,7 +53,7 @@ class RegisterStudentRequest extends FormRequest
             'payment_date'      => ['nullable'],
         ];
     }
-    
+
     public function attributes(): array
     {
         return [
