@@ -15,7 +15,7 @@ class StudentAccountController extends Controller
         $studentPayments = $studentInstallments->with('payments')->get();
 
         
-        $grossFees = $student->total_fee ?? 15000.00; 
+        $grossFees = $student->total_fee ??     0; 
         $discountAmount = $student->discount ?? 0; 
         
 
@@ -30,6 +30,7 @@ class StudentAccountController extends Controller
                     'statement' => $payment->statement ?? '',
                     'paid_amount' => $payment->paid_amount ?? 0,
                     'payment_method' => ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))  ?? '',
+                    'transaction_id' => $payment->transaction_id ?? '',
                     'collector' => $payment->collector->name ?? '-', 
                 ];
             });
@@ -58,7 +59,7 @@ class StudentAccountController extends Controller
             'amount'         => number_format($student->registrationFees->amount),
             'paid_amount'    => number_format($student->registrationFees->paid_amount),
             'payment_date'   => $student->registrationFees->payment_date,
-            'transaction_id' => $student->registrationFees->transaction_id ?? '-',
+            'transaction_id' => $student->registrationFees->transaction_id ?? '',
             'payment_method' => ($student->registrationFees->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))
         ];
 

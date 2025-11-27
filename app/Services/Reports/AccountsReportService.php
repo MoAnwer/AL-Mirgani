@@ -107,18 +107,8 @@ final readonly class AccountsReportService
     private function getEntity($model, $targetDate, $school_id, $type)
     {
         $result = $model->whereDate('date', $targetDate)
-            ->when(
-                $school_id != 0,
-                function ($q) use ($school_id) {
-                    $q->where(fn($q) => $q->where('school_id', $school_id)->orWhere('school_id', '=', null));
-                }
-            )
-            ->when(
-                request()->query('payment_method'),
-                function ($q) {
-                    $q->where(fn($q) => $q->where('payment_method', request()->query('payment_method')));
-                }
-            )
+            ->when($school_id != 0, fn($q) => $q->where(fn($q) => $q->where('school_id', $school_id)->orWhere('school_id', '=', null)))
+            ->when(request()->query('payment_method'), fn ($q) => $q->where(fn($q) => $q->where('payment_method', request()->query('payment_method'))))
             ->get()
             ->map(function ($item) use ($type) {
                 return [

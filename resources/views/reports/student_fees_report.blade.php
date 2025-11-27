@@ -130,7 +130,9 @@
                                 <th class="align-center">@lang('app.paid_amount')</th>
                                 <th class="align-center">@lang('app.payment_date')</th>
                                 <th class="align-center">@lang('app.payment_method')</th>
-                                <th class="align-center">@lang('app.process_number')</th>
+                                @if($register_fees['transaction_id'])
+                                    <th class="align-center">@lang('app.process_number')</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -139,7 +141,9 @@
                                 <td class="align-center">{{ $register_fees['paid_amount'] }}</td>
                                 <td class="align-center">{{ $register_fees['payment_date'] }}</td>
                                 <td class="align-center">{{ $register_fees['payment_method'] }}</td>
-                                <td class="align-center">{{ $register_fees['transaction_id'] }}</td>
+                                @if($register_fees['transaction_id'])
+                                    <td class="align-center">{{ $register_fees['transaction_id'] }}</td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>
@@ -154,6 +158,7 @@
                                 <th class="align-center">@lang('app.statement')</th>
                                 <th class="align-center">@lang('app.paid_amount')</th>
                                 <th class="align-center">@lang('app.payment_method')</th>
+                                <th class="align-center">@lang('app.transaction_id')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -165,6 +170,7 @@
                                 <td class="align-center">{{ $payment['statement'] }}</td>
                                 <td class="align-center" class="align-center">{{ number_format($payment['paid_amount'] ?? 0) }}</td>
                                 <td class="align-center">{{ $payment['payment_method'] }}</td>
+                                <td class="align-center">{{ $payment['transaction_id'] }}</td>
                             </tr>
                             @empty
                             <tr>
