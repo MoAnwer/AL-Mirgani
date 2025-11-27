@@ -317,7 +317,7 @@ return [
     'not_found_msg'                 => 'not_found_msg'                ,
     'internal_server_error'         => 'internal_server_error'        ,
     'internal_server_error_msg'     => 'internal_server_error_msg'    ,
-    'remove_admin_msg'              => 'remove_admin_msg'             ,
+    'remove_admin_msg'              => 'You cannot delete admin ! ' ,
     'payroll_paid_error'            => 'you can\'t edit payroll already paid !',
     'duplicate_paid_payroll'        => 'payroll already paid for this employee in selected month',
 
