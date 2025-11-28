@@ -115,13 +115,9 @@ class PayrollDetailController extends Controller
         // Eager load details with their item types
         $payroll->load('details.item');
 
-        $totalVariableAdditions = $payroll->details
-            ->where('item.type', 'Addition')
-            ->sum('amount');
+        $totalVariableAdditions = $payroll->details->where('item.type', 'Addition')->sum('amount');
             
-        $totalDeductions = $payroll->details
-            ->whereIn('item.type', ['Deduction', 'Tax']) // Sum both deductions and taxes
-            ->sum('amount');
+        $totalDeductions = $payroll->details->where('item.type', 'Deduction')->sum('amount');
 
         // Calculate new net pay
         $grossSalary = $payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $totalVariableAdditions;
