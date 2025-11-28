@@ -48,11 +48,11 @@
                                                 </div>
                                                 <div class="col-md-3 mb-3">
                                                     <label for="month" class="form-label mb-3 ">@lang('app.the_month')</label>
-                                                    <input type="number" name="month" id="month" class="form-control" value="{{ old('month', $defaultMonth) }}" min="1" max="12" required>
+                                                    <input type="number" min="0"  name="month" id="month" class="form-control" value="{{ old('month', $defaultMonth) }}" min="1" max="12" required>
                                                 </div>
                                                 <div class="col-md-3 mb-3">
                                                     <label for="year" class="form-label mb-3 ">@lang('app.year')</label>
-                                                    <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $defaultYear) }}" min="2020" required>
+                                                    <input type="number" min="0"  name="year" id="year" class="form-control" value="{{ old('year', $defaultYear) }}" min="2020" required>
                                                 </div>
                                             </div>
 
@@ -70,7 +70,7 @@
                                                 <div class="col-md-3">
                                                     <label class="form-label  mb-3 fw-bold">@lang('app.process_number')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
+                                                        <input type="number" min="0"  class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 mb-3">

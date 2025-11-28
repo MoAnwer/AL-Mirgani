@@ -40,7 +40,7 @@
                                         <div class="row g-5"> 
                                             
                                             <div class="col-md-6 pe-md-4 border-end border-light"> 
-                                                <h5 class="text-success border-bottom pb-3 mb-4 fw-bold"><i class='bx bxs-up-arrow-circle me-2'></i>@lang('app.dues')</h5>
+                                                <h5 class="text-success border-bottom pb-3 mb-4 fw-bold"><i class='bx bxs-up-arrow-circle me-2'></i>@lang('app.additions')</h5>
                                                 <table class="table table-sm table-borderless mb-0">
                                                     <tbody>
                                                         <tr>
@@ -61,8 +61,6 @@
                                                                     </a>
                                                                 </td>
                                                             @endif
-
-                                 
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

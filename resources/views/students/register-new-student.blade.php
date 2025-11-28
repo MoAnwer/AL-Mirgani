@@ -74,13 +74,13 @@
                                         <div class="col-md-3 mt-3">
                                             <label class="form-label mb-2">@lang('app.total_fee')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control"  name="total_fee" value="{{ old('total_fee') }}"/>
+                                                <input type="number" min="0"  class="form-control"  name="total_fee" value="{{ old('total_fee') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <label class="form-label mb-2">@lang('app.discount')</label>
                                             <div class="input-group">
-                                                <input type="number" max="100" class="form-control" name="discount" value="{{ old('discount') }}"/>
+                                                <input type="number" min="0"  max="100" class="form-control" name="discount" value="{{ old('discount') }}"/>
                                             </div>
                                         </div>
                                         <div class="my-5">
@@ -96,13 +96,13 @@
                                                 <div class="col-md-4">
                                                     <label class="form-label mb-2">@lang('app.phone_one')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control"  name="phone_one" value="{{ old('phone_one') }}"/>
+                                                        <input type="number" min="0"  class="form-control"  name="phone_one" value="{{ old('phone_one') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label class="form-label mb-2">@lang('app.phone_two')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control"  name="phone_two" value="{{ old('phone_two') }}"/>
+                                                        <input type="number" min="0"  class="form-control"  name="phone_two" value="{{ old('phone_two') }}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                                                 <div class="col-md-2">
                                                     <label class="form-label mb-2">@lang('app.paid_amount')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control"  name="paid_amount" value="{{ old('paid_amount') }}"/>
+                                                        <input type="number" min="0"  class="form-control"  name="paid_amount" value="{{ old('paid_amount') }}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -138,7 +138,7 @@
                                                 <div class="col-md-2">
                                                     <label class="form-label mb-2">@lang('app.process_number')</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" value="{{ old('transaction_id') ?? null }}" placeholder= "@lang('app.process_number')" name="transaction_id" value="{{ old('transaction_id') }}"/>
+                                                        <input type="number" min="0"  class="form-control" value="{{ old('transaction_id') ?? null }}" placeholder= "@lang('app.process_number')" name="transaction_id" value="{{ old('transaction_id') }}"/>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-2">

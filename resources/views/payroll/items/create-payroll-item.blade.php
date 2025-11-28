@@ -58,7 +58,7 @@
 
                                                 <div class="mb-5">
                                                     <label for="default_value" class="form-label">@lang('app.default_value'):</label>
-                                                    <input type="number" name="default_value" id="default_value" class="form-control @error('default_value') is-invalid @enderror" 
+                                                    <input type="number" min="0"  name="default_value" id="default_value" class="form-control @error('default_value') is-invalid @enderror" 
                                                         value="{{ old('default_value', 0) }}" step="0.01">
                                                     @error('default_value')
                                                         <div class="invalid-feedback">{{ $message }}</div>

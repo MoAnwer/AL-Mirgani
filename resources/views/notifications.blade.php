@@ -97,8 +97,8 @@
                                 </div>
 
                                 @empty
-                                <div class="card p-5 shadow-sm text-center border-0">
-                                    <i class="bx bx-search text-secondary display-4 mb-3"></i>
+                                <div class="card p-5 text-center border-0 shadow-none m-4">
+                                    <i class="bx bxs-bell w-100 text-secondary display-4 mb-3"></i>
                                     <h3 class="h4 fw-semibold text-dark">@lang('app.no_unread_header')</h3>
                                     <p class="text-muted mt-2">@lang('app.no_unread_body')</p>
                                 </div>
@@ -121,7 +121,7 @@
                                     const notificationId = this.getAttribute('data-id');
                                     const card = document.getElementById(`notification-${notificationId}`);
                                     this.disabled = true;
-                                    this.innerHTML = '<i class="bx bx-loader-alt bx-spin small"></i>';
+                                    this.innerHTML = '<i class="bx bx-check-circle small fw-bold text-success"></i>';
                                     fetch(`/notifications/${notificationId}/read`, {
                                             method: 'POST'
                                             , headers: {
@@ -133,12 +133,12 @@
                                             if (response.ok) {
                                                 if (card) {
                                                     card.style.opacity = '0';
-                                                    card.style.transform = 'translateY(50%)';
+                                                    card.style.transform = 'translateX(100%)';
                                                     setTimeout(() => {
                                                         card.remove();
                                                         const remainingCards = document.querySelectorAll('.notification-card').length;
                                                         if (remainingCards === 0) {
-                                                            // window.location.reload(); 
+                                                            window.location.reload(); 
                                                         }
                                                     }, 500);
                                                 }

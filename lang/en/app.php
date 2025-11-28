@@ -208,6 +208,8 @@ return [
     'payroll_details'       => 'Payroll details',
     'net_salary_paid'       => 'Net due salary to paid',
     'fixed_due'             => 'Fixed due',
+    'addition'              => 'Addition',
+    'additions'              => 'Additions',
     'variable_addition'     => 'Variable addition',
     'dues'                  => 'Financial Dues',
     'deductions'            => 'Deductions',

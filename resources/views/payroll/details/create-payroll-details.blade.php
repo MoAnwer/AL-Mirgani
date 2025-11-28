@@ -40,7 +40,7 @@
                                         
                                         <div class="mb-3">
                                             <label for="amount" class="form-label fw-bold">@lang('app.amount')</label>
-                                            <input type="number" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
+                                            <input type="number" min="0"  name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
                                                 value="{{ old('amount') }}" step="0.01" required placeholder="e.g., 500.00">
                                             @error('amount')
                                                 <div class="invalid-feedback">{{ $message }}</div>

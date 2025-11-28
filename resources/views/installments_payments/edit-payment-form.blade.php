@@ -32,7 +32,7 @@
                                         <div class="col-md-3">
                                         <label class="mb-3">@lang('app.paid_amount', ['attribute' => __('app.the_installment')])</label>
                                             <div class="input-group">
-                                                <input type="number" name="paid_amount" class="form-control" value="{{ $payment->paid_amount ?? old('paid_amount ') }}"/>
+                                                <input type="number" min="0"  name="paid_amount" class="form-control" value="{{ $payment->paid_amount ?? old('paid_amount ') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -47,7 +47,7 @@
                                          <div class="col-md-3">
                                             <label class="form-label mb-2">@lang('app.process_number')</label>
                                             <div class="input-group">
-                                                <input type="number" class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" placeholder="{{ $payment->transaction_id }}" />
+                                                <input type="number" min="0"  class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" placeholder="{{ $payment->transaction_id }}" />
                                             </div>
                                             @error('transaction_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
