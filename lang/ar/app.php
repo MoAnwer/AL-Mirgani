@@ -169,6 +169,7 @@ return [
     'period_year_month'     => 'الفترة (الشهر/السنة)',
     'the_earnings'          => 'الايرادات',
     'addition'              => 'إضافة/علاوة',
+    'additions'              => 'إلاضافات',
     'payroll_details'       => 'كشف الراتب المفصّل',
     'net_salary_paid'       => 'صافي المبلغ المستحق الدفع',
     'fixed_due'             => 'استحقاق ثابت',
