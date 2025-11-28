@@ -24,31 +24,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="type" class="form-label fw-bold">@lang('app.category')</label>
-                                        <select name="type" id="type" class="form-select @error('type') is-invalid @enderror" required>
-                                            <option value="" disabled>--</option>
-                                            @foreach ($itemTypes as $type)
-                                            <option value="{{ $type }}" {{ old('type') == $type ? 'selected' : '' }}>
-                                                {{ $type == 'Addition' ? __('app.addition') :  __('app.deduction') }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        @error('type')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" name="is_fixed" id="is_fixed" value="1" {{ old('is_fixed', $item->is_fixed) ? 'checked' : '' }}>
-                                        <label class="form-check-label fw-bold" for="is_fixed">
-                                            @lang('app.is_fixed')
-                                        </label>
-                                    </div>
-
+                                    </hr>
                                     <div class="mb-3">
                                         <label for="default_value" class="form-label">@lang('app.default_value')</label>
                                         <input type="number" name="default_value" id="default_value" class="form-control @error('default_value') is-invalid @enderror" value="{{ old('default_value', $item->default_value) }}" step="0.01">
