@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="col-2">
-                                        <input type="number" placeholder="{{ __('app.process_number') }}" onchange="this.form.submit()" name="transaction_id" id="transaction_id" class="form-control" value="{{ request('transaction_id') }}">
+                                        <input type="number" min="0"  placeholder="{{ __('app.process_number') }}" onchange="this.form.submit()" name="transaction_id" id="transaction_id" class="form-control" value="{{ request('transaction_id') }}">
                                     </div>
 
                                     <div class="col-2">

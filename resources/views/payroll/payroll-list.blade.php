@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label for="transaction_id" class="form-label  pb-1">{{ __('app.process_number') }}</label>
-                                        <input type="number" onchange="this.form.submit()" name="transaction_id" id="transaction_id" class="form-control" value="{{ request('transaction_id') }}">
+                                        <input type="number" min="0"  onchange="this.form.submit()" name="transaction_id" id="transaction_id" class="form-control" value="{{ request('transaction_id') }}">
                                     </div>
                                      <div class="col-2">
                                             <label class="form-label text-dark fw-medium pb-1">@lang('app.payment_method')</label>
@@ -52,11 +52,11 @@
                                     </div>
                                     <div class="col-md-1">
                                         <label for="month" class="form-label  pb-1">{{ __('app.the_month') }}</label>
-                                        <input type="number" onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
+                                        <input type="number" min="0"  onchange="this.form.submit()" name="month" id="month" class="form-control" value="{{ request('month') }}" min="1" max="12">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="year" class="form-label  pb-1">{{ __('app.year') }}</label>
-                                        <input type="number" onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
+                                        <input type="number" min="0"  onchange="this.form.submit()" name="year" id="year" class="form-control" value="{{ request('year') }}">
                                     </div>
                                 </div>
                             </form>

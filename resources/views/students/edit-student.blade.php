@@ -73,7 +73,7 @@
                                         <div class="col-md-6 mt-3">
                                         <label class="mb-3">@lang('app.total_fee')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
+                                                <input type="number" min="0"  class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
                                             </div>
                                         </div>
                                          <div class="col-md-4 mt-3">

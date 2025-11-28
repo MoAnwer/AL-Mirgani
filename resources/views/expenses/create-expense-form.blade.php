@@ -32,7 +32,7 @@
                                             <div class="col-md-4">
                                                 <label class="form-label mb-2">@lang('app.amount')</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" name="amount" value="{{ old('amount') }}" />
+                                                    <input type="number" min="0"  class="form-control" name="amount" value="{{ old('amount') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -67,7 +67,7 @@
                                              <div class="col-md-4 mt-4">
                                                 <label class="form-label mb-2">@lang('app.process_number')</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
+                                                    <input type="number" min="0"  class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4 mt-4">

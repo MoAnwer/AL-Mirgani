@@ -79,19 +79,19 @@
                                         <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.total_fee')</label>
                                             <div class="input-group">
-                                                <input readonly type="number" class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
+                                                <input readonly type="number" min="0"  class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.phone_one')</label>
                                             <div class="input-group">
-                                                <input readonly type="number" class="form-control"  name="phone_one" value="{{ $student->father->phone_one }}"/>
+                                                <input readonly type="number" min="0"  class="form-control"  name="phone_one" value="{{ $student->father->phone_one }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.phone_two')</label>
                                             <div class="input-group">
-                                                <input readonly type="number" class="form-control"  name="phone_two" value="{{ $student->father->phone_two }}"/>
+                                                <input readonly type="number" min="0"  class="form-control"  name="phone_two" value="{{ $student->father->phone_two }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mt-3">
