@@ -26,7 +26,6 @@
                                         <th class="text-center">#</th>
                                         <th class="text-center">@lang('app.item_name')</th>
                                         <th class="text-center">@lang('app.category')</th>
-                                        <th class="text-center">@lang('app.is_fixed')</th>
                                         <th class="text-center">@lang('app.default_value')</th>
                                         <th class="text-center">@lang('app.created_at')</th>
                                         <th class="text-center">@lang('app.actions')</th>
@@ -44,13 +43,6 @@
                                                 <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill">@lang('app.deduction')</span>
                                             @else
                                                 {{ $item->type }}
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if ($item->is_fixed)
-                                                <span class="badge bg-info-subtle text-info border border-info rounded-pill">@lang('app.yes')</span>
-                                            @else
-                                                <span class="badge bg-secondary-subtle text-secondary border border-secondary rounded-pill">@lang('app.no')</span>
                                             @endif
                                         </td>
                                         <td class="text-center">

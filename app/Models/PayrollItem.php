@@ -8,7 +8,7 @@ class PayrollItem extends Model
 {
     protected $fillable = [
         'name',
-        'type', // 'Addition', 'Deduction', 'Tax', 'Benefit'
+        'type', // 'Addition', 'Deduction'
         'is_fixed',
         'default_value',
     ];
