@@ -44,15 +44,11 @@ class PayrollItemController extends Controller
                 'max:255', 
                 Rule::unique('payroll_items', 'name')->ignore($payrollItem->id),
             ],
-            'type' => ['required', Rule::in(['Addition', 'Deduction'])],
-            'is_fixed' => 'boolean',
             'default_value' => 'nullable|numeric|min:0',
         ]);
         
         $payrollItem->update([
             'name' => $request->name,
-            'type' => $request->type,
-            'is_fixed' => $request->has('is_fixed'), 
             'default_value' => $request->default_value,
         ]);
 
@@ -66,7 +62,7 @@ class PayrollItemController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:payroll_items,name',
-            'type' => ['required', Rule::in(['Addition', 'Deduction', 'Tax', 'Benefit'])],
+            'type' => ['required', 'in:Addition,Deduction'],
             'is_fixed' => 'boolean',
             'default_value' => 'nullable|numeric|min:0',
         ]);
