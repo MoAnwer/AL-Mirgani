@@ -9,7 +9,6 @@
                 <x-container>
                 <x-alert type="message" />
                 <x-alert type="error" />
-                <div class="row">
                    <div class="card col-md-12 col-lg-4 mb-6">
                         <div class="card-body px-0">
                             <div class="d-flex flex-column align-items-center justify-content-center align-items-sm-center gap-6 pb-4 border-bottom px-0">
@@ -50,17 +49,17 @@
                                                 @if($employee->department == \App\Enums\EmployeeTypes::TEACHER->value)
                                                     <span class="badge rounded bg-warning">
                                                         <i class="icon-base bx bx-user icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.teacher') }}
                                                     </span>
                                                 @elseif($employee->department == \App\Enums\EmployeeTypes::MANAGER->value)
                                                 <span class="badge rounded bg-success">
                                                         <i class="icon-base bx bx-check icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.manager') }}
                                                     </span>
                                                 @else                                                
                                                     <span class="badge rounded bg-secondary">
                                                         <i class="icon-base bx bx-pin icon-sm me-1_0"></i>
-                                                        {{ $employee->department }}
+                                                        {{ __('app.worker') }}
                                                     </span>
                                                 @endif
                                             </div>
@@ -70,7 +69,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </x-container>
         </x-ContentWrapper>
     </x-LayoutPage>
