@@ -22,9 +22,9 @@ class StudentHealthyHistoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'diagnosis'     =>  ['nullable', 'string'],
-            'medication'    =>  ['nullable', 'string'],
-            'notes'         =>  ['nullable', 'string'],
+            'diagnosis'     =>  ['nullable', 'string', 'max:255'],
+            'medication'    =>  ['nullable', 'string', 'max:255'],
+            'notes'         =>  ['nullable', 'string', 'max:255'],
         ];
     }
 
