@@ -27,11 +27,8 @@ class StoreEmployeePayrollRequest extends FormRequest
                     return $query->where('month', $this->month)->where('year', $this->year);
                 })
             ],
-            'total_deductions' => ['nullable', 'numeric'],
-            'total_fixed_allowances' => ['nullable', 'numeric'],
-            'total_variable_additions' => ['nullable', 'numeric'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['sometimes',  new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  'max_digits:15', new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 
