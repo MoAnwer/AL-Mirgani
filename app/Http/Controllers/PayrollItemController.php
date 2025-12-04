@@ -44,7 +44,7 @@ class PayrollItemController extends Controller
                 'max:255', 
                 Rule::unique('payroll_items', 'name')->ignore($payrollItem->id),
             ],
-            'default_value' => 'nullable|numeric|min:0',
+            'default_value' => 'nullable|numeric|min:0|max_digits:15',
         ]);
         
         $payrollItem->update([
@@ -64,7 +64,7 @@ class PayrollItemController extends Controller
             'name' => 'required|string|max:255|unique:payroll_items,name',
             'type' => ['required', 'in:Addition,Deduction'],
             'is_fixed' => 'boolean',
-            'default_value' => 'nullable|numeric|min:0',
+            'default_value' => 'nullable|numeric|min:0|max_digits:15',
         ]);
 
         $this->payrollItem->create([
