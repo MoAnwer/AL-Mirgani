@@ -24,11 +24,11 @@ class CreateEarningRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'    => ['required'],
+            'amount'    => ['required', 'max_digits:15'],
             'statement' => ['required', 'string'],
             'date'      => ['required'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['sometimes',  new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  new RequiredIfBankak(),  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id'),  'max_digits:15'],
             'school_id' => ['required']
         ];
     }
