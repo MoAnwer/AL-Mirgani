@@ -22,8 +22,8 @@ class UpdateInstallmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'    => 'required',
-            'number'    => 'required|string',
+            'amount'    => 'required|max_digits:15',
+            'number'    => 'required|string|max:255',
             'due_date'  => 'required|date'
         ];
     }
