@@ -26,13 +26,13 @@ class CreateExpenseRequest extends FormRequest
     {
         return [
             'statement'     => ['required', 'string'],
-            'amount'        => ['required', 'integer'],
+            'amount'        => ['required', 'max_digits:15'],
             'category_id'   => ['required'],
             'school_id'     => ['required'],
             'date'          => ['required'],
             'user_id'       => ['nullable'],
             'payment_method'    => ['sometimes'],
-            'transaction_id'    => ['sometimes',  new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes',  new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id'), 'max_digits:15'],
         ];
     }
 
