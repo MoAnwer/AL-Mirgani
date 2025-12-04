@@ -24,17 +24,18 @@ class RegisterStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'         => ['required', 'string'],
-            'address'           => ['nullable', 'string'],
+            'full_name'         => ['required', 'string', 'max:255'],
+            'address'           => ['nullable', 'string', 'max:255'],
             'stage'             => ['required'],
             'school'            => ['required'],
             'class'             => ['required'],
-            'total_fee'         => ['required', 'integer'],
-            'discount'          => ['nullable'],
-            'parent_name'       => ['required', 'string'],
+            'total_fee'         => ['required', 'max_digits:15'],
+            'discount'          => ['nullable', 'max_digits:3'],
+            'parent_name'       => ['required', 'string', 'max:255'],
             'phone_one'         => [
                 'required',
                 'string',
+                'max_digits:15',
                 'unique:fathers,phone_one',
                 'unique:fathers,phone_two',
                 'unique:employees,phone_number',
@@ -42,14 +43,15 @@ class RegisterStudentRequest extends FormRequest
             'phone_two'         => [
                 'nullable',
                 'string',
+                'max_digits:15',
                 'unique:fathers,phone_one',
                 'unique:fathers,phone_two',
                 'unique:employees,phone_number'
             ],
-            'registration_fee'  => ['required', 'integer'],
-            'paid_amount'       => ['required', 'integer'],
+            'registration_fee'  => ['required', 'max_digits:15'],
+            'paid_amount'       => ['required', 'max_digits:15'],
             'payment_method'    => ['nullable', 'string'],
-            'transaction_id'    => ['sometimes', new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes', 'max_digits:15', new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
             'payment_date'      => ['nullable'],
         ];
     }
@@ -57,6 +59,7 @@ class RegisterStudentRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'address'           => __('app.address'),
             'full_name'         => __('app.student_full_name'),
             'stage'             => __('app.stage'),
             'class'             => __('app.class'),
