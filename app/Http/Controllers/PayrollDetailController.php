@@ -61,7 +61,7 @@ class PayrollDetailController extends Controller
                     return $query->where('payroll_id', $payroll->id);
                 }),
             ],
-            'amount' => 'required|numeric|min:0.01',
+            'amount' => 'required|numeric|min:0.01|max_digits:15',
             'notes' => 'nullable|string|max:255',
         ]);
 
