@@ -184,12 +184,13 @@ final readonly class PayrollService
                 'employee_id' => 'required|exists:employees,id',
                 'month' => 'required|integer|min:1|max:12',
                 'year' => 'required|integer|min:2000',
-                'basic_salary_snapshot' => 'required|numeric|min:0',
+                'basic_salary_snapshot' => 'required|numeric|min:0|max_digits:15',
                 'payment_status' => 'required|in:Pending,Paid,Failed',
                 'payment_date' => 'nullable',
                 'payment_method'    => ['nullable'],
                 'transaction_id'    =>  [
                     'sometimes',
+                    'max_digits:15',
                     $request->transaction_id != null ? new RequiredIfBankak() : '',
                     $request->transaction_id == null && $payroll->transaction_id == null && $request->payment_method == 'بنكك' ? new RequiredIfBankak() : '',
                     $request->transaction_id != $payroll->transaction_id ? new UniqueInTables(
