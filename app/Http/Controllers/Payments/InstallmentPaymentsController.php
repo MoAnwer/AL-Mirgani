@@ -68,13 +68,14 @@ class InstallmentPaymentsController extends Controller
         try {
 
             $data = $request->validate([
-                'paid_amount'       => 'required',
+                'paid_amount'       => 'required|max_digits:15',
                 'payment_method'    => 'nullable',
                 'payment_date'      => 'required|date',
-                'statement'         => 'required',
+                'statement'         => 'required|max:255',
                 'student_id'        => 'required',
                 'transaction_id'    =>  [
                     'sometimes',
+                    'max_digits:15',
                     $request->transaction_id != null ? new RequiredIfBankak() : '',
                     $request->transaction_id == null && $payment->transaction_id == null && $request->payment_method == 'بنكك' ? new RequiredIfBankak() : '',
                     $request->transaction_id != $payment->transaction_id ? 
