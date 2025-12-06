@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Employees;
+namespace App\Http\Controllers\Payrolls;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
+use App\Http\Requests\Payroll\StorePayrollRequest;
 use App\Models\EmployeePayroll;
 use App\Services\Payroll\PayrollService;
 use Illuminate\Http\Request;
 
-class EmployeePayrollController extends Controller
+class PayrollController extends Controller
 {
 
     public function __construct(private readonly PayrollService $payrollService) {}
@@ -41,7 +41,7 @@ class EmployeePayrollController extends Controller
      * 
      * @return View
      */
-    public function store(StoreEmployeePayrollRequest $request)
+    public function store(StorePayrollRequest $request)
     {
         return $this->payrollService->store($request);
     }
