@@ -4,7 +4,7 @@ namespace App\Services\Payroll;
 
 use App\Enums\PaymentStatusEnum;
 use App\Events\Expense\PayrollPaid;
-use App\Http\Requests\Employee\StoreEmployeePayrollRequest;
+use App\Http\Requests\Payroll\StorePayrollRequest;
 use App\Models\{Employee, EmployeePayroll};
 use App\Rules\{RequiredIfBankak, UniqueInTables};
 use Illuminate\Http\Request;
@@ -81,7 +81,7 @@ final readonly class PayrollService
      * 
      * @return View
      */
-    public function store(StoreEmployeePayrollRequest $request)
+    public function store(StorePayrollRequest $request)
     {
         $request->validated();
 

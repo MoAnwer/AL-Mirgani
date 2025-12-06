@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PayrollItemController;
+use App\Http\Controllers\Payrolls\PayrollItemController;
 
 
 Route::name('payroll_items.')->prefix('payroll-items')->controller(PayrollItemController::class)->group(function()  {

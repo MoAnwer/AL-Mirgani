@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Employees\EmployeePayrollController;
+use App\Http\Controllers\Payrolls\PayrollController;
 use App\Http\Controllers\Reports\PayrollSummaryReportController;
 
 Route::name('payroll.')
     ->prefix('payrolls')
-    ->controller(EmployeePayrollController::class)
+    ->controller(PayrollController::class)
     ->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('/create', 'create')->name('create');

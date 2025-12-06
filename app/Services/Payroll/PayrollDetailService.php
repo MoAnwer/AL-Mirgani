@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services\Payroll;
 
+use App\Http\Requests\Payroll\StorePayrollDetail;
 use App\Models\EmployeePayroll;
 use App\Models\PayrollDetail;
 use App\Models\PayrollItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 
-class PayrollDetailController extends Controller
+final readonly class PayrollDetailService
 {
-
     function __construct(
-        private PayrollItem $payrollItem,
-        private PayrollDetail $payrollDetail,
+        private readonly PayrollItem $payrollItem,
+        private readonly PayrollDetail $payrollDetail,
     ) {}
 
 
-    /**
-     * Show the form for creating a new payroll detail (line item).
-     */
     public function create(EmployeePayroll $payroll)
     {
         $payroll->load('employee');
@@ -38,35 +34,24 @@ class PayrollDetailController extends Controller
             abort(404);
         }
 
-        $detail->load('item'); 
-        
+        $detail->load('item');
+
         $items = $this->payrollItem->orderBy('name')->get();
 
         return view('payroll.details.edit-payroll-details', compact('payroll', 'detail', 'items'));
     }
 
-    
+
     /**
      * Store a newly created payroll detail in storage and update the parent summary.
      */
-    public function store(Request $request, EmployeePayroll $payroll)
+    public function store(StorePayrollDetail $request, EmployeePayroll $payroll)
     {
-  
-        $request->validate([
-            'item_id' => [
-                'required',
-                'exists:payroll_items,id',
-                // Ensure this item hasn't already been added to this specific payroll
-                Rule::unique('payroll_details')->where(function ($query) use ($payroll) {
-                    return $query->where('payroll_id', $payroll->id);
-                }),
-            ],
-            'amount' => 'required|numeric|min:0.01|max_digits:15',
-            'notes' => 'nullable|string|max:255',
-        ]);
+
+        $request->validated();
 
         DB::transaction(function () use ($request, $payroll) {
-            
+
             $this->payrollDetail->create([
                 'payroll_id' => $payroll->id,
                 'item_id' => $request->item_id,
@@ -82,20 +67,19 @@ class PayrollDetailController extends Controller
     }
 
 
-
     public function update(Request $request, EmployeePayroll $payroll, PayrollDetail $detail)
     {
         $request->validate([
             'amount' => 'required|numeric|min:0',
             'notes' => 'nullable|string|max:255',
         ]);
-        
+
         if ($detail->payroll_id !== $payroll->id) {
             abort(403);
         }
 
         DB::transaction(function () use ($request, $payroll, $detail) {
-            
+
             $detail->update([
                 'amount' => $request->amount,
                 'notes' => $request->notes,
@@ -106,7 +90,7 @@ class PayrollDetailController extends Controller
 
         return to_route('payroll.show', $payroll->id)->with('message', __('app.update_successful', ['attribute' => __('app.detail')]));
     }
-    
+
     /**
      * Helper function to recalculate and save the totals in the parent payroll record.
      */
@@ -116,13 +100,13 @@ class PayrollDetailController extends Controller
         $payroll->load('details.item');
 
         $totalVariableAdditions = $payroll->details->where('item.type', 'Addition')->sum('amount');
-            
+
         $totalDeductions = $payroll->details->where('item.type', 'Deduction')->sum('amount');
 
         // Calculate new net pay
         $grossSalary = $payroll->basic_salary_snapshot + $payroll->total_fixed_allowances + $totalVariableAdditions;
         $netSalary = $grossSalary - $totalDeductions;
-        
+
         // Update the parent record
         $payroll->update([
             'total_variable_additions' => $totalVariableAdditions,
