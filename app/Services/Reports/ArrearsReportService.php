@@ -45,7 +45,7 @@ final class ArrearsReportService
                 $q->whereDate('due_date', $filters['date']);
             })
             ->withSum('payments as paid_amount', 'paid_amount')
-            ->with(['student.class', 'payments', 'student.school:id,name'])
+            ->with(['student:id,full_name,school_id,class_id', 'student.class:id,name', 'payments', 'student.school:id,name'])
             ->where(function ($q) {
                 $q->whereRaw('
                     installments.amount > (
@@ -87,8 +87,11 @@ final class ArrearsReportService
     private function getOverdueInstallments($day, $overdueInstallments, &$reportData)
     {
         foreach ($overdueInstallments as $installment) {
-            // Paid amount of the installment
-            $amountPaid = $installment->payments->sum('paid_amount');
+
+            // Paid amount of the installment by check if there is receipt
+            $amountPaid = $installment->payments()->whereHas('receipt')->sum('paid_amount');
+
+            // Old way: $amountPaid = $installment->payments->sum('paid_amount');
 
             // Remaining amount
             $balanceDue = $installment->amount - $amountPaid;

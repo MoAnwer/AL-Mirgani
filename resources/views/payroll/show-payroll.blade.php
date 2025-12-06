@@ -40,11 +40,11 @@
                                         <div class="row g-5"> 
                                             
                                             <div class="col-md-6 pe-md-4 border-end border-light"> 
-                                                <h5 class="text-success border-bottom pb-3 mb-4 fw-bold"><i class='bx bxs-up-arrow-circle me-2'></i>@lang('app.dues')</h5>
+                                                <h5 class="text-success border-bottom pb-3 mb-4 fw-bold"><i class='bx bxs-up-arrow-circle me-2'></i>@lang('app.additions')</h5>
                                                 <table class="table table-sm table-borderless mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="text-muted ps-0">@lang('app.basic_salary')</td>
+                                                            <td class="text-muted ps-0">@lang('app.salary')</td>
                                                             <td class="text-end fw-bold text-dark">{{ number_format($payroll->basic_salary_snapshot) }}</td>
                                                         </tr>
                                                         @foreach($additions as $detail)
@@ -61,8 +61,6 @@
                                                                     </a>
                                                                 </td>
                                                             @endif
-
-                                 
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

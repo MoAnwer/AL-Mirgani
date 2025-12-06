@@ -26,7 +26,7 @@ class PaymentEarning
             'payment_method' => $event->payment->payment_method,
             'transaction_id' => $event->payment?->transaction_id ?? '',
             'statement' => $event->payment->statement,
-            'date'      => now()
+            'date'      => $event->payment->payment_date
         ]);
 
         Notification::send(User::all(), new EarningNotification($earning));

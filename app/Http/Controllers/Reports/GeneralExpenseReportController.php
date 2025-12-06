@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Reports;
 
 use Carbon\Carbon;
-use App\Enums\ExpenseCategoryEnum;
 use App\Http\Controllers\Controller;
 use App\Models\{Expense, ExpenseCategory, School};
 use Illuminate\Http\Request;
@@ -13,8 +12,7 @@ class GeneralExpenseReportController extends Controller
 
     function __construct(private Expense $expense, private School $school, private ExpenseCategory $expense_category) {}
 
-
-   /**
+    /**
      * Calculate general expenses report by start date, end date, and school filters
      *
      * @param Request $request
@@ -23,24 +21,20 @@ class GeneralExpenseReportController extends Controller
     public function generateGeneralExpenseSummary(Request $request)
     {
         $schoolId   = $request->input('school_id');
-        $startDate  = $request->input('start_date');
-        $endDate    = $request->input('end_date');     
-        $category   = $request->input('category_id');  
-        $paymentMethod   = $request->input('payment_method');  
+        $startDate  = $request->input('start_date') ?? date('Y-m-d', strtotime(now()->startOfYear()->toString()));
+        $endDate    = $request->input('end_date')  ??  date('Y-m-d', strtotime(now()->endOfYear()->toString()));
+        $category   = $request->input('category_id');
+        $paymentMethod   = $request->input('payment_method');
 
         $query = $this->expense
-                        ->query()
-                        ->when($schoolId,  fn($q, $school_id)     => $q->where('school_id', $school_id))
-                        ->when($startDate, fn($q, $startDate)     => $q->whereDate('date', '>=', Carbon::parse($startDate)->toDateString()))
-                        ->when($endDate,   fn($q, $endDate)       => $q->whereDate('date', '<=', Carbon::parse($endDate)->toDateString()))
-                        ->when($paymentMethod, fn($q, $paymentMethod) => $q->where('payment_method', $paymentMethod))
-                        ->when($category,  
-                            function($q) use ($category) {
-                                $q->whereHas('category', fn($q)   => $q->where('category_id', $category));
-                            }
-                        );
+            ->query()
+            ->when($schoolId,  fn($q, $school_id)     => $q->where('school_id', $school_id))
+            ->when($startDate, fn($q, $startDate)     => $q->whereDate('date', '>=', Carbon::parse($startDate)->toDateString()))
+            ->when($endDate,   fn($q, $endDate)       => $q->whereDate('date', '<=', Carbon::parse($endDate)->toDateString()))
+            ->when($paymentMethod, fn($q, $paymentMethod) => $q->where('payment_method', $paymentMethod))
+            ->when($category, fn ($q) => $q->whereHas('category', fn($q) => $q->where('category_id', $category)) );
 
-        
+
         $totalExpenses = $query->sum('amount');
 
         $reportData = [
@@ -53,6 +47,8 @@ class GeneralExpenseReportController extends Controller
 
         $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
 
-        return view('reports.general_expense_summary', compact('reportData', 'schoolId', 'startDate', 'endDate', 'schools', 'categories', 'paymentMethods'));
+        $period  = " {$startDate} " . __('app.to') . " {$endDate}";
+
+        return view('reports.general_expense_summary', compact('reportData', 'schoolId', 'startDate', 'endDate', 'schools', 'categories', 'paymentMethods', 'period', 'category'));
     }
 }

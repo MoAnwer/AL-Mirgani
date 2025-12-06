@@ -49,6 +49,7 @@ class NotificationController extends Controller
 
         if (is_null($notification->read_at)) {
             $notification->markAsRead();
+            $notification->delete();
         }
 
         return response()->json(['message' => 'Notification marked as read successfully'], 200);

@@ -118,13 +118,22 @@ class StudentService
     public function updateStudent(UpdateStudentRequest $request, Student $student) 
     {
         try {
+            
+            $request->validated();
 
             $totalPaymentsPaid = $student->totalPaid();
 
             // To check the sended total_fee grater than total installments payments 
             if ($totalPaymentsPaid > $request->input('total_fee')) return back()->withErrors(['full_name' => __('app.amount_less_then_message', ['amount' => $totalPaymentsPaid])]);
 
-            $student->update($request->validated());
+
+            $student->father()->update([
+                'phone_one'   => $request->input('phone_one'), 
+                'phone_two'   => $request->input('phone_two'), 
+                'full_name'   => $request->input('parent_full_name')
+            ]);
+
+            $student->update($request->except(['phone_one', 'phone_two', 'parent_full_name']));
 
             return back()->with('message', __('app.update_successful', [
                 'attribute' => __('app.student')
@@ -180,6 +189,7 @@ class StudentService
             'countByClass' => $this->student
                                     ->select('class_id', 'classes.name as name', DB::raw('COUNT(students.id) AS count'))
                                     ->rightJoin('classes', 'classes.id', 'students.class_id')
+                                    ->orderByDesc('count')
                                     ->groupBy('class_id', 'name')
                                     ->get(),
         ];

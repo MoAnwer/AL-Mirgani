@@ -40,11 +40,11 @@
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label class="form-label mb-3">@lang('app.salary')</label>
-                                            <input type="number" class="form-control"  name="salary" value="{{ old('salary') }}"/>
+                                            <input type="number" min="0"  class="form-control"  name="salary" value="{{ old('salary') }}"/>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label class="form-label mb-3">@lang('app.hire_date')</label>
-                                            <input type="date" class="form-control"  name="hire_date" value="{{ old('hire_date') }}"/>
+                                            <input type="date" class="form-control" max="{{ date('Y-m-d') }}" name="hire_date" value="{{ old('hire_date') }}"/>
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label class="form-label mb-3">@lang('app.department')</label>

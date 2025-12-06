@@ -17,36 +17,25 @@ final readonly class EarningService
 
     /**
      * Earnings list with search filters
+     * 
+     * @return View
      */
     public function earningsList()
     {
         $filters = [
             'school_id'   => request()->query('school_id'),
             'date'        => request()->query('date'),
-            'payment_method' => request()->query('payment_method')
+            'payment_method' => request()->query('payment_method'),
+            'transaction_id' => request()->query('transaction_id'),
         ];
 
         $earnings = $this->earning
             ->query()
             ->with('school:id,name')
-            ->when(
-                !empty($filters['school_id']),
-                function ($q) use ($filters) {
-                    $q->where('school_id', $filters['school_id']);
-                }
-            )
-            ->when(
-                !empty($filters['date']),
-                function ($q) use ($filters) {
-                    $q->whereDate('date', $filters['date']);
-                }
-            )
-            ->when(
-                !empty($filters['payment_method']),
-                function ($q) use ($filters) {
-                    $q->where('payment_method', $filters['payment_method']);
-                }
-            )
+            ->when($filters['school_id'], fn ($q) => $q->where('school_id', $filters['school_id']))
+            ->when($filters['date'], fn($q) => $q->whereDate('date', $filters['date']))
+            ->when($filters['payment_method'], fn ($q) => $q->where('payment_method', $filters['payment_method']))
+            ->when($filters['transaction_id'], fn($q) => $q->where('transaction_id', $filters['transaction_id']))
             ->latest()
             ->paginate(15);
 

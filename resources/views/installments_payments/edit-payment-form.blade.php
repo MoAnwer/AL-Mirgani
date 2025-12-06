@@ -1,4 +1,4 @@
-<x-header title="{{ __('app.create', ['attribute' => __('app.payment')]) }}" />
+<x-header title="{{ __('app.edit', ['attribute' => __('app.payment')]) }}" />
 
 <x-LayoutWrapper>
     <x-LayoutContainer>
@@ -11,7 +11,7 @@
                         <x-alert type="message" /> 
                         <x-alert type="error" /> 
                         <h5 class="card-header"> 
-                            {{ __('app.edit', ['attribute' => __('app.payment')]) .' - '. __('app.the_installment') . ' ' . $payment->installment->number . ' - ' . $payment->installment->student->full_name}} 
+                            {{ __('app.edit') .' '. __('app.payment') .' '. __('app.the_installment') . ' ' . $payment->installment->number . ' - ' . $payment->installment->student->full_name}} 
                         </h5>
                         <hr />
                         @if($errors->any())
@@ -29,13 +29,13 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                         <label class="mb-3">@lang('app.paid_amount', ['attribute' => __('app.the_installment')])</label>
                                             <div class="input-group">
-                                                <input type="number" name="paid_amount" class="form-control" value="{{ $payment->paid_amount ?? old('paid_amount ') }}"/>
+                                                <input type="number" min="0"  name="paid_amount" class="form-control" value="{{ $payment->paid_amount ?? old('paid_amount ') }}"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label class="mb-3">@lang('app.payment_method')</label>
                                                 <select class="form-select" name="payment_method">
                                                 <option value="{{ null }}" selected>--</option>
@@ -44,10 +44,21 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4">
+                                         <div class="col-md-3">
+                                            <label class="form-label mb-2">@lang('app.process_number')</label>
+                                            <div class="input-group">
+                                                <input type="number" min="0"  class="@error('transaction_id') is-invalid @enderror form-control" name="transaction_id" placeholder="{{ $payment->transaction_id }}" />
+                                            </div>
+                                            @error('transaction_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            <small class="text-muted">@lang('app.edit_do_not_change_this_value')</small>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
                                             <label class="mb-3">@lang('app.payment_date')</label>
                                             <div class="input-group">
-                                                <input type="date" name="payment_date" class="form-control" value="{{ $payment->payment_date ?? old('payment_date') }}"/>
+                                                <input type="date" name="payment_date" max="{{ date("Y-m-d") }}" class="form-control" value="{{ $payment->payment_date ?? old('payment_date') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

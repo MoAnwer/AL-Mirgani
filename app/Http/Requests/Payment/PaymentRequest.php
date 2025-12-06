@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Payment;
 
+use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,12 +24,12 @@ class PaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'paid_amount'       => 'required',
+            'paid_amount'       => 'required|max_digits:15',
             'payment_method'    => 'required',
             'payment_date'      => 'required|date',
-            'statement'         => 'required',
+            'statement'         => 'required|max:255',
             'student_id'        => 'required',
-            'transaction_id'    => ['nullable',  new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
+            'transaction_id'    => ['sometimes', 'max_digits:15',  new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
         ];
     }
 

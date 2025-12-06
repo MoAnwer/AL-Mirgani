@@ -31,16 +31,16 @@
                                        @lang('app.period_year_month')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        @lang('app.total_basic_salary')
+                                        @lang('app.total') @lang('app.salary')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        @lang('app.total_due')
+                                        @lang('app.total')  @lang('expenses.حوافز مالية')
                                     </th>
                                     <th class="py-5 fw-bold">
                                        @lang('app.total_deductions')
                                     </th>
                                     <th class="py-5 fw-bold">
-                                        @lang('app.total_paid_amount')
+                                        @lang('app.total_due_amount')
                                     </th>
                                 </tr>
                             </x-table.thead>
@@ -61,7 +61,7 @@
                                             {{ number_format($data['basic_salary']) }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ number_format($data['basic_salary']  + $data['total_allowances'] + $data['total_additions'])}}
+                                            {{ number_format($data['total_allowances'] + $data['total_additions'])}}
                                         </td>
                                         <td class="px-6 py4">
                                             {{ number_format($data['total_deductions']) }}
@@ -72,7 +72,7 @@
                                     </tr>
                                     @php
                                         $grandTotalBasic += (float) str_replace(['.', ','], '', $data['basic_salary']);
-                                        $grandTotalAllowances += (float) str_replace(['.', ','], '', $data['basic_salary']  + $data['total_allowances'] + $data['total_additions']);
+                                        $grandTotalAllowances += (float) str_replace(['.', ','], '', $data['total_allowances'] + $data['total_additions']);
                                         $grandTotalDeductions += (float) str_replace(['.', ','], '', $data['total_deductions']);
                                         $grandTotalNet += (float) str_replace(['.', ','], '', $data['net_paid_amount']);
                                     @endphp

@@ -27,7 +27,7 @@
                                 <div class="col-4">
                                     <label class="mb-1">@lang('app.date')</label>
                                     <div class="input-group">
-                                        <input type="date" onchange="this.form.submit()" class="form-control" name="date" value="{{ request()->query('date') }}" />
+                                        <input type="date" onchange="this.form.submit()" class="form-control" max="{{ date('Y-m-d') }}" name="date" value="{{ request()->query('date') }}" />
                                     </div>
                                 </div>      
                                 

@@ -46,44 +46,62 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                         <label class="mb-3">@lang('app.student_full_name')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  name="full_name" value="{{ $student->full_name }}" />
+                                                <input readonly type="text" class="form-control"  name="full_name" value="{{ $student->full_name }}" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                         <label class="mb-3">@lang('app.address')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  name="address" value="{{ $student->address }}"/>
+                                                <input readonly type="text" class="form-control"  name="address" value="{{ $student->address }}"/>
                                             </div>
                                         </div>
-                                         <div class="col-md-6 mt-3">
+                                         <div class="col-md-4">
                                             <label class="mb-3">@lang('app.class')</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  name="address" value="{{ __("classes.{$student->class->name}") }}"/>
+                                                <input readonly type="text" class="form-control"  name="address" value="{{ __("classes.{$student->class->name}") }}"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.stage')</label>
                                            <div class="input-group">
-                                                <input type="text" class="form-control"  name="stage" value="{{ __("classes.{$student->stage}") }}"/>
+                                                <input readonly type="text" class="form-control"  name="stage" value="{{ __("classes.{$student->stage}") }}"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.school')</label>
                                            <div class="input-group">
-                                                <input type="text" class="form-control"  name="school" value="{{ $student->school->name }}"/>
+                                                <input readonly type="text" class="form-control"  name="school" value="{{ $student->school->name }}"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-4 mt-3">
                                         <label class="mb-3">@lang('app.total_fee')</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
+                                                <input readonly type="number" min="0"  class="form-control"  name="total_fee" value="{{ $student->total_fee }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-3">
+                                        <label class="mb-3">@lang('app.phone_one')</label>
+                                            <div class="input-group">
+                                                <input readonly type="number" min="0"  class="form-control"  name="phone_one" value="{{ $student->father->phone_one }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-3">
+                                        <label class="mb-3">@lang('app.phone_two')</label>
+                                            <div class="input-group">
+                                                <input readonly type="number" min="0"  class="form-control"  name="phone_two" value="{{ $student->father->phone_two }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-3">
+                                        <label class="mb-3">@lang('app.parent_full_name')</label>
+                                            <div class="input-group">
+                                                <input readonly type="text" class="form-control"  name="parent_full_name" value="{{ $student->father->full_name }}"/>
                                             </div>
                                         </div>
                                         </div>
-                                        <a href="{{ route('students.edit', $student) }}" class="mt-3 btn btn-success">
+                                        <a href="{{ route('students.edit', $student) }}" class="mt-5 btn btn-success">
                                             <i class="icon-base bx bx-edit-alt me-1"></i>
                                             @lang('app.edit')
                                         </a>

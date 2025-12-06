@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payroll_items', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();             
-            $table->enum('type', ['Addition', 'Deduction', 'Tax', 'Benefit']);            
+            $table->enum('type', ['Addition', 'Deduction']);            
             $table->boolean('is_fixed')->default(false)->comment('Is this item a fixed monthly amount?');             
             $table->decimal('default_value', 10, 2)->nullable();
             $table->timestamps();

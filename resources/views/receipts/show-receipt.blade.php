@@ -79,6 +79,16 @@
                         <th class="px-2">@lang('app.payment_method')</th>
                         <td>{{ $receipt->installmentPayment->payment_method ?? __('app.cash') }}</td>
                     </tr>
+                    @if($receipt->installmentPayment->payment_method == "بنكك")
+                        <tr>
+                            <th class="px-2">@lang('app.process_number')</th>
+                            <td>{{ $receipt->installmentPayment->transaction_id ?? __('app.not_specified') }}</td>
+                        </tr>
+                    @endif
+                    <tr>
+                        <th class="px-2">@lang('app.payment_date')</th>
+                        <td>{{ $receipt->installmentPayment->payment_date ?? __('app.not_specified') }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

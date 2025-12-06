@@ -22,8 +22,8 @@ class StoreInstallmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number'        =>   ['required'],
-            'amount'        =>   ['required'],
+            'number'        =>   ['required', 'max:255'],
+            'amount'        =>   ['required', 'max_digits:15'],
             'due_date'      =>   ['required'],
             'student_id'    =>   ['required']
         ];

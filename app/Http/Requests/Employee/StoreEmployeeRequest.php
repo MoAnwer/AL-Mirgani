@@ -22,10 +22,10 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'     => 'required',
-            'phone_number'  => 'required|unique:employees,phone_number',
+            'full_name'     => 'required|max:255',
+            'phone_number'  => 'required|max:255|unique:employees,phone_number|unique:fathers,phone_one|unique:fathers,phone_two',
             'hire_date'     => 'sometimes',
-            'salary'        => 'required',
+            'salary'        => 'required|max_digits:15',
             'department'    => 'required'
         ];
     }

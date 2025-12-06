@@ -31,7 +31,7 @@
                                         <div class="col-md-3">
                                         <label class="mb-3">@lang('app.paid_amount', ['attribute' => __('app.the_installment')])</label>
                                             <div class="input-group">
-                                                <input type="number" name="paid_amount" class="form-control" value="{{ old('paid_amount') }}"/>
+                                                <input type="number" min="0"  name="paid_amount" class="form-control" value="{{ old('paid_amount') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -46,13 +46,13 @@
                                         <div class="col-md-3">
                                         <label class="mb-3">@lang('app.process_number', ['attribute' => __('app.the_installment')])</label>
                                             <div class="input-group">
-                                                <input type="number" name="transaction_id" class="form-control" value="{{ old('transaction_id') }}"/>
+                                                <input type="number" min="0"  name="transaction_id" class="form-control" value="{{ old('transaction_id') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <label class="mb-3">@lang('app.payment_date')</label>
                                             <div class="input-group">
-                                                <input type="date" name="payment_date" class="form-control" value="{{ old('payment_date') }}"/>
+                                                <input type="date" name="payment_date" max="{{ date('Y-m-d') }}" class="form-control" value="{{ old('payment_date') }}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

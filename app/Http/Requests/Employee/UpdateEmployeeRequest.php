@@ -22,10 +22,10 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'     => 'required',
-            'phone_number'  => 'required',
+            'full_name'     => 'required|max:255',
+            'phone_number'  => 'required|max_digits:15',
             'hire_date'     => 'sometimes',
-            'salary'        => 'required',
+            'salary'        => 'required|max_digits:15',
             'department'    => 'required'
         ];
     }

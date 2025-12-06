@@ -32,7 +32,7 @@
                                             <div class="col-md-4">
                                                 <label class="form-label mb-2">@lang('app.amount')</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" name="amount" value="{{ old('amount') }}" />
+                                                    <input type="number" min="0"  class="form-control" name="amount" value="{{ old('amount') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -67,13 +67,13 @@
                                              <div class="col-md-4 mt-4">
                                                 <label class="form-label mb-2">@lang('app.process_number')</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
+                                                    <input type="number" min="0"  class="form-control" name="transaction_id" value="{{ old('transaction_id') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4 mt-4">
                                                 <label class="form-label mb-2">@lang('app.date')</label>
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control" name="date" value="{{ old('date') }}" />
+                                                    <input type="date" class="form-control" name="date" max="{{ date('Y-m-d') }}" value="{{ old('date') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-5">
@@ -85,6 +85,7 @@
                                             <input type="hidden" value="{{ auth()->id() }}" name="user_id" />
                                         </div>
                                         <button type="submit" class=" mt-4 btn btn-primary">@lang('app.save')</button>
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary mt-4">@lang('app.back')</a>
                                     </form>
                                 </div>
                             </div>

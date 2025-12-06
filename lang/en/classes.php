@@ -10,6 +10,9 @@ return [
     "الاول المتوسط" => 'middle one',
     "الثاني المتوسط" => 'middle two',
     "الثالث المتوسط" => 'middle three',
+    "الاول الثانوي" => "secondary one",
+    "الثاني الثانوي" => "secondary two",
+    "الثالث الثانوي" => "secondary three",
 
     // Stages
     "الإبتدائي" =>"Basic",
