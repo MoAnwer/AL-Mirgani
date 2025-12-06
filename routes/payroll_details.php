@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\PayrollDetailController;
+use App\Http\Controllers\Payrolls\PayrollDetailController;
 use App\Http\Middleware\EmployeeIsExists;
 
 Route::middleware(EmployeeIsExists::class)->prefix('payroll/{payroll}/details')->name('payroll.details.')->group(function () {
