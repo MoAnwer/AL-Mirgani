@@ -65,7 +65,7 @@ Contains the core business logic for payroll management.
     *   **Deletion**: Force deletes payroll and associated details.
 
 ### 4. Form Request
-**File**: `app/Http/Requests/Employee/StoreEmployeePayrollRequest.php`
+**File**: `app/Http/Requests/Payroll/StorePayrollRequest.php`
 
 Handles validation for creating payrolls.
 
@@ -90,7 +90,7 @@ Listens for the `PayrollPaid` event, which is fired when a payroll is marked as 
 
 ### 1. Creating a Payroll
 1.  User submits form with employee, month, year, and payment details.
-2.  `StoreEmployeePayrollRequest` validates uniqueness and transaction requirements.
+2.  `StorePayrollRequest` validates uniqueness and transaction requirements.
 3.  `PayrollService::store` creates the record.
     *   If `payment_method` is "Bankak", `transaction_id` is stored.
 4.  If `payment_status` is 'Paid', `PayrollPaid` event is fired.
