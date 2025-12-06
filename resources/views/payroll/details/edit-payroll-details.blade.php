@@ -29,7 +29,7 @@
                             <label for="amount" class="form-label fw-bold">@lang('app.amount')</label>
                             <div class="input-group">
                                 <input type="number" min="0"  name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
-                                       value="{{ old('amount', number_format($detail->amount, 2, '.', '')) }}" step="0.01" required placeholder="500.00">
+                                       value="{{ old('amount', $detail->amount) }}" step="0.01" required placeholder="500.00">
                                 <span class="input-group-text">@lang('app.currency')</span>
                             </div>
                             @error('amount')
