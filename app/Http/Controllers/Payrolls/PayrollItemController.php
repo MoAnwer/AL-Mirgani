@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Payrolls;
 
 use Illuminate\Http\Request;
 use App\Models\PayrollItem; 
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
 class PayrollItemController extends Controller
 {
