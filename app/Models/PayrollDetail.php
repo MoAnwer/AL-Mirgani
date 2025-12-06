@@ -14,12 +14,6 @@ class PayrollDetail extends Model
         'notes',
     ];
 
-    protected function casts(): array {
-        return [
-            'amount' => 'decimal:2',
-        ];
-    } 
-
     public function payroll(): BelongsTo
     {
         return $this->belongsTo(EmployeePayroll::class, 'payroll_id');
