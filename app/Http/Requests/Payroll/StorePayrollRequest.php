@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Employee;
+namespace App\Http\Requests\Payroll;
 
 use App\Rules\RequiredIfBankak;
 use App\Rules\UniqueInTables;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreEmployeePayrollRequest extends FormRequest
+class StorePayrollRequest extends FormRequest
 {
     public function authorize(): bool
     {
