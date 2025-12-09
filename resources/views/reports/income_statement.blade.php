@@ -6,6 +6,7 @@
         <x-nav />
         <x-layout-container>
             <x-container>
+                <x-alert type='error'/>
                 <div class="card px-2 mb-3">
                     <div class="card-header border-bottom py-4 mb-3">
                         <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>

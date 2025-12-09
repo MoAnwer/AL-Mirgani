@@ -312,6 +312,7 @@ return [
     'security_questions_limit_completed'    => 'Max number of questions is 3',
     'payroll_paid_statement'        => "Paid payroll of :employee for month :month/:year" , 
     'pls_select'                    => "Please select :item",
+    'incorrect_data'                =>  'Incorrect data !',
     
     
     // Errors

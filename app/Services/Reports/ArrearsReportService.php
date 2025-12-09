@@ -51,12 +51,12 @@ final class ArrearsReportService
                     installments.amount > (
                         SELECT SUM(installment_payments.paid_amount) 
                         FROM installment_payments 
-                        WHERE installment_payments.installment_id = installments.id
+                        WHERE installment_payments.installment_id = installments.id AND installment_payments.receipt_number NOT NULL
                     )
                     OR (
                         SELECT SUM(installment_payments.paid_amount) 
                         FROM installment_payments 
-                        WHERE installment_payments.installment_id = installments.id
+                        WHERE installment_payments.installment_id = installments.id AND installment_payments.receipt_number NOT NULL
                     ) IS NULL
                     ');
             })

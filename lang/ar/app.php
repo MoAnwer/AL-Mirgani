@@ -308,6 +308,7 @@ return [
     'security_questions_limit_completed'    => 'العدد الأقصى لأسئلة الأمان 3 اسئلة',
     'payroll_paid_statement'        => "تم دفع مرتب :employee  لشهر  :month/:year" , 
     'pls_select'                    => "الرجاء اختيار :item",
+    'incorrect_data'                =>  'هذه البيانات غير صحيحة',
     
     // Errors
     'error'                         => 'حدث خطا',

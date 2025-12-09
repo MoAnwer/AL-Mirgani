@@ -9,6 +9,7 @@ use App\Notifications\PasswordResetNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\Rules\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -42,7 +43,7 @@ class ForgotPasswordController extends Controller
         } catch (\Throwable $th) {
             report($th);
 
-            return back()->with('error', __('app.error') . ' :' . $th->getMessage());
+            return back()->with('error', __('app.incorrect_data'));
         }
     }
 
@@ -84,7 +85,7 @@ class ForgotPasswordController extends Controller
 
                 $check = SecurityQuestion::whereHas('user', fn($q) => $q->where('username', $username))->where('answer', $data['answer'])->get();
 
-                if (null != $check) {
+                if ($check->isNotEmpty()) {
 
                     return to_route('auth.forgot_password.reset_password_page');
                 } else {
@@ -135,9 +136,9 @@ class ForgotPasswordController extends Controller
             try {
 
                 $data = $request->validate([
-                    'password' => 'required|min:6'
+                    'password' => ['required', Password::min(6)->numbers()->symbols()]
                 ], [
-                    'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')])
+                    'password.min'  => __('validation.min.numeric', ['min' => 6, 'attribute' => __('app.password')]),
                 ]);
 
                 $user->forceFill([

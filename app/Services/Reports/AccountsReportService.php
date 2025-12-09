@@ -21,52 +21,67 @@ final readonly class AccountsReportService
      **/
     public function report(Request $request)
     {
-        $targetDate = $request->query('date') ?? today()->format('Y-m-d');
+         try {
 
-        $school_id = $request->query('school_id') ?? null;
+            $validated = $request->validate([
+                'date' => 'nullable|date',
+                'school_id' => 'nullable|integer|exists:schools,id',
+                'payment_method' => 'nullable|in:كاش,بنكك',
+            ]);     
 
-        $previousBalance = $this->getPerviousDateAmount($this->earning, $targetDate, $school_id) - $this->getPerviousDateAmount($this->expense, $targetDate, $school_id);
+            $targetDate = $request->query('date') ?? today()->format('Y-m-d');
 
-        $dailyIncomes = $this->getEntity($this->earning, $targetDate, $school_id, 'income');
+            $school_id = $request->query('school_id') ?? null;
 
-        $dailyExpenses = $this->getEntity($this->expense, $targetDate, $school_id, 'expense');
+            $previousBalance = $this->getPerviousDateAmount($this->earning, $targetDate, $school_id) - $this->getPerviousDateAmount($this->expense, $targetDate, $school_id);
 
-        $dailyTransactions = $dailyIncomes->merge($dailyExpenses)->sortBy('created_at');
+            $dailyIncomes = $this->getEntity($this->earning, $targetDate, $school_id, 'income');
 
-        $balance = $previousBalance;
+            $dailyExpenses = $this->getEntity($this->expense, $targetDate, $school_id, 'expense');
 
-        $reportData = [];
+            $dailyTransactions = $dailyIncomes->merge($dailyExpenses)->sortBy('created_at');
 
-        $dailyIncomeTotal = 0;
+            $balance = $previousBalance;
 
-        $dailyExpenseTotal = 0;
+            $reportData = [];
+
+            $dailyIncomeTotal = 0;
+
+            $dailyExpenseTotal = 0;
 
 
-        foreach ($dailyTransactions as $transaction) {
-            if ($transaction['type'] === 'income') {
-                $balance += $transaction['amount'];
-                $dailyIncomeTotal += $transaction['amount'];
-            } else {
-                $balance -= $transaction['amount'];
-                $dailyExpenseTotal += $transaction['amount'];
+            foreach ($dailyTransactions as $transaction) {
+                if ($transaction['type'] === 'income') {
+                    $balance += $transaction['amount'];
+                    $dailyIncomeTotal += $transaction['amount'];
+                } else {
+                    $balance -= $transaction['amount'];
+                    $dailyExpenseTotal += $transaction['amount'];
+                }
+
+                $reportData[] = [
+                    'date' => date('Y-m-d', strtotime($transaction['date'])),
+                    'statement' => $transaction['statement'],
+                    'type' => $transaction['type'],
+                    'amount' => $transaction['amount'],
+                    'running_balance' => $balance,
+                ];
             }
 
-            $reportData[] = [
-                'date' => date('Y-m-d', strtotime($transaction['date'])),
-                'statement' => $transaction['statement'],
-                'type' => $transaction['type'],
-                'amount' => $transaction['amount'],
-                'running_balance' => $balance,
-            ];
+            $finalDailyBalance = $balance;
+
+            $schools = $this->school->pluck('id', 'name');
+
+            $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
+
+            return view('accounts.daily_report', compact('paymentMethods', 'targetDate', 'previousBalance', 'reportData', 'dailyIncomeTotal', 'dailyExpenseTotal', 'finalDailyBalance', 'schools'));
+
+        } catch (\Throwable $th) {
+            
+            return back()->withErrors([
+                'date' => __('app.incorrect_data')
+            ]);
         }
-
-        $finalDailyBalance = $balance;
-
-        $schools = $this->school->pluck('id', 'name');
-
-        $paymentMethods = ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')];
-
-        return view('accounts.daily_report', compact('paymentMethods', 'targetDate', 'previousBalance', 'reportData', 'dailyIncomeTotal', 'dailyExpenseTotal', 'finalDailyBalance', 'schools'));
     }
 
 

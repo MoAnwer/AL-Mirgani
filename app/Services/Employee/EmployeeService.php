@@ -50,7 +50,7 @@ final readonly class EmployeeService
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.employee')]));
         } catch (\Throwable $th) {
             report($th);
-            return back()->with('error', __('app.error') .' :'. $th->getMessage());
+            return back()->with('error', __('app.error'));
         }
     }
 
@@ -87,7 +87,7 @@ final readonly class EmployeeService
 
             report($th);
 
-            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
+            return back()->with('error', __('app.error'));
         }
     }
 
@@ -118,7 +118,7 @@ final readonly class EmployeeService
 
             report($th);
 
-            return back()->with('error', __('app.error') .' : '. $th->getMessage()); 
+            return back()->with('error', __('app.error'));
         }
     }
 }

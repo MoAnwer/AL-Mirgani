@@ -45,7 +45,7 @@ class InstallmentPaymentsController extends Controller
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
         } catch (\Throwable $th) {
             report($th);
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', __('app.error'));
         }
     }
 
@@ -102,7 +102,7 @@ class InstallmentPaymentsController extends Controller
             return redirect()->back()->with('message', __('app.create_successful', ['attribute' => __('app.payment')]));
         } catch (\Throwable $th) {
             report($th);
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', __('app.error'));
         }
     }
 

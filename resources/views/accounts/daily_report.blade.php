@@ -8,6 +8,15 @@
             <x-nav />
             <x-ContentWrapper>
                 <x-container>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        </div>
+                    @endif
                     <div class="card text-center mb-2"> 
                         <div class="card-header border-bottom py-4">
                             <h5 class="mb-0 text-start">{{ __('app.filters') }}</h5>
