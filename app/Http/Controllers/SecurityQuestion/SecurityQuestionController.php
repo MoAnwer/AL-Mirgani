@@ -56,6 +56,9 @@ class SecurityQuestionController extends Controller
      */
     public function edit(SecurityQuestion $securityQuestion)
     {
+        if ($securityQuestion->user_id !== auth()->id()) {
+            abort(403);
+        }
         return view('settings.update-security-question', compact('securityQuestion'));
     }
 
@@ -66,6 +69,9 @@ class SecurityQuestionController extends Controller
     {
          try {
 
+            if ($securityQuestion->user_id !== auth()->id()) {
+                abort(403);
+            }
             $data = $request->validate([
                 'question' => 'required|string',
                 'answer' => 'required|string',
@@ -90,6 +96,10 @@ class SecurityQuestionController extends Controller
      */
     public function destroy(SecurityQuestion $securityQuestion)
     {
+        if ($securityQuestion->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         try {
             $securityQuestion->delete();
             return to_route('settings.page')->with('message', __('app.delete_successful', ['attribute' => __('app.question')]));
