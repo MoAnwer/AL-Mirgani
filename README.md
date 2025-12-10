@@ -25,6 +25,7 @@ A comprehensive web-based accounting and management system designed for schools.
     - **Bankak (بنكك)**: Bank transfer with mandatory transaction ID validation.
   - **Transaction ID Validation**: Unique transaction IDs across all financial modules (prevents duplicate entries).
   - **Receipt System**: 
+    - Receipts list show receipts data and student name with search input.
     - Auto-generate timestamped receipt numbers (e.g., `RC-1733745678`).
     - Receipts linked to specific installment payments.
     - Print-ready receipt format.
