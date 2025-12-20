@@ -185,8 +185,8 @@ final readonly class PayrollService
                 'month' => 'required|integer|min:1|max:12',
                 'year' => 'required|integer|min:2000',
                 'basic_salary_snapshot' => 'required|numeric|min:0|max_digits:15',
-                'payment_status' => 'required|in:Pending,Paid,Failed',
-                'payment_date' => 'nullable',
+                'payment_status' => ['required','in:Pending,Paid,Failed'],
+                'payment_date' => ['required_if:payment_status,Paid'],
                 'payment_method'    => ['nullable'],
                 'transaction_id'    =>  [
                     'sometimes',
@@ -198,6 +198,8 @@ final readonly class PayrollService
                         column: 'transaction_id',
                     ) : '',
                 ],
+            ], [
+                'payment_date' => trans('validation.required', ['attribute' => __('app.payment_date')]),
             ]);
 
             // Check if transaction_id is null and payment_date is bankak
