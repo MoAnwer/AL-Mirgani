@@ -86,7 +86,7 @@ class StudentService
         $students = $this->student
                             ->query()
                             ->select('id', 'student_number', 'full_name', 'address', 'stage', 'school_id', 'class_id')
-                            ->with('class', 'school')
+                            ->with('class:id,name', 'school:id,name')
                             ->when(!empty($search), 
                                 function($q) use ($search) {
                                     $q->whereAny(['full_name', 'student_number', 'stage'],  'LIKE', "%$search%");

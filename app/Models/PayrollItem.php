@@ -16,7 +16,6 @@ class PayrollItem extends Model
     protected function casts(): array {
         return [
             'is_fixed' => 'boolean',
-            'default_value' => 'decimal:2',
         ];
     }
 
