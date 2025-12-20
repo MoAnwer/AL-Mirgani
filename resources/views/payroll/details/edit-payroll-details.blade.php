@@ -7,7 +7,7 @@
             <div class="text-center mb-4">
                 <h2 class="text-warning">@lang('app.edit_payroll_detail')</h2>
                 <p class="lead">
-                    @lang('app.employee'): <strong class="text-dark">{{ $payroll->employee->name }}</strong> | 
+                    @lang('app.employee'): <strong class="text-dark">{{ $payroll->employee->full_name }}</strong> | 
                     @lang('app.detail_name'): <strong class="text-dark">{{ $detail->item->name }}</strong>
                 </p>
             </div>
