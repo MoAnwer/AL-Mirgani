@@ -14,7 +14,7 @@
                                 <h4>@lang('app.list', ['attribute' => __('app.the_students')])</h4>
                                 <span class="badge bg-success-subtle text-success border border-success rounded-pill fw-bold">
                                     @lang('app.count_of', ['count' => __('app.the_students')]):
-                                    {{ $students->count() }}
+                                    {{ $students->count('id') }}
                                 </span>
                             </div>
 
