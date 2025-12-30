@@ -203,7 +203,7 @@ A comprehensive web-based accounting and management system designed for schools.
 - **Database**: SQLite 
 - **Frontend**: Blade Templates, and read-to-use themesection template
 - **Security**: CSRF Protection, XSS Prevention, Secure Password Hashing (Bcrypt)
-- **Notification channles**: in-database notification (SQLite)
+- **Notification channels**: in-database notification (SQLite)
 
 ---
 
