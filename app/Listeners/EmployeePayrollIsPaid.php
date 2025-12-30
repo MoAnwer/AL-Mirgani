@@ -25,18 +25,20 @@ class EmployeePayrollIsPaid
         $this->expense->create([
             'amount'      => $event->payroll->net_salary_paid,
             'category_id' => ExpenseCategory::where('name', ExpenseCategoryEnum::SALARIES)->value('id'),
-            'date'        => $event->payroll->payment_date->toDateString(),
+            'date'        => $event->payroll->payment_date?->toDateString() ?? null,
             'statement'   => __('app.payroll_paid_statement', ['employee' => $event->payroll->employee->full_name, 'month' => $event->payroll->month, 'year' => $event->payroll->year]),
             'user_id'     => auth()->id(),
             'payment_method' => $event->payroll->payment_method,
             'transaction_id' => $event->payroll->transaction_id ?? null
         ]);
 
-        Notification::send(User::all(), new PayrollPaidNotification([
-            'employee'  => $event->payroll->employee->full_name,
-            'month'     => $event->payroll->month,
-            'year'      => $event->payroll->year,
-            'method'    => $event->payroll->payment_method
-        ]));
+        User::chunk(100, function($user) use ($event) {
+            Notification::send($user, new PayrollPaidNotification([
+                'employee'  => $event->payroll->employee->full_name,
+                'month'     => $event->payroll->month,
+                'year'      => $event->payroll->year,
+                'method'    => $event->payroll->payment_method
+            ]));
+        });
     }
 }
