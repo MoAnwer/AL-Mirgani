@@ -31,6 +31,8 @@ class RegisterFeeEarning
             'date'      => $event->student->registrationFees->payment_date
         ]);
         
-        Notification::send(User::all(), new EarningNotification($earning));
+        User::chunk(100, function($user) use($earning) {
+            Notification::send($user, new EarningNotification($earning));
+        });
     }
 }
