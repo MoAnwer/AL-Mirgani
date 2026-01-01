@@ -36,17 +36,11 @@ class RegisterStudentRequest extends FormRequest
                 'required',
                 'string',
                 'max_digits:15',
-                'unique:fathers,phone_one',
-                'unique:fathers,phone_two',
-                'unique:employees,phone_number',
             ],
             'phone_two'         => [
                 'nullable',
                 'string',
                 'max_digits:15',
-                'unique:fathers,phone_one',
-                'unique:fathers,phone_two',
-                'unique:employees,phone_number'
             ],
             'registration_fee'  => ['required', 'max_digits:15'],
             'paid_amount'       => ['required', 'max_digits:15'],
