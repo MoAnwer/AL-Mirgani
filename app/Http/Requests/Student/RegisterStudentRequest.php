@@ -46,7 +46,7 @@ class RegisterStudentRequest extends FormRequest
             'paid_amount'       => ['required', 'max_digits:15'],
             'payment_method'    => ['nullable', 'string'],
             'transaction_id'    => ['sometimes', 'max_digits:15', new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
-            'payment_date'      => ['nullable'],
+            'payment_date'      => ['required'],
         ];
     }
 
@@ -63,7 +63,8 @@ class RegisterStudentRequest extends FormRequest
             'registration_fee'  => __('app.registration_fee'),
             'parent_name'       => __('app.parent_full_name'),
             'phone_one'         => __('app.phone_one'),
-            'phone_two'         => __('app.phone_two')
+            'phone_two'         => __('app.phone_two'),
+            'payment_date'      => __('app.payment_date')
         ];
     }
 }
