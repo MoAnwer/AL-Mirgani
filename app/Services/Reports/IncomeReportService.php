@@ -9,9 +9,9 @@ use App\Models\{Earning, Expense, School};
 final readonly class IncomeReportService
 {
     function __construct(
-        private Expense $expense,
-        private Earning $earning,
-        private School $school
+        private readonly Expense $expense,
+        private readonly Earning $earning,
+        private readonly School $school
     ) {}
 
     public function report()
