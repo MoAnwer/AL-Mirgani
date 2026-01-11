@@ -1,0 +1,4 @@
+artisan migrate:fresh 
+artisan key:generate
+artisan optimize:clear
+artisan optimize
