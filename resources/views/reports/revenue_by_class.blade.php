@@ -79,14 +79,14 @@
                         <tr class="table-primary fw-bold">
                             <td class="text-center">@lang('app.total')</td>
                             <td class="text-center">{{ number_format($totalStudents) }}</td>
-                            <td  class="text-center">{{ number_format($classTotalFees, 2) }}</td>
-                            <td class="text-center">{{ number_format($classTotalPaid, 2) }}</td>
+                            <td  class="text-center">{{ number_format($classTotalFees) }}</td>
+                            <td class="text-center">{{ number_format($classTotalPaid) }}</td>
                             
                             <td class="text-center @if ($classBalanceDue > 0) text-danger @else text-success @endif">
-                                {{ number_format($classBalanceDue, 2) }}
+                                {{ number_format($classBalanceDue) }}
                             </td>
                             
-                            <td class="text-center">{{ number_format($classCollectionRate, 2) }}%</td>
+                            <td class="text-center">{{ number_format($classCollectionRate) }}%</td>
                         </tr>
                     </tfoot>
                 </x-table.basic-table>
