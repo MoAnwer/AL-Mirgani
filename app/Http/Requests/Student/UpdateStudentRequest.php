@@ -32,16 +32,10 @@ class UpdateStudentRequest extends FormRequest
             'phone_one'         => [
                 'nullable',
                 'max_digits:15',
-                'unique:fathers,phone_one,' . $this->student->father->id,
-                'unique:fathers,phone_two,' . $this->student->father->id ,
-                'unique:employees,phone_number',
             ],
             'phone_two'         => [
                 'nullable',
                 'max_digits:15',
-                'unique:fathers,phone_one,' . $this->student->father->id,
-                'unique:fathers,phone_two,' . $this->student->father->id ,
-                'unique:employees,phone_number'
             ],
             'parent_full_name' => ['nullable'],
         ];
