@@ -210,7 +210,6 @@
                                 <th class="align-center">@lang('app.the_installment')</th>
                                 <th class="align-center">@lang('app.due_date')</th>
                                 <th class="align-center">@lang('app.due_amount')</th>
-                                <th class="align-center">@lang('app.paid_amount')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -218,7 +217,6 @@
                             <tr>
                                 <td class="text-center">{{ $installment['number'] }}</td>
                                 <td class="text-center">{{ $installment['due_date'] }}</td>
-                                <td class="text-center" class="align-center">{{ number_format($installment['amount'] ??  0) }}</td>
                                 <td class="text-center">{{ number_format($installment['status'] ) }}</td>
                             </tr>
                             @empty
