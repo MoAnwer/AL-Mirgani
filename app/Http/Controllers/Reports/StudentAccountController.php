@@ -12,7 +12,7 @@ class StudentAccountController extends Controller
     {
         $student = Student::findOrFail($student);
         $studentInstallments = $student->installments();
-        $studentPayments = $studentInstallments->with('payments')->get();
+        $studentPayments = $studentInstallments->with('payments', fn($payment) => $payment->whereNotNull('receipt_number'))->get();
 
         
         $grossFees = $student->total_fee ??     0; 
@@ -47,7 +47,7 @@ class StudentAccountController extends Controller
         $totalPaidInit = 0;
         
         $totalPaid = array_sum(array_map(function($data) use ($totalPaidInit) {
-                return $totalPaidInit += $data['paid_amount'];
+                return $data['receipt_number'] != 0 ? $totalPaidInit += $data['paid_amount'] : '';
             },
             $paymentLog)
         );

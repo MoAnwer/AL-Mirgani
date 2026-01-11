@@ -61,8 +61,12 @@
                                                 </tr>
                                             </x-Table.Thead>
                                             <x-Table.Tbody>
+                                                @php $totalPayments = 0; @endphp
                                                 @forelse($installment->payments as $payment)
                                                     <tr class="text-center">
+                                                        @isset($payment->receipt_number)
+                                                            @php $totalPayments += (int)($payment->paid_amount); @endphp
+                                                        @endisset
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ number_format($payment->paid_amount, 0) }} {{ __('app.currency')}}</td>
                                                         <td>{{ ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak')) }}</td>
@@ -97,7 +101,7 @@
                                                 <tfoot class="bg-label-secondary">
                                                     <tr class="fw-bold">
                                                         <td colspan="7">@lang('app.total_payment')</td>
-                                                        <td>{{ number_format($installment->total_payments, 0) }} {{ __('app.currency')}}</td>
+                                                        <td>{{ number_format($totalPayments, 0) }} {{ __('app.currency')}}</td>
                                                     </tr>
                                                     <tr class="fw-bold">
                                                         <td colspan="7">@lang('app.remaining')</td>

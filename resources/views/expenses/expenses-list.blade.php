@@ -74,7 +74,6 @@
                                     <td>@lang('app.date')</td>
                                     <td>@lang('app.statement')</td>
                                     <td>@lang('app.created_at')</td>
-                                    {{-- <td>@lang('app.actions')</td> --}}
                                 <tr>
                             </x-Table.Thead>
                             <x-Table.Tbody>
@@ -91,7 +90,7 @@
                                     <td>{{ $expense->created_at->diffForHumans() }}</td>
                                 </tr>
                                 @empty
-                                <td colspan="8" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.expenses')]) }} </td>
+                                <td colspan="9" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.expenses')]) }} </td>
                                 @endforelse
                                 @section('pagination')
                                 <div class="mt-5 px-5">{{ $expenses->withQueryString()->links('vendor.pagination.bootstrap-5') }} </div>
