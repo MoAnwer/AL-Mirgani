@@ -23,7 +23,7 @@ class StoreEmployeeRequest extends FormRequest
     {
         return [
             'full_name'     => 'required|max:255',
-            'phone_number'  => 'required|max:255',
+            'phone_number'  => 'required|max:255|unique:employees,phone_number',
             'hire_date'     => 'sometimes',
             'salary'        => 'required|max_digits:15',
             'department'    => 'required'

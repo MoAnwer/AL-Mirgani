@@ -45,12 +45,12 @@ final readonly class EmployeeService
 
             $employee = $this->employee->create($request->validated());
 
-            Notification::send(User::all(), new CreateEmployeeNotification($employee));
+            User::chunk(100, fn($user) => Notification::send($user, new CreateEmployeeNotification($employee)));
             
             return back()->with('message', __('app.create_successful', ['attribute' => __('app.employee')]));
         } catch (\Throwable $th) {
             report($th);
-            return back()->with('error', __('app.error'));
+            return back()->with('error', $th->getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ final readonly class EmployeeService
 
             $employee->delete();
 
-            Notification::send(User::all(), new DeleteEmployeeNotification($employee));
+            User::chunk(100, fn($user) => Notification::send($user, new DeleteEmployeeNotification($employee)));
 
             return to_route('employees.index')->with('message', __('app.delete_successful', ['attribute' => __('app.employee')]));
 
