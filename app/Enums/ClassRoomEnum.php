@@ -4,6 +4,8 @@ namespace App\Enums;
 
 enum ClassRoomEnum: string
 {
+    case KG_ONE = "KG 1";
+    case KG_TWO = "KG 2";
     case BASIC_ONE = "الاول الإبتدائي";
     case BASIC_TWO = "الثاني الإبتدائي";
     case BASIC_THREE = "الثالث الإبتدائي";
@@ -13,7 +15,4 @@ enum ClassRoomEnum: string
     case MIDDLE_ONE = "الاول المتوسط";
     case MIDDLE_TWO = "الثاني المتوسط";
     case MIDDLE_THREE = "الثالث المتوسط";
-    case SECONDARY_ONE = "الاول الثانوي";
-    case SECONDARY_TWO = "الثاني الثانوي";
-    case SECONDARY_THREE = "الثالث الثانوي";
 }
