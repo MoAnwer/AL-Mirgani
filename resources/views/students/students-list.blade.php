@@ -45,8 +45,8 @@
                                     <td>{{ $student->full_name }}</td>
                                     <td>{{ $student->student_number }}</td>
                                     <td>{{ $student->address }}</td>
-                                    <td>{{ __("classes.{$student->class->name}") }}</td>
-                                    <td>{{ __("classes.{$student->stage}") }}</td>
+                                    <td>{{ is_null($student->class->name) ? __("classes.{$student->class->name}") : __('app.not_specify') }}</td>
+                                    <td>{{ !is_null($student->stage) ? __("classes.{$student->stage}") : __('app.not_specify')  }}</td>
                                     <td>{{ $student->school->name }}</td>
                                     <td>
                                         <div class="dropdown">
