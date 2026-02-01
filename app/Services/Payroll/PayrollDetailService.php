@@ -56,6 +56,7 @@ final readonly class PayrollDetailService
                 'payroll_id' => $payroll->id,
                 'item_id' => $request->item_id,
                 'amount' => $request->amount,
+                'date'  => $request->date,
                 'notes' => $request->notes,
             ]);
 
@@ -113,5 +114,39 @@ final readonly class PayrollDetailService
             'total_deductions' => $totalDeductions,
             'net_salary_paid' => $netSalary,
         ]);
+    }
+
+    public function delete(PayrollDetail $detail)
+    {
+        return view('payroll.details.delete-payroll-detail', compact('detail'));
+    }
+
+    public function destroy(PayrollDetail $detail)
+    {
+        try {
+
+            $payroll = $detail->payroll;
+
+            $payrollID = $detail->payroll->id;
+
+            if ($detail->isDeduction()) {
+                DB::transaction(function () use ($payroll, $detail) {
+                    $payroll->total_deductions -= $detail->amount;
+                    $payroll->net_salary_paid  += $detail->amount;
+                    $payroll->save();
+                });
+            } else if ($detail->isAddition()) {
+                DB::transaction(function () use ($payroll, $detail) {
+                    $payroll->total_variable_additions -= $detail->amount;
+                    $payroll->net_salary_paid  -= $detail->amount;
+                    $payroll->save();
+                });
+            }
+
+            $detail->delete();
+
+            return to_route('payroll.show', $payrollID)->with('message', __('app.delete_successful', ['attribute' => __('app.detail')]));
+        } catch (\Exception $e) {
+        }
     }
 }
