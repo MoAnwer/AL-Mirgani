@@ -22,20 +22,21 @@ class Student extends Model
             'student_id' => '',
             'payment_method' => '',
             'payment_date'=> '',
-            'amount' => '',
-            'paid_amount' => '',
-            'transaction_id'
+            'amount' => 0,
+            'paid_amount' => 0,
+            'transaction_id' => ''
         ]);  
     }
 
     public function class(): BelongsTo
     {
-        return $this->belongsTo(ClassRoom::class)->withDefault(['name' => '']);
+        // Don't touch the 'not_specified', this will destroy the app !!!!!!
+        return $this->belongsTo(ClassRoom::class)->withDefault(['name' => 'not_specified']);
     }
 
     public function school(): BelongsTo 
     {
-        return $this->belongsTo(School::class)->withDefault(['name' => '']);
+        return $this->belongsTo(School::class)->withDefault(['name' => __('app.not_specified')]);
     }
 
     public function healthyHistory(): HasOne
@@ -54,7 +55,7 @@ class Student extends Model
     }
 
 
-    public function payments() : HasManyThrough
+    public function payments(): HasManyThrough
     {
         return $this->hasManyThrough(InstallmentPayment::class, Installment::class, 'student_id', 'installment_id');
     }
