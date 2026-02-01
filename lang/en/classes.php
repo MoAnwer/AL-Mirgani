@@ -13,6 +13,7 @@ return [
     "الاول الثانوي" => "secondary one",
     "الثاني الثانوي" => "secondary two",
     "الثالث الثانوي" => "secondary three",
+    'not_specified' => 'Not Specified',
 
     // Stages
     "الإبتدائي" =>"Basic",

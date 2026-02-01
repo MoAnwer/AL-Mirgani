@@ -295,6 +295,7 @@ return [
     'actions'               => 'Actions'              ,
     'print'                 => 'Print',
     'view'                  => 'View',
+    'add'                   => 'Add',
 
 
     // Messages
