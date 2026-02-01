@@ -48,6 +48,7 @@
                                          <div class="col-md-6 mt-3">
                                             <label class="mb-3">@lang('app.class')</label>
                                             <select class="form-select" name="class_id">
+                                                <option selected value="{{ null }}">-- @lang('app.class') --</option>
                                                 @foreach($classes as $key => $value)
                                                     <option value="{{ $value }}" @selected($student->class->name == $key)>{{ __("classes.$key") }}</option>
                                                 @endforeach
@@ -56,6 +57,7 @@
                                         <div class="col-md-6 mt-3">
                                         <label class="mb-3">@lang('app.stage')</label>
                                             <select class="form-select" name="stage">
+                                                <option selected  value="{{ null }}">-- @lang('app.stage') --</option>
                                                 @foreach($stages as $value)
                                                     <option value="{{ $value->value }}" @selected($student->stage == $value->value)>{{ __("classes.{$value->value}") }}</option>
                                                 @endforeach
