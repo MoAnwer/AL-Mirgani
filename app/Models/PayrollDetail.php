@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\PayrollItemsTypesEnum;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PayrollDetail extends Model
@@ -11,6 +12,7 @@ class PayrollDetail extends Model
         'payroll_id',
         'item_id',
         'amount',
+        'date',
         'notes',
     ];
 
@@ -22,5 +24,13 @@ class PayrollDetail extends Model
     public function item(): BelongsTo
     {
         return $this->belongsTo(PayrollItem::class, 'item_id');
+    }
+
+    public function isAddition() {
+        return $this->item->type == PayrollItemsTypesEnum::ADDITION->value;
+    }
+
+    public function isDeduction() {
+        return $this->item->type == PayrollItemsTypesEnum::DEDUCTION->value;
     }
 }
