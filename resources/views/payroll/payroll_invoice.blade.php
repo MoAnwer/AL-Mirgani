@@ -67,7 +67,7 @@
         </div>
         <div class="text-end">
             <h4 class="mb-2">{{ config('app.name') ?? '-'}}</h4>
-            <small class="text-muted"> @lang('app.payroll_invoice_date'): {{ date('Y-m-d') }}</small>
+            <small class="text-muted"> @lang('app.payroll_invoice_date'): <small dir="ltr">{{ date('Y/m/d, h:ma') }}</small></small>
         </div>
     </div>
 
@@ -78,7 +78,7 @@
         </div>
         <div class="col-4 text-end">
             <p class="mb-1 text-muted">@lang('app.payment_state')</p>
-            @if ($payroll?->payment_status == 'Paid')
+            @if ($payroll->isPaid())
                 <span class="badge bg-success-subtle text-success border border-success fs-6 p-2 rounded-pill"><i class='bx bxs-check-circle me-1'></i>@lang('app.paid')</span>
             @else
                 <span class="badge bg-warning-subtle text-warning border border-warning fs-6 p-2 rounded-pill"><i class='bxs-time me-1'></i> {{ $payroll?->payment_status ?? __('app.pending') }}</span>
@@ -95,15 +95,17 @@
             <table class="table table-clean mb-0">
                 <thead>
                     <tr class="border-bottom">
-                        <th class="text-center">@lang('app.item')</th>
-                        <th class="text-center">@lang('app.category')</th>
-                        <th class="text-center">@lang('app.amount')({{ $currency ?? __('app.currency') }})</th>
+                        <th class="text-center"><b>@lang('app.item')</b></th>
+                        <th class="text-center"><b>@lang('app.date')</b></th>
+                        <th class="text-center"><b>@lang('app.category')</b></th>
+                        <th class="text-center"><b>@lang('app.amount')({{ $currency ?? __('app.currency') }})</b></th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr class="table-light">
                         <td class="text-center fw-bold">@lang('app.basic_salary')</td>
+                        <td class="text-center">---</td>
                         <td class="text-center">@lang('app.fixed_due')</td>
                         <td class="text-center fw-bold text-success">{{ number_format($payroll?->basic_salary_snapshot) }}</td>
                     </tr>
@@ -111,6 +113,7 @@
                     @foreach($additions as $detail)
                         <tr>
                             <td class="text-center">{{ $detail->item->name ?? 0}}</td>
+                            <td class="text-center">{{ $detail->date ?? __('app.not_specified')}}</td>
                             <td class="text-center text-success">@lang('app.variable_addition')</td>
                             <td class="text-center text-success">{{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
@@ -120,6 +123,7 @@
                     @foreach($deductions as $detail)
                         <tr>
                             <td  class="text-center">{{ $detail->item->name ?? 0}}</td>
+                            <td  class="text-center">{{ $detail->date ?? __('app.not_specified') }}</td>
                             <td  class="text-center text-danger">@lang('app.deduction')</td>
                             <td  class="text-center text-danger">{{ number_format($detail->amount ?? 0) }}</td>
                         </tr>
@@ -127,11 +131,11 @@
 
 
                     <tr class="border-top">
-                        <td colspan="2" class="text fw-bold">@lang('app.total_due')</td>
+                        <td colspan="3" class="text fw-bold">@lang('app.total_due')</td>
                         <td class="text-center fw-bold text-primary">{{ number_format($payroll?->basic_salary_snapshot + $payroll?->total_variable_additions + $payroll?->total_fixed_allowances) }} {{ __('app.currency') }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="text fw-bold">@lang('app.total_deductions')</td>
+                        <td colspan="3" class="text fw-bold">@lang('app.total_deductions')</td>
                         <td class="text-center fw-bold text-danger">{{ number_format($payroll?->total_deductions) }} {{ __('app.currency') }}</td>
                     </tr>
                 </tbody>
