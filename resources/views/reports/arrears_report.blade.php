@@ -59,8 +59,8 @@
                        @forelse ($reportData as $row)
                             <tr>
                                 <td class="text-center">{{ $row['student_name'] }}</td>
-                                <td class="text-center">{{ __("classes.{$row['class_name']}") }}</td>
-                                <td class="text-center">{{ $row['school_name'] }}</td>
+                                <td class="text-center">{{ $row['class_name'] ? __("classes.{$row['class_name']}") : __('app.not_specified') }}</td>
+                                <td class="text-center">{{ $row['school_name'] ?? $row['school_name'] }}</td>
                                 <td class="text-center">{{ $row['installment_number'] }}</td>
                                 <td class="text-center">{{ $row['due_date'] }}</td>
                                 <td class="text-center">{{ number_format($row['amount_due']) }}</td>

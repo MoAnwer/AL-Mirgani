@@ -27,11 +27,15 @@ class StorePayrollDetail extends FormRequest
             'item_id' => [
                 'required',
                 'exists:payroll_items,id',
+
+                /** I REMOVE THIS RULE */
+
                 // Ensure this item hasn't already been added to this specific payroll
-                Rule::unique('payroll_details')->where(function ($query) {
-                    return $query->where('payroll_id', $this->payroll->id);
-                }),
+                //Rule::unique('payroll_details')->where(function ($query) {
+                  //  return $query->where('payroll_id', $this->payroll->id);
+                //}),
             ],
+            'date'   => 'required',
             'amount' => 'required|numeric|min:0.01|max_digits:15',
             'notes' => 'nullable|string|max:255',
         ];

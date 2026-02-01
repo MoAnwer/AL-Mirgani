@@ -1,11 +1,10 @@
 <x-header title="{{ __('app.edit_payroll_detail') }}"/>
 
-<div class="container my-5">
+<div class="container my-10">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            
             <div class="text-center mb-4">
-                <h2 class="text-warning">@lang('app.edit_payroll_detail')</h2>
+                <h2 class="text-primary">@lang('app.edit_payroll_detail')</h2>
                 <p class="lead">
                     @lang('app.employee'): <strong class="text-dark">{{ $payroll->employee->full_name }}</strong> | 
                     @lang('app.detail_name'): <strong class="text-dark">{{ $detail->item->name }}</strong>
@@ -29,7 +28,7 @@
                             <label for="amount" class="form-label fw-bold">@lang('app.amount')</label>
                             <div class="input-group">
                                 <input type="number" min="0"  name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" 
-                                       value="{{ old('amount', $detail->amount) }}" step="0.01" required placeholder="500.00">
+                                       value="{{ old('amount', $detail->amount) }}" step="1" required placeholder="500.00">
                                 <span class="input-group-text">@lang('app.currency')</span>
                             </div>
                             @error('amount')
@@ -38,7 +37,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="notes" class="form-label">@lang('app.notes')</label>
+                            <label for="notes" class="form-label fw-bold">@lang('app.notes')</label>
                             <textarea name="notes" id="notes" class="form-control" rows="2">{{ old('notes', $detail->notes) }}</textarea>
                         </div>
 

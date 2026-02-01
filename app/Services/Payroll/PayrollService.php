@@ -214,6 +214,11 @@ final readonly class PayrollService
                 $data['transaction_id'] = null;
             }
 
+            // Remove payment_date if user enter payment_status "Pending" Or "Failed"
+            if (isset($data['payment_date']) && $request->payment_status != "Paid") {
+                $data['payment_date'] = null;
+            }
+
             DB::transaction(function () use ($request, $payroll, $data) {
 
                 $originalBasicSalary = $payroll->basic_salary_snapshot;
@@ -231,6 +236,7 @@ final readonly class PayrollService
             });
 
             return to_route('payroll.show', $payroll->id)->with('message', __('app.payroll_saved'));
+
         } catch (\Exception $e) {
 
             report($e);

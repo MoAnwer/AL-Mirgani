@@ -41,4 +41,14 @@ class PayrollDetailController extends Controller
     {
         return $this->service->update($request, $payroll, $detail);
     }
+
+    public function delete(PayrollDetail $detail) 
+    {
+        return $this->service->delete($detail);
+    }
+
+    public function destroy(PayrollDetail $detail) 
+    {
+        return $this->service->destroy($detail);
+    }
 }

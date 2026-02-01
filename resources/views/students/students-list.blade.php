@@ -44,10 +44,10 @@
                                     <td>{{ $student->id }}</td>
                                     <td>{{ $student->full_name }}</td>
                                     <td>{{ $student->student_number }}</td>
-                                    <td>{{ $student->address }}</td>
+                                    <td>{{ $student->address != null ? $student->address : __('app.not_specified') }}</td>
                                     <td>{{ __("classes.{$student->class->name}") }}</td>
-                                    <td>{{ __("classes.{$student->stage}") }}</td>
-                                    <td>{{ $student->school->name }}</td>
+                                    <td>{{ $student->stage != null ? __("classes.{$student->stage}") : __('app.not_specified')  }}</td>
+                                    <td>{{  $student->school->name  }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

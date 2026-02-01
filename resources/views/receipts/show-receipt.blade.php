@@ -69,7 +69,13 @@
                     </tr>
                     <tr>
                         <th class="px-2">@lang('app.class')</th>
-                        <td>{{ $receipt->student->class->name ?? '--' }}</td>
+                        <td>
+                            @if($receipt->student->class->name == "not_specified")
+                                {{ __('app.not_specified') }}
+                            @else 
+                                {{ $receipt->student->class->name }}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th class="px-2">@lang('app.installment')</th>

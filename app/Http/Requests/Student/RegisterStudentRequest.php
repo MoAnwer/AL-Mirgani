@@ -26,14 +26,14 @@ class RegisterStudentRequest extends FormRequest
         return [
             'full_name'         => ['required', 'string', 'max:255'],
             'address'           => ['nullable', 'string', 'max:255'],
-            'stage'             => ['required'],
-            'school'            => ['required'],
-            'class'             => ['required'],
-            'total_fee'         => ['required', 'max_digits:15'],
+            'stage'             => ['nullable'],
+            'school'            => ['nullable'],
+            'class'             => ['nullable'],
+            'total_fee'         => ['nullable', 'max_digits:15'],
             'discount'          => ['nullable', 'max_digits:3'],
             'parent_name'       => ['required', 'string', 'max:255'],
             'phone_one'         => [
-                'required',
+                'nullable',
                 'string',
                 'max_digits:15',
             ],
@@ -42,11 +42,11 @@ class RegisterStudentRequest extends FormRequest
                 'string',
                 'max_digits:15',
             ],
-            'registration_fee'  => ['required', 'max_digits:15'],
-            'paid_amount'       => ['required', 'max_digits:15'],
+            'registration_fee'  => ['nullable', 'max_digits:15'],
+            'paid_amount'       => ['nullable', 'max_digits:15'],
             'payment_method'    => ['nullable', 'string'],
             'transaction_id'    => ['sometimes', 'max_digits:15', new RequiredIfBankak(), new UniqueInTables(['earnings', 'expenses', 'registration_fees', 'installment_payments', 'employee_payrolls'], 'transaction_id')],
-            'payment_date'      => ['required'],
+            'payment_date'      => ['nullable'],
         ];
     }
 

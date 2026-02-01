@@ -18,6 +18,4 @@ class PayrollItem extends Model
             'is_fixed' => 'boolean',
         ];
     }
-
-    // Note: No direct relationships defined here, as this table primarily stores definitions.
 }

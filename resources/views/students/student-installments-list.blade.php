@@ -1,4 +1,4 @@
-<x-header title="{{__('app.profile', ['attribute' => __('app.student')]) .' '. $student->full_name }}"/>
+<x-header title="{{__('app.profile', ['attribute' => __('app.student')]) .' '. $student->full_name }}" />
 
 <x-LayoutWrapper>
     <x-LayoutContainer>
@@ -8,55 +8,52 @@
             <x-ContentWrapper>
                 <x-Container>
 
-                <x-alert type="message" />
-                <x-alert type="error" />
+                    <x-alert type="message" />
+                    <x-alert type="error" />
 
-                <div class="row">
-                    <div class="col-md-12">
-                    <div class="nav-align-top">
-                        <ul class="nav nav-pills flex-column flex-md-row mb-6 gap-md-0 gap-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('students.show', $student) }}"
-                                ><i class="icon-base bx bx-user icon-sm me-1_5"></i>@lang('app.profile', ['attribute' => __('app.student')])</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('student-healthy-history.show', $student) }}"
-                                ><i class="icon-base bx bx-bell icon-sm me-1_5"></i>@lang('app.healthy_history')</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('students.installments', $student) }}"
-                                ><i class="icon-base bx bx-money icon-sm me-1_5"></i>@lang('app.installments')</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card mb-6 py-0">
-                            <!-- Account -->
-                            <div class="card-body pb-0">
-                            <div class="d-flex justify-content-between align-items-sm-center gap-6 pb-4 border-bottom">
-                                <div class="d-flex align-items-start align-items-sm-center">
-                                    <i class="icon-base bx bx-money icon-sm me-1_5 d-block w-px-50 h-px-50 rounded"></i>
-                                    <div class="button-wrapper">
-                                        <h5>@lang('app.student_installments', ['student' => $student->full_name])</h5>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="nav-align-top">
+                                <ul class="nav nav-pills flex-column flex-md-row mb-6 gap-md-0 gap-2">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('students.show', $student) }}"><i class="icon-base bx bx-user icon-sm me-1_5"></i>@lang('app.profile', ['attribute' => __('app.student')])</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('student-healthy-history.show', $student) }}"><i class="icon-base bx bx-bell icon-sm me-1_5"></i>@lang('app.healthy_history')</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="{{ route('students.installments', $student) }}"><i class="icon-base bx bx-money icon-sm me-1_5"></i>@lang('app.installments')</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('students.registrationFees', $student) }}"><i class="icon-base bx bx-money icon-sm me-1_5"></i>@lang('app.registration_fee')</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card mb-6 py-0">
+                                <!-- Account -->
+                                <div class="card-body pb-0">
+                                    <div class="d-flex justify-content-between align-items-sm-center gap-6 pb-4 border-bottom">
+                                        <div class="d-flex align-items-start align-items-sm-center">
+                                            <i class="icon-base bx bx-money icon-sm me-1_5 d-block w-px-50 h-px-50 rounded"></i>
+                                            <div class="button-wrapper">
+                                                <h5>@lang('app.student_installments', ['student' => $student->full_name])</h5>
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-primary text-white" href="{{ route('installments.create', $student) }}">@lang('app.create', ['attribute' => __('app.installment')])</a>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary text-white" href="{{ route('installments.create', $student) }}">@lang('app.create', ['attribute' => __('app.installment')])</a>
-                            </div>
-                            </div>
-                            <x-Table.BasicTable>
-                                <x-Table.Thead>
-                                    <tr class="text-center">
-                                        <th>#</th>
-                                        <th>@lang('app.number', ['attribute' => __('app.installment')])</th>
-                                        <th>@lang('app.amount')</th>
-                                        <th>@lang('app.due_date')</th>
-                                        <th>@lang('app.actions')</th>
-                                    </tr>
-                                </x-Table.Thead>
-                                <x-Table.Tbody>
-                                    @forelse($installments as $installment)
+                                <x-Table.BasicTable>
+                                    <x-Table.Thead>
+                                        <tr class="text-center">
+                                            <th>#</th>
+                                            <th>@lang('app.number', ['attribute' => __('app.installment')])</th>
+                                            <th>@lang('app.amount')</th>
+                                            <th>@lang('app.due_date')</th>
+                                            <th>@lang('app.actions')</th>
+                                        </tr>
+                                    </x-Table.Thead>
+                                    <x-Table.Tbody>
+                                        @forelse($installments as $installment)
                                         <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $installment->number }}</td>
@@ -64,7 +61,7 @@
                                             <td>{{ $installment->due_date->format('Y-m-d') }} ({{ $installment->formatted_due_date }})</td>
                                             <td>
                                                 <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
@@ -75,17 +72,17 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @empty
+                                        @empty
                                         <td colspan="5" class="text-center"> {{ __('app.empty_message', ['attributes' => __('app.installments')]) }} </td>
-                                    @endforelse                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                </x-Table.Tbody>
-                            </x-Table.BasicTable>    
+                                        @endforelse
+                                    </x-Table.Tbody>
+                                </x-Table.BasicTable>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </x-Container>
+                </x-Container>
             </x-ContentWrapper>
         </x-LayoutPage>
     </x-LayoutContainer>
 </x-LayoutWrapper>
-<x-footer/> 
+<x-footer />

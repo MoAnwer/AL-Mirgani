@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Requests\Student\{UpdateStudentRequest, RegisterStudentRequest};
+use App\Http\Requests\Student\{UpdateStudentRequest, RegisterStudentRequest, StoreRegistrationFeeRequest};
 use App\Models\Student;
 use App\Services\Student\StudentService;
 use App\Http\Controllers\Controller;
@@ -74,6 +74,24 @@ class StudentController extends Controller
     public function installments(Student $student)
     {
         return $this->service->installmentsList($student);
+    }
+
+    /**
+     * Show registration fees page
+     */
+    public function registrationFeesPage(Student $student)
+    {
+        return $this->service->registrationFeeDetailPage($student);
+    }
+
+    public function createRegistrationFeesPage(Student $student) 
+    {
+        return $this->service->createRegistrationFeesPage($student);
+    }
+
+    public function storeRegistrationFees(StoreRegistrationFeeRequest $request, Student $student)
+    {
+        return $this->service->storeRegistrationFees($request, $student);
     }
 
     public function studentsCount() {

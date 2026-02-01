@@ -290,6 +290,7 @@ return [
     'actions'               => 'اجراءات',
     'print'                 => 'طباعة',
     'view'                  => 'عرض',
+    'add'                   => 'اضافة',
 
 
     // Messages

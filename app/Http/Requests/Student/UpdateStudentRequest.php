@@ -24,10 +24,10 @@ class UpdateStudentRequest extends FormRequest
     {
         return [
             'full_name' => ['required', 'string', 'max:255'],
-            'stage'     => ['required'],
-            'address'   => ['required', 'max:255'],
-            'total_fee' => ['required', 'max_digits:15'],
-            'class_id'  => ['required'],
+            'stage'     => ['nullable'],
+            'address'   => ['nullable', 'max:255'],
+            'total_fee' => ['nullable', 'max_digits:15'],
+            'class_id'  => ['nullable'],
             'school_id' => ['required'],
             'phone_one'         => [
                 'nullable',
@@ -50,8 +50,8 @@ class UpdateStudentRequest extends FormRequest
             'total_fee'     => __('app.total_fee'),
             'school_id'     => __('app.school'),
             'address'       => __('app.address'),
-            'phone_one'         => __('app.phone_one'),
-            'phone_two'         => __('app.phone_two')
+            'phone_one'     => __('app.phone_one'),
+            'phone_two'     => __('app.phone_two')
         ];
     }
 }

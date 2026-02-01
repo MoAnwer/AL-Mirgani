@@ -13,13 +13,12 @@ class StudentAccountController extends Controller
         $student = Student::findOrFail($student);
         $studentInstallments = $student->installments();
         $studentPayments = $studentInstallments->with('payments', fn($payment) => $payment->whereNotNull('receipt_number'))->get();
-
         
-        $grossFees = $student->total_fee ??     0; 
+        $grossFees = $student->total_fee ?? 0; 
         $discountAmount = $student->discount ?? 0; 
         
-
         $paymentLog = [];
+
         $data = [];
 
         foreach ($studentPayments->all() as $installment) {
@@ -29,7 +28,7 @@ class StudentAccountController extends Controller
                     'receipt_number' => $payment->receipt_number ?? 0,
                     'statement' => $payment->statement ?? '',
                     'paid_amount' => $payment->paid_amount ?? 0,
-                    'payment_method' => ($payment->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))  ?? '',
+                    'payment_method' => $payment->payment_method,
                     'transaction_id' => $payment->transaction_id ?? '',
                     'collector' => $payment->collector->name ?? '-', 
                 ];
@@ -58,9 +57,9 @@ class StudentAccountController extends Controller
         $register_fees = [
             'amount'         => number_format($student->registrationFees->amount),
             'paid_amount'    => number_format($student->registrationFees->paid_amount),
-            'payment_date'   => $student->registrationFees->payment_date,
+            'payment_date'   => $student->registrationFees->payment_date ??  __('app.not_specify'),
             'transaction_id' => $student->registrationFees->transaction_id ?? '',
-            'payment_method' => ($student->registrationFees->payment_method == 'كاش' ? __('app.cash') : __('app.bankak'))
+            'payment_method' => $student->registrationFees->payment_method ?? __('app.not_specify'),
         ];
 
         $installmentsSchedule = $student->installments->sortBy('date')->map(function($installment)  {
