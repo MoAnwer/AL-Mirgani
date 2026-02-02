@@ -44,52 +44,66 @@ final readonly class PayrollDetailService
 
     /**
      * Store a newly created payroll detail in storage and update the parent summary.
+     * 
+     * @param StorePayrollDetail $request 
      */
     public function store(StorePayrollDetail $request, EmployeePayroll $payroll)
     {
+        try {
 
-        $request->validated();
+            $request->validated();
 
-        DB::transaction(function () use ($request, $payroll) {
+            DB::transaction(function () use ($request, $payroll) {
 
-            $this->payrollDetail->create([
-                'payroll_id' => $payroll->id,
-                'item_id' => $request->item_id,
-                'amount' => $request->amount,
-                'date'  => $request->date,
-                'notes' => $request->notes,
-            ]);
+                $this->payrollDetail->create([
+                    'payroll_id' => $payroll->id,
+                    'item_id' => $request->item_id,
+                    'amount' => $request->amount,
+                    'date'  => $request->date,
+                    'notes' => $request->notes,
+                ]);
 
-            // Recalculate the parent payroll's summary fields
-            $this->recalculatePayrollSummary($payroll);
-        });
+                // Recalculate the parent payroll's summary fields
+                $this->recalculatePayrollSummary($payroll);
+            });
 
-        return to_route('payroll.show', $payroll->id)->with('message', __('app.create_successful', ['attribute' => __('app.salary')]));
+            return to_route('payroll.show', $payroll->id)->with('message', __('app.create_successful', ['attribute' => __('app.salary')]));
+
+        } catch (\Throwable $th) {
+            
+            return to_route('payroll.show', $payroll->id)->with('error', __('app.error'));
+        }
     }
 
 
     public function update(Request $request, EmployeePayroll $payroll, PayrollDetail $detail)
     {
-        $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'notes' => 'nullable|string|max:255',
-        ]);
-
-        if ($detail->payroll_id !== $payroll->id) {
-            abort(403);
-        }
-
-        DB::transaction(function () use ($request, $payroll, $detail) {
-
-            $detail->update([
-                'amount' => $request->amount,
-                'notes' => $request->notes,
+       try {
+            
+            $request->validate([
+                'amount' => 'required|numeric|min:0',
+                'notes' => 'nullable|string|max:255',
             ]);
 
-            $this->recalculatePayrollSummary($payroll);
-        });
+            if ($detail->payroll_id !== $payroll->id) {
+                abort(403);
+            }
 
-        return to_route('payroll.show', $payroll->id)->with('message', __('app.update_successful', ['attribute' => __('app.detail')]));
+            DB::transaction(function () use ($request, $payroll, $detail) {
+                $detail->update([
+                    'amount' => $request->amount,
+                    'notes' => $request->notes,
+                ]);
+                $this->recalculatePayrollSummary($payroll);
+            });
+
+            return to_route('payroll.show', $payroll->id)->with('message', __('app.update_successful', ['attribute' => __('app.detail')]));
+
+       } catch (\Throwable $th) {
+        
+            return to_route('payroll.show', $payroll->id)->with('error', __('app.error'));
+
+       }
     }
 
     /**
@@ -146,7 +160,11 @@ final readonly class PayrollDetailService
             $detail->delete();
 
             return to_route('payroll.show', $payrollID)->with('message', __('app.delete_successful', ['attribute' => __('app.detail')]));
+
         } catch (\Exception $e) {
+
+            return to_route('payroll.show', $payroll->id)->with('error', __('app.error'));
+
         }
     }
 }

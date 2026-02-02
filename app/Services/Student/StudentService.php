@@ -124,53 +124,6 @@ class StudentService
         }
     }
 
-
-    public function createRegistrationFeesPage(Student $student)
-    {
-        return view('students.create-registration-fees', [
-            'student' => $student,
-            'paymentMethods' => ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
-        ]);
-    }
-
-    public function storeRegistrationFees(StoreRegistrationFeeRequest $request, Student $student) 
-    {
-        try {
-            
-            $data = $request->validated();
-
-            $registrationFee = RegistrationFee::create([
-                "student_id" => $student->id,
-                "amount" => $data['amount'],
-                "paid_amount" => $data['paid_amount'],
-                "payment_method" => $data['payment_method'],
-                "payment_date" => $data['payment_date'],
-                "transaction_id" => $data['transaction_id'],
-            ]);
-
-            $earning = Earning::create([
-                'amount'    => $registrationFee->paid_amount,
-                'payment_method' => $registrationFee->payment_method,
-                'transaction_id' => $registrationFee->transaction_id,
-                'statement' => __('app.student_registration_fee'),
-                'date'      => $registrationFee?->payment_date
-            ]);
-
-            User::chunk(100, function($user) use($earning) {
-                Notification::send($user, new EarningNotification($earning));
-            });
-
-            return back()->with('message', __('app.student_register_successfully'));
-
-        } catch (\Throwable $th) {
-
-            report($th);
-
-            return to_route('students.registrationFees.create', $student)->with('error', $th->getMessage());
-        }
-    }
-
-
     public function updateStudent(UpdateStudentRequest $request, Student $student)
     {
         try {
@@ -260,4 +213,69 @@ class StudentService
                 ->get(),
         ];
     }
+
+    /**
+     * Show create registration fee page 
+     *
+     * @param Student $student
+     * @return View
+     **/
+    public function createRegistrationFeesPage(Student $student)
+    {
+        return view('students.create-registration-fees', [
+            'student' => $student,
+            'paymentMethods' => ['كاش' => __('app.cash'), 'بنكك'  => __('app.bankak')]
+        ]);
+    }
+
+    /**
+     * Store student registration fees
+     *
+     * @param StoreRegistrationFeeRequest $request 
+     * @param Student $student
+     * @return View
+     **/
+    public function storeRegistrationFees(StoreRegistrationFeeRequest $request, Student $student) 
+    {
+        try {
+            
+            $data = $request->validated();
+
+            DB::transaction(function() use ($request, $student, $data) {
+
+                $registrationFee = RegistrationFee::create([
+                    "student_id" => $student->id,
+                    "amount" => $data['amount'],
+                    "paid_amount" => $data['paid_amount'],
+                    "payment_method" => $data['payment_method'],
+                    "payment_date" => $data['payment_date'],
+                    "transaction_id" => $data['transaction_id'],
+                ]);
+
+                $earning = Earning::create([
+                    'amount'    => $registrationFee->paid_amount,
+                    'payment_method' => $registrationFee->payment_method,
+                    'school_id'      => $student->school->id ?? null,
+                    'transaction_id' => $registrationFee->transaction_id,
+                    'statement' => __('app.student_registration_fee'),
+                    'date'      => $registrationFee?->payment_date
+                ]);
+
+                User::chunk(100, function($user) use($earning) {
+                    Notification::send($user, new EarningNotification($earning));
+                });
+
+            });
+
+            return back()->with('message', __('app.student_register_successfully'));
+
+        } catch (\Throwable $th) {
+
+            report($th);
+
+            return to_route('students.registrationFees.create', $student)->with('error', $th->getMessage());
+        }
+    }
+
+
 }
