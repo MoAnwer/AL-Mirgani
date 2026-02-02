@@ -47,7 +47,9 @@ class SchoolController extends Controller
 
             $school = $this->school->create($data);
 
-            Notification::sendNow(User::all(), new CreateSchoolNotification($school));
+            User::chunk(100, function($user) use ($school) {
+                Notification::send($user, new CreateSchoolNotification($school));
+            });
 
             return to_route('schools.index')->with('message', __('app.create_successful', ['attribute' => __('app.school')]));
 
