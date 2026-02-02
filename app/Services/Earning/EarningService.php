@@ -63,7 +63,9 @@ final readonly class EarningService
     {
         $earning = $this->earning->create($request->validated());
 
-        Notification::send(User::all(), new EarningNotification($earning));
+        User::chunk(100, function($user) use ($earning) {
+            Notification::send($user, new EarningNotification($earning));
+        });
 
         return back()->with('message', __('app.create_successful', ['attribute' => __('app.earning')]));
     }
