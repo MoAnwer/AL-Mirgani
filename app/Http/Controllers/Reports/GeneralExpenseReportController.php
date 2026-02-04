@@ -41,7 +41,7 @@ class GeneralExpenseReportController extends Controller
             'total_amount' => number_format($totalExpenses ?? 0),
         ];
 
-        $schools = $this->school->get();
+        $schools = $this->school->get(['id', 'name']);
 
         $categories = $this->expense_category->pluck('id', 'name');
 
