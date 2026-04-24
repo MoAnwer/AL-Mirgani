@@ -238,4 +238,4 @@ A comprehensive web-based accounting and management system designed for schools.
 
 ---
 
-Mohamed anwer - 2025
+By Mohamed anwer - 2025
