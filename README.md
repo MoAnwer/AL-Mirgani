@@ -4,7 +4,7 @@ A comprehensive web-based accounting and management system designed for schools.
 
 ## 🚀 Key Features
 
-### 🎓 Student Management
+### 🎓 Student Management 
 - **Comprehensive Profile Management**: 
   - Store detailed student information including full name, address, academic stage, and class.
   - Auto-generated unique student numbers (format: `YYYY00001`) based on enrollment year.
