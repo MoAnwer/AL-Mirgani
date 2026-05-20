@@ -1,10 +1,10 @@
-# School Accounting System
+# AL-Mirgani School Accounting System
 
-A comprehensive web-based accounting and management system designed for schools. Built with **Laravel**, this application streamlines financial operations, student fee management, employee payroll, and generates detailed financial reports.
+A comprehensive web-based accounting and management system designed for schools. Built with **Laravel**, this application streamlines financial operations, student fee management, employee payroll, and generates detailed financial reports. 
 
 ## 🚀 Key Features
 
-### 🎓 Student Management
+### 🎓 Student Management 
 - **Comprehensive Profile Management**: 
   - Store detailed student information including full name, address, academic stage, and class.
   - Auto-generated unique student numbers (format: `YYYY00001`) based on enrollment year.
@@ -238,4 +238,4 @@ A comprehensive web-based accounting and management system designed for schools.
 
 ---
 
-Mohamed anwer - 2025
+By Mohamed anwer - 2025

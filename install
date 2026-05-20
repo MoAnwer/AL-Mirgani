@@ -1,3 +1,4 @@
+cp .env.example .env
 artisan migrate:fresh 
 artisan key:generate
 artisan optimize:clear

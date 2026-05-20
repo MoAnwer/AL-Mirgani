@@ -6,5 +6,5 @@ enum EmployeeTypes: string
 {
     case TEACHER = "معلم";
     case WORKER = "عامل";
-    case MANAGER = "إدراي";
+    case MANAGER = "إداري";
 }
