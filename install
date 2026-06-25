@@ -1,4 +1,5 @@
 cp .env.example .env
+touch database/notifications.sqlite
 artisan migrate:fresh 
 artisan key:generate
 artisan optimize:clear
