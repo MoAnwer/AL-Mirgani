@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
 use App\Models\Expense;
-use App\Models\ExpenseCategory;
 use App\Models\Student;
 
 class DashboardController extends Controller
