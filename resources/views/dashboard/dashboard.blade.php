@@ -14,7 +14,7 @@
                     <div class="d-flex align-items-center row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <h4 class="card-title text-primary mb-3">@lang('app.welcome', ['user' => auth()->user()->username])</h4>
+                          <h4 class="card-title text-primary mb-3">@lang('app.welcome', ['user' => auth()->user()->name])</h4>
                           <p>@lang('app.intro_msg')</p>
                         </div>
                       </div>
