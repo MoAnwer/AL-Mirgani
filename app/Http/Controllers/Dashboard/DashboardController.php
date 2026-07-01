@@ -14,7 +14,6 @@ class DashboardController extends Controller
     public function __construct(
         private readonly Student $student,
         private readonly Expense $expense,
-        private readonly ExpenseCategory $expenseCategories,
         private readonly Earning $earning
     ) {}
 
