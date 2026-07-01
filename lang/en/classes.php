@@ -18,5 +18,5 @@ return [
     // Stages
     "الإبتدائي" =>"Basic",
     "المتوسط" => "middle",
-    "الثانوي" => "secondary"
+    "الروضة" => "KG"
 ];

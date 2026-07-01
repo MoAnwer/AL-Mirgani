@@ -201,13 +201,13 @@ class StudentService
         return [
             'countBySchool' => $this->student
                 ->select('school_id', 'schools.name as name', DB::raw('COUNT(students.id) AS count'))
-                ->rightJoin('schools', 'schools.id', 'students.school_id')
+                ->join('schools', 'schools.id', 'students.school_id')
                 ->groupBy('school_id', 'name')
                 ->get(),
 
             'countByClass' => $this->student
                 ->select('class_id', 'classes.name as name', DB::raw('COUNT(students.id) AS count'))
-                ->rightJoin('classes', 'classes.id', 'students.class_id')
+                ->join('classes', 'classes.id', 'students.class_id')
                 ->orderByDesc('count')
                 ->groupBy('class_id', 'name')
                 ->get(),
